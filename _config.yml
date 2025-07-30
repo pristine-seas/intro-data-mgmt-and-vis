@@ -5,3 +5,7 @@ plugins:
 
 title: "EVR 528 / 628"
 description: "Introduction to Data Management and Visualization for Environmental Scientists"
+repository: jcvdav/EVR_628
+
+url: https://jcvdav.github.io/EVR_628/
+baseurl: ""
