@@ -1,0 +1,20 @@
+author: "Juan Carlos Villaseñor-Derbez (JC)"
+affiliation: "Rosenstiel School of Marine, Atmospheric, and Earth Science and Institute for Data Science and Computing"
+
+project:
+  output-dir: .
+  execute-dir: project
+
+#bibliography: references.bib
+format:
+  revealjs:
+    theme: simple
+    incremental: true
+    logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
+    footer: "[EVR 628](https://jcvdav.github.io/EVR_628/)"
+    code-fold: true
+    preview-links: true
+    echo: true
+    slide-number: true
+    smaller: true
+    fig-align: center

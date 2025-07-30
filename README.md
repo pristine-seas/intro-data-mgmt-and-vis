@@ -116,9 +116,9 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Combining multiple sources of data (*_joins)
 
 ## Week 9 (Oct 13-17)
-**Dealing with data**
-- Regular expressions with stringr
+**Dealing with text, dates, and factors**
 - Managing dates and times with lubridate
+- Regular expressions with stringr
 - Ordering factors with forcats
 
 ---
