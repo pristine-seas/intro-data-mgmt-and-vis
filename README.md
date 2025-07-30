@@ -43,7 +43,7 @@ By the end of the course, students will be comfortable working in R.
 Students must complete any assigned readings and software tests before class. Note that content, and timing of the content, is subject to change. Any changes will be clearly communicated via Blackboard. (* Week contains holiday)
 
 ## Week 1, (8/18-Aug 8/22)
-*Introduction to DataScience and RStudio IDE*
+**Introduction to DataScience and RStudio IDE**
 - Software installation and testing
 - Overview of R Studio IDE
 - R Studio Projects and project organization
