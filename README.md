@@ -38,28 +38,32 @@ By the end of the course, students will be comfortable working in R.
 - Other relevant sources:
     - [The Visual Display of Quantitative Information](https://www.edwardtufte.com/book/the-visual-display-of-quantitative-information/) by Edward Tufte
 
-# Course content and schedule
+# Course schedule
 
-Students must complete any assigned readings and software tests before class. Note that content, and timing of the content, is subject to change. Any changes will be clearly communicated via Blackboard. (* Week contains holiday)
+Students must complete any assigned readings and software tests before class. Note that content, and timing of the content, is subject to change. Any changes will be clearly communicated via Canvas. (* Week contains holiday)
 
-## Week 1, (8/18-Aug 8/22)
-**Introduction to DataScience and RStudio IDE**
+The latest official academic calendar is [here](https://registrar.miami.edu/_assets/pdf/academic-calendar-fall-2025.pdf).
+
+## Week 1 (Aug 18-22)
+**Introduction to Data Science and RStudio IDE**
 - Software installation and testing
 - Overview of R Studio IDE
 - R Studio Projects and project organization
 - R scripts
 - R packages: [`tidyverse`](https://www.tidyverse.org/), [`EVR628`]()
 
-### Week 2, (8/25-8/29): Data visualization
+## Week 2 (Aug 25-29)
+**Data visualization**
 - The grammar of graphics and the [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 - Types of visualization
 - Visualization principles
 - Colorblindness, IPCC’s visual style guide, and the [`viridis`](https://github.com/sjmgarnier/viridis/) package
 
-### *Week3, (9/1-9/5): Keeping track of your code with Git + GitHub
+## *Week3 (Sep 1-5)
+**Keeping track of your code with Git and GitHub**
 - Reproducible research
 - Introduction to file structure
-- Version control with [git](https://git-scm.com/downloads) and [GitHub](https://github.com/)
+- Version control with [Git](https://git-scm.com/downloads) and [GitHub](https://github.com/)
 - Building your first repository (hello world!)
 
 ---
@@ -68,74 +72,106 @@ Students must complete any assigned readings and software tests before class. No
 
 ---
 
-### Week 4, Sept 8 - Sept 12: Good coding principles
+## Week 4 (Sep 9-12): Good coding principles
 - Code style and documentation
 - File structure and organization
 - Classes, objects, variables, values
 - Indexing and subsetting vectors and data frames
 - Useful functions in base and stats
 
-### Week 5, Sept 15 - Sept 19: Scaling up your code and visualizations
+## Week 5 (Sep 15-19)
+**Scaling up your code and visualizations**
 - Layers, geometries, and aesthetics in ggplot2
 - Themes with ggplot2
+- Other plotting packages (cowplot, GGally)
 - Creating documents and presentations with Quarto
 
-_Second assignment: Data visualization_
+---
 
-### Week 6, Sept 22-26: Data management
+**Second assignment:** _Data visualization_
+
+---
+
+## Week 6 (Sep 22-26)
+**Data management**
 - Reading and writing tabular data with here
 - Metadata and documentation
 - Retrieving environmental datasets from the Internet
 - Raw data vs processed data
 
-### Week 7, Sept 29- Oct 3: Data transformation
+## Week 7, Sept 29-Oct 3
+**Data transformation**
 - data.frames and tibbles in the tidyverse
 - Rows (filter, arrange, distinct) in dplyr
 - Columns (select, rename) in dplyr
 - The pipe (native and magrittr)
 - Grouping and summarizing data
 
-### Week 8, Oct 6 - Oct 10: Data tidying and wrangling
+## Week 8 (Oct 6-10)
+**Data tidying and wrangling**
 - Principles of tidy data
 - Lengthening data with tidyr
 - Widening data with tidyr
 - Combining multiple sources of data (*_joins)
 
-### Week 9, Oct 13 - Oct 17: Dealing with data
+## Week 9 (Oct 13-17)
+**Dealing with data**
 - Regular expressions with stringr
 - Managing dates and times with lubridate
 - Ordering factors with forcats
 
-_Third assignment: Data wrangling_
+---
 
-### Week 10, Oct 20-24:  Working with spatial data in R
+**Third assignment:** _Data wrangling_
+
+---
+
+## Week 10 (Oct 20-24)
+**Working with spatial data in R**
 - Vector data and sf
 - Raster data and terra
 - Exploratory visualizations with plot and mapview
 
-### Week 11, Oct 27-31: Visualizing spatial data
+## Week 11 (Oct 27-31)
+**Visualizing spatial data**
 - Attribute operations
 - Building maps with ggplot2 and tmap
 
-_Fourth assignment: Visualizing spatial data_
+---
 
-### Week 12, Nov 3 - 7: Extensions
+**Fourth assignment:** _Visualizing spatial data_
+
+---
+
+## Week 12 (Nov 3-7)
+**Extensions**
 - Connecting to external databases with DBI
-- Animating ggplots with gganimate
+- Animating with the `gganimate` package
 - Interactive maps with leaflet
 
-### Week 13, Nov 10-14: Programming
+## Week 13, (Nov 10-14):
+**Programming**
 - User-defined functions
 - Iteration with loops
-- Functional programming with purrr
+- Functional programming with the purrr package
 - Background jobs
 - Standardizing the environment with .Rprofile
 
-### Week 14, Nov 17 - Nov 21: Shiny Apps Framework
+## Week 14, (Nov 17-21)
+**Shiny Apps Framework**
 - Reactive programming
 - UI / UX
-- Front-end vs back-end
+- Front-end _vs_ back-end
 
-### *Week 15, Nov 24 - Nov 28: Thanksgiving recess
+## *Week 15, (Nov 24-28)
+**Thanksgiving recess**
 
-### Week 16: Dec 4 - Dec 10: Final presentations (egg timers)
+## Week 16: (Dec 4-10)
+**FINAL EXAMS WEEK**
+
+---
+
+Final presentations (egg timers)
+
+---
+
