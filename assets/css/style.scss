@@ -17,7 +17,7 @@ header {
     -webkit-font-smoothing: antialiased;
     min-height: 76px;
 }
-.banner {
+banner {
     z-index: 100;
     left: 0;
     right: 50%;
@@ -25,7 +25,7 @@ header {
     margin-right: -382px;
     position: fixed;
     top: 115px;
-    background: #f47321;
+    background: #f47321 !important;
     border: 1px solid #f47339;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     border-radius: 0px 2px 2px 0px;
