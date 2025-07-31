@@ -52,6 +52,10 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - R scripts
 - R packages: [`tidyverse`](https://www.tidyverse.org/), [`EVR628`]()
 
+**Relevant links for the week**
+- [Instructions to install R and RStudio](https://jcvdav.github.io/EVR_628/docs/01_installing_R_RStudio.html)
+- [Slide deck](https://jcvdav.github.io/EVR_628/slides/intro.html)
+
 ## Week 2 (Aug 25-29)
 **Data visualization**
 - The grammar of graphics and the [`ggplot2`](https://github.com/tidyverse/ggplot2) package
