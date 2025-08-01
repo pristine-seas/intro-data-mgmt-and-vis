@@ -147,7 +147,7 @@ This course only covers one bubble
 
 ## R Scripts
 
-Hands-on tasks:
+## Hands-on tasks:
 
 :::: {.columns}
 
