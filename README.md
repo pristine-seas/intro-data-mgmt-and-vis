@@ -24,16 +24,13 @@ tasks and questions that students will encounter in the workforce.
 By the end of the course, students will be comfortable working in R.
 
 ## Reading resources
-- [R for data science](https://r4ds.hadley.nz/) by Hadley Wickham et al
-- [Visual Style Guide](https://www.ipcc.ch/site/assets/uploads/2022/09/IPCC_AR6_WGI_VisualStyleGuide_2022.pdf) by the IPCC
-- [Geocomputation with R](https://r.geocompx.org/) by Robin Lovelace et al
-- Software documentation and vignettes (examples below):
-    - Wikham et al., [Welcome to the Tidyverse](https://cran.r-project.org/web/packages/tidyverse/vignettes/paper.html)
-    - Rudis, Ross, & Garnier. [Introduction to the viridis colormaps](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
-    - Wikham et al., [Introduction to ggplot2](https://cloud.r-project.org/web/packages/ggplot2/vignettes/ggplot2.html)
-- Ad hoc peer review literature and blog posts (examples below)
-    - Brett et al., "[Ocean data need a sea change to help navigate the warming world](https://doi.org/10.1038/d41586-020-01668-z)." Nature 582, no. 7811 (2020): 181-183.
-    - Jambor, H.K. [A checklist for designing and improving the visualization of scientific data.](https://doi.org/10.1038/s41556-025-01684-z) Nat Cell Biol 27, 879–883 (2025).
+- Books and manuals:
+    - [R for data science](https://r4ds.hadley.nz/) by Hadley Wickham et al
+    - [Visual Style Guide](https://www.ipcc.ch/site/assets/uploads/2022/09/IPCC_AR6_WGI_VisualStyleGuide_2022.pdf) by the IPCC
+    - [Geocomputation with R](https://r.geocompx.org/) by Robin Lovelace et al
+- Ad hoc peer review literature and blog posts:
+    - Brett et al., ["Ocean data need a sea change to help navigate the warming world"](https://doi.org/10.1038/d41586-020-01668-z). Nature 582, no. 7811 (2020): 181-183.
+    - Jambor, H.K. ["A checklist for designing and improving the visualization of scientific data."](https://doi.org/10.1038/s41556-025-01684-z) Nat Cell Biol 27, 879–883 (2025).
     - Englander, G. [“Timeless principles for better figure design”](https://blogs.worldbank.org/en/impactevaluations/timeless-principles-for-better-figure-design). The World Bank. (2024).
 - Other relevant sources:
     - [The Visual Display of Quantitative Information](https://www.edwardtufte.com/book/the-visual-display-of-quantitative-information/) by Edward Tufte
