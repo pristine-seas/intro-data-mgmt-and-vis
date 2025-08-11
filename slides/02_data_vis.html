@@ -93,7 +93,27 @@
     code span.va { color: #111111; } /* Variable */
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="02_data_vis_files/libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
   <link href="02_data_vis_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="02_data_vis_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -204,26 +224,25 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 
 </section>
-<section class="slide level2">
-
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">suppressPackageStartupMessages</span>({</span>
-<span id="cb1-2"><a href=""></a>  <span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href=""></a>  <span class="fu">library</span>(EVR628tools)</span>
-<span id="cb1-4"><a href=""></a>  <span class="fu">library</span>(knitr)</span>
-<span id="cb1-5"><a href=""></a>})</span>
-<span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a>data_lionfish <span class="ot">&lt;-</span> data_lionfish <span class="sc">|&gt;</span> </span>
-<span id="cb1-8"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">size_class =</span> <span class="fu">case_when</span>(total_length_mm <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"small"</span>,</span>
-<span id="cb1-9"><a href=""></a>                                <span class="fu">between</span>(total_length_mm, <span class="dv">100</span>, <span class="dv">200</span>) <span class="sc">~</span> <span class="st">"medium"</span>,</span>
-<span id="cb1-10"><a href=""></a>                                total_length_mm <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">~</span> <span class="st">"large"</span>))</span>
-<span id="cb1-11"><a href=""></a></span>
-<span id="cb1-12"><a href=""></a><span class="fu">theme_set</span>(</span>
-<span id="cb1-13"><a href=""></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">20</span>)</span>
-<span id="cb1-14"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<section id="learning-objectives" class="slide level2">
+<h2>Learning objectives</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>By the end of this week, you should be able to:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">Identify types of data</li>
+<li class="fragment">Use correct jargon when referring to data</li>
+<li class="fragment">Decide which types of visualizations are better suited for different types of data</li>
+<li class="fragment">Build a figure using <code>ggplot2</code></li>
+</ul>
+</div>
+</div>
 </div>
 </section>
 <section>
@@ -235,13 +254,13 @@ Juan Carlos Villaseñor-Derbez (JC)
 <h2>Types of data</h2>
 <p>The <em>type</em> of data you have can influence how you visualize them</p>
 <ul>
-<li class="fragment">Numerical: (AKA “quantitative”) data expressed in numbers, instead of words
+<li class="fragment">Numerical: (AKA “quantitative”) a measurement expressed in numbers, instead of words
 <ul>
 <li class="fragment">Discrete numerical: Counts, integer numbers</li>
 <li class="fragment">Continuous numerical: Think decimal numbers</li>
 </ul></li>
-<li class="fragment">Categorical:</li>
-<li class="fragment">Ordinal:</li>
+<li class="fragment">Categorical: (AKA “qualitative”) a measurement expressed in words, instead of numbers (often)</li>
+<li class="fragment">Ordinal: A special type of cetegorical data, where the order of the categories has a meaning</li>
 </ul>
 </section>
 <section id="examples-lionfish-biometry" class="slide level2">
@@ -265,7 +284,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Use <code>?data_lionfish</code> to look at the documentation</p>
+<p>Use <code>?data_lionfish</code> to look at the <a href="https://jcvdav.github.io/EVR628tools/reference/data_lionfish.html">documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -276,8 +295,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="cell" data-folding="true">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>data_lionfish[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">5</span>)] <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>data_lionfish[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">9</span>)] <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href=""></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -286,6 +305,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">site</th>
 <th style="text-align: right;">total_length_mm</th>
+<th style="text-align: left;">size_class</th>
 </tr>
 </thead>
 <tbody>
@@ -293,31 +313,37 @@ Juan Carlos Villaseñor-Derbez (JC)
 <td style="text-align: left;">001-Po-16/05/10</td>
 <td style="text-align: left;">Paraiso</td>
 <td style="text-align: right;">213</td>
+<td style="text-align: left;">large</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">002-Po-29/05/10</td>
 <td style="text-align: left;">Paraiso</td>
 <td style="text-align: right;">124</td>
+<td style="text-align: left;">medium</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">003-Pd-29/05/10</td>
 <td style="text-align: left;">Pared</td>
 <td style="text-align: right;">166</td>
+<td style="text-align: left;">medium</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">004-Cs-12/06/10</td>
 <td style="text-align: left;">Canones</td>
 <td style="text-align: right;">203</td>
+<td style="text-align: left;">large</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">005-Cs-12/06/10</td>
 <td style="text-align: left;">Canones</td>
 <td style="text-align: right;">212</td>
+<td style="text-align: left;">large</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">006-Pl-21/06/10</td>
 <td style="text-align: left;">Paamul</td>
 <td style="text-align: right;">210</td>
+<td style="text-align: left;">large</td>
 </tr>
 </tbody>
 </table>
@@ -331,6 +357,90 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 <div class="fragment">
 <p>And <code>size_class</code>?</p>
+</div>
+</section>
+<section id="example-huricane-tracks" class="slide level2">
+<h2>Example: Huricane tracks</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>data_milton <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href=""></a>  <span class="fu">select</span>(name, iso_time, lat, lon, sshs) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href=""></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href=""></a>  <span class="fu">tail</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href=""></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">iso_time</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">sshs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">MILTON</td>
+<td style="text-align: left;">2024-10-05 09:00:00</td>
+<td style="text-align: right;">21.7</td>
+<td style="text-align: right;">-95.5</td>
+<td style="text-align: right;">-3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MILTON</td>
+<td style="text-align: left;">2024-10-05 12:00:00</td>
+<td style="text-align: right;">22.0</td>
+<td style="text-align: right;">-95.5</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MILTON</td>
+<td style="text-align: left;">2024-10-05 15:00:00</td>
+<td style="text-align: right;">22.3</td>
+<td style="text-align: right;">-95.5</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MILTON</td>
+<td style="text-align: left;">2024-10-05 18:00:00</td>
+<td style="text-align: right;">22.5</td>
+<td style="text-align: right;">-95.5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MILTON</td>
+<td style="text-align: left;">2024-10-05 21:00:00</td>
+<td style="text-align: right;">22.6</td>
+<td style="text-align: right;">-95.5</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment">
+<p>What type of data is <code>sshs</code>?</p>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Use <code>?data_milton</code> to look at the <a href="https://jcvdav.github.io/EVR628tools/reference/data_milton.html">documentation</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Can you add <code>sshs</code> and obtain something meaningful?</p>
 </div>
 </section>
 <section id="some-jargon" class="slide level2">
@@ -390,12 +500,20 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="types-of-visualizations" class="slide level2">
 <h2>Types of visualizations</h2>
-<p>scatter plot, column chart (stacked columns, dodge columns), histogram, violin plots, boxplots, pie charts (eww), heatmaps, line graphs, area charts, stacked area, density, …</p>
+<p>There are many, many, MANY types of visualizations:</p>
+<ul>
+<li class="fragment">scatter plot, column chart (stacked columns, dodge columns), histogram, 2d-histogram, violin plots, boxplots, pie charts (eww), heatmaps, line graphs, area charts, stacked area, density, voronoi plots, alluvial diagrams…</li>
+</ul>
+<div class="fragment">
+<p>But what really matters:</p>
 <ul>
 <li class="fragment">You want your <em>type</em> of data to match your <em>type</em> of visualization</li>
-<li class="fragment">Some data types may be incompatible with some visualizations</li>
+<li class="fragment">Some data types may be “incompatible” with some visualizations</li>
 <li class="fragment">You should have creative freedom</li>
+<li class="fragment">We have one goal: To communicate something to the viewer (our ourselves)</li>
 </ul>
+<!-- k -->
+</div>
 </section>
 <section id="examples" class="slide level2">
 <h2>Examples</h2>
@@ -405,23 +523,339 @@ Juan Carlos Villaseñor-Derbez (JC)
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
-<span id="cb4-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> total_length_mm,</span>
-<span id="cb4-3"><a href=""></a>                     <span class="at">y =</span> total_weight_gr)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total length (mm)"</span>,</span>
-<span id="cb4-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Total weight (gr)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> total_length_mm)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href=""></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total length (mm)"</span>,</span>
+<span id="cb4-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Message: “Most lionfish are around 100 mm in length”</p>
 </div><div class="column" style="width:40%;">
-<h3 id="scatterplot">Scatterplot:</h3>
+<h3 id="histogram"><span style="color:green">Histogram:</span></h3>
+<ul>
+<li class="fragment">Shows two numeric variables
+<ul>
+<li class="fragment">Binned continuous</li>
+<li class="fragment">Counts within each bin</li>
+</ul></li>
+<li class="fragment">Shows the <em>distribution</em> of the data</li>
+<li class="fragment">Built with <code>ggplot2::geom_histogram()</code></li>
+</ul>
 </div></div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Every histogram is a bar chart, but not every bar chart is a histogram</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-1" class="slide level2">
+<h2>Examples</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb5-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> site, <span class="at">y =</span> total_weight_gr)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href=""></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-4"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Site"</span>,</span>
+<span id="cb5-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Total weight (gr)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Message: “Tzimin-Ha has the heaviest fish”</p>
+</div><div class="column" style="width:40%;">
+<h3 id="boxplot"><span style="color:green">Boxplot:</span></h3>
+<ul>
+<li class="fragment"><em>Distribution</em> of a continuous variable by groups</li>
+<li class="fragment">Line inside box shows median</li>
+<li class="fragment">Outlines of box show 25th and 75th percentiles</li>
+<li class="fragment">Whiskers extend from hinge to the largest value within <span class="math inline">\(1.5 \times IQR\)</span> from the hinge</li>
+<li class="fragment">Points are “outlying” observations</li>
+</ul>
+</div></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Use this one with care. It packs a lot of information and not everyone knows (remembers) how to read it.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="examples-2" class="slide level2">
+<h2>Examples</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb6-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> total_length_mm,</span>
+<span id="cb6-3"><a href=""></a>                     <span class="at">y =</span> total_weight_gr)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total length (mm)"</span>,</span>
+<span id="cb6-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"Total weight (gr)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Message: “Look, slightly larger fish are waaaay heavier!”</p>
+</div><div class="column" style="width:40%;">
+<h3 id="scatterplot"><span style="color:blue">Scatterplot:</span></h3>
+<ul>
+<li class="fragment">Relationship between two numeric variables</li>
+<li class="fragment">Represented with points</li>
+<li class="fragment">Uses <code>ggplot2::geom_point()</code></li>
+</ul>
+</div></div>
+</section>
+<section id="examples-3" class="slide level2">
+<h2>Examples</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_milton, </span>
+<span id="cb7-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> iso_time, <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb7-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Wind speed (knots)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Message: “The wind speed of a hurricane was highest the night of Oct 7th”</p>
+</div><div class="column" style="width:40%;">
+<h3 id="line-chart"><span style="color:red">Line chart:</span></h3>
+<ul>
+<li class="fragment">Evolution of one variable along another</li>
+<li class="fragment">Conveys a sense of continuity even if our observations are not</li>
+<li class="fragment">Uses <code>ggplot::geom_line()</code></li>
+</ul>
+</div></div>
+</section>
+<section id="examples-4" class="slide level2">
+<h2>Examples</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb8-2"><a href=""></a>      <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> site)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Site"</span>,</span>
+<span id="cb8-6"><a href=""></a>       <span class="at">y =</span> <span class="st">"N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Message: “Most fish come from Paamul”</p>
+</div><div class="column" style="width:40%;">
+<h3 id="column"><span style="color:gray">Column:</span></h3>
+<ul>
+<li class="fragment">Relationship between categorical and numeric variable</li>
+<li class="fragment">Represented with “columns” or “bars”</li>
+<li class="fragment">This case uses <code>ggplot2::geom_bar()</code>, but there is also <code>ggplot2::geom_col()</code></li>
+</ul>
+</div></div>
+</section>
+<section id="now-im-confused" class="slide level2">
+<h2>Now I’m confused…</h2>
+<ul>
+<li class="fragment">Good!</li>
+<li class="fragment">That confusion might be critical thinking</li>
+<li class="fragment">You can always try visualizing the same data in more than one way</li>
+<li class="fragment">Let’s try to organize your thoughts</li>
+</ul>
+</section>
+<section id="right-visuals-for-your-data" class="slide level2">
+<h2>Right visuals for your data</h2>
+<p>Remember our goal:</p>
+<blockquote>
+<p>To communicate something to the viewer (our ourselves)</p>
+</blockquote>
+<div class="fragment">
+<p>That <em>something</em> could be a:</p>
+<ul>
+<li class="fragment"><p><span style="color:green">Distribution</span>: “Most of my fish are quite small” (<a href="#/examples">example</a>)</p></li>
+<li class="fragment"><p><span style="color:blue">Relationship</span> (or correlation): “Look, slightly larger fish are waaaay heavier!” (<a href="#/examples-2">example</a>)</p></li>
+<li class="fragment"><p><span style="color:red">Evolution</span>: “The wind speed of a hurricane was highest the night of Oct 7th”(<a href="#/examples-3">example</a>)</p></li>
+<li class="fragment"><p><span style="color:gray">Ranking / Part of a whole</span>: “Most fish come from Paamul”(<a href="#/examples-5">example</a>)</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>Any visual can usually achieve more than one of this at a time</p>
+</div>
+<div class="fragment">
+<p>Most visuals can only achieve <em>one</em> of these at a time</p>
+</div>
+</section></section>
+<section>
+<section id="lets-go-back-to-the-examples" class="title-slide slide level1 center">
+<h1>Lets go back to the <a href="#/examples">examples</a></h1>
+
+</section>
+<section id="some-visuals-are-more-than-one-type" class="slide level2">
+<h2>Some visuals are more than one type</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb9-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> size_class, <span class="at">y =</span> site)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href=""></a>  <span class="fu">geom_bin_2d</span>() <span class="sc">+</span></span>
+<span id="cb9-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Size class"</span>,</span>
+<span id="cb9-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Site"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Message: “Most fish are medium sized and come from Paamul”</p>
+</div><div class="column" style="width:40%;">
+<h3 id="heatmap"><span style="color:green">Heatmap:</span></h3>
+<ul>
+<li class="fragment">Shows counts across two variables at the same time</li>
+<li class="fragment">Uses <code>ggplot2::geom_bin_2d()</code></li>
+</ul>
+</div></div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Is my x-axis bothering you?</strong></p>
+</div>
+<div class="callout-content">
+<p>R does not know that there is a logical order (small -&gt; medium -&gt; large).</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="just-because-you-can-doesnt-mean-you-should" class="title-slide slide level1 center">
+<h1>Just because you can doesn’t mean you should</h1>
+
+</section>
+<section id="is-this-good-or-bad" class="slide level2">
+<h2>Is this good or bad?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb10-2"><a href=""></a>       <span class="fu">aes</span>(<span class="at">x =</span> site,</span>
+<span id="cb10-3"><a href=""></a>           <span class="at">y =</span> total_length_mm)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Site"</span>,</span>
+<span id="cb10-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Total length (mm)"</span>)</span>
+<span id="cb10-6"><a href=""></a></span>
+<span id="cb10-7"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb10-8"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="is-this-better-or-worse" class="slide level2">
+<h2>Is this better or worse?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="how-about-now" class="slide level2">
+<h2>How about now?</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<ul>
+<li class="fragment"><a href="https://www.data-to-viz.com/">data-to-viz</a> resources</li>
+<li class="fragment"><em>A checklist for designing and improving the visualization of scientific data</em> by <span class="citation" data-cites="Jambor2025-pd">Jambor (<a href="#/the-grammar-of-graphics" role="doc-biblioref" onclick="">2025</a>)</span></li>
+</ul>
 </section></section>
 <section id="visualization-principles" class="title-slide slide level1 center">
 <h1>Visualization principles</h1>
@@ -439,10 +873,15 @@ Juan Carlos Villaseñor-Derbez (JC)
 <p>IPCC’s visual style guide, and the <a href="https://github.com/sjmgarnier/viridis/"><code>viridis</code></a> package</p>
 </section>
 
-<section id="the-grammar-of-graphics" class="title-slide slide level1 center">
+<section id="the-grammar-of-graphics" class="title-slide slide level1 smaller scrollable">
 <h1>THE grammar of graphics</h1>
 <p>The grammar of graphics and the <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package</p>
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Jambor2025-pd" class="csl-entry" role="listitem">
+Jambor, Helena Klara. 2025. <span>“A Checklist for Designing and Improving the Visualization of Scientific Data.”</span> <em>Nat. Cell Biol.</em> 27 (June): 879–83.
+</div>
+</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

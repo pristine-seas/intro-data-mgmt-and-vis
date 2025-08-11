@@ -125,7 +125,7 @@ This course only covers one bubble
 
 ## Learning objectives
 
-:::{.callout-tip}
+:::{.callout-note}
 # By the end of this week, you should be able to:
 - Open RStudio
 - Identify the main work areas
