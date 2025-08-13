@@ -46,7 +46,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - [Slide deck]()
 - Assigned readings: 
   - Jambor, H.K. ["A checklist for designing and improving the visualization of scientific data."](https://doi.org/10.1038/s41556-025-01684-z) Nat Cell Biol 27, 879–883 (2025).
-  - R4DS [CH2](https://r4ds.hadley.nz/data-visualize.html)
+  - R4DS [CH1: Data visualization](https://r4ds.hadley.nz/data-visualize.html)
 - Other links: 
   - Englander, G. [“Timeless principles for better figure design”](https://blogs.worldbank.org/en/impactevaluations/timeless-principles-for-better-figure-design). The World Ban
   - IPCC [Visual Style Guide](https://www.ipcc.ch/site/assets/uploads/2022/09/IPCC_AR6_WGI_VisualStyleGuide_2022.pdf) by the IPCC
@@ -78,7 +78,9 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 **Scaling up your code and visualizations**
 - Layers, geometries, and aesthetics in ggplot2
 - Themes with ggplot2
-- Other plotting packages (cowplot, GGally)
+- Summarizing data on the fly (`stat_summary`, `geom_smooth`)
+- Plot extensions (`cowplot`, `GGally`, `ggrepel`)
+- Animated plots (`ggplotly`)
 - Creating documents and presentations with Quarto
 
 ---
