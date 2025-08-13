@@ -1,4 +1,10 @@
 ---
 title: "EVR 628 - Intro to Environmental Data Science"
-subtitle: "Git_and_github"
+subtitle: "Keeping track of your code with Git and GitHub"
 ---
+
+# Reproducible research
+
+# Introduction to file structure
+
+# 

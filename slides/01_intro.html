@@ -278,6 +278,89 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 </div>
+</section>
+<section id="interactions-with-me" class="slide level2">
+<h2>Interactions with me</h2>
+<ul>
+<li class="fragment">Office hours: Thursdays 10:15-12:00</li>
+<li class="fragment">Via email, please include <code>EVR628</code> in your subject heading</li>
+</ul>
+</section>
+<section id="adaptive-approach" class="slide level2">
+<h2>Adaptive approach</h2>
+<ul>
+<li class="fragment">About three weeks in I will poll you (anonymously)</li>
+<li class="fragment">Then again 5 weeks in (anonymously)</li>
+<li class="fragment">Speed things up? Slow things down?</li>
+<li class="fragment">Are materials relevant to you?</li>
+</ul>
+</section>
+<section id="quick-notes-on-using-these-slides" class="slide level2">
+<h2>Quick notes on using these slides</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div>
+<ul>
+<li>Navigation bar on the left</li>
+<li>Click and zoom on figures</li>
+<li><code>f</code> for full screen / <code>Esc</code> to exit full screen</li>
+<li><code>o</code> for overview</li>
+<li><code>e</code> for PDF export mode (can’t see code)</li>
+<li><code>?</code> for other help</li>
+<li>Navigate with keyboard</li>
+<li>Clicking on <a href="https://jcvdav.github.io/EVR_628/">links</a></li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">plot</span>(mpg <span class="sc">~</span> disp, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01_intro_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section id="about-you" class="title-slide slide level1 center">
+<h1>About you</h1>
+<ul>
+<li class="fragment">Preferred name</li>
+<li class="fragment">Year and program</li>
+<li class="fragment">Interests</li>
+</ul>
+</section>
+
+<section>
+<section id="lets-jump-in" class="title-slide slide level1 center">
+<h1>Let’s jump in</h1>
+
+</section>
+<section id="learning-objectives" class="slide level2">
+<h2>Learning objectives</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>By the end of this week, you should be able to:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">Open the RStudio IDE</li>
+<li class="fragment">Identify the main work areas</li>
+<li class="fragment">Start a project and a script</li>
+<li class="fragment">Install R packages</li>
+</ul>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="introduction-to-data-science" class="title-slide slide level1 center">
@@ -289,30 +372,30 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="cell" data-layout-align="center" data-folding="true">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb1-3"><a href=""></a></span>
-<span id="cb1-4"><a href=""></a><span class="fu">tibble</span>(<span class="at">skill =</span> <span class="fu">c</span>(<span class="st">"Coding"</span>, <span class="st">"Stats"</span>, <span class="st">"Domain"</span>),</span>
-<span id="cb1-5"><a href=""></a>       <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb1-6"><a href=""></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb1-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> skill, <span class="at">color =</span> skill)) <span class="sc">+</span></span>
-<span id="cb1-8"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb1-9"><a href=""></a>  <span class="fu">geom_text</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> skill),</span>
-<span id="cb1-10"><a href=""></a>            <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb1-11"><a href=""></a>            <span class="at">nudge_x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
-<span id="cb1-12"><a href=""></a>            <span class="at">nudge_y =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="sc">-</span><span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb1-13"><a href=""></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Data Science"</span>,</span>
-<span id="cb1-14"><a href=""></a>            <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb1-15"><a href=""></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
-<span id="cb1-16"><a href=""></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>),</span>
-<span id="cb1-17"><a href=""></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>)) <span class="sc">+</span></span>
-<span id="cb1-18"><a href=""></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb1-19"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a><span class="fu">tibble</span>(<span class="at">skill =</span> <span class="fu">c</span>(<span class="st">"Coding"</span>, <span class="st">"Stats"</span>, <span class="st">"Domain"</span>),</span>
+<span id="cb2-5"><a href=""></a>       <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb2-6"><a href=""></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> skill, <span class="at">color =</span> skill)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href=""></a>  <span class="fu">geom_text</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">label =</span> skill),</span>
+<span id="cb2-10"><a href=""></a>            <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb2-11"><a href=""></a>            <span class="at">nudge_x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>),</span>
+<span id="cb2-12"><a href=""></a>            <span class="at">nudge_y =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="sc">-</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb2-13"><a href=""></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="st">"Data Science"</span>,</span>
+<span id="cb2-14"><a href=""></a>            <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a href=""></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb2-16"><a href=""></a>  <span class="fu">lims</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>),</span>
+<span id="cb2-17"><a href=""></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb2-18"><a href=""></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb2-19"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="01_intro_files/figure-revealjs/unnamed-chunk-1-1.png" width="384"></p>
+<p><img data-src="01_intro_files/figure-revealjs/unnamed-chunk-2-1.png" width="384"></p>
 <figcaption>Conceptual model of data science</figcaption>
 </figure>
 </div>
@@ -346,14 +429,77 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div></div>
 </section>
+<section id="a-word-of-caution" class="slide level2">
+<h2>A word of caution</h2>
+<ul>
+<li class="fragment">This will feel weird</li>
+<li class="fragment">It will be painful</li>
+</ul>
+<div class="fragment">
+<p>BUT!</p>
+<ul>
+<li class="fragment">It <em>should</em> feel weird</li>
+<li class="fragment">You are not alone; leverage resources:
+<ul>
+<li class="fragment">Myself</li>
+<li class="fragment">Your TA</li>
+<li class="fragment">Each other</li>
+<li class="fragment">LLMs</li>
+</ul></li>
+<li class="fragment">It will be worth it</li>
+<li class="fragment">If we have to slow things down, we will</li>
+</ul>
+</div>
+</section>
+<section id="use-of-llms" class="slide level2">
+<h2>Use of LLMs</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">You <em>are</em> allowed to use LLMs to <strong>troubleshoot</strong> your code</li>
+<li class="fragment">I discourage you from asking your LLM to make the assignments for you</li>
+<li class="fragment">At the end of this course you should be literate enough in R to do <em>some</em> vibe coding</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment"><span class="citation" data-cites="becker2025">Becker et al. (<a href="#/references" role="doc-biblioref" onclick="">2025</a>)</span>:
+<ul>
+<li class="fragment">16 experienced software developers</li>
+<li class="fragment">246 tasks assigned</li>
+<li class="fragment">How much time will you save using AI? (-24%)</li>
+<li class="fragment">AI randomized</li>
+<li class="fragment">How much do you think you saved using AI? (-20%)</li>
+<li class="fragment">Actual completion times with AI (+19%!)</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="motivation-to-learn-scripting-languages" class="slide level2">
+<h2>Motivation to learn scripting languages</h2>
+<ul>
+<li class="fragment">Reproducibility:Data and code are increasingly required by publishers
+<ul>
+<li class="fragment"><a href="https://www.aeaweb.org/journals/data/data-code-policy">Economics</a></li>
+<li class="fragment"><a href="https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards">Natural sciences</a></li>
+</ul></li>
+<li class="fragment">Efficiency and flexibility</li>
+<li class="fragment">Scale: From small to medium data, it’s all the same</li>
+<li class="fragment">Responsibility:
+<ul>
+<li class="fragment">We spend thousands of hours and dollars collecting data</li>
+<li class="fragment">Objective is to understand how the world works / improve the state of the world</li>
+<li class="fragment">Bad practices can erode all this away</li>
+</ul></li>
+</ul>
+</section>
 <section id="our-toolkit" class="slide level2">
 <h2>Our toolkit</h2>
 <ul>
-<li class="fragment"><a href="https://www.r-project.org/"><strong>R</strong></a> will be our <em>software environment for statistical computing</em></li>
+<li class="fragment"><a href="https://www.r-project.org/"><strong>R</strong></a> will be our <em>engine for statistical computing</em></li>
 <li class="fragment"><a href="https://posit.co/products/open-source/rstudio/"><strong>RStudio</strong></a> will be our <em>Integrated Development Environment</em> (IDE)</li>
 <li class="fragment"><a href="https://git-scm.com/"><strong>Git</strong></a> will help us keep track of our code</li>
 <li class="fragment"><a href="https://github.com/"><strong>GitHub</strong></a> will allow us to share our code with the world</li>
-<li class="fragment"><a href="https://jcvdav.github.io/EVR628tools/">EVR628tools</a> contains data and a few functions to support the course</li>
+<li class="fragment"><a href="https://jcvdav.github.io/EVR628tools/"><strong>EVR628tools</strong></a> contains data and a few functions to support the course</li>
 </ul>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
@@ -376,52 +522,53 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="lets-jump-in" class="title-slide slide level1 center">
-<h1>Let’s jump in</h1>
-
 </section>
-<section id="learning-objectives" class="slide level2">
-<h2>Learning objectives</h2>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>By the end of this week, you should be able to:</strong></p>
-</div>
-<div class="callout-content">
+<section id="why-an-ide" class="slide level2">
+<h2>Why an IDE</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="multiple-platforms">Multiple platforms</h3>
 <ul>
-<li class="fragment">Open RStudio</li>
-<li class="fragment">Identify the main work areas</li>
-<li class="fragment">Start a project and a script</li>
-<li class="fragment">Install packages</li>
+<li class="fragment">Keep data in Excel (needs microsoft license)</li>
+<li class="fragment">Statistical analyses in some GUI (needs IBM SPSS license)</li>
+<li class="fragment">Build figures in Tableau (needs license)</li>
+<li class="fragment">Copy things to Powerpoint / Word (need….)</li>
+<li class="fragment">Ooops, need to update my data…</li>
 </ul>
-</div>
-</div>
-</div>
-</section>
-<section id="getting-to-know-r-studio" class="slide level2">
-<h2>Getting to know R Studio</h2>
-</section>
-<section id="why-rstudio" class="slide level2">
-<h2>Why RStudio</h2>
+</div><div class="column" style="width:50%;">
+<h3 id="r-studio">R Studio</h3>
 <ul>
-<li class="fragment">IDE</li>
+<li class="fragment">Free and open-source</li>
+<li class="fragment">One single platform to:
+<ul>
+<li class="fragment">Talk to R, Python, SQL, html….</li>
+<li class="fragment">Maintain data, analysis, figures, and even text</li>
+</ul></li>
 <li class="fragment">Cognitive costs of switching between screens</li>
-<li class="fragment">There are other solutions</li>
+<li class="fragment">There are other solutions (posit, VSCode, Cursor, Codium…)</li>
 </ul>
+</div></div>
 </section>
 <section id="rstudio-projects" class="slide level2">
 <h2>RStudio projects</h2>
 <ul>
+<li class="fragment">RStudio projects keep all files associated with a project together</li>
 <li class="fragment">One folder = one project</li>
+<li class="fragment">In my case, 1 paper = 1 project | 1 class = 1 project</li>
+<li class="fragment">This entire course will be one project in your computer</li>
+<li class="fragment">A project tells R what the “working directory” is (where to find files)</li>
+<li class="fragment">Needs to live in your computer (not the cloud!<sup>1</sup>)</li>
 </ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>You can use RStudio server for that</p></li></ol></aside></section></section>
+<section id="thats-it-for-today" class="title-slide slide level1 center">
+<h1>That’s it for today</h1>
+<p>(Unless you are having trouble installing R / RStudio)</p>
 </section>
-<section id="r-scripts" class="slide level2">
-<h2>R Scripts</h2>
+
+<section>
+<section id="getting-to-know-r-studio" class="title-slide slide level1 center">
+<h1>Getting to know R Studio</h1>
+
 </section>
 <section id="hands-on-tasks" class="slide level2">
 <h2>Hands-on tasks:</h2>
@@ -431,19 +578,28 @@ Juan Carlos Villaseñor-Derbez (JC)
 <ul class="task-list">
 <li><label><input type="checkbox">Open RStudio</label></li>
 <li><label><input type="checkbox">Modify appearance</label></li>
+<li><label><input type="checkbox">Describe windows</label></li>
+<li><label><input type="checkbox">Modify global options</label></li>
 <li><label><input type="checkbox">Start a project</label></li>
-<li><label><input type="checkbox">Close and reopen project</label></li>
+<li><label><input type="checkbox"><code>getwd()</code></label></li>
 <li><label><input type="checkbox">Install <code>tidyverse</code></label></li>
-<li><label><input type="checkbox">Fail to install <code>EVR628tools</code>, then succeed</label></li>
+<li><label><input type="checkbox">Fail to install <code>EVR628tools</code>, then succeed (<code>remotes</code>)</label></li>
 <li><label><input type="checkbox">Load packages</label></li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
 <div>
 <ul class="task-list">
+<li><label><input type="checkbox">Directory structure</label></li>
+<li><label><input type="checkbox">Start a new project</label></li>
+<li><label><input type="checkbox">Close and reopen project</label></li>
 <li><label><input type="checkbox">Restart R</label></li>
 <li><label><input type="checkbox">A simple calculation</label></li>
+<li><label><input type="checkbox">A complex calculation</label></li>
+<li><label><input type="checkbox">Getting the history back</label></li>
 <li><label><input type="checkbox">First script</label></li>
+<li><label><input type="checkbox">Executing a line</label></li>
+<li><label><input type="checkbox">Executing a chunk</label></li>
 </ul>
 </div>
 </div></div>
@@ -452,11 +608,16 @@ Juan Carlos Villaseñor-Derbez (JC)
 <h1>References</h1>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-becker2025" class="csl-entry" role="listitem">
+Becker, Joel, Nate Rush, Elizabeth Barnes, and David Rein. 2025. <span>“Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity.”</span> <a href="https://arxiv.org/abs/2507.09089">https://arxiv.org/abs/2507.09089</a>.
+</div>
 <div id="ref-Wickham2023-aa" class="csl-entry" role="listitem">
 Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em><span>R</span> for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. Sebastopol, CA: O’Reilly Media.
 </div>
 </div>
 </section>
+
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png" class="slide-logo"></p>

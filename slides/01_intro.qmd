@@ -41,6 +41,63 @@ Course website at: [jcvdav.github.io/EVR_628](https://jcvdav.github.io/EVR_628/)
 Make sure to complete assigned readings or software installation _before_ class. This will count towards participation.
 :::
 
+## Interactions with me
+
+- Office hours: Thursdays 10:15-12:00
+- Via email, please include `EVR628` in your subject heading
+
+## Adaptive approach
+
+- About three weeks in I will poll you (anonymously)
+- Then again 5 weeks in (anonymously)
+- Speed things up? Slow things down?
+- Are materials relevant to you?
+
+## Quick notes on using these slides
+
+:::: {.columns}
+
+::: {.column width='60%'}
+::: {.nonincremental}
+- Navigation bar on the left
+- Click and zoom on figures
+- `f` for full screen / `Esc` to exit full screen
+- `o` for overview
+- `e` for PDF export mode (can't see code)
+- `?` for other help
+- Navigate with keyboard
+- Clicking on [links](https://jcvdav.github.io/EVR_628/)
+:::
+:::
+
+::: {.column width='40%'}
+
+```{r}
+plot(mpg ~ disp, data = mtcars)
+```
+:::
+
+::::
+
+
+# About you
+
+- Preferred name
+- Year and program
+- Interests
+
+# Let's jump in
+
+## Learning objectives
+
+:::{.callout-note}
+# By the end of this week, you should be able to:
+- Open the RStudio IDE
+- Identify the main work areas
+- Start a project and a script
+- Install R packages
+:::
+
 # Introduction to Data Science
 
 ## What is Data Science?
@@ -102,13 +159,65 @@ This course only covers one bubble
 
 ::::
 
+## A word of caution
+
+- This will feel weird
+- It will be painful
+
+. . .
+
+BUT!
+
+- It _should_ feel weird
+- You are not alone; leverage resources:
+  - Myself
+  - Your TA
+  - Each other
+  - LLMs
+- It will be worth it
+- If we have to slow things down, we will
+
+## Use of LLMs
+
+:::: {.columns}
+
+::: {.column width='50%'}
+- You _are_ allowed to use LLMs to **troubleshoot** your code
+- I discourage you from asking your LLM to make the assignments for you
+- At the end of this course you should be literate enough in R to do _some_ vibe coding
+:::
+
+::: {.column width='50%'}
+- @becker2025:
+  - 16 experienced software developers
+  - 246 tasks assigned
+  - How much time will you save using AI? (-24%)
+  - AI randomized
+  - How much do you think you saved using AI? (-20%)
+  - Actual completion times with AI (+19%!)
+:::
+::::
+
+
+## Motivation to learn scripting languages
+
+- Reproducibility:Data and code are increasingly required by publishers
+  - [Economics](https://www.aeaweb.org/journals/data/data-code-policy)
+  - [Natural sciences](https://www.nature.com/nature-portfolio/editorial-policies/reporting-standards)
+- Efficiency and flexibility
+- Scale: From small to medium data, it's all the same
+- Responsibility:
+  - We spend thousands of hours and dollars collecting data
+  - Objective is to understand how the world works / improve the state of the world
+  - Bad practices can erode all this away
+
 ## Our toolkit
 
-- [**R**](https://www.r-project.org/) will be our _software environment for statistical computing_
+- [**R**](https://www.r-project.org/) will be our _engine for statistical computing_
 - [**RStudio**](https://posit.co/products/open-source/rstudio/) will be our _Integrated Development Environment_ (IDE)
 - [**Git**](https://git-scm.com/) will help us keep track of our code
 - [**GitHub**](https://github.com/) will allow us to share our code with the world
-- [EVR628tools](https://jcvdav.github.io/EVR628tools/) contains data and a few functions to support the course
+- [**EVR628tools**](https://jcvdav.github.io/EVR628tools/) contains data and a few functions to support the course
 
 . . .
 
@@ -121,31 +230,47 @@ This course only covers one bubble
 :::
 :::
 
-# Let's jump in
+## Why an IDE
 
-## Learning objectives
+:::: {.columns}
 
-:::{.callout-note}
-# By the end of this week, you should be able to:
-- Open RStudio
-- Identify the main work areas
-- Start a project and a script
-- Install packages
+::: {.column width='50%'}
+### Multiple platforms
+- Keep data in Excel (needs microsoft license)
+- Statistical analyses in some GUI (needs IBM SPSS license)
+- Build figures in Tableau (needs license)
+- Copy things to Powerpoint / Word (need....)
+- Ooops, need to update my data...
 :::
 
-## Getting to know R Studio
-
-## Why RStudio
-
-- IDE
+::: {.column width='50%'}
+### R Studio
+- Free and open-source
+- One single platform to:
+  - Talk to R, Python, SQL, html....
+  - Maintain data, analysis, figures, and even text
 - Cognitive costs of switching between screens
-- There are other solutions
+- There are other solutions (posit, VSCode, Cursor, Codium...)
+
+:::
+
+::::
+
 
 ## RStudio projects
 
+- RStudio projects keep all files associated with a project together
 - One folder = one project
+- In my case, 1 paper = 1 project | 1 class = 1 project
+- This entire course will be one project in your computer
+- A project tells R what the "working directory" is (where to find files)
+- Needs to live in your computer (not the cloud!^[You can use RStudio server for that])
 
-## R Scripts
+# That's it for today
+
+(Unless you are having trouble installing R / RStudio)
+
+# Getting to know R Studio
 
 ## Hands-on tasks:
 
@@ -155,19 +280,28 @@ This course only covers one bubble
 ::: {.nonincremental}
 - [ ] Open RStudio
 - [ ] Modify appearance
+- [ ] Describe windows
+- [ ] Modify global options
 - [ ] Start a project
-- [ ] Close and reopen project
+- [ ] `getwd()`
 - [ ] Install `tidyverse`
-- [ ] Fail to install `EVR628tools`, then succeed
+- [ ] Fail to install `EVR628tools`, then succeed (`remotes`)
 - [ ] Load packages
 :::
 :::
 
 ::: {.column width="50%"}
 ::: {.nonincremental}
+- [ ] Directory structure
+- [ ] Start a new project
+- [ ] Close and reopen project
 - [ ] Restart R
 - [ ] A simple calculation
+- [ ] A complex calculation
+- [ ] Getting the history back
 - [ ] First script
+- [ ] Executing a line
+- [ ] Executing a chunk 
 :::
 :::
 

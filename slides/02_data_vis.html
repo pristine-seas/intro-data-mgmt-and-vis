@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
-  <title>EVR 628 - Intro to Environmental Data Science</title>
+  <title>EVR 628- Intro to Environmental Data Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -212,8 +212,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">EVR 628 - Intro to Environmental Data Science</h1>
-  <p class="subtitle">Data visualization</p>
+  <h1 class="title"><a href="https://jcvdav.github.io/EVR_628/">EVR 628</a>- Intro to Environmental Data Science</h1>
+  <p class="subtitle">Week 2: Data visualization</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -356,7 +356,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <th style="text-align: left;">id</th>
 <th style="text-align: left;">site</th>
 <th style="text-align: right;">total_length_mm</th>
-<th style="text-align: left;">size_class</th>
+<th style="text-align: right;">temperature_C</th>
 </tr>
 </thead>
 <tbody>
@@ -364,37 +364,37 @@ Juan Carlos Villaseñor-Derbez (JC)
 <td style="text-align: left;">001-Po-16/05/10</td>
 <td style="text-align: left;">Paraiso</td>
 <td style="text-align: right;">213</td>
-<td style="text-align: left;">large</td>
+<td style="text-align: right;">28</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">002-Po-29/05/10</td>
 <td style="text-align: left;">Paraiso</td>
 <td style="text-align: right;">124</td>
-<td style="text-align: left;">medium</td>
+<td style="text-align: right;">28</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">003-Pd-29/05/10</td>
 <td style="text-align: left;">Pared</td>
 <td style="text-align: right;">166</td>
-<td style="text-align: left;">medium</td>
+<td style="text-align: right;">28</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">004-Cs-12/06/10</td>
 <td style="text-align: left;">Canones</td>
 <td style="text-align: right;">203</td>
-<td style="text-align: left;">large</td>
+<td style="text-align: right;">28</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">005-Cs-12/06/10</td>
 <td style="text-align: left;">Canones</td>
 <td style="text-align: right;">212</td>
-<td style="text-align: left;">large</td>
+<td style="text-align: right;">28</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">006-Pl-21/06/10</td>
 <td style="text-align: left;">Paamul</td>
 <td style="text-align: right;">210</td>
-<td style="text-align: left;">large</td>
+<td style="text-align: right;">29</td>
 </tr>
 </tbody>
 </table>
@@ -917,23 +917,27 @@ Juan Carlos Villaseñor-Derbez (JC)
 <h1>Principles of visualization</h1>
 
 </section>
-<section id="small-parentheses-add-lightness" class="slide level2">
-<h2>Small parentheses: “Add lightness”</h2>
+<section id="principles-of-visualization-1" class="slide level2">
+<h2>Principles of visualization</h2>
+<p>You know what <em>type</em> of graph you want, lets make it pretty</p>
+<div class="fragment">
+<p>Small parentheses: “Add lightness”</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/mx5.png" class="" style="width:40.0%"></p>
+<p><img data-src="img/mx5.jpg" class="" style="width:40.0%"></p>
 <figcaption>Source: Diseno-art.com</figcaption>
 </figure>
 </div>
+</div>
 <div class="fragment">
-<p>Instead of “what should I <em>add</em> to improve my plot?” think “what can I <em>remove</em> to improve my plot?</p>
+<p>Instead of thinking “what can I <em>add</em> to my plot?” think “what can I <em>remove</em> from my plot?</p>
 </div>
 </section>
 <section id="jambor2025-pds-guide-to-visualization" class="slide level2">
 <h2><span class="citation" data-cites="Jambor2025-pd">Jambor (<a href="#/references" role="doc-biblioref" onclick="">2025</a>)</span>’s guide to visualization</h2>
 <ul>
 <li class="fragment"><a href="#/simplify">Simplify</a>: Improving annotations, labels, and layouts helps you retain the audience’s attention</li>
-<li class="fragment"><a href="#/text">Text</a>: Appropriate font size, avoid non-horizontal text</li>
+<li class="fragment"><a href="#/text">Text</a>: Appropriate font size, avoid non-horizontal text. <strong>Axis labels with units!!</strong></li>
 <li class="fragment"><a href="#/color-scheme">Color scheme:</a>
 <ul>
 <li class="fragment">Prioritize accessibility and <strong>consistency</strong></li>
@@ -1327,6 +1331,46 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div></div>
 </section>
+<section id="other-ways-of-representing-information" class="slide level2">
+<h2>Other ways of representing information</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li class="fragment">We’ve tried position (horizontal and vertical) and color</li>
+<li class="fragment">There is also:
+<ul>
+<li class="fragment">size</li>
+<li class="fragment">shape</li>
+<li class="fragment">aspect (line width, line type)</li>
+</ul></li>
+<li class="fragment">Our brains struggle to compare sizes</li>
+<li class="fragment">We can only track ~6 shapes at a time</li>
+<li class="fragment">Avoid using these for your most important message</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb29-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> total_length_mm, <span class="at">y =</span> total_weight_gr, <span class="at">color =</span> depth_m, <span class="at">size =</span> <span class="fu">fct_relevel</span>(size_class, <span class="fu">c</span>(<span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span>)), <span class="at">shape =</span> site)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total length (mm)"</span>,</span>
+<span id="cb29-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Total weight (gr)"</span>,</span>
+<span id="cb29-6"><a href=""></a>       <span class="at">color =</span> <span class="st">"Site"</span>,</span>
+<span id="cb29-7"><a href=""></a>       <span class="at">shape =</span> <span class="st">"Site"</span>,</span>
+<span id="cb29-8"><a href=""></a>       <span class="at">size =</span> <span class="st">"Size class"</span>) <span class="sc">+</span></span>
+<span id="cb29-9"><a href=""></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-35-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="resources-on-style" class="slide level2">
 <h2>Resources on style</h2>
 <ul>
@@ -1339,50 +1383,208 @@ Juan Carlos Villaseñor-Derbez (JC)
 
 </section>
 <section id="the-grammar-of-graphics" class="slide level2">
-<h2>THE grammar of graphics</h2>
+<h2>The grammar of graphics</h2>
+<p>Grammar:</p>
+<ul>
+<li class="fragment">Set of rules that define components of a language</li>
+</ul>
+<div class="fragment">
+<p>Grammar of graphics:</p>
+<ul>
+<li class="fragment">Proposed by Leland Wilkinson in 2005</li>
+<li class="fragment">Framework that enables description of components of <em>any</em> graph</li>
+<li class="fragment">It is NOT a framework for <em>effective</em> visualization</li>
+</ul>
+</div>
+<div class="fragment">
+<p><code>ggplot2</code>:</p>
+<ul>
+<li class="fragment">Developed by Hadley Wickham</li>
+<li class="fragment">Leverages the <em>layerd grammar of graphics</em> proposed in <span class="citation" data-cites="layered-grammar">Wickham (<a href="#/references" role="doc-biblioref" onclick="">2010</a>)</span></li>
+<li class="fragment">Focuses on a layered approach to describe and construct graphs</li>
+<li class="fragment">Most of the time you will work with <code>aes</code>thetic mappings and <code>geom</code>etric objects</li>
+</ul>
+</div>
+</section>
+<section id="requirements" class="slide level2">
+<h2>Requirements</h2>
+<p>You will need to load two packages</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">library</span>(EVR628tools)</span>
+<span id="cb30-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="goal" class="slide level2">
 <h2>Goal</h2>
+<p>Recall the <code>data_lionfish</code> data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">glimpse</span>(data_lionfish)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 109
+Columns: 9
+$ id              &lt;chr&gt; "001-Po-16/05/10", "002-Po-29/05/10", "003-Pd-29/05/10…
+$ site            &lt;chr&gt; "Paraiso", "Paraiso", "Pared", "Canones", "Canones", "…
+$ lat             &lt;dbl&gt; 20.48361, 20.48361, 20.50167, 20.47694, 20.47694, 20.5…
+$ lon             &lt;dbl&gt; -87.22611, -87.22611, -87.21167, -87.23278, -87.23278,…
+$ total_length_mm &lt;dbl&gt; 213, 124, 166, 203, 212, 210, 132, 122, 224, 117, 211,…
+$ total_weight_gr &lt;dbl&gt; 112.70, 27.60, 52.30, 123.10, 129.00, 138.75, 50.29, 1…
+$ size_class      &lt;chr&gt; "large", "medium", "medium", "large", "large", "large"…
+$ depth_m         &lt;dbl&gt; 38.1, 27.9, 18.5, 15.5, 15.0, 22.7, 13.4, 18.5, 18.2, …
+$ temperature_C   &lt;dbl&gt; 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 28, 28, 28, 28…</code></pre>
+</div>
+</div>
+</section>
+<section id="goal-1" class="slide level2">
+<h2>Goal</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-39-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="steps-to-build-a-plot-with-ggplot2" class="slide level2">
+<h2>Steps to build a plot with <code>ggplot2</code></h2>
+<ol type="1">
+<li class="fragment">Specify your data</li>
+<li class="fragment">Specify your x (and y) axis <code>aes</code>thetic mappings</li>
+<li class="fragment">Specify your <code>geom</code>etric representation</li>
+<li class="fragment">Modify geoms as needed</li>
+<li class="fragment">Modify your labels as needed</li>
+</ol>
 </section>
 <section id="specify-the-data" class="slide level2">
-<h2>Specify the data</h2>
+<h2>1. Specify the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-40-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="specify-the-axis" class="slide level2">
-<h2>Specify the axis</h2>
+<section id="specify-the-aesthetics" class="slide level2">
+<h2>2. Specify the <code>aes</code>thetics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb34-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth_m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-41-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="specify-the-aesthetics-1" class="slide level2">
+<h2>2. Specify the <code>aes</code>thetics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb35-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth_m, <span class="at">y =</span> total_length_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-42-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="specify-the-geometric-representation" class="slide level2">
-<h2>Specify the geometric representation</h2>
+<h2>3. Specify the <code>geom</code>etric representation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb36-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth_m, <span class="at">y =</span> total_length_mm)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-43-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="adding-aesthetics-mapped-to-data" class="slide level2">
-<h2>Adding aesthetics mapped to data</h2>
+<section id="modify-geoms-as-needed" class="slide level2">
+<h2>5. Modify geoms as needed</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb37-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth_m, <span class="at">y =</span> total_length_mm)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-44-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="adding-other-aesthetics" class="slide level2">
-<h2>Adding other aesthetics</h2>
+<section id="modify-labels-as-needed" class="slide level2">
+<h2>4. Modify labels as needed</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb38-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth_m, <span class="at">y =</span> total_length_mm)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Depth (m)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-45-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="layering-other-geoms" class="slide level2">
-<h2>Layering other geoms</h2>
+<section id="modify-labels-as-needed-1" class="slide level2">
+<h2>4. Modify labels as needed</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39" data-code-line-numbers="4-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_lionfish,</span>
+<span id="cb39-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth_m, <span class="at">y =</span> total_length_mm)) <span class="sc">+</span></span>
+<span id="cb39-3"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Depth (m)"</span>,</span>
+<span id="cb39-5"><a href=""></a>       <span class="at">y =</span> <span class="st">"Total length (mm)"</span>,</span>
+<span id="cb39-6"><a href=""></a>       <span class="at">title =</span> <span class="st">"Body length and depth"</span>,</span>
+<span id="cb39-7"><a href=""></a>       <span class="at">subtitle =</span> <span class="st">"Larger fish tend to live deeper"</span>,</span>
+<span id="cb39-8"><a href=""></a>       <span class="at">caption =</span> <span class="st">"Source EVR628tools::data_lionfish"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_vis_files/figure-revealjs/unnamed-chunk-46-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="grouping" class="slide level2">
-<h2>Grouping</h2>
-</section>
-<section id="facetting" class="slide level2">
-<h2>Facetting</h2>
-</section>
-<section id="saving-a-plot" class="slide level2">
-<h2>Saving a plot</h2>
-</section>
-<section id="scripting-is-about-being-lazy" class="slide level2">
-<h2>Scripting is about being lazy</h2>
-</section>
-<section id="parameters-in-frequent-geoms" class="slide level2">
-<h2>Parameters in frequent geoms</h2>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<ul>
+<li class="fragment"><code>ggplot2</code> <a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">cheatsheet</a></li>
+<li class="fragment">Package <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html">vignettes</a></li>
+<li class="fragment"><span class="citation" data-cites="layered-grammar">Wickham (<a href="#/references" role="doc-biblioref" onclick="">2010</a>)</span></li>
+</ul>
 </section></section>
+<section id="lets-get-coding" class="title-slide slide level1 center">
+<h1>Let’s get coding</h1>
+
+</section>
+
 <section id="references" class="title-slide slide level1 smaller scrollable">
 <h1>References</h1>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Jambor2025-pd" class="csl-entry" role="listitem">
 Jambor, Helena Klara. 2025. <span>“A Checklist for Designing and Improving the Visualization of Scientific Data.”</span> <em>Nat. Cell Biol.</em> 27 (June): 879–83.
+</div>
+<div id="ref-layered-grammar" class="csl-entry" role="listitem">
+Wickham, Hadley. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
 </div>
 <div id="ref-Wickham2023-aa" class="csl-entry" role="listitem">
 Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em><span>R</span> for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. Sebastopol, CA: O’Reilly Media.

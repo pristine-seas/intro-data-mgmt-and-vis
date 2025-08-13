@@ -1,6 +1,5 @@
 ---
-title: "EVR 628 - Intro to Environmental Data Science"
-subtitle: "Data visualization"
+subtitle: "Week 2: Data visualization"
 ---
 
 ```{r}
@@ -12,11 +11,6 @@ suppressPackageStartupMessages({
   library(EVR628tools)
   library(knitr)
 })
-
-data_lionfish <- data_lionfish |> 
-  mutate(size_class = case_when(total_length_mm < 100 ~ "small",
-                                between(total_length_mm, 100, 200) ~ "medium",
-                                total_length_mm > 200 ~ "large"))
 
 theme_set(
   theme_bw(base_size = 20)
@@ -473,18 +467,24 @@ p + geom_line(aes(group = size_class))
 
 # Principles of visualization
 
-## Small parentheses: "Add lightness"
+## Principles of visualization
 
-![Source: Diseno-art.com](img/mx5){.nostretch fig-align="center" width="40%"}
+You know what _type_ of graph you want, lets make it pretty
 
 . . .
 
-Instead  of "what should I _add_ to improve my plot?" think "what can I _remove_ to improve my plot?
+Small parentheses: "Add lightness"
+
+![Source: Diseno-art.com](img/mx5.jpg){.nostretch fig-align="center" width="40%"}
+
+. . .
+
+Instead  of thinking "what can I _add_ to my plot?" think "what can I _remove_ from my plot?
 
 ## @Jambor2025-pd's guide to visualization
 
 - [Simplify](#simplify): Improving annotations, labels, and layouts helps you retain the audience's attention
-- [Text](#text): Appropriate font size, avoid non-horizontal text
+- [Text](#text): Appropriate font size, avoid non-horizontal text. **Axis labels with units!!**
 - [Color scheme:](#color-scheme)
   - Prioritize accessibility and **consistency**
   - Don't abuse color; Use only when you must draw attention
@@ -800,7 +800,39 @@ p +
 ```
 
 :::
+::::
 
+
+## Other ways of representing information
+
+
+:::: {.columns}
+
+::: {.column width='40%'}
+- We've tried position (horizontal and vertical) and color
+- There is also:
+  - size
+  - shape
+  - aspect (line width, line type)
+- Our brains struggle to compare sizes
+- We can only track ~6 shapes at a time
+- Avoid using these for your most important message
+:::
+
+::: {.column width='60%'}
+
+```{r}
+ggplot(data = data_lionfish,
+       mapping = aes(x = total_length_mm, y = total_weight_gr, color = depth_m, size = fct_relevel(size_class, c("small", "medium", "large")), shape = site)) +
+  geom_point() +
+  labs(x = "Total length (mm)",
+       y = "Total weight (gr)",
+       color = "Site",
+       shape = "Site",
+       size = "Size class") +
+  scale_shape_manual(values = c(1:10))
+```
+:::
 
 ::::
 
@@ -810,31 +842,174 @@ p +
 
 # Intro to `ggplot2`
 
-## THE grammar of graphics
+## The grammar of graphics
+
+Grammar:
+
+- Set of rules that define components of a language
+
+. . .
+
+Grammar of graphics:
+
+- Proposed by Leland Wilkinson in 2005
+- Framework that enables description of components of _any_ graph
+- It is NOT a framework for _effective_ visualization
+
+. . .
+
+`ggplot2`:
+
+- Developed by Hadley Wickham
+- Leverages the _layerd grammar of graphics_ proposed in @layered-grammar
+- Focuses on a layered approach to describe and construct graphs
+- Most of the time you will work with `aes`thetic mappings and `geom`etric objects
+
+## Requirements
+
+```{r}
+#| echo: false
+rm(data_lionfish)
+theme_set(theme_gray())
+```
+
+
+You will need to load two packages
+
+```{r}
+#| code-fold: false
+library(EVR628tools)
+library(tidyverse)
+```
+
 
 ## Goal
 
-## Specify the data
+Recall the `data_lionfish` data:
+```{r}
+#| code-fold: false
+glimpse(data_lionfish)
+```
 
-## Specify the axis
+## Goal
 
-## Specify the geometric representation
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 4
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m,
+                     y = total_length_mm)) +
+  geom_point(shape = 21,
+             fill = "steelblue",
+             size = 2) +
+  labs(x = "Depth (m)",
+       y = "Total weight (gr)",
+       title = "Body length and depth",
+       subtitle = "Larger fish tend to live deeper",
+       caption = "Source EVR628tools::data_lionfish")
+```
 
-## Adding aesthetics mapped to data
+## Steps to build a plot with `ggplot2`
 
-## Adding other aesthetics
+1. Specify your data
+2. Specify your x (and y) axis `aes`thetic mappings
+3. Specify your `geom`etric representation
+4. Modify geoms as needed
+5. Modify your labels as needed
 
-## Layering other geoms
+## 1. Specify the data
 
-## Grouping
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+ggplot(data = data_lionfish)
+```
 
-## Facetting
+## 2. Specify the `aes`thetics
 
-## Saving a plot
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "2"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m))
+```
 
-## Scripting is about being lazy
+## 2. Specify the `aes`thetics
 
-## Parameters in frequent geoms
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "2"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm))
+```
+
+## 3. Specify the `geom`etric representation
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "3"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm)) +
+  geom_point()
+```
+
+## 5. Modify geoms as needed
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "3"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm)) +
+  geom_point(shape = 21, fill = "steelblue", size = 2)
+```
+
+## 4. Modify labels as needed
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "4"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm)) +
+  geom_point(shape = 21, fill = "steelblue", size = 2) +
+  labs(x = "Depth (m)")
+```
+
+## 4. Modify labels as needed
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "4-8"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm)) +
+  geom_point(shape = 21, fill = "steelblue", size = 2) +
+  labs(x = "Depth (m)",
+       y = "Total length (mm)",
+       title = "Body length and depth",
+       subtitle = "Larger fish tend to live deeper",
+       caption = "Source EVR628tools::data_lionfish")
+```
+
+## Resources
+
+- `ggplot2` [cheatsheet](https://rstudio.github.io/cheatsheets/data-visualization.pdf)
+- Package [vignettes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
+- @layered-grammar
+
+# Let's get coding
 
 # References 
 

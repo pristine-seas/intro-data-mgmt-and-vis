@@ -1,0 +1,113 @@
+---
+title: "Using `ggplot2`"
+lightbox: true
+format:
+  html:
+    toc: true
+  pdf:
+    documentclass: article
+---
+
+# Part 1: Build a basic plot
+
+
+- Open RStudio
+- Make sure you are in the EVR628 project
+- Create a new script, and save it to scripts as `week2_ggplot.R`
+- Add a basic descriptive header
+- Load packages
+```{r}
+library(EVR628tools)
+library(tidyverse)
+```
+
+- Inspect data
+
+```{r}
+glimpse(data_lionfish)
+```
+
+## The `ggplot` function
+
+- Show documentation: point out data and mapping
+- Specify data
+
+## The `aes` function
+- Show documentation
+- Then specify mapping
+- Emphasis of use of commas and named arguments
+- Show what happens when you don't name arguments
+- Multiple lines and parentheses
+
+## The `geom_point` function
+- Emphasiz on `+` for layering
+- Run with simple points
+- Show documentation and scroll down to the **Aesthetics** section
+- Show how to change colors / sizes etc...
+- Emphasize difference between using variables and constant values (inside vs outisde aes)
+
+## `labs` function
+
+```{r}
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m,
+                     y = total_length_mm)) +
+  geom_point(shape = 21,
+             fill = "steelblue",
+             size = 2) +
+  labs(x = "Depth (m)",
+       y = "Total weight (gr)",
+       title = "Body length and depth",
+       subtitle = "Larger fish tend to live deeper",
+       caption = "Source EVR628tools::data_lionfish")
+```
+
+## Part 2: Saving plots
+
+- Repeat the entire process, one line at a time, showing how to save to an object
+- Then show how to save plot with ggsave
+- Show documentation of ggsave
+- Emphasize on creating plot objects
+
+## Part 3: Visualizing distributions
+
+- Categorical variable with `geom_bar()`
+  - basic with site
+  - with `fct_infreq` and site
+  - with `fct_relevel` and size class
+- Numerical variable with `geom_histogram()`
+  - Distribution of lengths
+
+## Part 4: Visualizing relationships
+- A numerical and a categorical variable : depth by size class
+- Two categorical variables: N by size class and site
+- Two numerical variables: depth vs temp
+
+## Three or more
+- length vs depth with size for weight and color for temp?
+
+## Part 3: Layering
+- Show `data_milton` documentation again
+- Build plot below
+- Show use of `color` vs `fill` inside main `aes()` (affecting line and points) vs `aes()` inside `geom_point()` (affecting only the poitns)
+
+```{r}
+ggplot(data = data_milton,
+       mapping = aes(x = iso_time,
+                     y = pressure,
+                     )) +
+  geom_line() +
+  geom_point(aes(color = wind_speed)) +
+  scale_color_gradientn(colours = palette_IPCC(var = "wind", type = "seq"))
+```
+
+## Part 4: Facetting
+
+- Show documentation for `facet_wrap` and `facet_grid`
+- Show how each of these work
+
+```{r}
+
+```
+
+

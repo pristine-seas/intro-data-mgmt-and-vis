@@ -1,4 +1,15 @@
 ---
 title: "EVR 628 - Intro to Environmental Data Science"
-subtitle: "Scale_up_vis"
+subtitle: "Scaling up your code and visualizations"
 ---
+
+## `stat_summary`
+
+## `geom_smooth`
+
+## `cowplot`
+
+## `GGally`
+
+## `ggplotly`
+
