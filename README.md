@@ -60,6 +60,13 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Version control with [Git](https://git-scm.com/downloads) and [GitHub](https://github.com/)
 - Building your first repository (hello world!)
 
+**Relevant links for the week**
+- [Instructions to install git and create GitHub account](docs/03_installing_git.html)
+- [Slide deck](slides/03_git_and_github.html)
+- Other links: 
+  - Pereira-Braga et al ["Not just for programmers: How GitHub can accelerate collaborative and reproducible research in ecology and evolution"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14108) Methods in Ecology and Evolution
+  - [Happy Git with R](https://happygitwithr.com/)
+
 ---
 
 **First assignment:** _Setting up your portfolio in GitHub_

@@ -1,0 +1,130 @@
+---
+title: "Installing git and getting a GitHub account"
+lightbox: true
+format:
+  html:
+    toc: true
+  pdf:
+    documentclass: article
+---
+
+::: {.callout-tip}
+# TL;DR:
+- Use [this link](https://github.com) to create a GitHub account
+- Use [this link](https://git-scm.com/) to download git on Mac, [this link](https://gitforwindows.org/) on Windows
+- Authenticate with git
+:::
+
+## 1. GitHub Account
+
+1. Go to [https://github.com](https://github.com) and register an account
+2. Use an appropriate (professional!) username (I recommend you use all lower case letters)
+3. Register for a free account. That provides more than enough resources (I have a free account, for example)
+
+## 2. Installing Git
+
+You might already have it installed, so let's check that first
+
+1. Open a `shell` or `terminal` (Mac [instructions](https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac), Windows [instructions](https://happygitwithr.com/shell#windows-shell-hell), Linux users, I assume you know what you are doing)
+
+2. Once you have a command line staring at you, type:
+
+```bash
+which git
+```
+
+If you get `## /usr/bin/git`, then you already have git. You are done, skip to the next section: **3. Connecting Git, GitHub, RStudio**
+
+If you get something like `git: command not found`, then follow the instructions on the tabs below
+
+:::{.callout-warning}
+## MacOS users:
+You might get asked if you want to install "command line developer tools". Yes, you want to! Click “Install” and read more below.
+:::
+
+::: {.panel-tabset}
+
+## MacOS
+
+### Option 1 
+
+We will install the XCode command line tools (not the same as Xcode)
+
+1. I assume you still have a terminal open
+2. Type:
+
+```bash
+xcode-select --install
+```
+
+3. You will be prompted to accept licenses and terms... go through the usual steps
+4. Try the `which git` command again in your terminal. This time you should get `## /usr/bin/git`
+
+### Option 2
+
+1. Go to [https://git-scm.com/downloads](https://git-scm.com/downloads) and download the installer
+2. Follow the installation instructions
+3. Try the `which git` command again in your terminal. This time you should get `## /usr/bin/git`
+
+## Windows
+
+1. Go to [https://gitforwindows.org/](https://gitforwindows.org/) and download the installer
+2. Proceed with installation steps
+3. In “Adjusting your `PATH` environment”, **make sure to select** “Git from the command line and also from 3rd-party software”. Use all the other defaults.
+4. Try the `which git` command again in your terminal. This time you should get `## /usr/bin/git`
+
+## Linux
+
+Ubuntu and Debian:
+
+```bash
+sudo apt-get install git
+```
+
+Fedora or RedHat Linux:
+
+```bash
+sudo yum install git
+```
+
+:::
+
+
+## 3. Connecting Git, GitHub and RStudio
+
+1. In the shell, use the code below to tell your git program what's your username. Retain the quotation marks, but replace `your_username_here` with the username you created in Step 1 above.
+```bash
+git config --global user.name "your_username_here"
+```
+2. Then, use teh code bellow to tell git what your email is. Again, retain quotations and include the email you used to authenticate in GitHub
+```bash
+git config --global user.email "your@email_here.com"
+```
+3. Use the code below. It should return a list where you can see your username and email are now added
+```bash
+git config --global --list
+```
+
+:::{.callout-warning collapse=false appearance='default' icon=true}
+## Windows users, are you struggling?
+There are different types of shell on Windows (no idea why) and you might be in the wrong one. You want to be in a “Git Bash” shell, as opposed to Power Shell or the legacy cmd.exe command prompt. You can read more about this [here](https://happygitwithr.com/shell#windows-shell-hell), including ways to figure out which one you are using.
+:::
+
+4. Go to [https://github.com/settings/tokens](https://github.com/settings/tokens) and click “Generate new token”.
+5. Select the "classic" version
+6. Look over the scopes and make sure “repo”, “user”, and “workflow” are ticked
+7. Click “Generate token” at the bottom of the page (green button)
+8. **DO NOT CLOSE THE WINDOW** - Copy the generated PAT to your clipboard or leave that browser window open and available so you can come back to copy the PAT later. The PAT will look like a bunch of random letters and numbers.
+9. In the RStudio console, run `install.packages("usethis")`
+10. Then, run `gitcreds::gitcreds_set()`
+11. Paste the PAT in response to the dialogue in the console:
+
+```r
+? Enter password or token: ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+-> Adding new credentials...
+-> Removing credentials from cache...
+-> Done.
+```
+
+12. You _should_ be done. We'll test things in class.
+
