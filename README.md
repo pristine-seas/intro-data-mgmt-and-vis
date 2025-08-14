@@ -32,8 +32,8 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - R packages: [`tidyverse`](https://www.tidyverse.org/), [`EVR628`](https://jcvdav.github.io/EVR628tools/)
 
 **Relevant links for the week**
-- [Instructions to install R and RStudio](https://jcvdav.github.io/EVR_628/docs/01_installing_R_RStudio.html)
-- [Slide deck](https://jcvdav.github.io/EVR_628/slides/01_intro.html)
+- [Instructions to install R and RStudio](docs/01_installing_R_RStudio.html)
+- [Slide deck](slides/01_intro.html)
 
 ## Week 2 (Aug 25-29)
 **Data visualization**
@@ -43,7 +43,6 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - The grammar of graphics and the [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 
 **Relevant links for the week**
-- [Slide deck](./slides/02_data_vis.html)
 - [Slide deck](slides/02_data_vis.html)
 - Assigned readings: 
   - Jambor, H.K. ["A checklist for designing and improving the visualization of scientific data."](https://doi.org/10.1038/s41556-025-01684-z) Nat Cell Biol 27, 879–883 (2025).
