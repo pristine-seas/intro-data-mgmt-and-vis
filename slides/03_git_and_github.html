@@ -275,6 +275,11 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment"><strong>Hands-on: Building Your Repository</strong></li>
 </ul>
 </section>
+<section>
+<section id="version-control-and-reproducibility" class="title-slide slide level1 center">
+<h1>Version control and reproducibility</h1>
+
+</section>
 <section id="why-should-you-care" class="slide level2">
 <h2>Why Should You Care?</h2>
 <ul>
@@ -312,7 +317,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 </li>
 <li class="fragment">Documentation: Methods, assumptions, and decisions</li>
 <li class="fragment">Environment: Software versions and dependencies</li>
-<li class="fragment">Results: Outputs, figures, and interpretations</li>
+<li class="fragment">Results: Outputs, tables, figures</li>
 </ul>
 </div>
 </section>
@@ -486,7 +491,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment">Merging: Combine changes from different sources</li>
 <li class="fragment">The Most Popular Version Control System</li>
 </ul>
-</section>
+</section></section>
 <section>
 <section id="four-git-concepts" class="title-slide slide level1 center">
 <h1>Four Git concepts</h1>
@@ -570,7 +575,12 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div>
 <div class="fragment">
-<p><img data-src="img/commit_example.png" class="absolute" style="top: 50px; right: 10px; "></p>
+<p><img data-src="img/commit_example.png" class="absolute" style="top: 50px; right: 10px; "> ## Git Concepts: Push / Pull</p>
+<p>Refers to uploading and downloading changes to and from the remote</p>
+<ul>
+<li class="fragment">With a push, you decide when you send a bundle of commits</li>
+<li class="fragment">With a pull, you decide when you bring down your colleague’s version of code</li>
+</ul>
 </div>
 </section>
 <section id="git-workflow-the-basic-cycle" class="slide level2">
@@ -606,7 +616,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment"><code>git status</code>: See what’s changed</li>
 <li class="fragment"><code>git add</code>: Stage changes for commit</li>
 <li class="fragment"><code>git commit</code>: Save changes with a message</li>
-<li class="fragment"><code>git log</code>: View commit history</li>
 </ul></li>
 <li class="fragment">Connecting with GitHub
 <ul>
@@ -644,9 +653,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment"><code>fixed things</code></li>
 </ul>
 </div>
-<div class="fragment">
-<p>Which are good?</p>
-</div>
 </section>
 <section id="github-the-social-platform-for-code" class="slide level2">
 <h2>GitHub: The Social Platform for Code</h2>
@@ -654,7 +660,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <p><strong>Key Features</strong>:</p>
 <ul>
 <li class="fragment">Free hosting for public repositories</li>
-<li class="fragment">Collaboration tools: Issues, pull requests, discussions</li>
+<li class="fragment">Collaboration tools: Issues, pull requests, discussions, <a href="https://github.com/chaisemartinPackages/did_multiplegt_dyn/issues/99">contact</a> authors</li>
 <li class="fragment">Project management: Wikis, project boards, releases</li>
 <li class="fragment">Integration: Connects with other tools and services</li>
 <li class="fragment"><strong>Portfolio: Showcase your work to potential employers</strong></li>
@@ -683,17 +689,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div></div>
 </section>
-<section id="github-features-for-environmental-science" class="slide level2">
-<h2>GitHub Features for Environmental Science</h2>
-<ul>
-<li class="fragment"><strong>Issues</strong>: Track bugs, feature requests, <a href="https://github.com/chaisemartinPackages/did_multiplegt_dyn/issues/99">contact</a> authors</li>
-<li class="fragment"><strong>Releases</strong>: Tag specific versions of your research</li>
-<li class="fragment"><strong>Actions</strong>: Automate testing and deployment</li>
-<li class="fragment"><strong>Pages</strong>: Host project websites and documentation</li>
-<li class="fragment"><strong>Discussions</strong>: Have conversations about your research</li>
-<li class="fragment"><strong>Wiki</strong>: Document methods and procedures</li>
-</ul>
-</section>
 <section id="best-practices-for-research-repositories" class="slide level2">
 <h2>Best Practices for Research Repositories</h2>
 <div class="columns">
@@ -702,13 +697,11 @@ Juan Carlos Villaseñor-Derbez (JC)
 <ul>
 <li class="fragment">Clear README with project description and documentation</li>
 <li class="fragment">Well-organized file structure</li>
-<li class="fragment">License file (optional)</li>
 </ul>
 <p><strong>Content</strong>:</p>
 <ul>
-<li class="fragment">Include raw and processed data (or data access instructions)</li>
-<li class="fragment">Document all processing steps (or include a <code>Makefile</code>)</li>
-<li class="fragment">Include examples</li>
+<li class="fragment">Include raw and processed data</li>
+<li class="fragment">Include all your code</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><strong>Collaboration</strong>:</p>
@@ -739,10 +732,17 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="questions-discussion" class="slide level2">
 <h2>Questions &amp; Discussion</h2>
-<p><strong>Discussion topics</strong>: - How might version control help in your research? - What challenges do you anticipate with Git? - How can we ensure reproducibility in environmental science? - What are the benefits of open science and sharing code?</p>
+<ul>
+<li class="fragment">How might version control help in your research?</li>
+<li class="fragment">What challenges do you anticipate with Git?</li>
+<li class="fragment">How can we ensure reproducibility in environmental science?</li>
+<li class="fragment">What are the benefits of open science and sharing code?</li>
+</ul>
 </section>
 <section id="resources-for-learning-more" class="slide level2">
 <h2>Resources for Learning More</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p><strong>Git and GitHub</strong>:</p>
 <ul>
 <li class="fragment"><a href="https://guides.github.com/">GitHub Guides</a></li>
@@ -750,12 +750,30 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment"><a href="https://desktop.github.com/">GitHub Desktop</a> (GUI for Git)</li>
 <li class="fragment"><span class="citation" data-cites="Braga2023-da">Braga et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></li>
 </ul>
+</div><div class="column" style="width:50%;">
 <p><strong>R and Git</strong>:</p>
 <ul>
 <li class="fragment"><a href="https://happygitwithr.com/">Happy Git with R</a></li>
 <li class="fragment"><a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">RStudio Git Integration</a></li>
 </ul>
-<p><strong>Next class</strong>: We’ll dive deeper into data management and organization</p>
+</div></div>
+</section>
+<section id="next-class" class="slide level2">
+<h2>Next class</h2>
+<p><strong>Hands-on</strong>: We’ll play with Git and GitHub</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Install git and create a GitHub account</strong></p>
+</div>
+<div class="callout-content">
+<p>Instructions available <a href="https://jcvdav.github.io/EVR_628/docs/03_installing_git.html">here</a>, and under Week 3 in the course’s website</p>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="hands-on-building-your-first-repository" class="title-slide slide level1 center">

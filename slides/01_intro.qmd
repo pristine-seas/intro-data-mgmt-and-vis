@@ -37,7 +37,7 @@ Course website at: [jcvdav.github.io/EVR_628](https://jcvdav.github.io/EVR_628/)
 
 . . .
 
-::: {.callout-important collapse="true"}
+::: {.callout-important}
 Make sure to complete assigned readings or software installation _before_ class. This will count towards participation.
 :::
 

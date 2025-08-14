@@ -31,6 +31,7 @@ subtitle: "Keeping track of your code with Git and GitHub"
 - **GitHub & Collaboration**
 - **Hands-on: Building Your Repository**
 
+# Version control and reproducibility
 
 ## Why Should You Care?
 
@@ -64,7 +65,7 @@ Research that can be repeated by others using the same data and methods
 - Code: Scripts, functions, and workflows  
 - Documentation: Methods, assumptions, and decisions
 - Environment: Software versions and dependencies
-- Results: Outputs, figures, and interpretations
+- Results: Outputs, tables, figures
 
 
 ## The Reproducibility Crisis
@@ -319,7 +320,12 @@ Push / Pull
 . . .
 
 ![](img/commit_example.png){.absolute top="50" right="10"}
+## Git Concepts: Push / Pull
 
+Refers to uploading and downloading changes to and from the remote
+
+- With a push, you decide when you send a bundle of commits
+- With a pull, you decide when you bring down your colleague's version of code
 
 ## Git Workflow: The Basic Cycle
 
@@ -358,7 +364,6 @@ We can do most things in RStudio, but you should know:
   - `git status`: See what's changed
   - `git add`: Stage changes for commit
   - `git commit`: Save changes with a message
-  - `git log`: View commit history
 - Connecting with GitHub
   - `git push`: Upload changes to remote repository
   - `git pull`: Download changes from remote repository
@@ -389,9 +394,6 @@ We can do most things in RStudio, but you should know:
 - `stuff`
 - `fixed things`
 
-. . .
-
-Which are good?
 
 ## GitHub: The Social Platform for Code
 
@@ -400,7 +402,7 @@ Which are good?
 **Key Features**:
 
 - Free hosting for public repositories
-- Collaboration tools: Issues, pull requests, discussions
+- Collaboration tools: Issues, pull requests, discussions, [contact](https://github.com/chaisemartinPackages/did_multiplegt_dyn/issues/99) authors
 - Project management: Wikis, project boards, releases
 - Integration: Connects with other tools and services
 - **Portfolio: Showcase your work to potential employers**
@@ -436,15 +438,6 @@ In a group
 ::::
 
 
-## GitHub Features for Environmental Science
-
-- **Issues**: Track bugs, feature requests, [contact](https://github.com/chaisemartinPackages/did_multiplegt_dyn/issues/99) authors
-- **Releases**: Tag specific versions of your research
-- **Actions**: Automate testing and deployment
-- **Pages**: Host project websites and documentation
-- **Discussions**: Have conversations about your research
-- **Wiki**: Document methods and procedures
-
 ## Best Practices for Research Repositories
 
 :::: {.columns}
@@ -454,13 +447,11 @@ In a group
 
 - Clear README with project description and documentation
 - Well-organized file structure
-- License file (optional)
 
 **Content**:
 
-- Include raw and processed data (or data access instructions)
-- Document all processing steps (or include a `Makefile`)
-- Include examples
+- Include raw and processed data
+- Include all your code
 
 :::
 
@@ -490,13 +481,16 @@ In a group
 
 ## Questions & Discussion
 
-**Discussion topics**:
 - How might version control help in your research?
 - What challenges do you anticipate with Git?
 - How can we ensure reproducibility in environmental science?
 - What are the benefits of open science and sharing code?
 
 ## Resources for Learning More
+
+:::: {.columns}
+
+::: {.column width="50%"}
 
 **Git and GitHub**:
 
@@ -505,12 +499,26 @@ In a group
 - [GitHub Desktop](https://desktop.github.com/) (GUI for Git)
 - @Braga2023-da
 
+:::
+
+::: {.column width="50%"}
+
 **R and Git**:
 
 - [Happy Git with R](https://happygitwithr.com/)
 - [RStudio Git Integration](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
 
-**Next class**: We'll dive deeper into data management and organization
+:::
+::::
+
+## Next class
+
+**Hands-on**: We'll play with Git and GitHub
+
+::: {.callout-important collapse="true"}
+## Install git and create a GitHub account
+Instructions available [here](https://jcvdav.github.io/EVR_628/docs/03_installing_git.html), and under Week 3 in the course's website
+:::
 
 
 # Hands-on: Building Your First Repository
