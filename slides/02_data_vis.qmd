@@ -17,7 +17,7 @@ theme_set(
 )
 ```
 
-## Learning objectives
+## Learning Objectives
 
 :::{.callout-note}
 # By the end of this week, you should be able to:
@@ -30,7 +30,7 @@ theme_set(
 
 # Types of data
 
-## Some jargon
+## Some Jargon
 
 - Variable: A measurable quality, quantity or property
 - Value: The state of the variable
@@ -55,7 +55,7 @@ data_lionfish[1:3,c(1, 5)] |>
 :::
 ::::
 
-## Types of data
+## Types of Data
 
 The _type_ of data you have can influence how you visualize them
 
@@ -65,7 +65,7 @@ The _type_ of data you have can influence how you visualize them
 - Categorical: (AKA "qualitative") a measurement expressed in words, instead of numbers (often)
 - Ordinal: A special type of cetegorical data, where the order of the categories has a meaning
 
-## Examples: lionfish biometry
+## Examples: Lionfish Biometry
 
 ![](img/lionfish.JPG){.nostretch fig-align="center" width="40%"}
 
@@ -78,7 +78,7 @@ The _type_ of data you have can influence how you visualize them
 Use `?data_lionfish` to look at the [documentation](https://jcvdav.github.io/EVR628tools/reference/data_lionfish.html).
 ::::
 
-## Examples: lionfish biometry
+## Examples: Lionfish Biometry
 
 ```{r}
 #| folding: true
@@ -99,7 +99,7 @@ How about `total_length_mm`?
 And `size_class`?
 
 
-## Example: Huricane tracks
+## Example: Hurricane Tracks
 
 ```{r}
 data_milton |> 
@@ -125,7 +125,7 @@ Can you add `sshs` and obtain something meaningful?
 
 # Types of visualizations
 
-## Types of visualizations
+## Types of Visualizations
 
 There are many, many, MANY types of visualizations:
 
@@ -140,7 +140,7 @@ But what really matters:
 - You should have creative freedom
 - We have one goal: To communicate something to the viewer (our ourselves)
 
-## Visualizing for yourself
+## Visualizing for Yourself
 
 ![Modified from @Wickham2023-aa](https://r4ds.hadley.nz/diagrams/data-science/base.png){.nostretch fig-align="center" width="95%"}
 
@@ -329,7 +329,7 @@ Message: "Largest fish comes from Castillo"
 - You can always try visualizing the same data in more than one way
 - Let's try to organize your thoughts
 
-## Right visuals for your data
+## Right Visuals for Your Data
 
 Remember our goal:
 
@@ -355,7 +355,7 @@ Any visual can usually achieve more than one of this at a time
 
 Most visuals can only achieve _one_ of these _effectively_ at a time
 
-## Same data, multiple plots
+## Same Data, Multiple Plots
 
 Which of this is best at showing the relationship between size and weight?
 
@@ -404,7 +404,7 @@ p + geom_bin_2d(bins = 10) + labs(fill = "N")
 Which one is best at showing the size and weight of most fish?
 
 
-## Same data, multiple plots
+## Same Data, Multiple Plots
 
 Which is best at shwoing me the number of samples by site and size?
 
@@ -450,7 +450,7 @@ p + geom_line(aes(group = size_class))
 ::::
 
 
-## Chosing the "right" visual
+## Choosing the "Right" Visual
 
 - The right visual is the one that gets the message across
 
@@ -467,7 +467,7 @@ p + geom_line(aes(group = size_class))
 
 # Principles of visualization
 
-## Principles of visualization
+## Principles of Visualization
 
 You know what _type_ of graph you want, lets make it pretty
 
@@ -481,7 +481,7 @@ Small parentheses: "Add lightness"
 
 Instead  of thinking "what can I _add_ to my plot?" think "what can I _remove_ from my plot?
 
-## @Jambor2025-pd's guide to visualization
+## @Jambor2025-pd's Guide to Visualization
 
 - [Simplify](#simplify): Improving annotations, labels, and layouts helps you retain the audience's attention
 - [Text](#text): Appropriate font size, avoid non-horizontal text. **Axis labels with units!!**
@@ -597,7 +597,7 @@ p +
 ::::
 
 
-## Color scheme
+## Color Scheme
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -803,7 +803,7 @@ p +
 ::::
 
 
-## Other ways of representing information
+## Other Ways of Representing Information
 
 
 :::: {.columns}
@@ -837,12 +837,12 @@ ggplot(data = data_lionfish,
 ::::
 
 
-## Resources on style  
+## Resources on Style  
 - _A [checklist](https://static-content.springer.com/esm/art%3A10.1038%2Fs41556-025-01684-z/MediaObjects/41556_2025_1684_MOESM1_ESM.pdf) for designing and improving the visualization of scientific data_ by @Jambor2025-pd
 
 # Intro to `ggplot2`
 
-## The grammar of graphics
+## The Grammar of Graphics
 
 Grammar:
 
@@ -910,7 +910,7 @@ ggplot(data = data_lionfish,
        caption = "Source EVR628tools::data_lionfish")
 ```
 
-## Steps to build a plot with `ggplot2`
+## Steps to Build a Plot with `ggplot2`
 
 1. Specify your data
 2. Specify your x (and y) axis `aes`thetic mappings
@@ -918,7 +918,7 @@ ggplot(data = data_lionfish,
 4. Modify geoms as needed
 5. Modify your labels as needed
 
-## 1. Specify the data
+## 1. Specify the Data
 
 ```{r}
 #| code-fold: false
@@ -949,7 +949,7 @@ ggplot(data = data_lionfish,
        mapping = aes(x = depth_m, y = total_length_mm))
 ```
 
-## 3. Specify the `geom`etric representation
+## 3. Specify the `geom`etric Representation
 
 ```{r}
 #| code-fold: false
@@ -961,7 +961,7 @@ ggplot(data = data_lionfish,
   geom_point()
 ```
 
-## 5. Modify geoms as needed
+## 5. Modify Geoms as Needed
 
 ```{r}
 #| code-fold: false
@@ -973,7 +973,7 @@ ggplot(data = data_lionfish,
   geom_point(shape = 21, fill = "steelblue", size = 2)
 ```
 
-## 4. Modify labels as needed
+## 4. Modify Labels as Needed
 
 ```{r}
 #| code-fold: false
@@ -986,7 +986,7 @@ ggplot(data = data_lionfish,
   labs(x = "Depth (m)")
 ```
 
-## 4. Modify labels as needed
+## 4. Modify Labels as Needed
 
 ```{r}
 #| code-fold: false
@@ -1009,7 +1009,7 @@ ggplot(data = data_lionfish,
 - Package [vignettes](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html)
 - @layered-grammar
 
-## Learning objectives - revisited
+## Learning Objectives - Revisited
 
 :::{.callout-note}
 # By the end of this week, you should be able to:
