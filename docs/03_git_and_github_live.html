@@ -8,7 +8,7 @@
 
 <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
 
-<title>03_git_and_github_live</title>
+<title>Git and GitHub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,13 +82,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#hands-on-building-your-first-repository" id="toc-hands-on-building-your-first-repository" class="nav-link active" data-scroll-target="#hands-on-building-your-first-repository">Hands-on: Building Your First Repository</a>
   <ul class="collapse">
-  <li><a href="#hands-on-building-your-first-repository-1" id="toc-hands-on-building-your-first-repository-1" class="nav-link" data-scroll-target="#hands-on-building-your-first-repository-1">Hands-on: Building Your First Repository</a></li>
+  <li><a href="#step-0-make-sure-you-have-git-and-an-account-and-all-that" id="toc-step-0-make-sure-you-have-git-and-an-account-and-all-that" class="nav-link" data-scroll-target="#step-0-make-sure-you-have-git-and-an-account-and-all-that">Step 0: Make sure you have git, and an account and all that</a></li>
   <li><a href="#step-1-create-a-github-repository" id="toc-step-1-create-a-github-repository" class="nav-link" data-scroll-target="#step-1-create-a-github-repository">Step 1: Create a GitHub Repository</a></li>
   <li><a href="#step-2-clone-to-your-computer" id="toc-step-2-clone-to-your-computer" class="nav-link" data-scroll-target="#step-2-clone-to-your-computer">Step 2: Clone to Your Computer</a></li>
   <li><a href="#step-3-set-up-your-project-structure" id="toc-step-3-set-up-your-project-structure" class="nav-link" data-scroll-target="#step-3-set-up-your-project-structure">Step 3: Set Up Your Project Structure</a></li>
-  <li><a href="#step-4-create-a-.gitignore-file" id="toc-step-4-create-a-.gitignore-file" class="nav-link" data-scroll-target="#step-4-create-a-.gitignore-file">Step 4: Create a .gitignore File</a></li>
-  <li><a href="#step-5-add-your-first-analysis" id="toc-step-5-add-your-first-analysis" class="nav-link" data-scroll-target="#step-5-add-your-first-analysis">Step 5: Add Your First Analysis</a></li>
+  <li><a href="#step-4-create-modify-the-.gitignore-file" id="toc-step-4-create-modify-the-.gitignore-file" class="nav-link" data-scroll-target="#step-4-create-modify-the-.gitignore-file">Step 4: Create / Modify the .gitignore File</a></li>
+  <li><a href="#step-5-add-your-first-analysis" id="toc-step-5-add-your-first-analysis" class="nav-link" data-scroll-target="#step-5-add-your-first-analysis">Step 5: Add Your First “Analysis”</a></li>
   <li><a href="#step-6-update-your-readme" id="toc-step-6-update-your-readme" class="nav-link" data-scroll-target="#step-6-update-your-readme">Step 6: Update Your README</a></li>
+  <li><a href="#step-7-stage-commit-push" id="toc-step-7-stage-commit-push" class="nav-link" data-scroll-target="#step-7-stage-commit-push">Step 7: Stage-Commit-Push</a></li>
+  </ul></li>
+  <li><a href="#now-lets-colaborate" id="toc-now-lets-colaborate" class="nav-link" data-scroll-target="#now-lets-colaborate">Now lets colaborate</a>
+  <ul class="collapse">
+  <li><a href="#adding-someone-to-your-repo" id="toc-adding-someone-to-your-repo" class="nav-link" data-scroll-target="#adding-someone-to-your-repo">Adding someone to your repo</a></li>
+  <li><a href="#branching-and-pull-requesting" id="toc-branching-and-pull-requesting" class="nav-link" data-scroll-target="#branching-and-pull-requesting">Branching and pull requesting</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03_git_and_github_live.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -97,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">03_git_and_github_live</h1>
+<h1 class="title">Git and GitHub</h1>
 </div>
 
 
@@ -122,17 +128,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="hands-on-building-your-first-repository" class="level1">
 <h1>Hands-on: Building Your First Repository</h1>
-<section id="hands-on-building-your-first-repository-1" class="level2">
-<h2 class="anchored" data-anchor-id="hands-on-building-your-first-repository-1">Hands-on: Building Your First Repository</h2>
-<p><strong>Let’s create a repository for your environmental data project!</strong></p>
-<ol type="1">
-<li>Create a GitHub account (if you don’t have one)</li>
+<p>The overall flow:</p>
+<ol start="0" type="1">
+<li>Create a GitHub account (if you don’t have one), install git, authenticate (<a href="https://jcvdav.github.io/EVR_628/docs/03_installing_git.html">instructions</a>)</li>
 <li>Create a new repository on GitHub</li>
 <li>Clone it to your computer</li>
 <li>Add your project files</li>
 <li>Make your first commit</li>
 <li>Push to GitHub</li>
 </ol>
+<section id="step-0-make-sure-you-have-git-and-an-account-and-all-that" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-make-sure-you-have-git-and-an-account-and-all-that">Step 0: Make sure you have git, and an account and all that</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-1-create-a-github-repository" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-create-a-github-repository">Step 1: Create a GitHub Repository</h2>
@@ -140,20 +147,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Go to <a href="https://github.com">github.com</a> and sign in</li>
 <li>Click the “+” icon in the top right</li>
 <li>Select “New repository”</li>
-<li>Choose a descriptive name: <code>environmental-data-project</code></li>
-<li>Add a description: “Analysis of environmental data for EVR 628”</li>
-<li>Make it <strong>Public</strong> (for portfolio building)</li>
+<li>Choose a descriptive name: <code>my_first_repo</code></li>
+<li>Add a description: “Learning how to use GitHub”</li>
+<li>Make it <strong>Public</strong></li>
 <li>Check “Add a README file”</li>
+<li>Select gitignore tailored to R</li>
 <li>Click “Create repository”</li>
 </ol>
 </section>
 <section id="step-2-clone-to-your-computer" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-clone-to-your-computer">Step 2: Clone to Your Computer</h2>
-<p><strong>In RStudio</strong>: 1. Go to File → New Project 2. Choose “Version Control” 3. Select “Git” 4. Paste your repository URL 5. Choose where to save it locally 6. Click “Create Project”</p>
+<p><strong>In RStudio</strong>: 1. Go to File → New Project 2. Choose “Version Control” 3. Select “Git” 4. Paste your repository URL 5. Choose where to save it locally - Not on iDrive, not on DropBox, not on GoogleDrive… 6. Click “Create Project” 7. Verify that you now have a <code>README.md</code> and <code>.gitignore</code> files</p>
 </section>
 <section id="step-3-set-up-your-project-structure" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-set-up-your-project-structure">Step 3: Set Up Your Project Structure</h2>
-<p>Create these folders in your repository:</p>
+<p>To create these folders in your repository:</p>
 <pre><code>environmental-data-project/
 ├── data/
 │   ├── raw/
@@ -170,11 +178,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 └── README.md</code></pre>
 <p>Use:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>EVR628tools<span class="sc">::</span><span class="fu">create_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>EVR628tools<span class="sc">::</span><span class="fu">create_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="step-4-create-a-.gitignore-file" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-create-a-.gitignore-file">Step 4: Create a .gitignore File</h2>
+<section id="step-4-create-modify-the-.gitignore-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-create-modify-the-.gitignore-file">Step 4: Create / Modify the .gitignore File</h2>
 <p>Create a <code>.gitignore</code> file to exclude unnecessary files:</p>
 <pre class="gitignore"><code># R specific
 .Rhistory
@@ -182,60 +190,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 .Ruserdata
 *.Rproj.user/
 
-# Data files (if large)
-*.csv
-*.rds
-*.xlsx
-
-# Results (if large)
-*.png
-*.pdf
-*.jpg
-
 # System files
 .DS_Store
 Thumbs.db</code></pre>
 <p><strong>Note</strong>: You can always add specific files with <code>git add -f filename</code>, edit the <code>.gitignore</code> file or use the git pane</p>
 </section>
 <section id="step-5-add-your-first-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-add-your-first-analysis">Step 5: Add Your First Analysis</h2>
+<h2 class="anchored" data-anchor-id="step-5-add-your-first-analysis">Step 5: Add Your First “Analysis”</h2>
 <p>Create a simple R script in <code>scripts/analysis/</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: environmental_data_analysis.R</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EVR628tools)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple plot</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_milton, <span class="fu">aes</span>(<span class="at">x =</span> iso_time, <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> p, <span class="at">filename =</span> <span class="st">"results/figures/first_plot.png"</span>) <span class="co"># &lt;-- This shouldn't work, why?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: environmental_data_analysis.R</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EVR628tools)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple plot</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_milton, <span class="fu">aes</span>(<span class="at">x =</span> iso_time, <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> p, <span class="at">filename =</span> <span class="st">"results/figures/first_plot.png"</span>) <span class="co"># &lt;-- This shouldn't work, why?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Commit and push:</p>
 </section>
 <section id="step-6-update-your-readme" class="level2">
 <h2 class="anchored" data-anchor-id="step-6-update-your-readme">Step 6: Update Your README</h2>
 <p>Create a comprehensive README.md</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Environmental Data Project</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Description</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Analysis of environmental data for EVR 628 course.</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project Structure</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/`</span>: Raw and processed data files</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/`</span>: R scripts for analysis</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`results/`</span>: Output figures and tables</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`docs/`</span>: Documentation</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Started</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Clone this repository</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Install required R packages</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Run analysis scripts</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Author</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Your Name</span><span class="co">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Commit and push your README file</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># My first repo</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Description</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Analysis of environmental data for EVR 628 course.</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project Structure</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`data/`</span>: Raw and processed data files</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`scripts/`</span>: R scripts for analysis</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`results/`</span>: Output figures and tables</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`docs/`</span>: Documentation</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Author</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Your Name and email?</span><span class="co">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-7-stage-commit-push" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-stage-commit-push">Step 7: Stage-Commit-Push</h2>
+<ul>
+<li>Stage, commit your R script</li>
+<li>Push</li>
+<li>Stage, commit your README</li>
+<li>Stage, commit your plot</li>
+<li>Push</li>
+</ul>
+</section>
+</section>
+<section id="now-lets-colaborate" class="level1">
+<h1>Now lets colaborate</h1>
+<section id="adding-someone-to-your-repo" class="level2">
+<h2 class="anchored" data-anchor-id="adding-someone-to-your-repo">Adding someone to your repo</h2>
+<ul>
+<li>Find a partner</li>
+<li>Decide who will be partner A and who will be partner B</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="parter-a" class="level3">
+<h3 class="anchored" data-anchor-id="parter-a">Parter A</h3>
+<ul>
+<li>Go to settings -&gt; collaborators -&gt; Add collaborator</li>
+<li>Add partner B’s username and send an invitation</li>
+<li>Wait until B tells you they are done (~5 minutes)</li>
+</ul>
+<p>…</p>
+<ul>
+<li>Pull</li>
+</ul>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="parter-b" class="level3">
+<h3 class="anchored" data-anchor-id="parter-b">Parter B</h3>
+<ul>
+<li>Give partner A your username</li>
+<li>Check your email</li>
+<li>Go to the repository</li>
+<li>Repeat the cloning process (in a different location)</li>
+<li>Make one change to partner A’s graph</li>
+<li>Stage the file, then commit, and push</li>
+<li>Tell partner A you are done</li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+<section id="branching-and-pull-requesting" class="level2">
+<h2 class="anchored" data-anchor-id="branching-and-pull-requesting">Branching and pull requesting</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="parter-a-1" class="level3">
+<h3 class="anchored" data-anchor-id="parter-a-1">Parter A</h3>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="parter-b-1" class="level3">
+<h3 class="anchored" data-anchor-id="parter-b-1">Parter B</h3>
+</section>
+</div>
+</div>
 </section>
 </section>
 

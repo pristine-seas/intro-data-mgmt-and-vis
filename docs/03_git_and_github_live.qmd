@@ -1,5 +1,5 @@
 ---
-title: "03_git_and_github_live"
+title: "Git and GitHub"
 lightbox: true
 format:
   html:
@@ -10,27 +10,32 @@ format:
 
 # Hands-on: Building Your First Repository
 
-## Hands-on: Building Your First Repository
+The overall flow:
 
-**Let's create a repository for your environmental data project!**
+0. Create a GitHub account (if you don't have one), install git, authenticate ([instructions](https://jcvdav.github.io/EVR_628/docs/03_installing_git.html))
+1. Create a new repository on GitHub
+2. Clone it to your computer
+3. Add your project files
+4. Make your first commit
+5. Push to GitHub
 
-1. Create a GitHub account (if you don't have one)
-2. Create a new repository on GitHub
-3. Clone it to your computer
-4. Add your project files
-5. Make your first commit
-6. Push to GitHub
+## Step 0: Make sure you have git, and an account and all that
+
+```bash
+which git
+```
 
 ## Step 1: Create a GitHub Repository
 
 1. Go to [github.com](https://github.com) and sign in
 2. Click the "+" icon in the top right
 3. Select "New repository"
-4. Choose a descriptive name: `environmental-data-project`
-5. Add a description: "Analysis of environmental data for EVR 628"
-6. Make it **Public** (for portfolio building)
+4. Choose a descriptive name: `my_first_repo`
+5. Add a description: "Learning how to use GitHub"
+6. Make it **Public**
 7. Check "Add a README file"
-8. Click "Create repository"
+8. Select gitignore tailored to R
+9. Click "Create repository"
 
 ## Step 2: Clone to Your Computer
 
@@ -40,11 +45,13 @@ format:
 3. Select "Git"
 4. Paste your repository URL
 5. Choose where to save it locally
+  - Not on iDrive, not on DropBox, not on GoogleDrive...
 6. Click "Create Project"
+7. Verify that you now have a `README.md` and `.gitignore` files
 
 ## Step 3: Set Up Your Project Structure
 
-Create these folders in your repository:
+To create these folders in your repository:
 
 ```
 environmental-data-project/
@@ -72,7 +79,7 @@ EVR628tools::create_dirs()
 ```
 
 
-## Step 4: Create a .gitignore File
+## Step 4: Create / Modify the .gitignore File
 
 Create a `.gitignore` file to exclude unnecessary files:
 
@@ -83,16 +90,6 @@ Create a `.gitignore` file to exclude unnecessary files:
 .Ruserdata
 *.Rproj.user/
 
-# Data files (if large)
-*.csv
-*.rds
-*.xlsx
-
-# Results (if large)
-*.png
-*.pdf
-*.jpg
-
 # System files
 .DS_Store
 Thumbs.db
@@ -100,7 +97,7 @@ Thumbs.db
 
 **Note**: You can always add specific files with `git add -f filename`, edit the `.gitignore` file or use the git pane
 
-## Step 5: Add Your First Analysis
+## Step 5: Add Your First "Analysis"
 
 Create a simple R script in `scripts/analysis/`:
 ```{r}
@@ -118,15 +115,12 @@ p <- ggplot(data_milton, aes(x = iso_time, y = wind_speed)) +
 ggsave(plot = p, filename = "results/figures/first_plot.png") # <-- This shouldn't work, why?
 ```
 
-
-Commit and push:
-
 ## Step 6: Update Your README
 
 Create a comprehensive README.md
 
 ```markdown
-# Environmental Data Project
+# My first repo
 
 ## Description
 Analysis of environmental data for EVR 628 course.
@@ -137,17 +131,68 @@ Analysis of environmental data for EVR 628 course.
 - `results/`: Output figures and tables
 - `docs/`: Documentation
 
-## Getting Started
-1. Clone this repository
-2. Install required R packages
-3. Run analysis scripts
-
 ## Author
-[Your Name]
+[Your Name and email?]
 ```
 
-Commit and push your README file
+## Step 7: Stage-Commit-Push
 
+- Stage, commit your R script
+- Push
+- Stage, commit your README
+- Stage, commit your plot
+- Push
+
+# Now lets colaborate
+
+## Adding someone to your repo
+
+- Find a partner
+- Decide who will be partner A and who will be partner B
+
+:::: {.columns}
+
+::: {.column width='50%'}
+### Parter A
+- Go to settings -> collaborators -> Add collaborator
+- Add partner B's username and send an invitation
+- Wait until B tells you they are done (~5 minutes)
+
+...
+
+- Pull
+:::
+
+::: {.column width='50%'}
+### Parter B
+- Give partner A your username
+- Check your email
+- Go to the repository
+- Repeat the cloning process (in a different location)
+- Make one change to partner A's graph
+- Stage the file, then commit, and push
+- Tell partner A you are done
+:::
+
+::::
+
+
+
+## Branching and pull requesting
+
+:::: {.columns}
+
+::: {.column width='50%'}
+### Parter A
+
+:::
+
+::: {.column width='50%'}
+### Parter B
+
+:::
+
+::::
 
 
 
