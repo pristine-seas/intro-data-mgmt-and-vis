@@ -2,9 +2,9 @@
 subtitle: "Week 1: Introduction to Data Science and RStudio IDE"
 ---
 
-# Rules of the game
+# Rules of the Game
 
-## Course materials and content
+## Course Materials and Content
 
 Course website at: [jcvdav.github.io/EVR_628](https://jcvdav.github.io/EVR_628/)
 
@@ -15,7 +15,7 @@ Course website at: [jcvdav.github.io/EVR_628](https://jcvdav.github.io/EVR_628/)
 - Assignments: 40% (n = 4; 10% each, graded as completed / not completed)
 - Final presentation / Data Science portfolio: 10%
 
-## The (general) instruction format
+## The (General) Instruction Format
 
 :::: {.columns}
 
@@ -41,19 +41,19 @@ Course website at: [jcvdav.github.io/EVR_628](https://jcvdav.github.io/EVR_628/)
 Make sure to complete assigned readings or software installation _before_ class. This will count towards participation.
 :::
 
-## Interactions with me
+## Interactions with Me
 
 - Office hours: Thursdays 10:15-12:00
 - Via email, please include `EVR628` in your subject heading
 
-## Adaptive approach
+## Adaptive Approach
 
 - About three weeks in I will poll you (anonymously)
 - Then again 5 weeks in (anonymously)
 - Speed things up? Slow things down?
 - Are materials relevant to you?
 
-## Quick notes on using these slides
+## Quick Notes on Using These Slides
 
 :::: {.columns}
 
@@ -80,15 +80,15 @@ plot(mpg ~ disp, data = mtcars)
 ::::
 
 
-# About you
+# About You
 
 - Preferred name
 - Year and program
 - Interests
 
-# Let's jump in
+# Let's Jump In
 
-## Learning objectives
+## Learning Objectives
 
 :::{.callout-note}
 # By the end of this week, you should be able to:
@@ -267,7 +267,7 @@ BUT!
 - A project tells R what the "working directory" is (where to find files)
 - Needs to live in your computer (not the cloud!^[You can use RStudio server for that])
 
-## Learning objectives - revisited
+## Learning Objectives - Revisited
 
 :::{.callout-note}
 # By the end of this week, you should be able to:
@@ -278,13 +278,13 @@ BUT!
 - Install R packages
 :::
 
-# That's it for today
+# That's It for Today
 
 (Unless you are having trouble installing R / RStudio)
 
-# Getting to know R Studio
+# Getting to Know R Studio
 
-## Hands-on tasks:
+## Hands-on Tasks:
 
 :::: {.columns}
 
