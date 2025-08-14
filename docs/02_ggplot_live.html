@@ -89,13 +89,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-aes-function" id="toc-the-aes-function" class="nav-link" data-scroll-target="#the-aes-function">The <code>aes</code> function</a></li>
   <li><a href="#the-geom_point-function" id="toc-the-geom_point-function" class="nav-link" data-scroll-target="#the-geom_point-function">The <code>geom_point</code> function</a></li>
   <li><a href="#labs-function" id="toc-labs-function" class="nav-link" data-scroll-target="#labs-function"><code>labs</code> function</a></li>
+  </ul></li>
   <li><a href="#part-2-saving-plots" id="toc-part-2-saving-plots" class="nav-link" data-scroll-target="#part-2-saving-plots">Part 2: Saving plots</a></li>
   <li><a href="#part-3-visualizing-distributions" id="toc-part-3-visualizing-distributions" class="nav-link" data-scroll-target="#part-3-visualizing-distributions">Part 3: Visualizing distributions</a></li>
-  <li><a href="#part-4-visualizing-relationships" id="toc-part-4-visualizing-relationships" class="nav-link" data-scroll-target="#part-4-visualizing-relationships">Part 4: Visualizing relationships</a></li>
+  <li><a href="#part-4-visualizing-relationships" id="toc-part-4-visualizing-relationships" class="nav-link" data-scroll-target="#part-4-visualizing-relationships">Part 4: Visualizing relationships</a>
+  <ul class="collapse">
   <li><a href="#three-or-more" id="toc-three-or-more" class="nav-link" data-scroll-target="#three-or-more">Three or more</a></li>
-  <li><a href="#part-3-layering" id="toc-part-3-layering" class="nav-link" data-scroll-target="#part-3-layering">Part 3: Layering</a></li>
-  <li><a href="#part-4-facetting" id="toc-part-4-facetting" class="nav-link" data-scroll-target="#part-4-facetting">Part 4: Facetting</a></li>
   </ul></li>
+  <li><a href="#part-5-layering" id="toc-part-5-layering" class="nav-link" data-scroll-target="#part-5-layering">Part 5: Layering</a></li>
+  <li><a href="#part-6-specifying-colors" id="toc-part-6-specifying-colors" class="nav-link" data-scroll-target="#part-6-specifying-colors">Part 6: Specifying colors</a>
+  <ul class="collapse">
+  <li><a href="#part-8-scale__manual" id="toc-part-8-scale__manual" class="nav-link" data-scroll-target="#part-8-scale__manual">Part 8: <code>scale_*_manual</code></a></li>
+  </ul></li>
+  <li><a href="#part-7-facetting" id="toc-part-7-facetting" class="nav-link" data-scroll-target="#part-7-facetting">Part 7: Facetting</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="02_ggplot_live.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -220,8 +226,9 @@ $ temperature_C   &lt;dbl&gt; 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 28, 28, 28
 </div>
 </div>
 </section>
-<section id="part-2-saving-plots" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-saving-plots">Part 2: Saving plots</h2>
+</section>
+<section id="part-2-saving-plots" class="level1">
+<h1>Part 2: Saving plots</h1>
 <ul>
 <li>Repeat the entire process, one line at a time, showing how to save to an object</li>
 <li>Then show how to save plot with ggsave</li>
@@ -229,8 +236,8 @@ $ temperature_C   &lt;dbl&gt; 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 28, 28, 28
 <li>Emphasize on creating plot objects</li>
 </ul>
 </section>
-<section id="part-3-visualizing-distributions" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-visualizing-distributions">Part 3: Visualizing distributions</h2>
+<section id="part-3-visualizing-distributions" class="level1">
+<h1>Part 3: Visualizing distributions</h1>
 <ul>
 <li>Categorical variable with <code>geom_bar()</code>
 <ul>
@@ -244,35 +251,38 @@ $ temperature_C   &lt;dbl&gt; 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 28, 28, 28
 </ul></li>
 </ul>
 </section>
-<section id="part-4-visualizing-relationships" class="level2">
-<h2 class="anchored" data-anchor-id="part-4-visualizing-relationships">Part 4: Visualizing relationships</h2>
+<section id="part-4-visualizing-relationships" class="level1">
+<h1>Part 4: Visualizing relationships</h1>
 <ul>
 <li>A numerical and a categorical variable : depth by size class</li>
 <li>Two categorical variables: N by size class and site</li>
 <li>Two numerical variables: depth vs temp</li>
 </ul>
-</section>
 <section id="three-or-more" class="level2">
 <h2 class="anchored" data-anchor-id="three-or-more">Three or more</h2>
 <ul>
 <li>length vs depth with size for weight and color for temp?</li>
 </ul>
 </section>
-<section id="part-3-layering" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-layering">Part 3: Layering</h2>
+</section>
+<section id="part-5-layering" class="level1">
+<h1>Part 5: Layering</h1>
 <ul>
 <li>Show <code>data_milton</code> documentation again</li>
 <li>Build plot below</li>
 <li>Show use of <code>color</code> vs <code>fill</code> inside main <code>aes()</code> (affecting line and points) vs <code>aes()</code> inside <code>geom_point()</code> (affecting only the poitns)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data_milton,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> iso_time,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> pressure,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                     )) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_milton,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> iso_time,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y =</span> pressure,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            )) <span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> wind_speed)) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colours =</span> <span class="fu">palette_IPCC</span>(<span class="at">var =</span> <span class="st">"wind"</span>, <span class="at">type =</span> <span class="st">"seq"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> wind_speed),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colours =</span> <span class="fu">palette_IPCC</span>(<span class="at">var =</span> <span class="st">"wind"</span>, <span class="at">type =</span> <span class="st">"seq"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -282,13 +292,119 @@ $ temperature_C   &lt;dbl&gt; 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 28, 28, 28
 </div>
 </div>
 </section>
-<section id="part-4-facetting" class="level2">
-<h2 class="anchored" data-anchor-id="part-4-facetting">Part 4: Facetting</h2>
+<section id="part-6-specifying-colors" class="level1">
+<h1>Part 6: Specifying colors</h1>
+<p>The easiest way is to use <code>scale_*viridis_*</code></p>
+<ul>
+<li><code>scale_color_gradientn</code> for cont and custom palette
+<ul>
+<li>Check documentation</li>
+<li>An example</li>
+<li>Reverse order with <code>rev</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradientn</span>(<span class="at">colours =</span> <span class="fu">palette_IPCC</span>(<span class="at">var =</span> <span class="st">"temp"</span>, <span class="at">type =</span> <span class="st">"seq"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><code>scale_color_gradient</code> vs <code>scale_color_gradient2</code> for continuous / divergent with ends
+<ul>
+<li>Check documentation</li>
+<li>An example</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">"green"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">high =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient2</span>(<span class="at">low =</span> <span class="st">"green"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mid =</span> <span class="st">"white"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">high =</span> <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-6-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient2</span>(<span class="at">low =</span> <span class="st">"green"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">mid =</span> <span class="st">"white"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">high =</span> <span class="st">"orange"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">midpoint =</span> <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-6-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><code>scale_color_manual</code> for discrete
+<ul>
+<li>Check documentation</li>
+<li>An example</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> data_milton,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> iso_time, <span class="at">y =</span> wind_speed, <span class="at">color =</span> sshs)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">palette_UM</span>(<span class="at">n =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-7-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="02_ggplot_live_files/figure-html/unnamed-chunk-7-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="02_ggplot_live_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="part-8-scale__manual" class="level2">
+<h2 class="anchored" data-anchor-id="part-8-scale__manual">Part 8: <code>scale_*_manual</code></h2>
+</section>
+</section>
+<section id="part-7-facetting" class="level1">
+<h1>Part 7: Facetting</h1>
 <ul>
 <li>Show documentation for <code>facet_wrap</code> and <code>facet_grid</code></li>
 <li>Show how each of these work</li>
 </ul>
-</section>
 </section>
 
 </main>

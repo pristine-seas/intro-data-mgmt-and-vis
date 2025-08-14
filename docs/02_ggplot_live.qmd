@@ -62,14 +62,14 @@ ggplot(data = data_lionfish,
        caption = "Source EVR628tools::data_lionfish")
 ```
 
-## Part 2: Saving plots
+# Part 2: Saving plots
 
 - Repeat the entire process, one line at a time, showing how to save to an object
 - Then show how to save plot with ggsave
 - Show documentation of ggsave
 - Emphasize on creating plot objects
 
-## Part 3: Visualizing distributions
+# Part 3: Visualizing distributions
 
 - Categorical variable with `geom_bar()`
   - basic with site
@@ -78,7 +78,7 @@ ggplot(data = data_lionfish,
 - Numerical variable with `geom_histogram()`
   - Distribution of lengths
 
-## Part 4: Visualizing relationships
+# Part 4: Visualizing relationships
 - A numerical and a categorical variable : depth by size class
 - Two categorical variables: N by size class and site
 - Two numerical variables: depth vs temp
@@ -86,22 +86,76 @@ ggplot(data = data_lionfish,
 ## Three or more
 - length vs depth with size for weight and color for temp?
 
-## Part 3: Layering
+# Part 5: Layering
 - Show `data_milton` documentation again
 - Build plot below
 - Show use of `color` vs `fill` inside main `aes()` (affecting line and points) vs `aes()` inside `geom_point()` (affecting only the poitns)
 
 ```{r}
-ggplot(data = data_milton,
-       mapping = aes(x = iso_time,
-                     y = pressure,
-                     )) +
+p <- ggplot(data = data_milton,
+            mapping = aes(x = iso_time,
+                          y = pressure,
+            )) +
   geom_line() +
-  geom_point(aes(color = wind_speed)) +
+  geom_point(aes(color = wind_speed),
+             size = 2) 
+
+p +
   scale_color_gradientn(colours = palette_IPCC(var = "wind", type = "seq"))
 ```
 
-## Part 4: Facetting
+# Part 6: Specifying colors
+
+The easiest way is to use `scale_*viridis_*`
+
+- `scale_color_gradientn` for cont and custom palette
+  - Check documentation
+  - An example
+  - Reverse order with `rev`
+```{r}
+p +
+  scale_color_gradientn(colours = palette_IPCC(var = "temp", type = "seq"))
+```
+
+- `scale_color_gradient` vs `scale_color_gradient2` for continuous / divergent with ends
+  - Check documentation
+  - An example
+```{r}
+p +
+  scale_color_gradient(low = "green",
+                       high = "orange")
+p +
+  scale_color_gradient2(low = "green",
+                       mid = "white",
+                       high = "orange")
+
+p +
+  scale_color_gradient2(low = "green",
+                       mid = "white",
+                       high = "orange",
+                       midpoint = 120)
+```
+- `scale_color_manual` for discrete
+  - Check documentation
+  - An example
+```{r}
+p <- ggplot(data = data_milton,
+            aes(x = iso_time, y = wind_speed, color = sshs)) +
+  geom_point()
+
+p
+
+p +
+  scale_color_manual(values = palette_UM(n = 10))
+
+p + 
+  scale_color_viridis_d()
+```
+
+
+## Part 8: `scale_*_manual`
+
+# Part 7: Facetting
 
 - Show documentation for `facet_wrap` and `facet_grid`
 - Show how each of these work
