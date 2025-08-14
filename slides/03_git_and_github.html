@@ -619,7 +619,11 @@ Juan Carlos Villaseñor-Derbez (JC)
 <section id="when-what-to-commit" class="slide level2">
 <h2>When / What to commit</h2>
 <ul>
-<li class="fragment"></li>
+<li class="fragment">No specific rule</li>
+<li class="fragment">Whatever a “change” might look like</li>
+<li class="fragment">Sometimes <code>Added color to points in figure 2</code> is enough (one line in one file)</li>
+<li class="fragment">Sometimes <code>Refactored code to work with new package</code> is appropriate (many lines in many files)</li>
+<li class="fragment">Small commits and frequent commits are best</li>
 </ul>
 </section>
 <section id="writing-good-commit-messages" class="slide level2">
@@ -646,7 +650,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="github-the-social-platform-for-code" class="slide level2">
 <h2>GitHub: The Social Platform for Code</h2>
-<p><strong>GitHub</strong> is a web-based platform that hosts Git repositories</p>
+<p><strong>GitHub</strong> is a web-based platform that hosts Git repositories (including this course)</p>
 <p><strong>Key Features</strong>:</p>
 <ul>
 <li class="fragment">Free hosting for public repositories</li>
@@ -692,23 +696,21 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="best-practices-for-research-repositories" class="slide level2">
 <h2>Best Practices for Research Repositories</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <p><strong>Structure</strong>:</p>
 <ul>
-<li class="fragment">Clear README with project description</li>
+<li class="fragment">Clear README with project description and documentation</li>
 <li class="fragment">Well-organized file structure</li>
-<li class="fragment">Comprehensive documentation</li>
 <li class="fragment">License file (optional)</li>
 </ul>
-<div class="fragment">
 <p><strong>Content</strong>:</p>
 <ul>
 <li class="fragment">Include raw and processed data (or data access instructions)</li>
-<li class="fragment">Document all processing steps</li>
-<li class="fragment">Provide clear installation instructions</li>
-<li class="fragment">Include example workflows</li>
+<li class="fragment">Document all processing steps (or include a <code>Makefile</code>)</li>
+<li class="fragment">Include examples</li>
 </ul>
-</div>
-<div class="fragment">
+</div><div class="column" style="width:50%;">
 <p><strong>Collaboration</strong>:</p>
 <ul>
 <li class="fragment">Use descriptive commit messages</li>
@@ -716,15 +718,41 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment">Maintain consistent coding standards</li>
 <li class="fragment">Document decisions and assumptions</li>
 </ul>
-<p>Files that you don’t want on GitHub:</p>
+<p><strong>Files that you don’t want on GitHub:</strong></p>
 <ul>
 <li class="fragment">Files larger than 100 MB</li>
 <li class="fragment">Files containing passwords / authentication tokens</li>
 <li class="fragment">Binary files (.docx, .xlsx, .ppt…)</li>
 </ul>
-</div>
+</div></div>
 </section>
-<section id="hands-on-building-your-first-repository" class="slide level2">
+<section id="github-vs-dropboxboxgoogledrive" class="slide level2">
+<h2>GitHub vs DropBox/Box/GoogleDrive…</h2>
+<ul>
+<li class="fragment">Designed for the intended task</li>
+<li class="fragment"><strong>You</strong> have <em>granular</em> control over what is updated and when</li>
+<li class="fragment">Allows multiple versions of same project to evolve in parallel
+<ul>
+<li class="fragment">e.g.&nbsp;Your pipeline is done, mine isn’t yet</li>
+</ul></li>
+</ul>
+</section>
+<section id="questions-discussion" class="slide level2">
+<h2>Questions &amp; Discussion</h2>
+<p><strong>Discussion topics</strong>: - How might version control help in your research? - What challenges do you anticipate with Git? - How can we ensure reproducibility in environmental science? - What are the benefits of open science and sharing code?</p>
+</section>
+<section id="resources-for-learning-more" class="slide level2">
+<h2>Resources for Learning More</h2>
+<p><strong>Git and GitHub</strong>: - <a href="https://guides.github.com/">GitHub Guides</a> - <a href="https://guides.github.com/introduction/git-handbook/">Git Handbook</a> - <a href="https://desktop.github.com/">GitHub Desktop</a> (GUI for Git)</p>
+<p><strong>R and Git</strong>: - <a href="https://happygitwithr.com/">Happy Git with R</a> - <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">RStudio Git Integration</a></p>
+<p><strong>Next class</strong>: We’ll dive deeper into data management and organization</p>
+</section></section>
+<section>
+<section id="hands-on-building-your-first-repository" class="title-slide slide level1 center">
+<h1>Hands-on: Building Your First Repository</h1>
+
+</section>
+<section id="hands-on-building-your-first-repository-1" class="slide level2">
 <h2>Hands-on: Building Your First Repository</h2>
 <p><strong>Let’s create a repository for your environmental data project!</strong></p>
 <ol type="1">
@@ -752,9 +780,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 <section id="step-2-clone-to-your-computer" class="slide level2">
 <h2>Step 2: Clone to Your Computer</h2>
 <p><strong>In RStudio</strong>: 1. Go to File → New Project 2. Choose “Version Control” 3. Select “Git” 4. Paste your repository URL 5. Choose where to save it locally 6. Click “Create Project”</p>
-<p><strong>Or in Terminal</strong>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="fu">git</span> clone https://github.com/yourusername/environmental-data-project.git</span>
-<span id="cb2-2"><a href=""></a><span class="bu">cd</span> environmental-data-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="step-3-set-up-your-project-structure" class="slide level2">
 <h2>Step 3: Set Up Your Project Structure</h2>
@@ -762,16 +787,21 @@ Juan Carlos Villaseñor-Derbez (JC)
 <pre><code>environmental-data-project/
 ├── data/
 │   ├── raw/
-│   └── processed/
+│   ├── processed/
+|   └── output/
 ├── scripts/
-│   ├── data_processing/
-│   ├── analysis/
-│   └── visualization/
+│   ├── 01_processing/
+│   ├── 02_analysis/
+│   └── 03_content/
 ├── results/
 │   ├── figures/
 │   └── tables/
 ├── docs/
 └── README.md</code></pre>
+<p>Use:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>EVR628tools<span class="sc">::</span><span class="fu">create_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="step-4-create-a-.gitignore-file" class="slide level2">
 <h2>Step 4: Create a .gitignore File</h2>
@@ -795,115 +825,80 @@ Juan Carlos Villaseñor-Derbez (JC)
 <span id="cb4-17"><a href=""></a># System files</span>
 <span id="cb4-18"><a href=""></a>.DS_Store</span>
 <span id="cb4-19"><a href=""></a>Thumbs.db</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Note</strong>: You can always add specific files with <code>git add -f filename</code></p>
+<p><strong>Note</strong>: You can always add specific files with <code>git add -f filename</code>, edit the <code>.gitignore</code> file or use the git pane</p>
 </section>
-<section id="step-5-make-your-first-commit" class="slide level2">
-<h2>Step 5: Make Your First Commit</h2>
-<ol type="1">
-<li class="fragment"><p>Stage your files:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href=""></a><span class="fu">git</span> add .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li class="fragment"><p>Check what’s staged:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href=""></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li class="fragment"><p>Make your first commit:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial project setup with folder structure"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li class="fragment"><p>Push to GitHub:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href=""></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
+<section id="step-5-add-your-first-analysis" class="slide level2">
+<h2>Step 5: Add Your First Analysis</h2>
+<p>Create a simple R script in <code>scripts/analysis/</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Example: environmental_data_analysis.R</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">library</span>(EVR628tools)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a><span class="co"># Create a simple plot</span></span>
+<span id="cb5-6"><a href=""></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data_milton, <span class="fu">aes</span>(<span class="at">x =</span> iso_time, <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb5-8"><a href=""></a></span>
+<span id="cb5-9"><a href=""></a><span class="co"># Save plot</span></span>
+<span id="cb5-10"><a href=""></a><span class="fu">ggsave</span>(<span class="at">plot =</span> p, <span class="at">filename =</span> <span class="st">"results/figures/first_plot.png"</span>) <span class="co"># &lt;-- This shouldn't work, why?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Commit and push:</p>
 </section>
-<section id="step-6-add-your-first-analysis" class="slide level2">
-<h2>Step 6: Add Your First Analysis</h2>
-<ol type="1">
-<li class="fragment"><p>Create a simple R script in <code>scripts/analysis/</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Example: environmental_data_analysis.R</span></span>
-<span id="cb9-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-3"><a href=""></a></span>
-<span id="cb9-4"><a href=""></a><span class="co"># Load data</span></span>
-<span id="cb9-5"><a href=""></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/processed/sample_data.csv"</span>)</span>
-<span id="cb9-6"><a href=""></a></span>
-<span id="cb9-7"><a href=""></a><span class="co"># Create a simple plot</span></span>
-<span id="cb9-8"><a href=""></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> variable1, <span class="at">y =</span> variable2)) <span class="sc">+</span></span>
-<span id="cb9-9"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-10"><a href=""></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-11"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Environmental Data Analysis"</span>)</span>
-<span id="cb9-12"><a href=""></a></span>
-<span id="cb9-13"><a href=""></a><span class="co"># Save plot</span></span>
-<span id="cb9-14"><a href=""></a><span class="fu">ggsave</span>(<span class="st">"../results/figures/first_plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li class="fragment"><p>Commit and push:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href=""></a><span class="fu">git</span> add .</span>
-<span id="cb10-2"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add initial data analysis script"</span></span>
-<span id="cb10-3"><a href=""></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ol>
+<section id="step-6-update-your-readme" class="slide level2">
+<h2>Step 6: Update Your README</h2>
+<p>Create a comprehensive README.md</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href=""></a><span class="fu"># Environmental Data Project</span></span>
+<span id="cb6-2"><a href=""></a></span>
+<span id="cb6-3"><a href=""></a><span class="fu">## Description</span></span>
+<span id="cb6-4"><a href=""></a>Analysis of environmental data for EVR 628 course.</span>
+<span id="cb6-5"><a href=""></a></span>
+<span id="cb6-6"><a href=""></a><span class="fu">## Project Structure</span></span>
+<span id="cb6-7"><a href=""></a><span class="ss">- </span><span class="in">`data/`</span>: Raw and processed data files</span>
+<span id="cb6-8"><a href=""></a><span class="ss">- </span><span class="in">`scripts/`</span>: R scripts for analysis</span>
+<span id="cb6-9"><a href=""></a><span class="ss">- </span><span class="in">`results/`</span>: Output figures and tables</span>
+<span id="cb6-10"><a href=""></a><span class="ss">- </span><span class="in">`docs/`</span>: Documentation</span>
+<span id="cb6-11"><a href=""></a></span>
+<span id="cb6-12"><a href=""></a><span class="fu">## Getting Started</span></span>
+<span id="cb6-13"><a href=""></a><span class="ss">1. </span>Clone this repository</span>
+<span id="cb6-14"><a href=""></a><span class="ss">2. </span>Install required R packages</span>
+<span id="cb6-15"><a href=""></a><span class="ss">3. </span>Run analysis scripts</span>
+<span id="cb6-16"><a href=""></a></span>
+<span id="cb6-17"><a href=""></a><span class="fu">## Author</span></span>
+<span id="cb6-18"><a href=""></a><span class="co">[</span><span class="ot">Your Name</span><span class="co">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Commit and push your README file</p>
 </section>
-<section id="step-7-update-your-readme" class="slide level2">
-<h2>Step 7: Update Your README</h2>
-<p><strong>Create a comprehensive README.md</strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href=""></a><span class="fu"># Environmental Data Project</span></span>
-<span id="cb11-2"><a href=""></a></span>
-<span id="cb11-3"><a href=""></a><span class="fu">## Description</span></span>
-<span id="cb11-4"><a href=""></a>Analysis of environmental data for EVR 628 course.</span>
-<span id="cb11-5"><a href=""></a></span>
-<span id="cb11-6"><a href=""></a><span class="fu">## Project Structure</span></span>
-<span id="cb11-7"><a href=""></a><span class="ss">- </span><span class="in">`data/`</span>: Raw and processed data files</span>
-<span id="cb11-8"><a href=""></a><span class="ss">- </span><span class="in">`scripts/`</span>: R scripts for analysis</span>
-<span id="cb11-9"><a href=""></a><span class="ss">- </span><span class="in">`results/`</span>: Output figures and tables</span>
-<span id="cb11-10"><a href=""></a><span class="ss">- </span><span class="in">`docs/`</span>: Documentation</span>
-<span id="cb11-11"><a href=""></a></span>
-<span id="cb11-12"><a href=""></a><span class="fu">## Getting Started</span></span>
-<span id="cb11-13"><a href=""></a><span class="ss">1. </span>Clone this repository</span>
-<span id="cb11-14"><a href=""></a><span class="ss">2. </span>Install required R packages</span>
-<span id="cb11-15"><a href=""></a><span class="ss">3. </span>Run analysis scripts</span>
-<span id="cb11-16"><a href=""></a></span>
-<span id="cb11-17"><a href=""></a><span class="fu">## Author</span></span>
-<span id="cb11-18"><a href=""></a><span class="co">[</span><span class="ot">Your Name</span><span class="co">]</span></span>
-<span id="cb11-19"><a href=""></a></span>
-<span id="cb11-20"><a href=""></a><span class="fu">## License</span></span>
-<span id="cb11-21"><a href=""></a>MIT License</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Commit and push your README</strong>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href=""></a><span class="fu">git</span> add README.md</span>
-<span id="cb12-2"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Update README with project description"</span></span>
-<span id="cb12-3"><a href=""></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="congratulations" class="slide level2">
-<h2>Congratulations!</h2>
-<p>You now have: - ✅ A professional GitHub repository - ✅ Proper project structure - ✅ Version control for your work - ✅ A portfolio piece for your career - ✅ A foundation for reproducible research</p>
-<p><strong>Next steps</strong>: - Add your actual environmental data - Create analysis scripts - Document your methods - Share with collaborators</p>
-</section>
-<section id="common-git-scenarios" class="slide level2">
-<h2>Common Git Scenarios</h2>
-<p><strong>“I made a mistake in my last commit”</strong>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href=""></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"Better commit message"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>“I want to see what changed”</strong>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href=""></a><span class="fu">git</span> diff</span>
-<span id="cb14-2"><a href=""></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>“I want to go back to a previous version”</strong>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href=""></a><span class="fu">git</span> checkout <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>“I want to create a new feature”</strong>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href=""></a><span class="fu">git</span> checkout <span class="at">-b</span> new-feature</span>
-<span id="cb16-2"><a href=""></a><span class="co"># make changes</span></span>
-<span id="cb16-3"><a href=""></a><span class="fu">git</span> add .</span>
-<span id="cb16-4"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Add new feature"</span></span>
-<span id="cb16-5"><a href=""></a><span class="fu">git</span> push origin new-feature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="git-best-practices-for-research" class="slide level2">
-<h2>Git Best Practices for Research</h2>
-<p><strong>Commit frequently</strong>: Small, logical changes <strong>Write clear messages</strong>: Explain what and why <strong>Use branches</strong>: Keep main branch stable <strong>Review before merging</strong>: Check your own work <strong>Document everything</strong>: README, comments, commit messages <strong>Back up regularly</strong>: Push to remote repository <strong>Test your code</strong>: Make sure it runs before committing <strong>Keep data separate</strong>: Use .gitignore for large files</p>
-</section>
-<section id="resources-for-learning-more" class="slide level2">
-<h2>Resources for Learning More</h2>
-<p><strong>Git and GitHub</strong>: - <a href="https://guides.github.com/">GitHub Guides</a> - <a href="https://guides.github.com/introduction/git-handbook/">Git Handbook</a> - <a href="https://desktop.github.com/">GitHub Desktop</a> (GUI for Git)</p>
-<p><strong>R and Git</strong>: - <a href="https://happygitwithr.com/">Happy Git with R</a> - <a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">RStudio Git Integration</a></p>
-<p><strong>Reproducible Research</strong>: - <a href="https://www.coursera.org/learn/reproducible-research">Reproducible Research with R</a> - <a href="https://the-turing-way.netlify.app/">The Turing Way</a></p>
-</section>
-<section id="questions-discussion" class="slide level2">
-<h2>Questions &amp; Discussion</h2>
-<p><strong>Discussion topics</strong>: - How might version control help in your research? - What challenges do you anticipate with Git? - How can we ensure reproducibility in environmental science? - What are the benefits of open science and sharing code?</p>
-<p><strong>Next class</strong>: We’ll dive deeper into data management and organization</p>
+<section id="done" class="slide level2">
+<h2>Done!</h2>
+<p><strong>Remember</strong>: Version control is a skill that gets better with practice. Start using Git for everything!</p>
+</section></section>
+<section>
+<section id="assignment" class="title-slide slide level1 center">
+<h1>Assignment</h1>
+
 </section>
 <section id="assignment-build-your-portfolio" class="slide level2">
 <h2>Assignment: Build Your Portfolio</h2>
-<p><strong>Due next week</strong>: 1. Create a GitHub repository for your course project 2. Set up proper file structure 3. Add at least one analysis script 4. Create a comprehensive README 5. Make at least 5 meaningful commits 6. Share your repository link</p>
-<p><strong>Grading criteria</strong>: - Repository organization and structure - Quality of commit messages - Documentation and README - Code quality and comments - Regular commits throughout the week</p>
-<p><strong>Remember</strong>: Version control is a skill that gets better with practice. Start using Git for everything!</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><strong>Due next week</strong>:</p>
+<ol type="1">
+<li class="fragment">Create a GitHub repository for your course project</li>
+<li class="fragment">Set up proper file structure</li>
+<li class="fragment">Add at least one analysis script</li>
+<li class="fragment">Create a comprehensive README</li>
+<li class="fragment">Make at least 5 meaningful commits</li>
+<li class="fragment">Share your repository link</li>
+</ol>
+</div><div class="column" style="width:60%;">
+<p><strong>Grading criteria</strong>:</p>
+<ul>
+<li class="fragment">Repository organization and structure</li>
+<li class="fragment">Quality of commit messages</li>
+<li class="fragment">Documentation and README</li>
+<li class="fragment">Code quality and comments</li>
+<li class="fragment">Regular commits throughout the week</li>
+</ul>
+</div></div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
@@ -1133,6 +1128,44 @@ Freedman, Leonard P, Iain M Cockburn, and Timothy S Simcoe. 2016. <span>“The E
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

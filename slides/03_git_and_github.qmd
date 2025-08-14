@@ -365,7 +365,11 @@ We can do most things in RStudio, but you should know:
 
 ## When / What to commit
 
-- 
+- No specific rule
+- Whatever a "change" might look like
+- Sometimes `Added color to points in figure 2` is enough (one line in one file)
+- Sometimes `Refactored code to work with new package` is appropriate (many lines in many files)
+- Small commits and frequent commits are best
 
 ## Writing Good Commit Messages
 
@@ -391,7 +395,7 @@ Which are good?
 
 ## GitHub: The Social Platform for Code
 
-**GitHub** is a web-based platform that hosts Git repositories
+**GitHub** is a web-based platform that hosts Git repositories (including this course)
 
 **Key Features**:
 
@@ -443,24 +447,24 @@ In a group
 
 ## Best Practices for Research Repositories
 
+:::: {.columns}
+
+::: {.column width='50%'}
 **Structure**:
 
-- Clear README with project description
+- Clear README with project description and documentation
 - Well-organized file structure
-- Comprehensive documentation
 - License file (optional)
-
-. . .
 
 **Content**:
 
 - Include raw and processed data (or data access instructions)
-- Document all processing steps
-- Provide clear installation instructions
-- Include example workflows
+- Document all processing steps (or include a `Makefile`)
+- Include examples
 
-. . .
+:::
 
+::: {.column width='50%'}
 **Collaboration**:
 
 - Use descriptive commit messages
@@ -468,12 +472,45 @@ In a group
 - Maintain consistent coding standards
 - Document decisions and assumptions
 
-Files that you don't want on GitHub:
+**Files that you don't want on GitHub:**
 
 - Files larger than 100 MB
 - Files containing passwords / authentication tokens
 - Binary files (.docx, .xlsx, .ppt...)
+:::
 
+::::
+
+## GitHub vs DropBox/Box/GoogleDrive...
+
+- Designed for the intended task
+- **You** have _granular_ control over what is updated and when
+- Allows multiple versions of same project to evolve in parallel
+  - e.g. Your pipeline is done, mine isn't yet
+
+## Questions & Discussion
+
+**Discussion topics**:
+- How might version control help in your research?
+- What challenges do you anticipate with Git?
+- How can we ensure reproducibility in environmental science?
+- What are the benefits of open science and sharing code?
+
+## Resources for Learning More
+
+**Git and GitHub**:
+- [GitHub Guides](https://guides.github.com/)
+- [Git Handbook](https://guides.github.com/introduction/git-handbook/)
+- [GitHub Desktop](https://desktop.github.com/) (GUI for Git)
+
+**R and Git**:
+- [Happy Git with R](https://happygitwithr.com/)
+- [RStudio Git Integration](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
+
+**Next class**: We'll dive deeper into data management and organization
+
+
+# Hands-on: Building Your First Repository
 
 ## Hands-on: Building Your First Repository
 
@@ -507,30 +544,35 @@ Files that you don't want on GitHub:
 5. Choose where to save it locally
 6. Click "Create Project"
 
-**Or in Terminal**:
-```bash
-git clone https://github.com/yourusername/environmental-data-project.git
-cd environmental-data-project
-```
-
 ## Step 3: Set Up Your Project Structure
 
 Create these folders in your repository:
+
 ```
 environmental-data-project/
 ├── data/
 │   ├── raw/
-│   └── processed/
+│   ├── processed/
+|   └── output/
 ├── scripts/
-│   ├── data_processing/
-│   ├── analysis/
-│   └── visualization/
+│   ├── 01_processing/
+│   ├── 02_analysis/
+│   └── 03_content/
 ├── results/
 │   ├── figures/
 │   └── tables/
 ├── docs/
 └── README.md
 ```
+
+Use:
+
+```{r}
+#| eval: false
+#| code-fold: false
+EVR628tools::create_dirs()
+```
+
 
 ## Step 4: Create a .gitignore File
 
@@ -558,60 +600,32 @@ Create a `.gitignore` file to exclude unnecessary files:
 Thumbs.db
 ```
 
-**Note**: You can always add specific files with `git add -f filename`
+**Note**: You can always add specific files with `git add -f filename`, edit the `.gitignore` file or use the git pane
 
-## Step 5: Make Your First Commit
+## Step 5: Add Your First Analysis
 
-1. Stage your files:
-   ```bash
-   git add .
-   ```
+Create a simple R script in `scripts/analysis/`:
+```{r}
+#| eval: false
+#| code-fold: false
+# Example: environmental_data_analysis.R
+library(EVR628tools)
+library(tidyverse)
 
-2. Check what's staged:
-   ```bash
-   git status
-   ```
+# Create a simple plot
+p <- ggplot(data_milton, aes(x = iso_time, y = wind_speed)) +
+  geom_point()
 
-3. Make your first commit:
-   ```bash
-   git commit -m "Initial project setup with folder structure"
-   ```
+# Save plot
+ggsave(plot = p, filename = "results/figures/first_plot.png") # <-- This shouldn't work, why?
+```
 
-4. Push to GitHub:
-   ```bash
-   git push origin main
-   ```
 
-## Step 6: Add Your First Analysis
+Commit and push:
 
-1. Create a simple R script in `scripts/analysis/`:
-   ```r
-   # Example: environmental_data_analysis.R
-   library(tidyverse)
-   
-   # Load data
-   data <- read.csv("../data/processed/sample_data.csv")
-   
-   # Create a simple plot
-   ggplot(data, aes(x = variable1, y = variable2)) +
-     geom_point() +
-     theme_minimal() +
-     labs(title = "Environmental Data Analysis")
-   
-   # Save plot
-   ggsave("../results/figures/first_plot.png")
-   ```
+## Step 6: Update Your README
 
-2. Commit and push:
-   ```bash
-   git add .
-   git commit -m "Add initial data analysis script"
-   git push origin main
-   ```
-
-## Step 7: Update Your README
-
-**Create a comprehensive README.md**:
+Create a comprehensive README.md
 
 ```markdown
 # Environmental Data Project
@@ -632,99 +646,26 @@ Analysis of environmental data for EVR 628 course.
 
 ## Author
 [Your Name]
-
-## License
-MIT License
 ```
 
-**Commit and push your README**:
-```bash
-git add README.md
-git commit -m "Update README with project description"
-git push origin main
-```
+Commit and push your README file
 
-## Congratulations!
+## Done!
 
-You now have:
-- ✅ A professional GitHub repository
-- ✅ Proper project structure
-- ✅ Version control for your work
-- ✅ A portfolio piece for your career
-- ✅ A foundation for reproducible research
+**Remember**: Version control is a skill that gets better with practice. Start using Git for everything! 
 
-**Next steps**:
-- Add your actual environmental data
-- Create analysis scripts
-- Document your methods
-- Share with collaborators
 
-## Common Git Scenarios
 
-**"I made a mistake in my last commit"**:
-```bash
-git commit --amend -m "Better commit message"
-```
 
-**"I want to see what changed"**:
-```bash
-git diff
-git log --oneline
-```
-
-**"I want to go back to a previous version"**:
-```bash
-git checkout <commit-hash>
-```
-
-**"I want to create a new feature"**:
-```bash
-git checkout -b new-feature
-# make changes
-git add .
-git commit -m "Add new feature"
-git push origin new-feature
-```
-
-## Git Best Practices for Research
-
-**Commit frequently**: Small, logical changes
-**Write clear messages**: Explain what and why
-**Use branches**: Keep main branch stable
-**Review before merging**: Check your own work
-**Document everything**: README, comments, commit messages
-**Back up regularly**: Push to remote repository
-**Test your code**: Make sure it runs before committing
-**Keep data separate**: Use .gitignore for large files
-
-## Resources for Learning More
-
-**Git and GitHub**:
-- [GitHub Guides](https://guides.github.com/)
-- [Git Handbook](https://guides.github.com/introduction/git-handbook/)
-- [GitHub Desktop](https://desktop.github.com/) (GUI for Git)
-
-**R and Git**:
-- [Happy Git with R](https://happygitwithr.com/)
-- [RStudio Git Integration](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
-
-**Reproducible Research**:
-- [Reproducible Research with R](https://www.coursera.org/learn/reproducible-research)
-- [The Turing Way](https://the-turing-way.netlify.app/)
-
-## Questions & Discussion
-
-**Discussion topics**:
-- How might version control help in your research?
-- What challenges do you anticipate with Git?
-- How can we ensure reproducibility in environmental science?
-- What are the benefits of open science and sharing code?
-
-**Next class**: We'll dive deeper into data management and organization
+# Assignment
 
 ## Assignment: Build Your Portfolio
 
+:::: {.columns}
+
+::: {.column width='40%'}
 **Due next week**:
+
 1. Create a GitHub repository for your course project
 2. Set up proper file structure
 3. Add at least one analysis script
@@ -732,13 +673,19 @@ git push origin new-feature
 5. Make at least 5 meaningful commits
 6. Share your repository link
 
+:::
+
+::: {.column width='60%'}
 **Grading criteria**:
+
 - Repository organization and structure
 - Quality of commit messages
 - Documentation and README
 - Code quality and comments
 - Regular commits throughout the week
+:::
 
-**Remember**: Version control is a skill that gets better with practice. Start using Git for everything! 
+::::
+
 
 ## References
