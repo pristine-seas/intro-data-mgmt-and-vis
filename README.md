@@ -24,7 +24,7 @@ Students must complete any assigned readings and software tests before class. No
 The latest official academic calendar is [here](https://registrar.miami.edu/_assets/pdf/academic-calendar-fall-2025.pdf).
 
 ## Week 1 (Aug 18-22)
-**Introduction to Data Science and RStudio IDE**
+[**Introduction to Data Science and RStudio IDE**](slides/01_intro.html)
 - Software installation and testing
 - Overview of R Studio IDE
 - R Studio Projects and project organization
@@ -33,17 +33,15 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 **Relevant links for the week**
 - [Instructions to install R and RStudio](docs/01_installing_R_RStudio.html)
-- [Slide deck](slides/01_intro.html)
 
 ## Week 2 (Aug 25-29)
-**Data visualization**
+[**Data visualization**](slides/02_data_vis.html)
 - Types of visualization
 - Visualization principles
 - Colorblindness, IPCC’s visual style guide, and the [`viridis`](https://github.com/sjmgarnier/viridis/) package
 - The grammar of graphics and the [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 
 **Relevant links for the week**
-- [Slide deck](slides/02_data_vis.html)
 - Assigned readings: 
   - Jambor, H.K. ["A checklist for designing and improving the visualization of scientific data."](https://doi.org/10.1038/s41556-025-01684-z) Nat Cell Biol 27, 879–883 (2025).
   - R4DS [CH1: Data visualization](https://r4ds.hadley.nz/data-visualize.html)
@@ -54,7 +52,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
   - [Data-to-viz](https://www.data-to-viz.com/)
 
 ## *Week3 (Sep 1-5)
-**Keeping track of your code with Git and GitHub**
+[**Keeping track of your code with Git and GitHub**](slides/03_git_and_github.html)
 - Reproducible research
 - Introduction to file structure
 - Version control with [Git](https://git-scm.com/downloads) and [GitHub](https://github.com/)
@@ -62,7 +60,6 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 **Relevant links for the week**
 - [Instructions to install git and create GitHub account](docs/03_installing_git.html)
-- [Slide deck](slides/03_git_and_github.html)
 - Other links: 
   - Pereira-Braga et al ["Not just for programmers: How GitHub can accelerate collaborative and reproducible research in ecology and evolution"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14108) Methods in Ecology and Evolution
   - [Happy Git with R](https://happygitwithr.com/)
