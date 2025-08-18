@@ -67,6 +67,7 @@ Make sure to complete assigned readings or software installation _before_ class.
 - `?` for other help
 - Navigate with keyboard
 - Clicking on [links](https://jcvdav.github.io/EVR_628/)
+- Course homepage in footer
 :::
 :::
 
@@ -79,6 +80,67 @@ plot(mpg ~ disp, data = mtcars)
 
 ::::
 
+## How will we approach data science?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**How we think about projects**
+
+![Modified from @Wickham2023-aa](https://r4ds.hadley.nz/diagrams/data-science/base.png){.nostretch fig-align="center" width="95%"}
+
+- Maybe also add "collect" before "import"
+
+:::
+
+::: {.column width="50%"}
+
+**How we'll learn things**
+
+- Organization (Weeks 1, 3, 4, 6)
+- Visualization (Weeks 2, 5, 11)
+- Reproducibility (Weeks 3, and throughout)
+- Data management, transformation, wrangling (Weeks 6-9, 11)
+- Spatial data, programming, and other extensions (Week 10 - 14)
+- **No modelling!**
+- **No communication**(-ish)
+
+:::
+
+::::
+
+## Side note #1: Other courses
+
+:::: {.columns}
+
+::: {.column width='33%'}
+
+**EVR 509/609**
+
+![](img/env_health.png){.nostretch fig-align="center" width="400"}
+:::
+
+::: {.column width='33%'}
+
+**EVR 624**
+
+![](img/data_analysis.png){.nostretch fig-align="center" width="400"}
+:::
+
+::: {.column width='33%'}
+
+**RSM612 **
+![](img/RSM612.png){.nostretch fig-align="center" width="400"}
+
+:::
+
+::::
+
+
+
+
+
 
 # About You
 
@@ -87,6 +149,8 @@ plot(mpg ~ disp, data = mtcars)
 - Interests
 
 # Let's Jump In
+
+Introduction to Data Science
 
 ## Learning Objectives
 
@@ -98,8 +162,6 @@ plot(mpg ~ disp, data = mtcars)
 - Start a project and a script
 - Install R packages
 :::
-
-# Introduction to Data Science
 
 ## What is Data Science?
 
@@ -130,37 +192,11 @@ tibble(skill = c("Coding", "Stats", "Domain"),
 ```
 . . .
 
-This course only covers one bubble
+This course only covers one bubble: Talking to your computer
 
-## How will we approach data science?
 
-:::: {.columns}
 
-::: {.column width="50%"}
-
-#### How we think about projects
-
-![Modified from @Wickham2023-aa](https://r4ds.hadley.nz/diagrams/data-science/base.png){.nostretch fig-align="center" width="95%"}
-
-:::
-
-::: {.column width="50%"}
-
-#### How we'll learn things
-
-- Organization
-- Visualization
-- Reproducibility
-- Data management, transformation, wrangling
-- Spatial data and other extensions
-- **No modelling!**
-- **No communication**(-ish)
-
-:::
-
-::::
-
-## A word of caution
+## Side note #2:  A word of caution
 
 - This will feel weird
 - It will be painful
@@ -231,7 +267,7 @@ BUT!
 :::
 :::
 
-## Why an IDE
+## Why an IDE?
 
 :::: {.columns}
 
@@ -261,11 +297,11 @@ BUT!
 ## RStudio projects
 
 - RStudio projects keep all files associated with a project together
-- One folder = one project
+- 1 folder = 1 project
 - In my case, 1 paper = 1 project | 1 class = 1 project
-- This entire course will be one project in your computer
-- A project tells R what the "working directory" is (where to find files)
-- Needs to live in your computer (not the cloud!^[You can use RStudio server for that])
+- This entire course will be one project in your computer^[plus one more for your final project]
+- A project tells R what the "working directory" is: where to find files
+- Needs to live in your computer (not the cloud!)
 
 ## Learning Objectives - Revisited
 
@@ -277,6 +313,14 @@ BUT!
 - Start a project and a script
 - Install R packages
 :::
+
+## Next class
+
+- Introduction to RStudio IDE
+- Changing the default settings
+- Running your first lines of code
+- Creating an RStudio project
+- A few basics of project organization
 
 # That's It for Today
 

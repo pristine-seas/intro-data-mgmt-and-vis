@@ -508,6 +508,10 @@ In a group
 - [Happy Git with R](https://happygitwithr.com/)
 - [RStudio Git Integration](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
 
+** Interesting reads**
+
+- [The Ultimate Guide to Git Branching Strategies](https://blog.prateekjain.dev/the-ultimate-guide-to-git-branching-strategies-6324f1aceac2)
+
 :::
 ::::
 
