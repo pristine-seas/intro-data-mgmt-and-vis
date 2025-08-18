@@ -24,7 +24,7 @@ Students must complete any assigned readings and software tests before class. No
 The latest official academic calendar is [here](https://registrar.miami.edu/_assets/pdf/academic-calendar-fall-2025.pdf).
 
 ## Week 1 (Aug 18-22)
-**Introduction to Data Science and RStudio IDE**[slides](slides/01_intro.html)
+**Introduction to Data Science and RStudio IDE** | [slides](slides/01_intro.html)
 - Software installation and testing
 - Overview of R Studio IDE
 - R Studio Projects and project organization
