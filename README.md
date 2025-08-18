@@ -32,7 +32,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - R packages: [`tidyverse`](https://www.tidyverse.org/), [`EVR628`](https://jcvdav.github.io/EVR628tools/)
 
 **Relevant links for the week**
-- [Instructions to install R and RStudio](docs/01_installing_R_RStudio.html)
+- Instructions to install R and RStudio | [slides](docs/01_installing_R_RStudio.html)
 
 ## Week 2 (Aug 25-29)
 [**Data visualization**](slides/02_data_vis.html)
@@ -52,7 +52,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
   - [Data-to-viz](https://www.data-to-viz.com/)
 
 ## *Week3 (Sep 1-5)
-[**Keeping track of your code with Git and GitHub**](slides/03_git_and_github.html)
+**Keeping track of your code with Git and GitHub** | [slides](slides/03_git_and_github.html)
 - Reproducible research
 - Introduction to file structure
 - Version control with [Git](https://git-scm.com/downloads) and [GitHub](https://github.com/)
@@ -71,14 +71,14 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ---
 
 ## Week 4 (Sep 9-12)
-**Good coding principles**
+**Good coding principles** | slides
 - Code style and documentation
 - Classes, objects, variables, values
 - Indexing and subsetting vectors and data frames
 - Useful functions in `base` and `stats`
 
 ## Week 5 (Sep 15-19)
-**Scaling up your code and visualizations**
+**Scaling up your code and visualizations** | slides
 - Refresh on layers, geometries, and aesthetics in ggplot2
 - Themes with ggplot2
 - Summarizing data on the fly (`stat_summary`, `geom_smooth`)
@@ -93,7 +93,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ---
 
 ## Week 6 (Sep 22-26)
-**Data management**
+**Data management** | slides
 - Raw data vs processed data
 - Metadata and documentation
 - Relative vs absolute paths and the `here` package
@@ -102,7 +102,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Retrieving environmental datasets from the Internet (`gfwr`, `rerddap`)
 
 ## Week 7, Sept 29-Oct 3
-**Data transformation**
+**Data transformation** | slides
 - data frames and tibbles in the `tidyverse`
 - Rows (filter, arrange, distinct) in `dplyr`
 - Columns (select, rename) in `dplyr`
@@ -110,14 +110,14 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Grouping and summarizing data
 
 ## Week 8 (Oct 6-10)
-**Data tidying and wrangling**
+**Data tidying and wrangling** | slides
 - Principles of tidy data
 - Lengthening data with `tidyr`
 - Widening data with `tidyr`
 - Combining multiple sources of data (`*_joins`)
 
 ## Week 9 (Oct 13-17)
-**Dealing with text, dates, and factors**
+**Dealing with text, dates, and factors** | slides
 - Managing dates and times with `lubridate`
 - Regular expressions with `stringr`
 - Ordering factors with `forcats`
@@ -129,13 +129,13 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ---
 
 ## Week 10 (Oct 20-24)
-**Working with spatial data in R**
+**Working with spatial data in R** | slides
 - Vector data and `sf`
 - Raster data and `terra`
 - Exploratory visualizations with `plot` and `mapview`
 
 ## Week 11 (Oct 27-31)
-**Visualizing spatial data**
+**Visualizing spatial data** | slides
 - Attribute operations
 - Building maps with ggplot2 and tmap
 
@@ -146,13 +146,13 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ---
 
 ## Week 12 (Nov 3-7)
-**Extensions**
+**Extensions** | slides
 - Connecting to external databases with DBI
 - Animating with the `gganimate` package
 - Interactive maps with leaflet
 
 ## Week 13, (Nov 10-14):
-**Programming**
+**Programming** | slides
 - User-defined functions
 - Iteration with loops
 - Functional programming with the purrr package
@@ -160,7 +160,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Standardizing the environment with .Rprofile
 
 ## Week 14, (Nov 17-21)
-**Shiny Apps Framework**
+**Shiny Apps Framework** | slides
 - Reactive programming
 - UI / UX
 - Front-end _vs_ back-end

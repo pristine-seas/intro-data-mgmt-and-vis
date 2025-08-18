@@ -80,6 +80,26 @@ plot(mpg ~ disp, data = mtcars)
 
 ::::
 
+## Things you will be able to build
+
+You will learn how to access, work with, and visualize many different types of environmental data. For example:
+
+:::: {.columns}
+
+::: {.column width='50%'}
+- **Access** public data repositories and build **animated visualizations**
+- Track fishing vessels form space and build maps of fishing activity
+- Develop [interactive web-based apps]( https://682wxr-juan0carlos-villasenor0derbez.shinyapps.io/gom_fishing/) to allow others explore your data
+- Create [slides with interactive content](https://jcvdav.github.io/EVR_662/slides/02_data_models_vector#/example-rosenstiel) for effective communication
+:::
+
+::: {.column width='50%'}
+![](img/hurricane_milton_track.gif){.nostrech width="100%"}
+:::
+
+::::
+
+
 ## How will we approach data science?
 
 :::: {.columns}
@@ -207,7 +227,7 @@ BUT!
 
 - It _should_ feel weird
 - You are not alone; leverage resources:
-  - Myself
+  - Me
   - Your TA
   - Each other
   - LLMs
