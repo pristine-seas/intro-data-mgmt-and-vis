@@ -1,4 +1,390 @@
 ---
-title: "EVR 628 - Intro to Environmental Data Science"
-subtitle: "Coding_principles"
+subtitle: "Coding principles"
 ---
+
+## Learning Objectives
+
+:::{.callout-note}
+## By the end of this week, you should be able to:
+- Code style and documentation
+- Classes, objects, variables, values
+- Indexing and subsetting vectors and data frames
+- Useful functions in `base` and `stats`
+:::
+
+## So far
+
+- You've trusted me and executed code as instructed
+- I didn't give you much background
+- Clearly something clicked; you are still here
+- Let's give you a bit more background
+
+# Coding basics
+
+## Motivation
+
+Working with data involves:
+
+- Doing simple arithmetic calculations
+- Making new **objects** that derive from your inputs
+- Documenting your steps
+- Calling **functions** that work on your data
+- Working with **objects** of different **objects**
+
+## Motivation
+
+>"But I can do it in [insert non-scripting language tool here]"
+
+- Yes, you can
+- But it is not reproducible
+- There is no record of you doing it
+  - Is this a measured or a derived thing?
+  - Did the data provider include this or did I?
+- Spreadsheets "hide" these changes unless you look for it
+- You might have to do it over and over again
+- **Working on raw data means they are no longer raw**
+
+## Example
+
+Perhaps your pipeline requires that you use a formula:
+
+$$
+y(x) = (1.609 \times x)
+$$
+
+. . .
+
+And you have data with values 1:10
+
+. . .
+
+[**In a spreadsheet**](https://docs.google.com/spreadsheets/d/1TbG-jXhCwybwadF7GArZ4Z_VqsKLvKXGPKRDAS7yxLg/edit?usp=sharing)
+
+. . .
+
+**With R**
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1-2|3-4|5"
+# This creates the "x" object (could come form a file)
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+# This calculates a value of y for each value of x
+y <- (1.609) + 10
+y
+```
+
+. . .
+
+:::{.callout-note}
+## Don't hate on Excel
+
+Excel has many great features. It's just not the right tool for the job.
+
+:::
+
+
+## Simple arithmetic
+
+:::: {.columns}
+::: {.column width='50%'}
+
+```{r}
+#| code-fold: false
+2 + 2 # Addition
+
+10 - 1 # Subtraction
+
+10 * 3 # Multiplication
+
+10 / 3 # Division
+
+2^4 # Exponentiation
+
+64 ^ (1/2) # Roots as powers...
+```
+
+:::{.callout-note}
+Values are "printed" to the slide (console), never to be seen again
+:::
+
+:::
+
+::: {.column width='50%'}
+**_Binary Operators:_**
+
+- Stand between two values
+- Perform arithmetic on numeric vectors (or objects which can be coerced to them)
+  - "coercion" here means "conversion"
+  - `TRUE` or `FALSE` (logical values) can be "coerced" with ones and zeroes
+
+:::
+
+::::
+
+## Creating "objects"
+
+- If you'll need a value, dataset or plot for later, you should "assign it"
+- This will retain the object in your environment
+- You will use the _assignment operator_: `<-`
+  - Mac shortcut: `Opt` + `dash`
+  - Windows shortcut: `Alt` + `-`
+- Read '`<-`' as: "object name gets value"
+  
+. . .
+
+:::: {.columns}
+::: {.column width='50%'}
+
+Save something
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1-2|3-6|7-8"
+# A value
+my_val <- 2
+# A function
+my_fun <- function(name){
+  paste("My name is", name)
+}
+# piece of text
+my_name <- "JC"
+```
+
+:::
+
+::: {.column width='50%'}
+
+
+And call them later
+
+```{r}
+#| code-fold: false
+#| error: true
+my_val + 2
+
+my_value #should fail.. why?
+
+my_fun(my_name)
+```
+
+:::
+::::
+
+## Combine elements with `c()`
+
+```{r}
+#| code-fold: false
+colors <- c("red", "blue", "green")
+
+numbers <- c(1, 40, 1, 5, 6)
+
+more_numbers <- c(my_val, numbers)
+```
+
+- The objects called `colors`, `numbers` and `more_numbers` are "vectors"
+
+- If the vector is numeric, arithmetic operations are applied to every element automatically
+
+. . .
+
+```{r}
+#| code-fold: false
+numbers * 2
+```
+
+- Arithmetic operations don't work on character vectors
+
+. . .
+
+```{r}
+#| code-fold: false
+#| error: true
+colors * 2
+```
+
+
+- What does this error message mean?
+
+
+
+
+## Comments
+
+- Text embedded within your script for humans to read
+
+- Helps other people (including future you) understand what's going on
+
+- We use the `#` sign to prevent the computer from reading it
+  - Works in R, Python, Make, Julia, SQL
+
+. . .
+
+Is this helpful?
+
+```{r}
+#| code-fold: false
+# A function
+my_fun <- function(name){
+  paste("My name is", name)
+}
+```
+
+. . .
+
+How about this?
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3|4"
+# Define a function called "my_fun"
+my_fun <- function(name){      # Takes a parameter called "name"
+  paste("My name is", name)    # Combines it with a part that says "My name is"
+}                              # End of "my_fun"
+```
+
+## Comments: Common mistakes
+
+:::: {.columns}
+
+::: {.column width='50%'}
+Too much commenting
+
+```{r}
+#| code-fold: false
+# Build a function that takes a number called "x" and multiplies it by two and then adds 10
+my_other_fun <- function(x){   # Start function
+  y <- (2*x) + 10              # This line takes the value of x and multiplies it by two in (2*x). It then adds 10 in the part that says "+10"
+}
+```
+:::
+
+::: {.column width='50%'}
+Better, but forgot to use `#`
+
+```{r}
+#| error: true
+#| code-line-numbers: "|1"
+Define my second function
+my_other_fun <- function(x){ # Start function
+  y <- (2*x) + 10            # Perform the calculation
+}
+```
+:::
+
+::::
+
+## Calling functions
+
+- R comes with many built-in functions
+- R packages typically provide additional functions
+- "Calling" a function is like invoking it
+- You do so like this
+
+. . .
+
+```r
+function_name(argument1 = value1, argument2 = value2, ...)
+```
+
+- Different functions take different numbers and types of arguments
+- R uses the named arguments
+
+
+## Classes, objects, variables, values
+
+## Indexing and subsetting vectors and data frames
+
+## Useful functions in `base` and `stats`
+
+- `dim`
+- `nrow`
+- `ncol`
+- `length`
+- `unique`
+- `min`, max
+- `range`
+- `glimpse`
+- `summary`
+- `mean`
+
+# Code _style_
+
+Best practices for nice code
+
+## The importance of style
+
+- [UM's Visual Identity Guide](https://webcomm.miami.edu/resources/identity/color/index.html)
+- [The Economist Style Guide](https://education.economist.com/insights/what-to-read/writing-with-style)
+- [Google Code Style Guide](https://google.github.io/styleguide/)
+
+## Naming conventions
+
+```
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+```
+
+## Spaces
+
+## Commenting
+
+- What are you doing?
+- Why are you doing it _that way_?
+  - Focus on explaining _why_ you did something, not _what_ you are doing (or _how_)
+- Try to keep your comments within the vertical line show in RStudio
+
+## Calling functions
+
+## Pipes
+
+## ggplot2
+
+## Sectioning with comments
+
+- A script contains more than one bit of code, often dozens of lines
+
+- Use comments to guide the user through your script
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='50%'}
+```{r}
+#| code-fold: false
+################################################
+# Description goes here
+################################################
+
+# SET UP #######################################
+
+## Load packages -------------------------------
+
+## Load data -----------------------------------
+
+
+# PROCESSING ###################################
+
+## Some step -----------------------------------
+
+
+# VISUALIZE ####################################
+
+## Another step --------------------------------
+
+
+# EXPORT #######################################
+
+## The final step ------------------------------
+```
+:::
+
+::: {.column width='50%'}
+![](img/outline_comments.png){.nostretch fig-align="center" width="90%"}
+:::
+
+::::
+

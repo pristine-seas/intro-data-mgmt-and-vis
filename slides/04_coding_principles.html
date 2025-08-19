@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
-  <title>EVR 628 - Intro to Environmental Data Science</title>
+  <title>EVR 628- Intro to Environmental Data Science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="04_coding_principles_files/libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
   <link href="04_coding_principles_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -127,8 +192,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">EVR 628 - Intro to Environmental Data Science</h1>
-  <p class="subtitle">Coding_principles</p>
+  <h1 class="title"><a href="https://jcvdav.github.io/EVR_628/">EVR 628</a>- Intro to Environmental Data Science</h1>
+  <p class="subtitle">Coding principles</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -139,10 +204,430 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 
 </section>
-<section class="slide level2">
-
+<section id="learning-objectives" class="slide level2">
+<h2>Learning Objectives</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>By the end of this week, you should be able to:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">Code style and documentation</li>
+<li class="fragment">Classes, objects, variables, values</li>
+<li class="fragment">Indexing and subsetting vectors and data frames</li>
+<li class="fragment">Useful functions in <code>base</code> and <code>stats</code></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="so-far" class="slide level2">
+<h2>So far</h2>
+<ul>
+<li class="fragment">You’ve trusted me and executed code as instructed</li>
+<li class="fragment">I didn’t give you much background</li>
+<li class="fragment">Clearly something clicked; you are still here</li>
+<li class="fragment">Let’s give you a bit more background</li>
+</ul>
+</section>
+<section>
+<section id="coding-basics" class="title-slide slide level1 center">
+<h1>Coding basics</h1>
 
 </section>
+<section id="motivation" class="slide level2">
+<h2>Motivation</h2>
+<p>Working with data involves:</p>
+<ul>
+<li class="fragment">Doing simple arithmetic calculations</li>
+<li class="fragment">Making new <strong>objects</strong> that derive from your inputs</li>
+<li class="fragment">Documenting your steps</li>
+<li class="fragment">Calling <strong>functions</strong> that work on your data</li>
+<li class="fragment">Working with <strong>objects</strong> of different <strong>objects</strong></li>
+</ul>
+</section>
+<section id="motivation-1" class="slide level2">
+<h2>Motivation</h2>
+<blockquote>
+<p>“But I can do it in [insert non-scripting language tool here]”</p>
+</blockquote>
+<ul>
+<li class="fragment">Yes, you can</li>
+<li class="fragment">But it is not reproducible</li>
+<li class="fragment">There is no record of you doing it
+<ul>
+<li class="fragment">Is this a measured or a derived thing?</li>
+<li class="fragment">Did the data provider include this or did I?</li>
+</ul></li>
+<li class="fragment">Spreadsheets “hide” these changes unless you look for it</li>
+<li class="fragment">You might have to do it over and over again</li>
+<li class="fragment"><strong>Working on raw data means they are no longer raw</strong></li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>Perhaps your pipeline requires that you use a formula:</p>
+<p><span class="math display">\[
+y(x) = (1.609 \times x)
+\]</span></p>
+<div class="fragment">
+<p>And you have data with values 1:10</p>
+</div>
+<div class="fragment">
+<p><a href="https://docs.google.com/spreadsheets/d/1TbG-jXhCwybwadF7GArZ4Z_VqsKLvKXGPKRDAS7yxLg/edit?usp=sharing"><strong>In a spreadsheet</strong></a></p>
+</div>
+<div class="fragment">
+<p><strong>With R</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1-2|3-4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># This creates the "x" object (could come form a file)</span></span>
+<span id="cb1-2"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb1-3"><a href=""></a><span class="co"># This calculates a value of y for each value of x</span></span>
+<span id="cb1-4"><a href=""></a>y <span class="ot">&lt;-</span> (<span class="fl">1.609</span>) <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href=""></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.609</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Don’t hate on Excel</strong></p>
+</div>
+<div class="callout-content">
+<p>Excel has many great features. It’s just not the right tool for the job.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="simple-arithmetic" class="slide level2">
+<h2>Simple arithmetic</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="co"># Addition</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">1</span> <span class="co"># Subtraction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="dv">10</span> <span class="sc">*</span> <span class="dv">3</span> <span class="co"># Multiplication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">3</span> <span class="co"># Division</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.333333</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="dv">2</span><span class="sc">^</span><span class="dv">4</span> <span class="co"># Exponentiation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="dv">64</span> <span class="sc">^</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="co"># Roots as powers...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Values are “printed” to the slide (console), never to be seen again</p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong><em>Binary Operators:</em></strong></p>
+<ul>
+<li class="fragment">Stand between two values</li>
+<li class="fragment">Perform arithmetic on numeric vectors (or objects which can be coerced to them)
+<ul>
+<li class="fragment">“coercion” here means “conversion”</li>
+<li class="fragment"><code>TRUE</code> or <code>FALSE</code> (logical values) can be “coerced” with ones and zeroes</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="creating-objects" class="slide level2">
+<h2>Creating “objects”</h2>
+<ul>
+<li class="fragment">If you’ll need a value, dataset or plot for later, you should “assign it”</li>
+<li class="fragment">This will retain the object in your environment</li>
+<li class="fragment">You will use the <em>assignment operator</em>: <code>&lt;-</code>
+<ul>
+<li class="fragment">Mac shortcut: <code>Opt</code> + <code>dash</code></li>
+<li class="fragment">Windows shortcut: <code>Alt</code> + <code>-</code></li>
+</ul></li>
+<li class="fragment">Read ‘<code>&lt;-</code>’ as: “object name gets value”</li>
+</ul>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Save something</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1-2|3-6|7-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># A value</span></span>
+<span id="cb15-2"><a href=""></a>my_val <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb15-3"><a href=""></a><span class="co"># A function</span></span>
+<span id="cb15-4"><a href=""></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(name){</span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">paste</span>(<span class="st">"My name is"</span>, name)</span>
+<span id="cb15-6"><a href=""></a>}</span>
+<span id="cb15-7"><a href=""></a><span class="co"># piece of text</span></span>
+<span id="cb15-8"><a href=""></a>my_name <span class="ot">&lt;-</span> <span class="st">"JC"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>And call them later</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>my_val <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>my_value <span class="co">#should fail.. why?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: object 'my_value' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">my_fun</span>(my_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "My name is JC"</code></pre>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="combine-elements-with-c" class="slide level2">
+<h2>Combine elements with <code>c()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>)</span>
+<span id="cb22-2"><a href=""></a></span>
+<span id="cb22-3"><a href=""></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb22-4"><a href=""></a></span>
+<span id="cb22-5"><a href=""></a>more_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(my_val, numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li class="fragment"><p>The objects called <code>colors</code>, <code>numbers</code> and <code>more_numbers</code> are “vectors”</p></li>
+<li class="fragment"><p>If the vector is numeric, arithmetic operations are applied to every element automatically</p></li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>numbers <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2 80  2 10 12</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">Arithmetic operations don’t work on character vectors</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>colors <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in colors * 2: non-numeric argument to binary operator</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment">What does this error message mean?</li>
+</ul>
+</div>
+</section>
+<section id="comments" class="slide level2">
+<h2>Comments</h2>
+<ul>
+<li class="fragment"><p>Text embedded within your script for humans to read</p></li>
+<li class="fragment"><p>Helps other people (including future you) understand what’s going on</p></li>
+<li class="fragment"><p>We use the <code>#</code> sign to prevent the computer from reading it</p>
+<ul>
+<li class="fragment">Works in R, Python, Make, Julia, SQL</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p>Is this helpful?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># A function</span></span>
+<span id="cb27-2"><a href=""></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(name){</span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">paste</span>(<span class="st">"My name is"</span>, name)</span>
+<span id="cb27-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>How about this?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="1|2|3|4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="co"># Define a function called "my_fun"</span></span>
+<span id="cb28-2"><a href=""></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(name){      <span class="co"># Takes a parameter called "name"</span></span>
+<span id="cb28-3"><a href=""></a>  <span class="fu">paste</span>(<span class="st">"My name is"</span>, name)    <span class="co"># Combines it with a part that says "My name is"</span></span>
+<span id="cb28-4"><a href=""></a>}                              <span class="co"># End of "my_fun"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="comments-common-mistakes" class="slide level2">
+<h2>Comments: Common mistakes</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Too much commenting</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="co"># Build a function that takes a number called "x" and multiplies it by two and then adds 10</span></span>
+<span id="cb29-2"><a href=""></a>my_other_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){   <span class="co"># Start function</span></span>
+<span id="cb29-3"><a href=""></a>  y <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>x) <span class="sc">+</span> <span class="dv">10</span>              <span class="co"># This line takes the value of x and multiplies it by two in (2*x). It then adds 10 in the part that says "+10"</span></span>
+<span id="cb29-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Better, but forgot to use <code>#</code></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>Define my second <span class="cf">function</span></span>
+<span id="cb30-2"><a href=""></a>my_other_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ <span class="co"># Start function</span></span>
+<span id="cb30-3"><a href=""></a>  y <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>x) <span class="sc">+</span> <span class="dv">10</span>            <span class="co"># Perform the calculation</span></span>
+<span id="cb30-4"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in parse(text = input): &lt;text&gt;:1:8: unexpected symbol
+1: Define my
+           ^</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="calling-functions" class="slide level2">
+<h2>Calling functions</h2>
+<ul>
+<li class="fragment">R comes with many built-in functions</li>
+<li class="fragment">R packages typically provide additional functions</li>
+<li class="fragment">“Calling” a function is like invoking it</li>
+<li class="fragment">You do so like this</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">function_name</span>(<span class="at">argument1 =</span> value1, <span class="at">argument2 =</span> value2, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment">Different functions take different numbers and types of arguments</li>
+<li class="fragment">R uses the named arguments</li>
+</ul>
+</div>
+</section>
+<section id="classes-objects-variables-values" class="slide level2">
+<h2>Classes, objects, variables, values</h2>
+</section>
+<section id="indexing-and-subsetting-vectors-and-data-frames" class="slide level2">
+<h2>Indexing and subsetting vectors and data frames</h2>
+</section>
+<section id="useful-functions-in-base-and-stats" class="slide level2">
+<h2>Useful functions in <code>base</code> and <code>stats</code></h2>
+<ul>
+<li class="fragment"><code>dim</code></li>
+<li class="fragment"><code>nrow</code></li>
+<li class="fragment"><code>ncol</code></li>
+<li class="fragment"><code>length</code></li>
+<li class="fragment"><code>unique</code></li>
+<li class="fragment"><code>min</code>, max</li>
+<li class="fragment"><code>range</code></li>
+<li class="fragment"><code>glimpse</code></li>
+<li class="fragment"><code>summary</code></li>
+<li class="fragment"><code>mean</code></li>
+</ul>
+</section></section>
+<section>
+<section id="code-style" class="title-slide slide level1 center">
+<h1>Code <em>style</em></h1>
+<p>Best practices for nice code</p>
+</section>
+<section id="the-importance-of-style" class="slide level2">
+<h2>The importance of style</h2>
+<ul>
+<li class="fragment"><a href="https://webcomm.miami.edu/resources/identity/color/index.html">UM’s Visual Identity Guide</a></li>
+<li class="fragment"><a href="https://education.economist.com/insights/what-to-read/writing-with-style">The Economist Style Guide</a></li>
+<li class="fragment"><a href="https://google.github.io/styleguide/">Google Code Style Guide</a></li>
+</ul>
+</section>
+<section id="naming-conventions" class="slide level2">
+<h2>Naming conventions</h2>
+<pre><code>i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention</code></pre>
+</section>
+<section id="spaces" class="slide level2">
+<h2>Spaces</h2>
+</section>
+<section id="commenting" class="slide level2">
+<h2>Commenting</h2>
+<ul>
+<li class="fragment">What are you doing?</li>
+<li class="fragment">Why are you doing it <em>that way</em>?
+<ul>
+<li class="fragment">Focus on explaining <em>why</em> you did something, not <em>what</em> you are doing (or <em>how</em>)</li>
+</ul></li>
+<li class="fragment">Try to keep your comments within the vertical line show in RStudio</li>
+</ul>
+</section>
+<section id="calling-functions-1" class="slide level2">
+<h2>Calling functions</h2>
+</section>
+<section id="pipes" class="slide level2">
+<h2>Pipes</h2>
+</section>
+<section id="ggplot2" class="slide level2">
+<h2>ggplot2</h2>
+</section>
+<section id="sectioning-with-comments" class="slide level2">
+<h2>Sectioning with comments</h2>
+<ul>
+<li class="fragment"><p>A script contains more than one bit of code, often dozens of lines</p></li>
+<li class="fragment"><p>Use comments to guide the user through your script</p></li>
+</ul>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="do">################################################</span></span>
+<span id="cb34-2"><a href=""></a><span class="co"># Description goes here</span></span>
+<span id="cb34-3"><a href=""></a><span class="do">################################################</span></span>
+<span id="cb34-4"><a href=""></a></span>
+<span id="cb34-5"><a href=""></a><span class="co"># SET UP #######################################</span></span>
+<span id="cb34-6"><a href=""></a></span>
+<span id="cb34-7"><a href=""></a><span class="do">## Load packages -------------------------------</span></span>
+<span id="cb34-8"><a href=""></a></span>
+<span id="cb34-9"><a href=""></a><span class="do">## Load data -----------------------------------</span></span>
+<span id="cb34-10"><a href=""></a></span>
+<span id="cb34-11"><a href=""></a></span>
+<span id="cb34-12"><a href=""></a><span class="co"># PROCESSING ###################################</span></span>
+<span id="cb34-13"><a href=""></a></span>
+<span id="cb34-14"><a href=""></a><span class="do">## Some step -----------------------------------</span></span>
+<span id="cb34-15"><a href=""></a></span>
+<span id="cb34-16"><a href=""></a></span>
+<span id="cb34-17"><a href=""></a><span class="co"># VISUALIZE ####################################</span></span>
+<span id="cb34-18"><a href=""></a></span>
+<span id="cb34-19"><a href=""></a><span class="do">## Another step --------------------------------</span></span>
+<span id="cb34-20"><a href=""></a></span>
+<span id="cb34-21"><a href=""></a></span>
+<span id="cb34-22"><a href=""></a><span class="co"># EXPORT #######################################</span></span>
+<span id="cb34-23"><a href=""></a></span>
+<span id="cb34-24"><a href=""></a><span class="do">## The final step ------------------------------</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/outline_comments.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</div></div>
+
+</div>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png" class="slide-logo"></p>
@@ -359,6 +844,44 @@ Juan Carlos Villaseñor-Derbez (JC)
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
