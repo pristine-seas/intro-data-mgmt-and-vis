@@ -70,7 +70,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 ---
 
-## Week 4 (Sep 9-12)
+## Week 4 (Sep 8-12)
 **Good coding principles** | slides
 - Code style and documentation
 - Classes, objects, variables, values
@@ -168,8 +168,8 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ## *Week 15, (Nov 24-28)
 **Thanksgiving recess**
 
-## Week 16: (Dec 4-10)
-**FINAL EXAMS WEEK**
+## Week 16: (Dec 1-5)
+[**FINAL EXAMS Dec 4 - Dec 10**](https://registrar.miami.edu/_assets/pdf/academic-calendar-fall-2025.pdf)
 
 ---
 
