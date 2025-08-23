@@ -32,13 +32,12 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - R packages: [`tidyverse`](https://www.tidyverse.org/), [`EVR628`](https://jcvdav.github.io/EVR628tools/)
 
 **Relevant links for the week**
-- Instructions to install R and RStudio | [slides](docs/01_installing_R_RStudio.html)
+- [Instructions to install R and RStudio](docs/01_installing_R_RStudio.html)
 
 ## Week 2 (Aug 25-29)
-[**Data visualization**](slides/02_data_vis.html)
+**Data visualization** | [slides](slides/02_data_vis.html)
 - Types of visualization
 - Visualization principles
-- Colorblindness, IPCC’s visual style guide, and the [`viridis`](https://github.com/sjmgarnier/viridis/) package
 - The grammar of graphics and the [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 
 **Relevant links for the week**
@@ -81,6 +80,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 **Scaling up your code and visualizations** | slides
 - Refresh on layers, geometries, and aesthetics in ggplot2
 - Themes with ggplot2
+- Colorblindness, IPCC’s visual style guide, and the [`viridis`](https://github.com/sjmgarnier/viridis/) package
 - Summarizing data on the fly (`stat_summary`, `geom_smooth`)
 - Plot extensions (`cowplot`, `GGally`, `ggrepel`)
 - Animated plots (`ggplotly`)

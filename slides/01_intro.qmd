@@ -348,36 +348,60 @@ BUT!
 
 # Getting to Know R Studio
 
+## Announcements:
+
+- This week only: Office Hours shifted to 10:15-12:00 **FRIDAY**
+- [Software Carpentry](https://idsc.miami.edu/software-carpentry-workshops/) date TBD, but keep an eye
+
+## Dynamics
+
+- Post it on your screen means "I'm working on it"
+- Post it down means "I'm ready to listen"
+
 ## Hands-on Tasks:
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="33%"}
 ::: {.nonincremental}
+- [ ] R vs R GUI vs RStudio
 - [ ] Open RStudio
 - [ ] Modify appearance
-- [ ] Describe windows
 - [ ] Modify global options
-- [ ] Start a project
-- [ ] `getwd()`
-- [ ] Install `tidyverse`
-- [ ] Fail to install `EVR628tools`, then succeed (`remotes`)
-- [ ] Load packages
+- [ ] Describe windows
+- [ ] Console: `getwd()`
+- [ ] Console: `?getwd()`
+- [ ] Search for help
+- [ ] Sort code in console
 :::
 :::
 
-::: {.column width="50%"}
+::: {.column width="33%"}
 ::: {.nonincremental}
-- [ ] Directory structure
-- [ ] Start a new project
-- [ ] Close and reopen project
-- [ ] Restart R
-- [ ] A simple calculation
-- [ ] A complex calculation
-- [ ] Getting the history back
+- [ ] Longer code in the console:
+```{r}
+#| eval: false
+plot(mpg ~ disp, data = mtcars, col = "blue", pch = 21)
+```
+
+- [ ] Getting the history back (pane, up key, autocomplete)
+- [ ] Start a project called "EVR628"
 - [ ] First script
-- [ ] Executing a line
-- [ ] Executing a chunk 
+- [ ] Running line from a script
+- [ ] Run entire script
+:::
+:::
+
+::: {.column width="33%"}
+::: {.nonincremental}
+- [ ] Install `tidyverse`
+- [ ] Fail to install `EVR628tools`, then succeed (`remotes`)
+- [ ] Load packages
+- [ ] Directory structure
+- [ ] Start a new project called "temp_project"
+- [ ] Close and reopen project
+- [ ] Switch between projects
+- [ ] Close R Studio and open project
 :::
 :::
 

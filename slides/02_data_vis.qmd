@@ -17,6 +17,11 @@ theme_set(
 )
 ```
 
+## Announcements
+
+- [C + J symposium](https://events.miami.edu/event/cplusj-2025):
+  - Dec 11-12
+
 ## Learning Objectives
 
 :::{.callout-note}
@@ -1020,6 +1025,10 @@ ggplot(data = data_lionfish,
 :::
 
 # Let's get coding
+
+## Exercises
+
+My guide for [live coding](https://jcvdav.github.io/EVR_628/docs/02_live.html)
 
 # References 
 
