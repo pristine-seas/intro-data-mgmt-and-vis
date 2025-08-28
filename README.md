@@ -49,6 +49,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
   - IPCC [Visual Style Guide](https://www.ipcc.ch/site/assets/uploads/2022/09/IPCC_AR6_WGI_VisualStyleGuide_2022.pdf) by the IPCC
   - The [R Graph Gallery](https://r-graph-gallery.com/)
   - [Data-to-viz](https://www.data-to-viz.com/)
+- [Link](https://jcvdav.github.io/EVR_628/docs/02_live.html) to document from live coding sessions
 
 ## *Week3 (Sep 1-5)
 **Keeping track of your code with Git and GitHub** | [slides](slides/03_git_and_github.html)
@@ -70,7 +71,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ---
 
 ## Week 4 (Sep 8-12)
-**Good coding principles** | slides
+**Good coding principles** | [slides](slides/04_coding_principles.html)
 - Code style and documentation
 - Classes, objects, variables, values
 - Indexing and subsetting vectors and data frames
