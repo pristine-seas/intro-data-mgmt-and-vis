@@ -222,8 +222,9 @@ Juan Carlos Villaseñor-Derbez (JC)
 <ul>
 <li class="fragment">Example job postings <a href="https://jobs.schmidtmarine.org/companies/global-fishing-watch/jobs/35650809-data-scientist-vessel-tracking-and-behavior-remote">industry</a>, <a href="https://jobs.chronicle.com/job/37833047/post-doctoral-fellow-plant-ecology/">academia</a>, and <a href="https://nmfs-opensci.github.io/GitHub-Guide/">government</a></li>
 </ul></li>
-<li class="fragment">Collaboration: Work with others without breaking each other’s code</li>
+<li class="fragment">Collaboration: Work with others without breaking their code</li>
 <li class="fragment">Reproducibility: Essential for scientific integrity / managing the real world</li>
+<li class="fragment">Maintain versions through time</li>
 <li class="fragment">Backup &amp; recovery: Never lose your work again</li>
 <li class="fragment">Portfolio building: Showcase your projects to employers</li>
 </ul>
@@ -233,11 +234,11 @@ Juan Carlos Villaseñor-Derbez (JC)
 <ul>
 <li class="fragment">File naming: <code>analysis_final_v2_really_final_USE_THIS_ONE.R</code>
 <ul>
-<li class="fragment">(And the filenames contained might look even worse)</li>
+<li class="fragment">(And the filenames loaded therein might look even worse)</li>
 </ul></li>
 <li class="fragment">Lost work: “Where did I put that working version?”</li>
 <li class="fragment">Collaboration conflicts: “Who changed what and when?”</li>
-<li class="fragment">Reproducibility failures: “It worked on my computer!”</li>
+<li class="fragment">Reproducibility failures: “Why do we get different results?”</li>
 <li class="fragment">Publication delays: “I can’t reproduce my own results”</li>
 </ul>
 </section>
@@ -247,12 +248,12 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="fragment">
 <p><strong>Key Components:</strong></p>
 <ul>
-<li class="fragment">Data: Raw, processed, and metadata</li>
-<li class="fragment">Code: Scripts, functions, and workflows<br>
+<li class="fragment"><strong>Data:</strong> Raw, processed, and metadata</li>
+<li class="fragment"><strong>Code:</strong> Scripts, functions, and workflows<br>
 </li>
-<li class="fragment">Documentation: Methods, assumptions, and decisions</li>
+<li class="fragment"><strong>Documentation:</strong> Methods, assumptions, and decisions</li>
 <li class="fragment">Environment: Software versions and dependencies</li>
-<li class="fragment">Results: Outputs, tables, figures</li>
+<li class="fragment"><strong>Results:</strong> Outputs, tables, figures</li>
 </ul>
 </div>
 </section>
@@ -261,7 +262,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <ul>
 <li class="fragment">70% of researchers have tried and failed to reproduce another scientist’s experiments <span class="citation" data-cites="Baker2016-aa">(<a href="#/references" role="doc-biblioref" onclick="">Baker 2016</a>)</span></li>
 <li class="fragment">50% of researchers have failed to reproduce their own experiments <span class="citation" data-cites="Baker2016-aa">(<a href="#/references" role="doc-biblioref" onclick="">Baker 2016</a>)</span></li>
-<li class="fragment">$28 billion wasted annually on irreproducible preclinical research <span class="citation" data-cites="Freedman2015-aa">(<a href="#/references" role="doc-biblioref" onclick="">Freedman, Cockburn, and Simcoe 2016</a>)</span></li>
+<li class="fragment">$28 billion wasted annually on irreproducible pre-clinical research <span class="citation" data-cites="Freedman2015-aa">(<a href="#/references" role="doc-biblioref" onclick="">Freedman, Cockburn, and Simcoe 2016</a>)</span></li>
 <li class="fragment">Environmental science is not immune to these issues</li>
 </ul>
 </section>
@@ -269,7 +270,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <h2>Real-World Example: Climate Data Analysis</h2>
 <p><strong>Scenario</strong>: You’re analyzing sea surface temperature trends</p>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:50%;">
 <p><strong>Without version control</strong>:</p>
 <ul>
 <li class="fragment">Multiple versions of scripts with unclear differences</li>
@@ -277,7 +278,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment">Can’t track which parameters produced which results</li>
 <li class="fragment">Collaboration becomes chaotic</li>
 </ul>
-</div><div class="column" style="width:60%;">
+</div><div class="column" style="width:50%;">
 <p><strong>With version control</strong>:</p>
 <ul>
 <li class="fragment">Clear history of all changes</li>
@@ -287,8 +288,39 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div></div>
 </section>
-<section id="file-structure-fundamentals" class="slide level2">
-<h2>File Structure Fundamentals</h2>
+<section id="my-drawer-folder-of-shame" class="slide level2">
+<h2>My <del>drawer</del> <em>folder</em> of shame</h2>
+<div class="fragment">
+<p><img data-src="img/messy_project_sample.png"> . . .</p>
+<ul>
+<li class="fragment">Who did what?</li>
+<li class="fragment">When?</li>
+<li class="fragment">Why?</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="organizing-your-projects" class="title-slide slide level1 center">
+<h1>Organizing your projects</h1>
+
+</section>
+<section id="file-vs-path" class="slide level2">
+<h2>File vs path</h2>
+<p>Folder <span class="math inline">\(\neq\)</span> file</p>
+<ul>
+<li class="fragment">Folder is an address (where in your computer does this file live?)</li>
+<li class="fragment">File name is the actual file</li>
+<li class="fragment">When reading / writing data from R, we must specify where the file lives</li>
+</ul>
+<div class="fragment">
+<ul>
+<li class="fragment">Folders are represented as <code>my_folder/</code></li>
+<li class="fragment">Files always have an <code>.extension</code>, which tells us the type of file</li>
+</ul>
+</div>
+</section>
+<section id="project-structure-fundamentals" class="slide level2">
+<h2>Project Structure Fundamentals</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -304,15 +336,15 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 <p><strong>Principles</strong>:</p>
 <ul>
-<li class="fragment">Consistency: Use the same structure across projects</li>
 <li class="fragment">Clarity: Names should be self-explanatory</li>
 <li class="fragment">Separation: Keep raw data, processed data, and outputs separate</li>
-<li class="fragment">Documentation: Include README files and metadata</li>
+<li class="fragment">Consistency: Respect folder structure</li>
+<li class="fragment"><strong>Documentation:</strong> Include README files and metadata</li>
 </ul>
 </section>
 <section id="recommended-project-structure" class="slide level2">
 <h2>Recommended Project Structure</h2>
-<pre><code>project_name/
+<pre><code>cool_project/
 ├── data/
 │   ├── raw/           # Original, unmodified data
 │   ├── processed/     # Cleaned, transformed data
@@ -323,10 +355,10 @@ Juan Carlos Villaseñor-Derbez (JC)
 │   └── 03_contents/
 ├── results/
 │   ├── figures/
-│   ├── tables/
-├── docs/              # Documents
-├── slides/            # Slides
-├── README.md          # Project overview
+│   └── tables/
+├── docs/              # Documents (optional)
+├── slides/            # Slides (optional)
+├── README.md          # Project overview (MANDATORY)
 └── .gitignore         # Files to exclude from version control</code></pre>
 </section>
 <section id="example" class="slide level2">
@@ -358,6 +390,11 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="fragment">
 <p>Sometimes: include dates (e.g.&nbsp;<code>data_2024_01_15.csv</code>)</p>
 </div>
+</section></section>
+<section>
+<section id="version-control-101" class="title-slide slide level1 center">
+<h1>Version control 101</h1>
+
 </section>
 <section id="what-is-version-control" class="slide level2">
 <h2>What is Version Control?</h2>
@@ -368,21 +405,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment">A detailed history book of your project</li>
 <li class="fragment">A safety net for your work</li>
 <li class="fragment">A collaboration tool for teams</li>
-</ul>
-</section>
-<section id="an-example" class="slide level2">
-<h2>An example</h2>
-<ul>
-<li class="fragment"><a href="https://github.com/mex-fisheries/mex_ports"><code>mex_ports</code> repository</a>
-<ul>
-<li class="fragment">I <a href="https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a">created</a> a new R script on August 1st</li>
-<li class="fragment">Emma (student intern) <a href="https://github.com/mex-fisheries/mex_ports/commits/main/">worked</a> on other files in the repo Aug 5 - Aug 11</li>
-<li class="fragment">Emma was having trouble reading data I had created</li>
-<li class="fragment">I had made a <a href="https://github.com/mex-fisheries/mex_ports/commit/f599235f81426c3778750effe24110f883ebee54">minor</a> mistake, which I fixed</li>
-</ul></li>
-<li class="fragment">Note how I simply overwrite the file</li>
-<li class="fragment">No need to have V1 (didn’t work) and V2 (works) in the same repo</li>
-<li class="fragment">If I ever want to go back to an earlier version, I <a href="https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a">can</a>!</li>
 </ul>
 </section>
 <section id="git-vs-github" class="slide level2">
@@ -421,10 +443,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <p><strong>Key Features</strong>:</p>
 <ul>
 <li class="fragment">Free and open source: No licensing costs</li>
-<li class="fragment">Fast: Most operations are local</li>
-<li class="fragment">Branching: Work on features without affecting main code</li>
-<li class="fragment">Merging: Combine changes from different sources</li>
-<li class="fragment">The Most Popular Version Control System</li>
+<li class="fragment">Ample documentation</li>
+<li class="fragment">The most popular version control system</li>
 </ul>
 </section></section>
 <section>
@@ -435,8 +455,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <p>Commit</p>
 <p>Push / Pull</p>
 </section>
-<section id="git-concepts-the-repository" class="slide level2">
-<h2>Git Concepts: The Repository</h2>
+<section id="git-concepts-repository" class="slide level2">
+<h2>Git Concepts: <em>Repository</em></h2>
 <p><strong>Repository (repo)</strong>: A directory containing your project and its complete history</p>
 <div class="fragment">
 <div class="columns">
@@ -476,7 +496,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </section>
 <section id="git-concepts-cloning" class="slide level2">
-<h2>Git Concepts: Cloning</h2>
+<h2>Git Concepts: <em>Cloning</em></h2>
 <p><strong>Cloning</strong>: The process of bringing a repo from the remote to local for <em>the first time</em></p>
 <div class="fragment">
 <p><strong>When you clone a repo</strong>:</p>
@@ -488,8 +508,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div>
 </section>
-<section id="git-concepts-commits" class="slide level2">
-<h2>Git Concepts: Commits</h2>
+<section id="git-concepts-commit" class="slide level2">
+<h2>Git Concepts: <em>Commit</em></h2>
 <p><strong>Commit</strong>: A snapshot of your project at a specific point in time</p>
 <div class="fragment">
 <p><strong>Each commit contains</strong>:</p>
@@ -510,13 +530,16 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div>
 <div class="fragment">
-<p><img data-src="img/commit_example.png" class="absolute" style="top: 50px; right: 10px; "> ## Git Concepts: Push / Pull</p>
+<p><img data-src="img/commit_example.png" class="absolute" style="top: 50px; right: 10px; "></p>
+</div>
+</section>
+<section id="git-concepts-push-pull" class="slide level2">
+<h2>Git Concepts: <em>Push / Pull</em></h2>
 <p>Refers to uploading and downloading changes to and from the remote</p>
 <ul>
 <li class="fragment">With a push, you decide when you send a bundle of commits</li>
 <li class="fragment">With a pull, you decide when you bring down your colleague’s version of code</li>
 </ul>
-</div>
 </section>
 <section id="git-workflow-the-basic-cycle" class="slide level2">
 <h2>Git Workflow: The Basic Cycle</h2>
@@ -534,30 +557,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="fragment">
 <p><strong>Push</strong> the changes up to GitHub</p>
 <p><strong>This cycle creates a timeline of your project’s development</strong></p>
-</div>
-</section>
-<section id="git-commands-the-essentials" class="slide level2">
-<h2>Git Commands: The Essentials</h2>
-<p>We can do most things in RStudio, but you should know:</p>
-<div class="fragment">
-<ul>
-<li class="fragment">Getting started
-<ul>
-<li class="fragment"><code>git init</code>: Create a new repository</li>
-<li class="fragment"><code>git clone</code>: Copy a repository from remote to local</li>
-</ul></li>
-<li class="fragment">Daily workflow
-<ul>
-<li class="fragment"><code>git status</code>: See what’s changed</li>
-<li class="fragment"><code>git add</code>: Stage changes for commit</li>
-<li class="fragment"><code>git commit</code>: Save changes with a message</li>
-</ul></li>
-<li class="fragment">Connecting with GitHub
-<ul>
-<li class="fragment"><code>git push</code>: Upload changes to remote repository</li>
-<li class="fragment"><code>git pull</code>: Download changes from remote repository</li>
-</ul></li>
-</ul>
 </div>
 </section>
 <section id="when-what-to-commit" class="slide level2">
@@ -601,59 +600,6 @@ Juan Carlos Villaseñor-Derbez (JC)
 <li class="fragment"><strong>Portfolio: Showcase your work to potential employers</strong></li>
 </ul>
 </section>
-<section id="github-workflows" class="slide level2">
-<h2>GitHub Workflows</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>By yourself</p>
-<ul>
-<li class="fragment"><strong>Clone</strong>: Download the repository to your computer</li>
-<li class="fragment"><strong>Commit</strong>: Make and save your changes</li>
-<li class="fragment"><strong>Push</strong>: Upload your changes to GitHub</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p>In a group</p>
-<ul>
-<li class="fragment"><strong>Clone</strong>: Download the repository to your computer</li>
-<li class="fragment"><strong>Branch</strong>: Create a separate line of development</li>
-<li class="fragment"><strong>Commit</strong>: Make and save your changes</li>
-<li class="fragment"><strong>Push</strong>: Upload your changes to GitHub</li>
-<li class="fragment"><strong>Pull Request</strong>: Propose changes to the original repository</li>
-<li class="fragment"><strong>Review</strong>: Get feedback and approval from collaborators</li>
-<li class="fragment"><strong>Merge</strong>: Integrate approved changes into the main project</li>
-</ul>
-</div></div>
-</section>
-<section id="best-practices-for-research-repositories" class="slide level2">
-<h2>Best Practices for Research Repositories</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Structure</strong>:</p>
-<ul>
-<li class="fragment">Clear README with project description and documentation</li>
-<li class="fragment">Well-organized file structure</li>
-</ul>
-<p><strong>Content</strong>:</p>
-<ul>
-<li class="fragment">Include raw and processed data</li>
-<li class="fragment">Include all your code</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><strong>Collaboration</strong>:</p>
-<ul>
-<li class="fragment">Use descriptive commit messages</li>
-<li class="fragment">Review code before merging</li>
-<li class="fragment">Maintain consistent coding standards</li>
-<li class="fragment">Document decisions and assumptions</li>
-</ul>
-<p><strong>Files that you don’t want on GitHub:</strong></p>
-<ul>
-<li class="fragment">Files larger than 100 MB</li>
-<li class="fragment">Files containing passwords / authentication tokens</li>
-<li class="fragment">Binary files (.docx, .xlsx, .ppt…)</li>
-</ul>
-</div></div>
-</section>
 <section id="github-vs-dropboxboxgoogledrive" class="slide level2">
 <h2>GitHub vs DropBox/Box/GoogleDrive…</h2>
 <ul>
@@ -665,13 +611,19 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul></li>
 </ul>
 </section>
-<section id="questions-discussion" class="slide level2">
-<h2>Questions &amp; Discussion</h2>
+<section id="an-example" class="slide level2">
+<h2>An example</h2>
 <ul>
-<li class="fragment">How might version control help in your research?</li>
-<li class="fragment">What challenges do you anticipate with Git?</li>
-<li class="fragment">How can we ensure reproducibility in environmental science?</li>
-<li class="fragment">What are the benefits of open science and sharing code?</li>
+<li class="fragment"><a href="https://github.com/mex-fisheries/mex_ports"><code>mex_ports</code> repository</a>
+<ul>
+<li class="fragment">I <a href="https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a">created</a> a new R script on August 1st</li>
+<li class="fragment">Emma (student intern) <a href="https://github.com/mex-fisheries/mex_ports/commits/main/">worked</a> on other files in the repo Aug 5 - Aug 11</li>
+<li class="fragment">Emma was having trouble reading data I had created</li>
+<li class="fragment">I had made a <a href="https://github.com/mex-fisheries/mex_ports/commit/f599235f81426c3778750effe24110f883ebee54">minor</a> mistake, which I fixed</li>
+</ul></li>
+<li class="fragment">Note how I simply overwrite the file</li>
+<li class="fragment">No need to have V1 (didn’t work) and V2 (works) in the same repo</li>
+<li class="fragment">If I ever want to go back to an earlier version, I <a href="https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a">can</a>!</li>
 </ul>
 </section>
 <section id="resources-for-learning-more" class="slide level2">
@@ -744,29 +696,77 @@ Juan Carlos Villaseñor-Derbez (JC)
 <section id="assignment-build-your-portfolio" class="slide level2">
 <h2>Assignment: Build Your Portfolio</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:60%;">
 <p><strong>Due next week</strong>:</p>
 <ol type="1">
-<li class="fragment">Create a GitHub repository for your course project</li>
-<li class="fragment">Set up proper file structure</li>
-<li class="fragment">Add at least one analysis script</li>
-<li class="fragment">Create a comprehensive README</li>
-<li class="fragment">Make at least 5 meaningful commits</li>
-<li class="fragment">Share your repository link</li>
+<li class="fragment">Create a GitHub repository for your portfolio (I suggest you call it <code>portfolio</code>)</li>
+<li class="fragment">Create a <code>README.md</code> file</li>
+<li class="fragment">Update your <code>.gitignore</code> file</li>
+<li class="fragment">Make at least 2 meaningful commits</li>
+<li class="fragment">Share your repository link via Canvas</li>
 </ol>
-</div><div class="column" style="width:60%;">
+</div><div class="column" style="width:40%;">
 <p><strong>Grading criteria</strong>:</p>
 <ul>
-<li class="fragment">Repository organization and structure</li>
-<li class="fragment">Quality of commit messages</li>
-<li class="fragment">Documentation and README</li>
-<li class="fragment">Code quality and comments</li>
-<li class="fragment">Regular commits throughout the week</li>
+<li class="fragment">Repository has a <code>README.d</code> and a <code>.gitignore</code> file</li>
+<li class="fragment">There are clear commit messages</li>
 </ul>
 </div></div>
 <div class="fragment">
 <p><strong>Remember</strong>: Version control is a skill that gets better with practice. Start using Git for everything!</p>
 </div>
+</section></section>
+<section>
+<section id="extra-slides" class="title-slide slide level1 center">
+<h1>Extra slides</h1>
+
+</section>
+<section id="essential-git-commands" class="slide level2">
+<h2>Essential Git Commands</h2>
+<p>We can do most things in RStudio, but you should know:</p>
+<div class="fragment">
+<ul>
+<li class="fragment">Getting started
+<ul>
+<li class="fragment"><code>git init</code>: Create a new repository</li>
+<li class="fragment"><code>git clone</code>: Copy a repository from remote to local</li>
+</ul></li>
+<li class="fragment">Daily workflow
+<ul>
+<li class="fragment"><code>git status</code>: See what’s changed</li>
+<li class="fragment"><code>git add</code>: Stage changes for commit</li>
+<li class="fragment"><code>git commit</code>: Save changes with a message</li>
+</ul></li>
+<li class="fragment">Connecting with GitHub
+<ul>
+<li class="fragment"><code>git push</code>: Upload changes to remote repository</li>
+<li class="fragment"><code>git pull</code>: Download changes from remote repository</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="github-workflows" class="slide level2">
+<h2>GitHub Workflows</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>By yourself</p>
+<ul>
+<li class="fragment"><strong>Clone</strong>: Download the repository to your computer</li>
+<li class="fragment"><strong>Commit</strong>: Make and save your changes</li>
+<li class="fragment"><strong>Push</strong>: Upload your changes to GitHub</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p>In a group</p>
+<ul>
+<li class="fragment"><strong>Clone</strong>: Download the repository to your computer</li>
+<li class="fragment"><strong>Branch</strong>: Create a separate line of development</li>
+<li class="fragment"><strong>Commit</strong>: Make and save your changes</li>
+<li class="fragment"><strong>Push</strong>: Upload your changes to GitHub</li>
+<li class="fragment"><strong>Pull Request</strong>: Propose changes to the original repository</li>
+<li class="fragment"><strong>Review</strong>: Get feedback and approval from collaborators</li>
+<li class="fragment"><strong>Merge</strong>: Integrate approved changes into the main project</li>
+</ul>
+</div></div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>

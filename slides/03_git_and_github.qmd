@@ -37,8 +37,9 @@ subtitle: "Keeping track of your code with Git and GitHub"
 
 - Career advancement: Version control is a required skill in data science
   - Example job postings [industry](https://jobs.schmidtmarine.org/companies/global-fishing-watch/jobs/35650809-data-scientist-vessel-tracking-and-behavior-remote), [academia](https://jobs.chronicle.com/job/37833047/post-doctoral-fellow-plant-ecology/), and [government](https://nmfs-opensci.github.io/GitHub-Guide/)
-- Collaboration: Work with others without breaking each other's code
+- Collaboration: Work with others without breaking their code
 - Reproducibility: Essential for scientific integrity / managing the real world
+- Maintain versions through time
 - Backup & recovery: Never lose your work again
 - Portfolio building: Showcase your projects to employers
 
@@ -46,10 +47,10 @@ subtitle: "Keeping track of your code with Git and GitHub"
 ## The Problem: Research can be chaotic
 
 - File naming: `analysis_final_v2_really_final_USE_THIS_ONE.R`
-  - (And the filenames contained might look even worse)
+  - (And the filenames loaded therein might look even worse)
 - Lost work: "Where did I put that working version?"
 - Collaboration conflicts: "Who changed what and when?"
-- Reproducibility failures: "It worked on my computer!"
+- Reproducibility failures: "Why do we get different results?"
 - Publication delays: "I can't reproduce my own results"
 
 
@@ -61,18 +62,18 @@ Research that can be repeated by others using the same data and methods
 
 **Key Components:**
 
-- Data: Raw, processed, and metadata
-- Code: Scripts, functions, and workflows  
-- Documentation: Methods, assumptions, and decisions
+- **Data:** Raw, processed, and metadata
+- **Code:** Scripts, functions, and workflows  
+- **Documentation:** Methods, assumptions, and decisions
 - Environment: Software versions and dependencies
-- Results: Outputs, tables, figures
+- **Results:** Outputs, tables, figures
 
 
 ## The Reproducibility Crisis
 
 - 70% of researchers have tried and failed to reproduce another scientist's experiments [@Baker2016-aa]
 - 50% of researchers have failed to reproduce their own experiments [@Baker2016-aa]
-- $28 billion wasted annually on irreproducible preclinical research [@Freedman2015-aa]
+- $28 billion wasted annually on irreproducible pre-clinical research [@Freedman2015-aa]
 - Environmental science is not immune to these issues
 
 
@@ -82,7 +83,7 @@ Research that can be repeated by others using the same data and methods
 
 :::: {.columns}
 
-::: {.column width='40%'}
+::: {.column width='50%'}
 **Without version control**:
 
 - Multiple versions of scripts with unclear differences
@@ -91,7 +92,7 @@ Research that can be repeated by others using the same data and methods
 - Collaboration becomes chaotic
 :::
 
-::: {.column width='60%'}
+::: {.column width='50%'}
 **With version control**:
 
 - Clear history of all changes
@@ -102,11 +103,33 @@ Research that can be repeated by others using the same data and methods
 
 ::::
 
+## My ~~drawer~~ _folder_ of shame
 
+. . .
 
+![](img/messy_project_sample.png)
+. . .
 
+- Who did what?
+- When?
+- Why?
 
-## File Structure Fundamentals
+# Organizing your projects
+
+## File vs path
+
+Folder $\neq$ file
+
+- Folder is an address (where in your computer does this file live?)
+- File name is the actual file
+- When reading / writing data from R, we must specify where the file lives
+
+. . .
+
+- Folders are represented as `my_folder/`
+- Files always have an `.extension`, which tells us the type of file
+
+## Project Structure Fundamentals
 
 :::{.callout-important}
 Good file organization is the foundation of reproducible research
@@ -114,16 +137,16 @@ Good file organization is the foundation of reproducible research
 
 **Principles**:
 
-- Consistency: Use the same structure across projects
 - Clarity: Names should be self-explanatory
 - Separation: Keep raw data, processed data, and outputs separate
-- Documentation: Include README files and metadata
+- Consistency: Respect folder structure
+- **Documentation:** Include README files and metadata
 
 
 ## Recommended Project Structure
 
 ```
-project_name/
+cool_project/
 ├── data/
 │   ├── raw/           # Original, unmodified data
 │   ├── processed/     # Cleaned, transformed data
@@ -134,10 +157,10 @@ project_name/
 │   └── 03_contents/
 ├── results/
 │   ├── figures/
-│   ├── tables/
-├── docs/              # Documents
-├── slides/            # Slides
-├── README.md          # Project overview
+│   └── tables/
+├── docs/              # Documents (optional)
+├── slides/            # Slides (optional)
+├── README.md          # Project overview (MANDATORY)
 └── .gitignore         # Files to exclude from version control
 ```
 
@@ -173,6 +196,8 @@ project_name/
 
 Sometimes: include dates (e.g. `data_2024_01_15.csv`) 
 
+# Version control 101
+
 ## What is Version Control?
 
 A system that tracks changes to files over time
@@ -183,18 +208,6 @@ A system that tracks changes to files over time
 - A detailed history book of your project
 - A safety net for your work
 - A collaboration tool for teams
-
-## An example
-
-- [`mex_ports` repository](https://github.com/mex-fisheries/mex_ports)
-  - I [created](https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a) a new R script on August 1st
-  - Emma (student intern) [worked](https://github.com/mex-fisheries/mex_ports/commits/main/) on other files in the repo Aug 5 - Aug 11
-  - Emma was having trouble reading data I had created
-  - I had made a [minor](https://github.com/mex-fisheries/mex_ports/commit/f599235f81426c3778750effe24110f883ebee54) mistake, which I fixed
-
-- Note how I simply overwrite the file
-- No need to have V1 (didn't work) and V2 (works) in the same repo
-- If I ever want to go back to an earlier version, I [can](https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a)!
 
 ## Git vs GitHub
 
@@ -229,10 +242,8 @@ A system that tracks changes to files over time
 **Key Features**:
 
 - Free and open source: No licensing costs
-- Fast: Most operations are local
-- Branching: Work on features without affecting main code
-- Merging: Combine changes from different sources
-- The Most Popular Version Control System
+- Ample documentation
+- The most popular version control system
 
 # Four Git concepts
 
@@ -244,7 +255,7 @@ Commit
 
 Push / Pull
 
-## Git Concepts: The Repository
+## Git Concepts: _Repository_
 
 **Repository (repo)**: A directory containing your project and its complete history
 
@@ -281,7 +292,7 @@ Push / Pull
 :::
 
 
-## Git Concepts: Cloning
+## Git Concepts: _Cloning_
 
 **Cloning**: The process of bringing a repo from the remote to local for _the first time_
 
@@ -295,7 +306,7 @@ Push / Pull
 - Cloning is just GitHub's way of referring to "download and connect remote to local"
 
 
-## Git Concepts: Commits
+## Git Concepts: _Commit_
 
 **Commit**: A snapshot of your project at a specific point in time
 
@@ -320,7 +331,8 @@ Push / Pull
 . . .
 
 ![](img/commit_example.png){.absolute top="50" right="10"}
-## Git Concepts: Push / Pull
+
+## Git Concepts: _Push / Pull_
 
 Refers to uploading and downloading changes to and from the remote
 
@@ -349,24 +361,6 @@ Refers to uploading and downloading changes to and from the remote
 **Push** the changes up to GitHub
 
 **This cycle creates a timeline of your project's development**
-
-
-## Git Commands: The Essentials
-
-We can do most things in RStudio, but you should know:
-
-. . .
-
-- Getting started
-  - `git init`: Create a new repository
-  - `git clone`: Copy a repository from remote to local
-- Daily workflow
-  - `git status`: See what's changed
-  - `git add`: Stage changes for commit
-  - `git commit`: Save changes with a message
-- Connecting with GitHub
-  - `git push`: Upload changes to remote repository
-  - `git pull`: Download changes from remote repository
 
 ## When / What to commit
 
@@ -407,71 +401,6 @@ We can do most things in RStudio, but you should know:
 - Integration: Connects with other tools and services
 - **Portfolio: Showcase your work to potential employers**
 
-
-## GitHub Workflows
-
-:::: {.columns}
-
-::: {.column width='50%'}
-By yourself
-
-- **Clone**: Download the repository to your computer
-- **Commit**: Make and save your changes
-- **Push**: Upload your changes to GitHub
-
-:::
-
-
-
-::: {.column width='50%'}
-In a group
-
-- **Clone**: Download the repository to your computer
-- **Branch**: Create a separate line of development
-- **Commit**: Make and save your changes
-- **Push**: Upload your changes to GitHub
-- **Pull Request**: Propose changes to the original repository
-- **Review**: Get feedback and approval from collaborators
-- **Merge**: Integrate approved changes into the main project
-:::
-
-::::
-
-
-## Best Practices for Research Repositories
-
-:::: {.columns}
-
-::: {.column width='50%'}
-**Structure**:
-
-- Clear README with project description and documentation
-- Well-organized file structure
-
-**Content**:
-
-- Include raw and processed data
-- Include all your code
-
-:::
-
-::: {.column width='50%'}
-**Collaboration**:
-
-- Use descriptive commit messages
-- Review code before merging
-- Maintain consistent coding standards
-- Document decisions and assumptions
-
-**Files that you don't want on GitHub:**
-
-- Files larger than 100 MB
-- Files containing passwords / authentication tokens
-- Binary files (.docx, .xlsx, .ppt...)
-:::
-
-::::
-
 ## GitHub vs DropBox/Box/GoogleDrive...
 
 - Designed for the intended task
@@ -479,12 +408,18 @@ In a group
 - Allows multiple versions of same project to evolve in parallel
   - e.g. Your pipeline is done, mine isn't yet
 
-## Questions & Discussion
+## An example
 
-- How might version control help in your research?
-- What challenges do you anticipate with Git?
-- How can we ensure reproducibility in environmental science?
-- What are the benefits of open science and sharing code?
+- [`mex_ports` repository](https://github.com/mex-fisheries/mex_ports)
+  - I [created](https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a) a new R script on August 1st
+  - Emma (student intern) [worked](https://github.com/mex-fisheries/mex_ports/commits/main/) on other files in the repo Aug 5 - Aug 11
+  - Emma was having trouble reading data I had created
+  - I had made a [minor](https://github.com/mex-fisheries/mex_ports/commit/f599235f81426c3778750effe24110f883ebee54) mistake, which I fixed
+
+- Note how I simply overwrite the file
+- No need to have V1 (didn't work) and V2 (works) in the same repo
+- If I ever want to go back to an earlier version, I [can](https://github.com/mex-fisheries/mex_ports/commit/8c4a903e66d331b47eff18119b142ac500e1076a)!
+
 
 ## Resources for Learning More
 
@@ -541,26 +476,22 @@ Instructions available [here](https://jcvdav.github.io/EVR_628/docs/03_installin
 
 :::: {.columns}
 
-::: {.column width='40%'}
+::: {.column width='60%'}
 **Due next week**:
 
-1. Create a GitHub repository for your course project
-2. Set up proper file structure
-3. Add at least one analysis script
-4. Create a comprehensive README
-5. Make at least 5 meaningful commits
-6. Share your repository link
+1. Create a GitHub repository for your portfolio (I suggest you call it `portfolio`)
+2. Create a `README.md` file
+3. Update your `.gitignore` file
+4. Make at least 2 meaningful commits
+5. Share your repository link via Canvas
 
 :::
 
-::: {.column width='60%'}
+::: {.column width='40%'}
 **Grading criteria**:
 
-- Repository organization and structure
-- Quality of commit messages
-- Documentation and README
-- Code quality and comments
-- Regular commits throughout the week
+- Repository has a `README.d` and a `.gitignore` file
+- There are clear commit messages
 :::
 
 ::::
@@ -569,5 +500,51 @@ Instructions available [here](https://jcvdav.github.io/EVR_628/docs/03_installin
 
 **Remember**: Version control is a skill that gets better with practice. Start using Git for everything! 
 
+
+# Extra slides
+
+## Essential Git Commands
+
+We can do most things in RStudio, but you should know:
+
+. . .
+
+- Getting started
+  - `git init`: Create a new repository
+  - `git clone`: Copy a repository from remote to local
+- Daily workflow
+  - `git status`: See what's changed
+  - `git add`: Stage changes for commit
+  - `git commit`: Save changes with a message
+- Connecting with GitHub
+  - `git push`: Upload changes to remote repository
+  - `git pull`: Download changes from remote repository
+  
+## GitHub Workflows
+
+:::: {.columns}
+
+::: {.column width='50%'}
+By yourself
+
+- **Clone**: Download the repository to your computer
+- **Commit**: Make and save your changes
+- **Push**: Upload your changes to GitHub
+
+:::
+
+::: {.column width='50%'}
+In a group
+
+- **Clone**: Download the repository to your computer
+- **Branch**: Create a separate line of development
+- **Commit**: Make and save your changes
+- **Push**: Upload your changes to GitHub
+- **Pull Request**: Propose changes to the original repository
+- **Review**: Get feedback and approval from collaborators
+- **Merge**: Integrate approved changes into the main project
+:::
+
+::::
 
 ## References
