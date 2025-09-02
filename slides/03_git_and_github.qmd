@@ -200,7 +200,24 @@ What's missing?
 
 . . .
 
-Sometimes: include dates (e.g. `data_2024_01_15.csv`) 
+Sometimes: include dates (e.g. `data_2024_01_15.csv`)
+
+## Naming conventions
+
+```{r}
+#| eval: false
+#| code-fold: false
+#| code-line-numbers: "1|3|5|7|9"
+i_use_snake_case                   # This is my preference
+
+otherPeopleUseCamelCase            # This sometimes works
+
+some.people.use.periods            # This is dangerous, especially in python
+
+And_aFew.People_RENOUNCEconvention # You need help
+
+ALL_CAPS                           # Reserved for super important stuff
+```
 
 # Version control 101
 
