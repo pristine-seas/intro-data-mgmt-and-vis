@@ -493,6 +493,34 @@ Instructions available [here](https://jcvdav.github.io/EVR_628/docs/03_installin
 - "commit" and "push"
 :::
 
+## GitHub Workflows
+
+:::: {.columns}
+
+::: {.column width='50%'}
+By yourself
+
+- **Clone**: Download the repository to your computer
+- **Commit**: Make and save your changes
+- **Push**: Upload your changes to GitHub
+
+:::
+
+::: {.column width='50%'}
+In a group
+
+- **Clone**: Download the repository to your computer
+- **Branch**: Create a separate line of development
+- **Commit**: Make and save your changes
+- **Push**: Upload your changes to GitHub
+- **Pull Request**: Propose changes to the original repository
+- **Review**: Get feedback and approval from collaborators
+- **Merge**: Integrate approved changes into the main project
+:::
+
+::::
+
+
 # Assignment
 
 ## Assignment: Build Your Portfolio
@@ -503,7 +531,7 @@ Instructions available [here](https://jcvdav.github.io/EVR_628/docs/03_installin
 **Due next week**:
 
 1. Create a GitHub repository for your portfolio (I suggest you call it `portfolio`)
-2. Create a `README.md` file
+2. Add information to your `README.md` file
 3. Update your `.gitignore` file
 4. Make at least 2 meaningful commits
 5. Share your repository link via Canvas
@@ -543,31 +571,4 @@ We can do most things in RStudio, but you should know:
   - `git push`: Upload changes to remote repository
   - `git pull`: Download changes from remote repository
   
-## GitHub Workflows
-
-:::: {.columns}
-
-::: {.column width='50%'}
-By yourself
-
-- **Clone**: Download the repository to your computer
-- **Commit**: Make and save your changes
-- **Push**: Upload your changes to GitHub
-
-:::
-
-::: {.column width='50%'}
-In a group
-
-- **Clone**: Download the repository to your computer
-- **Branch**: Create a separate line of development
-- **Commit**: Make and save your changes
-- **Push**: Upload your changes to GitHub
-- **Pull Request**: Propose changes to the original repository
-- **Review**: Get feedback and approval from collaborators
-- **Merge**: Integrate approved changes into the main project
-:::
-
-::::
-
 ## References

@@ -75,7 +75,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Code style and documentation
 - Classes, objects, variables, values
 - Indexing and subsetting vectors and data frames
-- Useful functions in `base` and `stats`
+- Useful functions in `{base}` and `{stats}`
 
 ## Week 5 (Sep 15-19)
 **Scaling up your code and visualizations** | slides
@@ -83,8 +83,8 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Themes with ggplot2
 - Colorblindness, IPCC’s visual style guide, and the [`viridis`](https://github.com/sjmgarnier/viridis/) package
 - Summarizing data on the fly (`stat_summary`, `geom_smooth`)
-- Plot extensions (`cowplot`, `GGally`, `ggrepel`)
-- Animated plots (`ggplotly`)
+- Plot extensions (`{cowplot}`, `{GGally}`, `{ggrepel}`)
+- Animated plots (`{ggplotly}`)
 - Creating documents and presentations with Quarto
 
 ---

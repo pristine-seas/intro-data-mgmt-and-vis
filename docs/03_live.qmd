@@ -30,7 +30,7 @@ which git
 1. Go to [github.com](https://github.com) and sign in
 2. Click the "+" icon in the top right
 3. Select "New repository"
-4. Choose a descriptive name: `my_first_repo`
+4. Choose a simple name: `hellow_world`
 5. Add a description: "Learning how to use GitHub"
 6. Make it **Public**
 7. Check "Add a README file"
@@ -64,8 +64,8 @@ environmental-data-project/
 │   ├── 02_analysis/
 │   └── 03_content/
 ├── results/
-│   ├── figures/
-│   └── tables/
+│   ├── img/
+│   └── tab/
 ├── docs/
 └── README.md
 ```
@@ -79,9 +79,12 @@ EVR628tools::create_dirs()
 ```
 
 
-## Step 4: Create / Modify the .gitignore File
+## Step 4: Create / Modify the global and project .gitignore Files
 
-Create a `.gitignore` file to exclude unnecessary files:
+1. We will use the `usethis::git_vaccinate()`
+2. Look at the documentation using `?usethis::git_vaccinate()`
+3. Call `usethis::git_vaccinate()`
+4. Create a `.gitignore` file to exclude unnecessary files:
 
 ```gitignore
 # R specific
@@ -100,16 +103,24 @@ Thumbs.db
 ## Step 5: Add Your First "Analysis"
 
 Create a simple R script in `scripts/analysis/`:
+
 ```{r}
 #| eval: false
 #| code-fold: false
+#| error: true
 # Example: environmental_data_analysis.R
 library(EVR628tools)
 library(tidyverse)
 
+data(data_lionfish)
+
 # Create a simple plot
-p <- ggplot(data_milton, aes(x = iso_time, y = wind_speed)) +
-  geom_point()
+p <- ggplot(data_lionfish,
+            aes(x = total_length_mm, y = total_weight_gr)) +
+  geom_point() +
+  facet_wrap(~site)
+
+p
 
 # Save plot
 ggsave(plot = p, filename = "results/figures/first_plot.png") # <-- This shouldn't work, why?
@@ -126,10 +137,8 @@ Create a comprehensive README.md
 Analysis of environmental data for EVR 628 course.
 
 ## Project Structure
-- `data/`: Raw and processed data files
 - `scripts/`: R scripts for analysis
 - `results/`: Output figures and tables
-- `docs/`: Documentation
 
 ## Author
 [Your Name and email?]
@@ -137,15 +146,15 @@ Analysis of environmental data for EVR 628 course.
 
 ## Step 7: Stage-Commit-Push
 
-- Stage, commit your R script
-- Push
-- Stage, commit your README
-- Stage, commit your plot
-- Push
+1. Stage, commit your R script
+2. Push
+3. Stage, commit your README
+4. Stage, commit your plot
+5. Push
 
 # Now lets colaborate
 
-## Adding someone to your repo
+## 1) Simple collaboration
 
 - Find a partner
 - Decide who will be partner A and who will be partner B
@@ -168,32 +177,72 @@ Analysis of environmental data for EVR 628 course.
 - Give partner A your username
 - Check your email
 - Go to the repository
-- Repeat the cloning process (in a different location)
-- Make one change to partner A's graph
-- Stage the file, then commit, and push
+- Repeat the cloning process:
+    - You will have a new project
+    - Use a different location (I suggest desktop)
+- Make one change to partner A's figure, and update the exported image
+- Stage the files, then commit, and push
 - Tell partner A you are done
 :::
 
 ::::
 
+Changes to make by B:
+
+```{r}
+#| eval: false
+#| code-fold: false
+#| error: true
+#| code-line-numbers: "6"
+# Example: environmental_data_analysis.R
+library(EVR628tools)
+library(tidyverse)
+
+data(data_lionfish)
+
+# Create a simple plot
+p <- ggplot(data_lionfish,
+            aes(x = total_length_mm, y = total_weight_gr,
+                ### B adds color by depth
+                color = depth_m)) +
+  geom_point() +
+  facet_wrap(~site) +
+  ### B modifies default colors
+  scale_color_gradientn(colors = palette_IPCC(var = "prec", type = "seq")) +
+  ### B adds labels
+  labs(x = "Total length (mm)",
+       y = "Total weight (mm)",
+       color = "Depth (m)") +
+  ### B adds theme
+  theme_bw()
+
+p
+
+# Save plot
+ggsave(plot = p, filename = "results/figures/first_plot.png") # <-- This shouldn't work, why?
+```
 
 
-## Branching and pull requesting
+- Now switch who is A and who is B and repeat
 
-:::: {.columns}
+## 2) Branching and pull requesting
 
-::: {.column width='50%'}
-### Parter A
-
+:::{.callout-important}
+Partner **A** works on Partner **B's** project, and _vice versa_
 :::
 
-::: {.column width='50%'}
-### Parter B
-
-:::
-
-::::
-
+0. **Make sure you are in your partner's site**
+1. In your Git pane, click on "New Branch"
+2. Create a new branch, I suggest you call it `dev_your_name`
+3. Make a change to the figure's code, then stage and commit
+4. Export the figure, then stage -> commit -> push
+5. Go to the project's repo on GitHub.com
+6. Make sure your new branch and changes are there
+7. Go to the Pull Requests tab
+8. Start a new pull request (from `dev_your_name` into `main`)
+9. Explain what the pull request does and submit it
+10. Your partner will now get an email
+11. Partner can incorporate pull request as needed
 
 
 
