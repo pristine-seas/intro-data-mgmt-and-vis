@@ -17,3 +17,21 @@ data.frame(colors <- c("red", "green"),
            letters <- c("A", "B"))
 ```
 
+
+# Pipelines
+
+```{r}
+data_lionfish |> 
+  _[data_lionfish$site == "Canones", ] |>
+  _[data_lionfish$size_class == "large", ] |> 
+  lm(log(total_weight_gr) ~ log(total_length_mm) , data = _) |>
+  summary()
+```
+
+```{r}
+data_milton |> 
+  _[ , ] |> 
+  cor.test(formula =  ~ wind_speed + pressure, data = _)
+```
+
+

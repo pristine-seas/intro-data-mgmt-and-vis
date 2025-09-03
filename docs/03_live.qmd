@@ -19,36 +19,51 @@ The overall flow:
 4. Make your first commit
 5. Push to GitHub
 
-## Step 0: Make sure you have git, and an account and all that
+## Step 0: Check set up
 
-```bash
+1. Make sure you have git. In a terminal (Mac) or Git bash (Windows) run:
+
+```{bash}
 which git
+```
+
+2. Make sure your have introduced yourself to git. To check for your configuration, use this in a terminal:
+
+```{bash}
+git config -l
+```
+
+3. Update `{EVR628tools`}:
+
+```r
+remotes::install_github("jcvdav/EVR628tools")
 ```
 
 ## Step 1: Create a GitHub Repository
 
 1. Go to [github.com](https://github.com) and sign in
-2. Click the "+" icon in the top right
-3. Select "New repository"
+2. Click the "`+`" icon in the top right
+3. Select "_New repository_"
 4. Choose a simple name: `hellow_world`
-5. Add a description: "Learning how to use GitHub"
+5. Add a description: "_Learning how to use GitHub_"
 6. Make it **Public**
-7. Check "Add a README file"
+7. Check "_Add a README file_"
 8. Select gitignore tailored to R
-9. Click "Create repository"
+9. Click "_Create repository_"
 
 ## Step 2: Clone to Your Computer
 
 **In RStudio**:
-1. Go to File → New Project
+
+1. Top-right corner → New Project
 2. Choose "Version Control"
 3. Select "Git"
 4. Paste your repository URL
-5. Choose where to save it locally
-  - Not on iDrive, not on DropBox, not on GoogleDrive...
+5. Choose where to save it locally (Not on iDrive, not on DropBox, not on GoogleDrive...)
 6. Click "Create Project"
 7. Verify that you now have a `README.md` and `.gitignore` files
 
+\clearpage
 ## Step 3: Set Up Your Project Structure
 
 To create these folders in your repository:
@@ -86,7 +101,7 @@ EVR628tools::create_dirs()
 3. Call `usethis::git_vaccinate()`
 4. Create a `.gitignore` file to exclude unnecessary files:
 
-```gitignore
+```bash
 # R specific
 .Rhistory
 .RData
@@ -100,18 +115,24 @@ Thumbs.db
 
 **Note**: You can always add specific files with `git add -f filename`, edit the `.gitignore` file or use the git pane
 
-## Step 5: Add Your First "Analysis"
 
-Create a simple R script in `scripts/analysis/`:
+\clearpage
+## Step 5: Add Your First "content"
+
+- Create a simple R script in `scripts/content/`
+- Choose one of the data sets in `EVR628tools`
+- Spend some time reading the documentation
+- Visualize it
 
 ```{r}
-#| eval: false
+#| results: false
 #| code-fold: false
 #| error: true
-# Example: environmental_data_analysis.R
+# Load packages
 library(EVR628tools)
 library(tidyverse)
 
+# Lod data
 data(data_lionfish)
 
 # Create a simple plot
@@ -123,7 +144,8 @@ p <- ggplot(data_lionfish,
 p
 
 # Save plot
-ggsave(plot = p, filename = "results/figures/first_plot.png") # <-- This shouldn't work, why?
+# The above shouldn't work, why?
+ggsave(plot = p, filename = "results/figures/first_plot.png")
 ```
 
 ## Step 6: Update Your README
@@ -134,13 +156,16 @@ Create a comprehensive README.md
 # My first repo
 
 ## Description
+
 Analysis of environmental data for EVR 628 course.
 
 ## Project Structure
+
 - `scripts/`: R scripts for analysis
 - `results/`: Output figures and tables
 
 ## Author
+
 [Your Name and email?]
 ```
 
@@ -163,26 +188,28 @@ Analysis of environmental data for EVR 628 course.
 
 ::: {.column width='50%'}
 ### Parter A
-- Go to settings -> collaborators -> Add collaborator
-- Add partner B's username and send an invitation
-- Wait until B tells you they are done (~5 minutes)
 
-...
+1. Go to settings -> collaborators -> Add collaborator
+2. Add partner B's username and send an invitation
+3. Wait until B tells you they are done.
 
-- Pull
+... wait ...
+
+4. Pull
 :::
 
 ::: {.column width='50%'}
 ### Parter B
-- Give partner A your username
-- Check your email
-- Go to the repository
-- Repeat the cloning process:
-    - You will have a new project
-    - Use a different location (I suggest desktop)
-- Make one change to partner A's figure, and update the exported image
-- Stage the files, then commit, and push
-- Tell partner A you are done
+
+1. Give partner A your username
+2. Check your email
+3. Go to the repository
+4. Repeat the cloning process:
+  - You will have a new project
+  - Use a different location (I suggest desktop)
+5. Make one change to partner A's figure, and update the exported image
+6. Stage the files, then commit, and push
+7. Tell partner A you are done
 :::
 
 ::::
@@ -190,9 +217,7 @@ Analysis of environmental data for EVR 628 course.
 Changes to make by B:
 
 ```{r}
-#| eval: false
 #| code-fold: false
-#| error: true
 #| code-line-numbers: "6"
 # Example: environmental_data_analysis.R
 library(EVR628tools)
@@ -217,13 +242,12 @@ p <- ggplot(data_lionfish,
   theme_bw()
 
 p
-
-# Save plot
-ggsave(plot = p, filename = "results/figures/first_plot.png") # <-- This shouldn't work, why?
 ```
 
 
 - Now switch who is A and who is B and repeat
+
+\clearpage
 
 ## 2) Branching and pull requesting
 
