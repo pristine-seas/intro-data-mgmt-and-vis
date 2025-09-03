@@ -63,6 +63,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Other links: 
   - Pereira-Braga et al ["Not just for programmers: How GitHub can accelerate collaborative and reproducible research in ecology and evolution"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14108) Methods in Ecology and Evolution
   - [Happy Git with R](https://happygitwithr.com/)
+- [Link](https://jcvdav.github.io/EVR_628/docs/03_live.html) to document from live coding sessions
 
 ---
 
