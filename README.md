@@ -77,10 +77,10 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Classes, objects, variables, values
 - Indexing and subsetting vectors and data frames
 - Useful functions in `{base}` and `{stats}`
-
 - Assigned readings: 
   - R4DS [CH2: Worflow: basics](https://r4ds.hadley.nz/workflow-basics.html)
   - R4DS [CH4: Workflow: code style](https://r4ds.hadley.nz/workflow-style.html)
+- [Link](https://jcvdav.github.io/EVR_628/docs/04_live.html) to document from live coding sessions
 
 ## Week 5 (Sep 15-19)
 **Scaling up your code and visualizations** | slides
