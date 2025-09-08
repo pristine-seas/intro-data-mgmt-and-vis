@@ -10,6 +10,12 @@ library(EVR628tools)
 library(tidyverse)
 ```
 
+## So Far
+
+- You've trusted me and executed code as instructed
+- I didn't give you much background on what you were doing
+- Clearly something clicked; you are still here
+- Let's give you a bit more background
 
 ## Learning Objectives
 
@@ -21,13 +27,6 @@ library(tidyverse)
 - Explain the importance of code style and documentation
 - Use the `pipe` operator
 :::
-
-## So Far
-
-- You've trusted me and executed code as instructed
-- I didn't give you much background on what you were doing
-- Clearly something clicked; you are still here
-- Let's give you a bit more background
 
 # "Objects" and "Classes"
 
@@ -81,6 +80,15 @@ as.numeric("a") # Character to numeric
 :::
 
 ::::
+
+## Object _classes_
+
+Classes in R map to the types of data we during Week 2:
+
+- _numerical_ data in R are of _class_ `numeric`
+- _cetegorical_ data in R are of _class_ `character`
+- _ordinal_ data in R are a special _class_ of `character` called `factor`
+  - Remember when we ordered the axis label in a ggplot using `fct_infreq()`?
 
 ## Creating "objects"
 
@@ -370,9 +378,6 @@ data.frame(colors = c("red", "green", "blue", "orange"),
 ::::
 
 
-
-
-
 ## Combining Vectors of Different Classes
 
 Build a data.frame and save it to an object
@@ -399,6 +404,48 @@ ncol(my_data)
 
 dim(EVR628tools::data_lionfish)
 ```
+
+## data.frames are step 1 in tidy data
+
+They allow us to adhere to the standards described in Week 2:
+
+- Each column will be a _variable_
+- Each row is an _observation_
+- Cells contain _values_
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='50%'}
+Tidy data
+```{r}
+#| echo: false
+tidy_turtles <- data.frame(spp = c("C. mydas", "C. caretta"),
+           sex = c("Female", "Male"),
+           carapace_length = c(23, 24))
+
+tidy_turtles
+```
+
+:::
+
+::: {.column width='50%'}
+Not tidy data
+```{r}
+#| echo: false
+not_tidy_turtles <- tidy_turtles |> 
+  t() %>%
+  as.data.frame() |> 
+  magrittr::set_colnames(value = c("Org 1", "Org 2")) |> 
+  rownames_to_column(var = "variable")
+
+not_tidy_turtles
+```
+
+:::
+
+::::
 
 
 ## Tibbles vs data.frame
@@ -444,11 +491,9 @@ data_lionfish
 ```
 
 
+## Indexing and subsetting objects with `[]`
 
-
-## Indexing objects with `[]`
-
-Indexing = subsetting or extracting elements within an object
+Accessing elements within an object based on their position
 
 **Vectors**
 
@@ -484,7 +529,7 @@ colors[2:4] # Extract elements 2,3, 4
 ```
 
 
-## Indexing objects with `[]`
+## Indexing and subsetting objects with `[]`
 
 **data.frames and tibbles**
 
@@ -547,10 +592,11 @@ my_data[ , 1]
 my_data[ , 1]
 ```
 
-## Indexing objects with `$` and `[ ]`
+## Extracting data.frame columns with `$`
 
 - Remember data.frames and tibbles are just collection of vectors
-- You can get the vector out using `$`
+- You can get the variable (column) out as a vector using `$`
+- This is why we like tidy data
 
 . . .
 
@@ -560,7 +606,6 @@ ids <- data_lionfish$id
 ```
 
 - And then use `[]` on the resulting vector
-
 - For example, extract the first 10 ids
 
 . . .
