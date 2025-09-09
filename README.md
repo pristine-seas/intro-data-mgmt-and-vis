@@ -84,8 +84,11 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 ## Week 5 (Sep 15-19)
 **Scaling up your code and visualizations** | slides
-- Refresh on layers, geometries, and aesthetics in ggplot2
+- Refresh on layers: aesthetics and geometries
 - Themes with ggplot2
+- Statistical transformations
+- Position adjustments
+- Coordinate systems
 - Colorblindness, IPCC’s visual style guide, and the [`viridis`](https://github.com/sjmgarnier/viridis/) package
 - Summarizing data on the fly (`stat_summary`, `geom_smooth`)
 - Plot extensions (`{cowplot}`, `{GGally}`, `{ggrepel}`)

@@ -1,15 +1,214 @@
 ---
-title: "EVR 628 - Intro to Environmental Data Science"
 subtitle: "Scaling up your code and visualizations"
 ---
 
-## `stat_summary`
+```{r}
+#| echo: false
+#| message: false
+
+library(tidyverse)
+theme_set(
+  theme_bw(base_size = 12)
+)
+```
+
+
+# Review of `aes`thetics
+
+## Specifying `aes`thetics
+
+Defines how our graph connect to the data **our** our choices
+
+- `x`, `y` are the most common
+- `color`, `fill`, and `shape`
+- `size`
+- `linewidth`
+- `stroke`
+- `alpha`
+- `linetype`
+
+## Where do I specify the `aes`thetics?
+
+1. In `aes()` within `ggplot()`: apply from data to all _layers_
+2. In `aes()` within `geom_*()`: apply from data to _this layer_
+3. In `geom_*()`: apply manually to this _layer_
+4. In `ggplot()`: ggplot ignores it
+
+## Valid examples
+
+In `aes()` within `ggplot()`: apply from data to all _layers_
+
+```{r}
+#| message: false
+#| code-fold: false
+#| code-line-numbers: "6"
+#| fig-height: 4
+#| fig-width: 6
+library(EVR628tools)
+data("data_fishing")
+
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue, group = fishery,
+                     color = fishery)) +
+  geom_line() +
+  geom_point()
+```
+
+## Valid examples
+
+Inside `aes()` but in `geom_line()` only applies it to that layer
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue, group = fishery)) +
+  geom_line(aes(color = fishery)) +
+  geom_point()
+```
+
+
+## Valid examples
+
+Directly in `geom_line()` applies it manually to that layer
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue, group = fishery)) +
+  geom_line(color = "red") +
+  geom_point()
+```
+
+## Works, but not as intended
+
+Outside `aes()` in `ggplot()` is ignored
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue, group = fishery), 
+       color = "red") +
+  geom_line() +
+  geom_point()
+```
+
+
+## Works, but not as intended
+
+You used quotations inside `aes`, in which case you've created an character vector that applies to all layers
+
+```{r}
+#| message: false
+#| fig-height: 4
+#| fig-width: 6
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue, group = fishery, 
+                     color = "fishery")) +
+  geom_line() +
+  geom_point()
+```
+
+## Works, but not as intended
+
+You used quotations inside `aes`, in which case you've created an character vector that applies to this layers
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue)) +
+  geom_line(aes(color = "fishery")) +
+  geom_point()
+```
+
+## Fails
+
+Outside `aes()` in `ggplot()`
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| code-fold: false
+#| code-line-numbers: "3"
+#| error: true
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue)) +
+  geom_line(color = fishery) +
+  geom_point()
+```
+
+## Fails
+
+```{r}
+#| fig-height: 2
+#| fig-width: 6
+#| error: true
+#| code-fold: false
+#| code-line-numbers: "3"
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue)) +
+  geom_line(color = "fishery") +
+  geom_point()
+```
+
+## Details on shape, color, and fill
+
+```{r}
+#| echo: false
+library(tidyverse)
+data <- expand_grid(x = 1:6,
+                    y = 1:5) |> 
+  mutate(shape = 0:29) |> 
+  filter(shape <= 25)
+```
+
+
+```{r}
+#| code-line-numbers: "2"
+ggplot(data, aes(x = x, y = y, shape = factor(shape))) + 
+  geom_point(color = "darkred", fill = "steelblue", stroke = 1, size = 9) + 
+  scale_shape_manual(values = c(0:25)) +
+  geom_text(aes(label = shape), nudge_x = -0.25) +
+  theme_void() + 
+  coord_equal() +
+  theme(legend.position = "false")
+```
+
+## Example
+
+> Use `data_fishing` to create a scatterplot of catch (x-axis) vs value (y-axis), where the points are _triangles pointing up with a pink center and a black border_.
+
+```{r}
+#| code-line-numbers: "3"
+#| fig-height: 4
+#| fig-width: 6
+ggplot(data = data_fishing,
+       mapping = aes(x = catch, y = revenue)) +
+  geom_point(shape = 24, fill = "pink", color = "black", size = 4)
+```
+
 
 ## `geom_smooth`
+
+## `stat_summary`
+
+Show the relationship between production and value (*i.e.* the price) for each species
 
 ## `cowplot`
 
 ## `GGally`
 
 ## `ggplotly`
-

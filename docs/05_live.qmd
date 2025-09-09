@@ -1,0 +1,12 @@
+---
+title: "05_live"
+format: html
+---
+
+##
+
+```{r}
+ggplot(mpg) + 
+  geom_point(aes(x = displ, y = hwy, color = "blue"))
+```
+
