@@ -16,38 +16,52 @@ library(EVR628tools)
 library(tidyverse)
 ```
 
-# Set up
+# Exercise 1: Object Classes and Assignment
 
-1. Open R Studio and navigate to you EVR628 project
-2. Set up a code snippet for comments
+## Part A: Set up
+
+1. Open R Studio and navigate to your EVR628 project
+2. Set up a code snippet for a header
+
+```r
+################################################################################
+# title
+################################################################################
+#
+# Your Name Here
+# Your email here
+# date
+#
+# Description
+#
+################################################################################
+```
+
 3. Create a new R script and save it as `objects_and_classes.R`
-4. Add a comment at the top of your script with the date and title
+4. Use your new code snippet to add the header
 
-# Exercise 1: Object Classes and Assignment (15 minutes)
-
-## Part A: Create and Check Object Classes
+## Part B: Create and Check Object Classes
 
 In your R Script, create objects of different classes and check their types:
 
 1. A character object called `my_name` with your name
 2. A numeric object called `my_age` with your age (or any number, it doesn't have to be your age)
 3. A logical object called `is_student` with TRUE or FALSE
-
-Then, in the console, check the class of each object using `class()`
+4. Check the class of each object using `class()`
 
 ```{r}
 # My code will be here
 
 ```
 
-## Part B: Object Coercion
+## Part C: Object Coercion
 
 Let's see what happens when you try converting objects. In the R script, write and then execute code that will: 
 
-1. Convert your age to character using `as.character(my_age)`
-2. Convert TRUE to numeric using `as.numeric()`
-3. Try to convert `"hello"` to numeric - what happens?
-4. Use `|>` to build a code pipeline to:
+1. Convert your age to `character` using `as.character(my_age)`
+2. Convert `TRUE` to numeric using `as.numeric()`
+3. Try to convert `"hello"` to `numeric` - what happens?
+4. Advanced: Use `|>` to build a code pipeline to:
     a. Take your age
     b. Convert it to character
     c. Get it's class
@@ -57,17 +71,17 @@ Let's see what happens when you try converting objects. In the R script, write a
 
 ```
 
-# Exercise 2: Vectors and Operations (20 minutes)
+# Exercise 2: Vectors and Operations
 
 ## Part A: Create and Manipulate Vectors
 
 1. Clean you environment (use the broom icon)
 2. Create a numeric vector called `length_m` with values: 6, 4.1, 2.8, 5.5, 3.9, 5.8
-3. Create a character vector called `shark_species` with: Great White Shark, Lemon Shark, Bull Shark, Hammerhead Shark, Mako Shark, and Great White Shark (yes, again)
+3. Create a character vector called `shark_species` with: Great White Shark, Lemon Shark, Bull Shark, Hammerhead Shark, Mako Shark, and Great White Shark (yes, white shark again)
 4. How many _variables_ do you have in your environment?
-5. How many _observations_ do we have? Find the length of both vectors using `length()`
-6. How many _species_ do we have? (Hint, use `|>` to build a pipeline)
-7. Calculate the mean length using `mean()`
+5. How many length _observations_ do we have? Find the length of both vectors using `length()`
+6. How many unique _species_ do we have? (Hint, use `|>` to build a pipeline)
+7. Calculate the mean length of all sharks using `mean()`
 8. Find the maximum length using `max()`
 
 ```{r}
@@ -87,45 +101,44 @@ Let's see what happens when you try converting objects. In the R script, write a
 2. Extract shark species where maximum length is greater than 4 meters
 3. Create a logical vector showing which sharks have max length above 4 meters
 4. Assuming the values in `length_m` and `sharks_species` are ordered so that they match each other, find the shark species that is the largest
+5. Calculate the mean length for all creat whites sharks
 
 ```{r}
 # My code will be here
 
 ```
 
-## Part C (Extra): Another carrot: `rfishbase`
+---
 
-1. Install the package with: `install.packages("rfisbhase")`
-2. Use the `first_3` object to get the plausible scientific names of the sharks with `rfishbase::common_to_sci()`
-3. Save the results into an object called `shark_sci_names`
-4. What is the `class()` of `shark_sci_names`
+Likely pause here
 
-```{r}
-# My code will be here
+---
 
-```
-
---------------------------- Likely pause here ---------------------------
-
-# Exercise 3: Data Frames and Tibbles (15 minutes)
+# Exercise 3: Data Frames and Tibbles
 
 ## Part A: Estimate the effect of a Marine Protected Area on Biomass
 
-Create four objects containing:
+1. install an updated version of `EVR628tools`:
 
-1. The average biomass inside the MPA before it was protected
-2. The average biomass inside the MPA after it was protected
-3. The average biomass outside the MPA before the MPA was created
-4. The average biomass outside the MPA after the MPA was created
+``` r
+remotes::install_github("jcvdav/EVR628tools")
+```
 
-Then, calculate:
+2. Inspect the new `?data_MPA`
 
-5. Change after vs before for the protected site
-6. Change after vs before for the unprotected site
+3. Create four objects containing:
+    a. Mean biomass inside the MPA before it was protected
+    b. Mean biomass inside the MPA after it was protected
+    c. Mean biomass outside the MPA before the MPA was created
+    d. Mean biomass outside the MPA after the MPA was created
 
-Finally:
+Hint: Use a combination of subsetting (`[]`), relational (`==`), and logical operators (`&`)
 
-7. The difference between these two sites
+4. Then, calculate:
+    a. Change after vs before for the protected site
+    b. Change after vs before for the unprotected site
+
+5. Finally, calculate the difference between these two sites
 
 This is called the *naive* difference-in-differences estimate. See @villasenor2018user and @lynham2024evidence for details.
 
@@ -169,33 +182,15 @@ lm(biomass ~ after + protected + after * protected,
 
 ```
 
-# Exercise 4: Building Functions (15 minutes)
-
-## Part A: Create Your Own Function
-
-1. Create a function called `did` that takes three vectors:
-   - `after`
-   - `treated`
-   - and `outcome`
-2. Calculates a DiD estimate
-3. Test your function using the `data_MPA`
-
-```{r}
-# My code will be here
-
-```
-
-# Exercise 5: Code Style and Documentation (10 minutes)
+# Exercise 4: Code Style and Documentation
 
 ## Part A: Fix Code Style
 
 Fix the style issues in this code:
+
 ```r
-myfunction<-function(x,y){
-result=x+y*2
-return(result)
-}
-mydataframe=data.frame(species=c("Great White","Tiger"),length=c(4.5,3.2))
+mydataframe=data.frame(species=c("Great White","Tiger", "Bull"),
+length=c(4.5,3.2, NA))
 mean(mydataframe$length,na.rm=TRUE)
 ```
 
@@ -204,10 +199,8 @@ mean(mydataframe$length,na.rm=TRUE)
 
 ```
 
+Note: What's with than `na.rm = TRUE`?
+
 ## Part B: Add Comments and Section Headers
 
-Take your shark analysis from Exercise 5 and:
-1. Add section headers with `###`
-2. Add meaningful comments explaining what each step does
-3. Add a comment explaining WHY you're doing the analysis
-4. Make sure your code follows good naming conventions
+1. Add meaningful comments to your R script

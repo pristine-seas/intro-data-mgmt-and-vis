@@ -87,8 +87,15 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
   - [Villaseñor-Derbez et al (2018)](https://doi.org/10.1371/journal.pone.0191821). A user-friendly tool to evaluate the effectiveness of no-take marine reserves. PLoS One, 13(1), e0191821.
   - [Lynham & Villaseñor-Derbez (2024)](https://www.science.org/doi/10.1126/science.adn1146). Evidence of spillover benefits from large-scale marine protected areas to purse seine fisheries. Science, 386(6727), 1276-1281.
 
-
 ## Week 5 (Sep 15-19)
+**Data management** | slides
+- Raw data vs processed data
+- Metadata and documentation
+- Relative vs absolute paths and the `here` package
+- Reading and writing tabular data (`*.tsv` `*.csv`)
+- Reading and writing `*.rds` files
+
+## Week 6 (Sep 22-26)
 **Scaling up your code and visualizations** | slides
 - Refresh on layers: aesthetics and geometries
 - Themes with ggplot2
@@ -106,15 +113,6 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 **Second assignment:** _Data visualization_
 
 ---
-
-## Week 6 (Sep 22-26)
-**Data management** | slides
-- Raw data vs processed data
-- Metadata and documentation
-- Relative vs absolute paths and the `here` package
-- Reading and writing tabular data (`*.tsv` `*.csv`)
-- Reading and writing `*.rds` files
-- Retrieving environmental datasets from the Internet (`gfwr`, `rerddap`)
 
 ## Week 7, Sept 29-Oct 3
 **Data transformation** | slides
@@ -146,13 +144,13 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 ## Week 10 (Oct 20-24)
 **Working with spatial data in R** | slides
 - Vector data and `sf`
-- Raster data and `terra`
 - Exploratory visualizations with `plot` and `mapview`
 
 ## Week 11 (Oct 27-31)
 **Visualizing spatial data** | slides
+- Raster data and `terra`
 - Attribute operations
-- Building maps with ggplot2 and tmap
+- Building maps with `ggplot2` and `tmap`
 
 ---
 
@@ -165,6 +163,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Connecting to external databases with DBI
 - Animating with the `gganimate` package
 - Interactive maps with leaflet
+- Retrieving environmental datasets from the Internet (`gfwr`, `rerddap`)
 
 ## Week 13, (Nov 10-14):
 **Programming** | slides
