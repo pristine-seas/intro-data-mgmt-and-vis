@@ -100,16 +100,17 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exercise-1-object-classes-and-assignment-10-minutes" id="toc-exercise-1-object-classes-and-assignment-10-minutes" class="nav-link active" data-scroll-target="#exercise-1-object-classes-and-assignment-10-minutes">Exercise 1: Object Classes and Assignment (10 minutes)</a>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
+  <li><a href="#exercise-1-object-classes-and-assignment-15-minutes" id="toc-exercise-1-object-classes-and-assignment-15-minutes" class="nav-link" data-scroll-target="#exercise-1-object-classes-and-assignment-15-minutes">Exercise 1: Object Classes and Assignment (15 minutes)</a>
   <ul class="collapse">
   <li><a href="#part-a-create-and-check-object-classes" id="toc-part-a-create-and-check-object-classes" class="nav-link" data-scroll-target="#part-a-create-and-check-object-classes">Part A: Create and Check Object Classes</a></li>
   <li><a href="#part-b-object-coercion" id="toc-part-b-object-coercion" class="nav-link" data-scroll-target="#part-b-object-coercion">Part B: Object Coercion</a></li>
   </ul></li>
-  <li><a href="#exercise-2-vectors-and-operations-15-minutes" id="toc-exercise-2-vectors-and-operations-15-minutes" class="nav-link" data-scroll-target="#exercise-2-vectors-and-operations-15-minutes">Exercise 2: Vectors and Operations (15 minutes)</a>
+  <li><a href="#exercise-2-vectors-and-operations-20-minutes" id="toc-exercise-2-vectors-and-operations-20-minutes" class="nav-link" data-scroll-target="#exercise-2-vectors-and-operations-20-minutes">Exercise 2: Vectors and Operations (20 minutes)</a>
   <ul class="collapse">
   <li><a href="#part-a-create-and-manipulate-vectors" id="toc-part-a-create-and-manipulate-vectors" class="nav-link" data-scroll-target="#part-a-create-and-manipulate-vectors">Part A: Create and Manipulate Vectors</a></li>
   <li><a href="#part-b-vector-operations-and-indexing" id="toc-part-b-vector-operations-and-indexing" class="nav-link" data-scroll-target="#part-b-vector-operations-and-indexing">Part B: Vector Operations and Indexing</a></li>
-  <li><a href="#part-c-another-carrot-rfishbase" id="toc-part-c-another-carrot-rfishbase" class="nav-link" data-scroll-target="#part-c-another-carrot-rfishbase">Part C: Another carrot: <code>rfishbase</code></a></li>
+  <li><a href="#part-c-extra-another-carrot-rfishbase" id="toc-part-c-extra-another-carrot-rfishbase" class="nav-link" data-scroll-target="#part-c-extra-another-carrot-rfishbase">Part C (Extra): Another carrot: <code>rfishbase</code></a></li>
   </ul></li>
   <li><a href="#exercise-3-data-frames-and-tibbles-15-minutes" id="toc-exercise-3-data-frames-and-tibbles-15-minutes" class="nav-link" data-scroll-target="#exercise-3-data-frames-and-tibbles-15-minutes">Exercise 3: Data Frames and Tibbles (15 minutes)</a>
   <ul class="collapse">
@@ -119,11 +120,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#part-a-create-your-own-function" id="toc-part-a-create-your-own-function" class="nav-link" data-scroll-target="#part-a-create-your-own-function">Part A: Create Your Own Function</a></li>
   </ul></li>
-  <li><a href="#exercise-5-pipes-10-minutes" id="toc-exercise-5-pipes-10-minutes" class="nav-link" data-scroll-target="#exercise-5-pipes-10-minutes">Exercise 5: Pipes (10 minutes)</a>
-  <ul class="collapse">
-  <li><a href="#part-a-basic-pipes" id="toc-part-a-basic-pipes" class="nav-link" data-scroll-target="#part-a-basic-pipes">Part A: Basic Pipes</a></li>
-  </ul></li>
-  <li><a href="#exercise-6-code-style-and-documentation-10-minutes" id="toc-exercise-6-code-style-and-documentation-10-minutes" class="nav-link" data-scroll-target="#exercise-6-code-style-and-documentation-10-minutes">Exercise 6: Code Style and Documentation (10 minutes)</a>
+  <li><a href="#exercise-5-code-style-and-documentation-10-minutes" id="toc-exercise-5-code-style-and-documentation-10-minutes" class="nav-link" data-scroll-target="#exercise-5-code-style-and-documentation-10-minutes">Exercise 5: Code Style and Documentation (10 minutes)</a>
   <ul class="collapse">
   <li><a href="#part-a-fix-code-style" id="toc-part-a-fix-code-style" class="nav-link" data-scroll-target="#part-a-fix-code-style">Part A: Fix Code Style</a></li>
   <li><a href="#part-b-add-comments-and-section-headers" id="toc-part-b-add-comments-and-section-headers" class="nav-link" data-scroll-target="#part-b-add-comments-and-section-headers">Part B: Add Comments and Section Headers</a></li>
@@ -158,45 +155,63 @@ div.csl-indent {
 </header>
 
 
-<section id="exercise-1-object-classes-and-assignment-10-minutes" class="level1">
-<h1>Exercise 1: Object Classes and Assignment (10 minutes)</h1>
+<section id="set-up" class="level1">
+<h1>Set up</h1>
+<ol type="1">
+<li>Open R Studio and navigate to you EVR628 project</li>
+<li>Set up a code snippet for comments</li>
+<li>Create a new R script and save it as <code>objects_and_classes.R</code></li>
+<li>Add a comment at the top of your script with the date and title</li>
+</ol>
+</section>
+<section id="exercise-1-object-classes-and-assignment-15-minutes" class="level1">
+<h1>Exercise 1: Object Classes and Assignment (15 minutes)</h1>
 <section id="part-a-create-and-check-object-classes" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-create-and-check-object-classes">Part A: Create and Check Object Classes</h2>
-<p>Create objects of different classes and check their types:</p>
-<ul>
-<li>Create a character object called <code>my_name</code> with your name</li>
-<li>Create a numeric object called <code>my_age</code> with your age</li>
-<li>Create a logical object called <code>is_student</code> with TRUE or FALSE</li>
-<li>Check the class of each object using <code>class()</code></li>
-</ul>
+<p>In your R Script, create objects of different classes and check their types:</p>
+<ol type="1">
+<li>A character object called <code>my_name</code> with your name</li>
+<li>A numeric object called <code>my_age</code> with your age (or any number, it doesn’t have to be your age)</li>
+<li>A logical object called <code>is_student</code> with TRUE or FALSE</li>
+</ol>
+<p>Then, in the console, check the class of each object using <code>class()</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="part-b-object-coercion" class="level2">
 <h2 class="anchored" data-anchor-id="part-b-object-coercion">Part B: Object Coercion</h2>
-<ul>
-<li>Convert your age to character using <code>as.character()</code></li>
+<p>Let’s see what happens when you try converting objects. In the R script, write and then execute code that will:</p>
+<ol type="1">
+<li>Convert your age to character using <code>as.character(my_age)</code></li>
 <li>Convert TRUE to numeric using <code>as.numeric()</code></li>
-<li>Try to convert “hello” to numeric - what happens?</li>
-<li>Check the class of each result</li>
-</ul>
+<li>Try to convert <code>"hello"</code> to numeric - what happens?</li>
+<li>Use <code>|&gt;</code> to build a code pipeline to:
+<ol type="a">
+<li>Take your age</li>
+<li>Convert it to character</li>
+<li>Get it’s class</li>
+</ol></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="exercise-2-vectors-and-operations-15-minutes" class="level1">
-<h1>Exercise 2: Vectors and Operations (15 minutes)</h1>
+<section id="exercise-2-vectors-and-operations-20-minutes" class="level1">
+<h1>Exercise 2: Vectors and Operations (20 minutes)</h1>
 <section id="part-a-create-and-manipulate-vectors" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-create-and-manipulate-vectors">Part A: Create and Manipulate Vectors</h2>
-<ul>
-<li>Create a numeric vector called <code>length_m</code> with values: 3.2, 4.1, 2.8, 5.5, 3.9 (in meters)</li>
-<li>Create a character vector called <code>shark_species</code> with: “Great White Shark”, “Lemon Shark”, “Bull Shark”, “Hammerhead Shark”, “Mako Shark”</li>
-<li>Find the length of both vectors using <code>length()</code></li>
+<ol type="1">
+<li>Clean you environment (use the broom icon)</li>
+<li>Create a numeric vector called <code>length_m</code> with values: 6, 4.1, 2.8, 5.5, 3.9, 5.8</li>
+<li>Create a character vector called <code>shark_species</code> with: Great White Shark, Lemon Shark, Bull Shark, Hammerhead Shark, Mako Shark, and Great White Shark (yes, again)</li>
+<li>How many <em>variables</em> do you have in your environment?</li>
+<li>How many <em>observations</em> do we have? Find the length of both vectors using <code>length()</code></li>
+<li>How many <em>species</em> do we have? (Hint, use <code>|&gt;</code> to build a pipeline)</li>
 <li>Calculate the mean length using <code>mean()</code></li>
 <li>Find the maximum length using <code>max()</code></li>
-</ul>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -219,26 +234,28 @@ Important
 </section>
 <section id="part-b-vector-operations-and-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="part-b-vector-operations-and-indexing">Part B: Vector Operations and Indexing</h2>
-<ul>
-<li>Convert the <code>length</code> from meters to feet (multiply by 3.281), save the output into <code>length_ft</code></li>
+<ol type="1">
 <li>Extract the first 3 shark species using indexing with <code>[]</code> and save them to an object called <code>first_3</code></li>
 <li>Extract shark species where maximum length is greater than 4 meters</li>
 <li>Create a logical vector showing which sharks have max length above 4 meters</li>
-</ul>
+<li>Assuming the values in <code>length_m</code> and <code>sharks_species</code> are ordered so that they match each other, find the shark species that is the largest</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="part-c-another-carrot-rfishbase" class="level2">
-<h2 class="anchored" data-anchor-id="part-c-another-carrot-rfishbase">Part C: Another carrot: <code>rfishbase</code></h2>
-<ul>
+<section id="part-c-extra-another-carrot-rfishbase" class="level2">
+<h2 class="anchored" data-anchor-id="part-c-extra-another-carrot-rfishbase">Part C (Extra): Another carrot: <code>rfishbase</code></h2>
+<ol type="1">
 <li>Install the package with: <code>install.packages("rfisbhase")</code></li>
 <li>Use the <code>first_3</code> object to get the plausible scientific names of the sharks with <code>rfishbase::common_to_sci()</code></li>
 <li>Save the results into an object called <code>shark_sci_names</code></li>
-</ul>
+<li>What is the <code>class()</code> of <code>shark_sci_names</code></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>————————— Likely pause here —————————</p>
 </section>
 </section>
 <section id="exercise-3-data-frames-and-tibbles-15-minutes" class="level1">
@@ -246,21 +263,21 @@ Important
 <section id="part-a-estimate-the-effect-of-a-marine-protected-area-on-biomass" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-estimate-the-effect-of-a-marine-protected-area-on-biomass">Part A: Estimate the effect of a Marine Protected Area on Biomass</h2>
 <p>Create four objects containing:</p>
-<ul>
+<ol type="1">
 <li>The average biomass inside the MPA before it was protected</li>
 <li>The average biomass inside the MPA after it was protected</li>
 <li>The average biomass outside the MPA before the MPA was created</li>
 <li>The average biomass outside the MPA after the MPA was created</li>
-</ul>
+</ol>
 <p>Then, calculate:</p>
-<ul>
+<ol start="5" type="1">
 <li>Change after vs before for the protected site</li>
 <li>Change after vs before for the unprotected site</li>
-</ul>
+</ol>
 <p>Finally:</p>
-<ul>
+<ol start="7" type="1">
 <li>The difference between these two sites</li>
-</ul>
+</ol>
 <p>This is called the <em>naive</em> difference-in-differences estimate. See <span class="citation" data-cites="villasenor2018user">Villasenor-Derbez et al. (<a href="#ref-villasenor2018user" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="lynham2024evidence">Lynham and Villaseñor-Derbez (<a href="#ref-lynham2024evidence" role="doc-biblioref">2024</a>)</span> for details.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -271,7 +288,7 @@ Important
 <h1>Exercise 4: Building Functions (15 minutes)</h1>
 <section id="part-a-create-your-own-function" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-create-your-own-function">Part A: Create Your Own Function</h2>
-<ul>
+<ol type="1">
 <li>Create a function called <code>did</code> that takes three vectors:
 <ul>
 <li><code>after</code></li>
@@ -280,39 +297,30 @@ Important
 </ul></li>
 <li>Calculates a DiD estimate</li>
 <li>Test your function using the <code>data_MPA</code></li>
-</ul>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="exercise-5-pipes-10-minutes" class="level1">
-<h1>Exercise 5: Pipes (10 minutes)</h1>
-<section id="part-a-basic-pipes" class="level2">
-<h2 class="anchored" data-anchor-id="part-a-basic-pipes">Part A: Basic Pipes</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="exercise-6-code-style-and-documentation-10-minutes" class="level1">
-<h1>Exercise 6: Code Style and Documentation (10 minutes)</h1>
+<section id="exercise-5-code-style-and-documentation-10-minutes" class="level1">
+<h1>Exercise 5: Code Style and Documentation (10 minutes)</h1>
 <section id="part-a-fix-code-style" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-fix-code-style">Part A: Fix Code Style</h2>
 <p>Fix the style issues in this code:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>myfunction<span class="ot">&lt;-</span><span class="cf">function</span>(x,y){</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>result<span class="ot">=</span>x<span class="sc">+</span>y<span class="sc">*</span><span class="dv">2</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(result)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>mydataframe<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">species=</span><span class="fu">c</span>(<span class="st">"Great White"</span>,<span class="st">"Tiger"</span>),<span class="at">length=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">3.2</span>))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mydataframe<span class="sc">$</span>length,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>myfunction<span class="ot">&lt;-</span><span class="cf">function</span>(x,y){</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>result<span class="ot">=</span>x<span class="sc">+</span>y<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(result)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>mydataframe<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">species=</span><span class="fu">c</span>(<span class="st">"Great White"</span>,<span class="st">"Tiger"</span>),<span class="at">length=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">3.2</span>))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mydataframe<span class="sc">$</span>length,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My improved code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My improved code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="part-b-add-comments-and-section-headers" class="level2">
 <h2 class="anchored" data-anchor-id="part-b-add-comments-and-section-headers">Part B: Add Comments and Section Headers</h2>
-<p>Take your shark analysis from Exercise 5 and: - Add section headers with <code>###</code> - Add meaningful comments explaining what each step does - Add a comment explaining WHY you’re doing the analysis - Make sure your code follows good naming conventions</p>
+<p>Take your shark analysis from Exercise 5 and: 1. Add section headers with <code>###</code> 2. Add meaningful comments explaining what each step does 3. Add a comment explaining WHY you’re doing the analysis 4. Make sure your code follows good naming conventions</p>
 
 </section>
 </section>
