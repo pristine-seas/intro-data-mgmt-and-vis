@@ -648,9 +648,6 @@ data.frame(colors,
 
 ## Combining Vectors of Different Classes
 
-:::: {.columns}
-
-::: {.column width='50%'}
 Using vectors of different lengths fails
 
 ```{r}
@@ -660,9 +657,8 @@ data.frame(colors = c("red", "green", "blue"),
            numbers = c(1, 2))
 ```
 
-:::
+. . .
 
-::: {.column width='50%'}
 Unless they can be "recycled"
 
 ```{r}
@@ -678,9 +674,6 @@ data.frame(colors = c("red", "green", "blue", "orange"),
            numbers = c(4, 2)) |> 
   gt::gt()
 ```
-:::
-
-::::
 
 . . .
 
@@ -697,6 +690,8 @@ my_data <- data.frame(colors = c("red", "green"),
                       numbers = c(1, 2),
                       letters = c("A", "B"))
 ```
+
+. . .
 
 Attributes of data.frames:
 
@@ -915,7 +910,16 @@ A function:
 - takes arguments...
 - does something to them
 - returns an object that used the arguments passed
-- A function can do anything you want it to do
+
+. . .
+
+Some functions we've used so far are:
+
+- `length()`
+- `dim()`
+- `mean()`
+- `aes()`
+- what else?
 
 # Pipes and pipelines
 
@@ -925,55 +929,43 @@ Imagine having the following numeric vector
 
 ```{r}
 #| code-fold: false
-numbers <- c(1, 5, 2, 7, 9, 2, 3, 6, 3, 2, 1, 1, 6, 8, 3, 2, 1, 6, 1, 2, 8, 3,
-             6, 8, 9, 0, 5, 3, 2, 1, 2, 6, 9, 2, 3, 6, 3, 2, 1, 1, 6, 8, 3, 2)
+# Area of square surveyed plots (in sq m)
+areas <- c(1, 5, 2, 7, 9, 2, 3, 6, 3, 2, 1, 1, 6, 8, 3, 2, 1, 6, 1, 2, 8, 3,
+           6, 8, 9, 0, 5, 3, 2, 1, 2, 6, 9, 2, 3, 6, 3, 2, 1, 1, 6, 8, 3, 2)
 
 ```
 
 . . .
 
-And wanting to know how many **unique** numbers there were
-
-. . .
-
-You would want to use `unique()` and then `length()`
+And wanting to know how many square plots have a side greater than 2
 
 . . .
 
 Before **2013** you had two options:
 
-:::: {.columns}
-
-::: {.column width='50%'}
-
 1: Call each function at a time
+
+. . .
 
 ```{r}
 #| code-fold: false
-unique_values <- unique(numbers) # Forces you to create objects
-unique_values
-length(unique_values)
+# This creates too many objects
+sides <- sqrt(areas) # Calculate square root to get side length
+sides_larger_than_2 <- sides[sides > 2] # Extract sides > 2
+types <- unique(sides_larger_than_2) # Get unique "types" of plot
+how_many <- length(types) # Count how many "types" of plot
+how_many
 ```
 
-:::
-
-::: {.column width='50%'}
 
 2: Use nested functions
 
 ```{r}
 #| code-fold: false
-length(unique(numbers)) # Doesn't take much space, but hard to read
+# This is hard to read:
+how_many <- length(unique(sqrt(areas)[sqrt(areas) > 2]))
+how_many
 ```
-
-
-:::
-
-::::
-
-. . .
-
-Neither is conducive to longer pipelines of chained operations
 
 
 ## Pipes After 2013
@@ -983,11 +975,11 @@ The `magrittr` package introduced the _pipe_ operator "`%>%`"
 :::: {.columns}
 
 ::: {.column width='50%'}
-!["The Treachery of Images" by René Magritte](img/MagrittePipe.jpg){.nostretch fig-align="center" width="50%"}
+!["The Treachery of Images" by René Magritte](img/MagrittePipe.jpg){.nostretch fig-align="center" width="40%"}
 :::
 
 ::: {.column width='50%'}
-![Pipe operator from magrittr package](img/magrittr_logo.png){.nostretch fig-align="center" width="30%"}
+![Pipe operator from magrittr package](img/magrittr_logo.png){.nostretch fig-align="center" width="25%"}
 :::
 
 ::::
@@ -1003,11 +995,13 @@ The `magrittr` package introduced the _pipe_ operator "`%>%`"
 ```{r}
 #| code-fold: false
 library(magrittr) # Load the magrittr package
-
 # Build a pipeline
-numbers %>%      # Numbers go into unique
-  unique() %>%   # The set of "unique numbers" go into "length"
-  length()
+how_many <- areas[sqrt(areas) > 2] %>% # Extract values with a side > 2
+  sqrt() %>%  # Take their sqrt (not needed)
+  unique() %>% # Get unique values
+  length() # Get length of values
+
+how_many
 ```
 
 
@@ -1021,14 +1015,20 @@ You no longer need to load a package to use a pipe
 
 ```{r}
 #| code-fold: false
-numbers |> 
-  unique() |> 
-  length()
+# Build a pipeline
+how_many <- areas[sqrt(areas) > 2] |>  # Extract values with a side > 2
+  sqrt() |>   # Take their sqrt (not needed)
+  unique() |>  # Get unique values
+  length() # Get length of values
+
+how_many
 ```
 
 - Keyboard shortcut:
   - MacOS: `Cmd` + `Shift` + `M`
   - Windows: `Ctrl` + `Shift` + `M`
+  
+# Let's code
 
 ## Functions
 

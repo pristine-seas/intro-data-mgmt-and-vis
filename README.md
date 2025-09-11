@@ -25,6 +25,9 @@ By the end of the course, students will be comfortable working in R.
 - [Git and GitHub](https://rstudio.github.io/cheatsheets/git-github.pdf)
 - [Some available in Spanish](https://rstudio.github.io/cheatsheets/translations.html#spanish)
 
+**My code snippets**
+- [Code documentation](https://gist.github.com/jcvdav/1093d757bf1773751e951d009de4d857)
+
 # Course schedule
 
 Students must complete any assigned readings and software tests before class. Note that content, and timing of the content, is subject to change. Any changes will be clearly communicated via Canvas. (* Week contains holiday)
