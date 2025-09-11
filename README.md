@@ -40,7 +40,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Overview of R Studio IDE
 - R Studio Projects and project organization
 - R scripts
-- R packages: [`{tidyverse}`](https://www.tidyverse.org/), [`{EVR628tools}`](https://jcvdav.github.io/EVR628tools/)
+- R packages: [`{tidyverse}` package](https://www.tidyverse.org/), [`{EVR628tools}` package](https://jcvdav.github.io/EVR628tools/)
 
 **Relevant links for the week**
 - [Instructions to install R and RStudio](docs/01_installing_R_RStudio.html)
@@ -49,7 +49,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 **Data visualization** | [slides](slides/02_data_vis.html)
 - Types of visualization
 - Visualization principles
-- The grammar of graphics and the [`{ggplot2}`](https://github.com/tidyverse/ggplot2) package
+- The grammar of graphics and the [`{ggplot2}` package](https://github.com/tidyverse/ggplot2)
 
 **Relevant links for the week**
 - Assigned readings: 
@@ -102,11 +102,32 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 **Data management** | slides
 - Raw data vs processed data
 - Metadata and documentation
-- Relative vs absolute paths and the `here` package
-- Reading and writing tabular data (`*.tsv` `*.csv`)
+- Relative vs absolute paths and the [`{here}` package](https://here.r-lib.org/)
+- Reading and writing tabular data
 - Reading and writing `*.rds` files
 
 ## Week 6 (Sep 22-26)
+**Data transformation** | slides
+- data frames and tibbles in the `tidyverse`
+- Rows (filter, arrange, distinct) in `dplyr`
+- Columns (select, rename) in `dplyr`
+- The pipe (native and magrittr)
+- Grouping and summarizing data
+
+## Week 7 Sept 29-Oct 3
+**Data tidying and wrangling** | slides
+- Principles of tidy data
+- Lengthening data with `tidyr`
+- Widening data with `tidyr`
+- Combining multiple sources of data (`*_joins`)
+
+---
+
+**Third assignment:** _Data wrangling_
+
+---
+
+## Week 8 (Oct 6-10)
 **Scaling up your code and visualizations** | slides
 - Refresh on layers: aesthetics and geometries
 - Themes with ggplot2
@@ -119,27 +140,6 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Animated plots (`{ggplotly}`)
 - Creating documents and presentations with Quarto
 
----
-
-**Second assignment:** _Data visualization_
-
----
-
-## Week 7, Sept 29-Oct 3
-**Data transformation** | slides
-- data frames and tibbles in the `tidyverse`
-- Rows (filter, arrange, distinct) in `dplyr`
-- Columns (select, rename) in `dplyr`
-- The pipe (native and magrittr)
-- Grouping and summarizing data
-
-## Week 8 (Oct 6-10)
-**Data tidying and wrangling** | slides
-- Principles of tidy data
-- Lengthening data with `tidyr`
-- Widening data with `tidyr`
-- Combining multiple sources of data (`*_joins`)
-
 ## Week 9 (Oct 13-17)
 **Dealing with text, dates, and factors** | slides
 - Managing dates and times with `lubridate`
@@ -148,7 +148,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 ---
 
-**Third assignment:** _Data wrangling_
+**Second assignment:** _Data visualization_
 
 ---
 
