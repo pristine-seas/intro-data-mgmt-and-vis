@@ -94,17 +94,22 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
   - R4DS [CH2: Worflow: basics](https://r4ds.hadley.nz/workflow-basics.html)
   - R4DS [CH4: Workflow: code style](https://r4ds.hadley.nz/workflow-style.html)
 - [Link](https://jcvdav.github.io/EVR_628/docs/04_live.html) to document from live coding sessions
-- Other links:
-  - [Villaseñor-Derbez et al (2018)](https://doi.org/10.1371/journal.pone.0191821). A user-friendly tool to evaluate the effectiveness of no-take marine reserves. PLoS One, 13(1), e0191821.
-  - [Lynham & Villaseñor-Derbez (2024)](https://www.science.org/doi/10.1126/science.adn1146). Evidence of spillover benefits from large-scale marine protected areas to purse seine fisheries. Science, 386(6727), 1276-1281.
+
 
 ## Week 5 (Sep 15-19)
 **Data management** | slides
+- data.frames
 - Raw data vs processed data
-- Metadata and documentation
 - Relative vs absolute paths and the [`{here}` package](https://here.r-lib.org/)
-- Reading and writing tabular data
-- Reading and writing `*.rds` files
+- Reading and writing tabular data (`*csv` and `*.rds`)
+- Metadata and documentation
+
+**Relevant links for the week:**
+- Assigned readings:
+  - R4DS [CH5: Data tidying](https://r4ds.hadley.nz/data-tidy.html)
+- Other links:
+  - [Villaseñor-Derbez et al (2018)](https://doi.org/10.1371/journal.pone.0191821). A user-friendly tool to evaluate the effectiveness of no-take marine reserves. PLoS One, 13(1), e0191821.
+  - [Lynham & Villaseñor-Derbez (2024)](https://www.science.org/doi/10.1126/science.adn1146). Evidence of spillover benefits from large-scale marine protected areas to purse seine fisheries. Science, 386(6727), 1276-1281.
 
 ## Week 6 (Sep 22-26)
 **Data transformation** | slides
