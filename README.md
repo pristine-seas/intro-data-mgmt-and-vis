@@ -21,7 +21,7 @@ By the end of the course, students will be comfortable working in R.
 
 - [RStudio IDE](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html)
 - [Base R](https://rstudio.github.io/cheatsheets/base-r.pdf)
-- [`ggplot2`](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
+- [`{ggplot2}`](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
 - [Git and GitHub](https://rstudio.github.io/cheatsheets/git-github.pdf)
 - [Some available in Spanish](https://rstudio.github.io/cheatsheets/translations.html#spanish)
 
