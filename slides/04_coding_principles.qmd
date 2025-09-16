@@ -746,7 +746,7 @@ not_tidy_turtles
 
 ::::
 
-- Say you have a plot of turtle carapace length by species.
+- Say you want a plot of turtle carapace length by species
 - Only one of these data formats allows you to plot it with `ggplot`
 
 
