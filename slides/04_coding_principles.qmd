@@ -957,6 +957,7 @@ how_many <- length(types) # Count how many "types" of plot
 how_many
 ```
 
+. . .
 
 2: Use nested functions
 
