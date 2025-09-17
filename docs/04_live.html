@@ -264,7 +264,33 @@ div.csl-indent {
 <li>Find the maximum length using <code>max()</code></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>length_m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="fl">4.1</span>, <span class="fl">2.8</span>, <span class="fl">5.5</span>, <span class="fl">3.9</span>, <span class="fl">5.8</span>) </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>shark_species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Great White Shark"</span>, <span class="st">"Lemon Shark"</span>, <span class="st">"Bull Shark"</span>, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Hammerhead Shark"</span>, <span class="st">"Mako Shark"</span>, <span class="st">"Great White Shark"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Q5</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(length_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q6</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>shark_species <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q7</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="at">x =</span> length_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.683333</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q8</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(length_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -288,12 +314,39 @@ Important
 <ol type="1">
 <li>Extract the first 3 shark species using indexing with <code>[]</code> and save them to an object called <code>first_3</code></li>
 <li>Extract shark species where maximum length is greater than 4 meters</li>
-<li>Create a logical vector showing which sharks have max length above 4 meters</li>
 <li>Assuming the values in <code>length_m</code> and <code>sharks_species</code> are ordered so that they match each other, find the shark species that is the largest</li>
-<li>Calculate the mean length for all creat whites sharks</li>
+<li>Calculate the mean length for all great white sharks</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q1</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>first_3 <span class="ot">&lt;-</span> shark_species[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># Extract values 1 through 3 and assign them</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>first_3 <span class="co"># See the values I assigned</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Great White Shark" "Lemon Shark"       "Bull Shark"       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>shark_species[length_m <span class="sc">&gt;</span> <span class="dv">4</span>] <span class="co">#Extract shark species where maximum length is greater than 4 meters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Great White Shark" "Lemon Shark"       "Hammerhead Shark" 
+[4] "Great White Shark"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>shark_species[length_m <span class="sc">==</span> <span class="fu">max</span>(length_m)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Great White Shark"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q4 (Option 1, no pipes)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Read as : "Calculate the mean of lengths where shark species matches Great White Shark</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(length_m[shark_species <span class="sc">==</span> <span class="st">"Great White Shark"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q4 (Option 2, with pipe)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>length_m[shark_species <span class="sc">==</span> <span class="st">"Great White Shark"</span>] <span class="sc">|&gt;</span> <span class="co"># Read as: Extract lengths where name matches great white shark AND THEN ...</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="co"># Calculate the mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.9</code></pre>
+</div>
 </div>
 <hr>
 <p>Likely pause here</p>
@@ -307,7 +360,7 @@ Important
 <ol type="1">
 <li>Install and load an updated version of <code>EVR628tools</code>:</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"jcvdav/EVR628tools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"jcvdav/EVR628tools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li><p>Start a new script called <code>MPA_analysis</code>, add a comment outline and then load the <code>EVR628tools</code> and <code>tidyverse</code> packages.</p></li>
 <li><p>Load and inspect the new <code>?data_MPA</code></p>
@@ -316,13 +369,14 @@ Important
 <li>What are the column names?col</li>
 <li>How many <code>unique()</code> sites are there?</li>
 <li>How many <code>unique()</code> years?</li>
+<li>Visualize the trends in biomass through time and across sites</li>
 </ol></li>
 <li><p>Create four objects containing:</p>
 <ol type="a">
-<li>Mean biomass inside the MPA before it was protected</li>
-<li>Mean biomass inside the MPA after it was protected</li>
-<li>Mean biomass outside the MPA before the MPA was created</li>
-<li>Mean biomass outside the MPA after the MPA was created</li>
+<li>Mean biomass <em>inside</em> the MPA <strong>before</strong> it was protected</li>
+<li>Mean biomass <em>inside</em> the MPA <strong>after</strong> it was protected</li>
+<li>Mean biomass <em>outside</em> the MPA <strong>before</strong> the MPA was created</li>
+<li>Mean biomass <em>outside</em> the MPA <strong>after</strong> the MPA was created</li>
 </ol></li>
 </ol>
 <p>Hint: Use a combination of subsetting (<code>[ ]</code>), relational (<code>==</code>), and logical operators (<code>&amp;</code>)</p>
@@ -335,7 +389,7 @@ Important
 <li>Finally, calculate the difference between these two values. This is called the <em>naive</em> difference-in-differences estimate. You are calculating the differences across treatments and across time. See <span class="citation" data-cites="villasenor2018user">Villasenor-Derbez et al. (<a href="#ref-villasenor2018user" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="lynham2024evidence">Lynham and Villaseñor-Derbez (<a href="#ref-lynham2024evidence" role="doc-biblioref">2024</a>)</span> for details.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -344,11 +398,11 @@ Important
 <section id="part-a-fix-code-style" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-fix-code-style">Part A: Fix Code Style</h2>
 <p>Fix the style issues in this code:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mydataframe<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">species=</span><span class="fu">c</span>(<span class="st">"Great White"</span>,<span class="st">"Tiger"</span>, <span class="st">"Bull"</span>),</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="at">length=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">3.2</span>, <span class="cn">NA</span>))</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mydataframe<span class="sc">$</span>length,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mydataframe<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">species=</span><span class="fu">c</span>(<span class="st">"Great White"</span>,<span class="st">"Tiger"</span>, <span class="st">"Bull"</span>),</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="at">length=</span><span class="fu">c</span>(<span class="fl">4.5</span>,<span class="fl">3.2</span>, <span class="cn">NA</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mydataframe<span class="sc">$</span>length,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My improved code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My improved code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note: What’s with than <code>na.rm = TRUE</code>?</p>
 </section>

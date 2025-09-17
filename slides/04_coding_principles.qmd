@@ -746,7 +746,7 @@ not_tidy_turtles
 
 ::::
 
-- Say you have a plot of turtle carapace length by species.
+- Say you want a plot of turtle carapace length by species
 - Only one of these data formats allows you to plot it with `ggplot`
 
 
@@ -957,6 +957,7 @@ how_many <- length(types) # Count how many "types" of plot
 how_many
 ```
 
+. . .
 
 2: Use nested functions
 
