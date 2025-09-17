@@ -176,7 +176,7 @@ remotes::install_github("jcvdav/EVR628tools")
 
 3. Load and inspect the new `?data_MPA`
     a. What are the dimensions of the data?
-    b. What are the column names?col
+    b. What are the column names?
     c. How many `unique()` sites are there?
     b. How many `unique()` years?
     e. Visualize the trends in biomass through time and across sites
