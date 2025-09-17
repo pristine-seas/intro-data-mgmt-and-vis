@@ -136,29 +136,33 @@ Likely pause here
 
 ## Part A: Estimate the effect of a Marine Protected Area on Biomass
 
-1. install an updated version of `EVR628tools`:
+1. Install and load an updated version of `EVR628tools`:
 
 ``` r
 remotes::install_github("jcvdav/EVR628tools")
 ```
 
-2. Inspect the new `?data_MPA`
+2. Start a new script called `MPA_analysis`, add a comment outline and then load the `EVR628tools` and `tidyverse` packages.
 
-3. Create four objects containing:
+3. Load and inspect the new `?data_MPA`
+    a. What are the dimensions of the data?
+    b. What are the column names?col
+    c. How many `unique()` sites are there?
+    b. How many `unique()` years?
+
+4. Create four objects containing:
     a. Mean biomass inside the MPA before it was protected
     b. Mean biomass inside the MPA after it was protected
     c. Mean biomass outside the MPA before the MPA was created
     d. Mean biomass outside the MPA after the MPA was created
 
-Hint: Use a combination of subsetting (`[]`), relational (`==`), and logical operators (`&`)
+Hint: Use a combination of subsetting (`[ ]`), relational (`==`), and logical operators (`&`)
 
-4. Then, calculate:
+5. Then, calculate:
     a. Change after vs before for the protected site
     b. Change after vs before for the unprotected site
 
-5. Finally, calculate the difference between these two sites
-
-This is called the *naive* difference-in-differences estimate. See @villasenor2018user and @lynham2024evidence for details.
+6. Finally, calculate the difference between these two values. This is called the *naive* difference-in-differences estimate. You are calculating the differences across treatments and across time. See @villasenor2018user and @lynham2024evidence for details.
 
 
 ```{r}
@@ -199,6 +203,8 @@ lm(biomass ~ after + protected + after * protected,
 # My code will be here
 
 ```
+
+\clearpage
 
 # Exercise 4: Code Style and Documentation
 
