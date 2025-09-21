@@ -60,7 +60,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
   - IPCC [Visual Style Guide](https://www.ipcc.ch/site/assets/uploads/2022/09/IPCC_AR6_WGI_VisualStyleGuide_2022.pdf) by the IPCC
   - The [R Graph Gallery](https://r-graph-gallery.com/)
   - [Data-to-viz](https://www.data-to-viz.com/)
-- [Link](https://jcvdav.github.io/EVR_628/docs/02_live.html) to document from live coding sessions
+- [Link](https://jcvdav.github.io/EVR_628/docs/02_live.html) to document from live coding session
 
 ## *Week3 (Sep 1-5)
 **Keeping track of your code with Git and GitHub** | [slides](slides/03_git_and_github.html)
@@ -74,7 +74,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Other links: 
   - Pereira-Braga et al ["Not just for programmers: How GitHub can accelerate collaborative and reproducible research in ecology and evolution"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14108) Methods in Ecology and Evolution
   - [Happy Git with R](https://happygitwithr.com/)
-- [Link](https://jcvdav.github.io/EVR_628/docs/03_live.html) to document from live coding sessions
+- [Link](https://jcvdav.github.io/EVR_628/docs/03_live.html) to document from live coding session
 
 ---
 
@@ -86,49 +86,48 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 **Good coding principles** | [slides](slides/04_coding_principles.html)
 - Code style and documentation
 - Classes, objects, variables, values
-- Indexing and subsetting vectors and data frames
+- Indexing and subsetting vectors
 - Useful functions in `{base}` and `{stats}`
 
 **Relevant links for the week**
 - Assigned readings: 
   - R4DS [CH2: Worflow: basics](https://r4ds.hadley.nz/workflow-basics.html)
   - R4DS [CH4: Workflow: code style](https://r4ds.hadley.nz/workflow-style.html)
-- [Link](https://jcvdav.github.io/EVR_628/docs/04_live.html) to document from live coding sessions
+- [Link](https://jcvdav.github.io/EVR_628/docs/04_live.html) to document from live coding session
+
+
+## Week 5 (Sep 15-19) | [slides](slides/04_coding_principles.html)
+**data.frames**
+- Indexing and subsetting data.frames
+- Useful functions in `{base}` and `{stats}`
 - Other links:
   - [Villaseñor-Derbez et al (2018)](https://doi.org/10.1371/journal.pone.0191821). A user-friendly tool to evaluate the effectiveness of no-take marine reserves. PLoS One, 13(1), e0191821.
   - [Lynham & Villaseñor-Derbez (2024)](https://www.science.org/doi/10.1126/science.adn1146). Evidence of spillover benefits from large-scale marine protected areas to purse seine fisheries. Science, 386(6727), 1276-1281.
+- [Link](https://jcvdav.github.io/EVR_628/docs/04_live.html) to document from live coding session
 
 
-## Week 5 (Sep 15-19)
-**Data management** | slides
-- data.frames
-- Raw data vs processed data
-- Relative vs absolute paths and the [`{here}` package](https://here.r-lib.org/)
+## Week 6 (Sep 22-26)
+**Data management and transformation** | slides
+- Relative vs. absolute paths and the [`{here}` package](https://here.r-lib.org/)
 - Reading and writing tabular data (`*csv` and `*.rds`)
-- Metadata and documentation
+- Modifying rows (filter, arrange, distinct) with `{dplyr}`
+- Modifying columns (select, rename) with `{dplyr}`
+- Grouping and summarizing data with `{dplyr}`
 
 **Relevant links for the week:**
 - Assigned readings:
   - R4DS [CH7: Data import](https://r4ds.hadley.nz/data-import.html)
-
-## Week 6 (Sep 22-26)
-**Data transformation** | slides
-- data frames and tibbles in the `tidyverse`
-- Rows (filter, arrange, distinct) in `dplyr`
-- Columns (select, rename) in `dplyr`
-- The pipe (native and magrittr)
-- Grouping and summarizing data
+  - R4DS [CH3: Data transformation](https://r4ds.hadley.nz/data-transform.html)
 
 ## Week 7 Sept 29-Oct 3
 **Data tidying and wrangling** | slides
-- Principles of tidy data
 - Lengthening data with `tidyr`
 - Widening data with `tidyr`
 - Combining multiple sources of data (`*_joins`)
 
 ---
 
-**Third assignment:** _Data wrangling_
+**Second assignment:** _Data wrangling_
 
 ---
 
@@ -153,7 +152,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 ---
 
-**Second assignment:** _Data visualization_
+**Third assignment:** _Data visualization_
 
 ---
 
