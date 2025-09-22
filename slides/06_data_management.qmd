@@ -1,0 +1,756 @@
+---
+subtitle: "Data Management and Transformation"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(readxl)
+  library(EVR628tools)
+  library(knitr)
+})
+
+theme_set(
+  theme_bw(base_size = 20)
+)
+```
+
+## Learning Objectives
+
+:::{.callout-note}
+## By the end of this week, you should be able to:
+- Know the difference between absolute and relative file paths
+- Read and write tabular data (`*.xlsx`, `*.csv` and `*.rds`)
+- Modify rows (`filter()`, `arrange()`)
+- Modify columns (`select()`, `rename()`)
+- Group and summarize data
+:::
+
+## Today's Class
+
+- File paths and working directories
+- Reading and writing data
+- Data transformation with `{dplyr}`
+  - Row operations: filter, arrange, distinct
+  - Column operations: select, rename
+  - Grouping and summarizing
+
+# File Paths and Working Directories
+
+## Understanding File Paths
+
+:::{.callout-note}
+# Important concepts
+- **File path**: The location of a file on your computer
+- **Working directory**: The folder R considers as "home" for your current session.
+It is given by the location of the `.Rproj` file.
+:::
+
+. . .
+
+**Two types of paths**:
+
+- **Absolute path**: Complete address from your hard drive as the origin
+  - Example: `/Users/jcvd/GitHub/EVR_628/data/raw/dive_profile.csv`
+- **Relative path**: Address relative to your current working directory
+  - Example: `data/raw/dive_profile.csv`
+
+## Understanding File Paths
+
+Think of a file path as an address.
+
+- You can specify the full address (absolute path):
+  - `USA/FL/Miami/Rickenbacker Causeway/Rosenstiel School/SLAB/Room 120`
+
+- But if we all know Rosenstiel is the origin, we can use a relative address:
+  - `SLAB/Room 120`
+
+. . .
+
+**Relative paths are best because they work across computers**
+
+:::{.callout-important}
+**Best Practice**: Use RStudio projects instead of `setwd()`
+:::
+
+## RStudio Projects and File Paths
+
+**Why projects are better**:
+
+- Working directory is automatically set
+- Relative paths work consistently
+- Easy to share and reproduce
+- No need to remember absolute paths
+
+. . .
+
+If we are in my `EVR628` RProject:
+
+```{r}
+#| code-fold: false
+#| eval: false
+# Both work in my computer, only one will work in yours:
+my_dive <- read.csv("/Users/jcvd/GitHub/EVR628/data/raw/dive_profile.csv") # Absolute
+my_dive <- read.csv("data/raw/dive_profile.csv") # Relative
+```
+
+## Crafting Filepaths
+
+- The "`/`" character denotes "going into" a folder
+
+- For example:
+  - With path: `data/raw/dive_profile.csv`,
+  - Read as: "from `data`, go into `raw`, go into `dive_profile.csv`"
+
+- Typing the full path can be tedious
+
+- Use RStudio's auto-complete function like we did when saving ggplots
+
+# Reading and Writing Data
+
+## Three Relevant Data File Types
+
+Focus on reading plain-text rectangular files
+
+:::: {.columns}
+
+::: {.column width='50%'}
+**CSV Files**
+
+- `.csv` format
+- Comma-separated values
+- Human-readable (ish)
+- Probably the most common format
+- Can be read into Excel in a pinch
+
+**Excel Files**
+
+- `.xlsx` format
+- Common in business
+- Can have multiple sheets
+- Preserves formatting (irrelevant)
+:::
+
+::: {.column width='50%'}
+**RDS Files**
+
+- R's native format
+- Preserves data types (characters, factors)
+- Compressed
+- Fastest to read/write in a computer
+- Not human readable
+:::
+
+::::
+
+## Reading CSV Files
+
+CSV files can be human readable:
+
+```txt
+AnoYear,BanderaFlag,ArteGear,EspeciesSpecies,t
+1918,UNK,LP,SKJ,1361
+1918,UNK,LP,YFT,0
+1919,UNK,LP,SKJ,3130
+1919,UNK,LP,YFT,136
+1920,UNK,LP,SKJ,3583
+1920,UNK,LP,YFT,907
+1921,UNK,LP,SKJ,499
+1921,UNK,LP,YFT,590
+1922,UNK,LP,SKJ,5398
+```
+
+- The first row has the "header", containing the column names
+- Commas "`,`" indicate the separation between columns
+
+. . .
+
+Reading CSV files is straightforward:
+
+```{r}
+#| code-fold: false
+#| eval: false
+
+library(tidyverse) # We need the tidyverse
+
+tuna_data <- read_csv(file = "data/raw/CatchByFlagGear1918-2023.csv") # Simply specify the filepath
+
+```
+
+Similar formats are `tsv` and `txt`
+
+## Reading Excel Files
+
+Reading excel files is also straighforward, but requires additional packages
+
+```{r}
+#| code-fold: false
+#| eval: false
+# Install if needed
+# install.packages("readxl")
+
+# Load package
+library(readxl)
+
+# Read first sheet
+data <- read_excel(path = "data/raw/lionfish.xlsx",
+                   sheet = 2,
+                   range = "A1:B20")
+```
+
+- I don't recommend using Excel to store your raw data.
+- Excel likes to modify strings that might look like dates:
+  - 25% of papers on human [Genes](https://www.science.org/content/article/one-five-genetics-papers-contains-errors-thanks-microsoft-excel) had gene names converted to dates by Excel
+  - See @ziemann2016gene for details
+- There are a few alternatives:
+  - Use a [CSV editor](https://www.moderncsv.com/)
+  - Use a data entry platform that exports data as `csv` (or similar)
+  
+
+## Reading RDS Files
+
+Reading RDS files is just as easy:
+
+```{r}
+#| code-fold: false
+#| eval: false
+
+# Using readr
+data <- read_rds(file = "data/raw/lionfish.rds")
+```
+
+. . .
+
+**A Recommended Workflow**
+
+1. I receive data either in `xls` or `csv`
+2. Read the data as needed
+3. Modify / clean / filter / wrangle
+4. Export processed data as `rds`
+
+## Writing Data Files
+
+We used `read_*` to read data...
+
+. . .
+
+And yes, we use `write_*` to write data
+
+. . .
+
+```{r}
+#| code-fold: false
+#| eval: false
+
+# Write RDS
+write_rds(x = clean_tuna_data, file = "data/processed/tuna_clean.rds")
+
+# Write CSV with readr
+write_csv(x = clean_tuna_data, file = "data/processed/tuna_clean.csv")
+
+```
+
+## Example: Working with Real Data
+
+- We will work with public domain data from the IATTC
+- Specifically, data on EPO total estimated catch by year, flag, gear, species (1918 - 2023)
+- But the data are a bit messy!
+- Today is when we start to learn about data wrangling with two key packages:
+  - `{dplyr}`(part of the tidyverse, no need to install it)
+  - `{janitor}`
+
+# Data transformation with `{dplyr}`
+
+## Common Data Transformations
+
+- Create new variables
+- Summarize information in a variable, often across groups
+- Rename variables to follow intuitive names with `snake_case`
+- Arrange the order in which observations appear
+
+## On Tidy Data
+
+The `dplyr` package, like `ggplot2` relies on data being in this format:
+
+- Columns are variables
+- Rows are observations
+- Cells contain values
+
+. . .
+
+![Image Credit: @Wickham2023-aa](img/tidy-1.png)
+
+## The `{dplyr}` Package
+
+:::: {.columns}
+
+::: {.column width='40%'}
+![](img/dplyr_logo.png)
+
+**`{dplyr}`**: A grammar of data manipulation
+:::
+
+::: {.column width='60%'}
+**Core functions**:
+
+- `filter()`: Pick observations by their values
+- `arrange()`: Reorder rows
+- `select()`: Pick variables by their names
+- `mutate()`: Create new variables with functions of existing variables
+- `group_by()`: Change the scope of each function from operating on the entire dataset to operating on it group-by-group
+- `summarise()`: Collapse many values down to a single summary
+:::
+
+::::
+
+## Common Features of `dplyr` functions
+
+1. First argument is always a data.frame or tibble
+
+2. The arguments that follow specify which columns we are working on
+
+3. `dplyr` functions always return a _new_ data.frame
+
+4. This `class(input) == class(output)` condition means we can easily build pipelines
+
+. . .
+
+`dplyr` functions are also referred to as `dplyr` _verbs_, because they all imply an action
+
+. . .
+
+`dplyr` verbs are organized into four groups based on what they operate on: rows, columns, groups, or tables
+
+# Row operations
+
+`filter`, `arrange`, and `distinct`
+
+## Recall Binary Operators
+
+:::: {.columns}
+
+::: {.column width='50%'}
+**Comparison operators**:
+
+- `>`: Greater than
+- `>=`: Greater than or equal
+- `<`: Less than
+- `<=`: Less than or equal
+- `==`: Equal to
+- `!=`: Not equal to
+:::
+
+::: {.column width='50%'}
+**Logical operators**:
+
+- `&`: AND
+- `|`: OR
+- `!`: NOT
+- `%in%`: Match any of
+:::
+
+::::
+
+## And the `data_MPA` data
+
+```{r}
+#| code-fold: false
+data_MPA
+```
+
+
+## 1) Filtering Rows with `filter()`
+
+**`filter()`**: Keep rows that match your conditions
+
+. . .
+
+**Example:** Keep data from protected sites
+
+. . .
+
+```{r}
+#| code-fold: false
+# Shorthand syntax
+  # data to be filtered  Condition to be met
+filter(data_MPA,         protected ==1)
+```
+
+. . .
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1-2|4-6"
+#| eval: false
+# Full syntax
+filter(.data = data_MPA, protected ==1)
+# Tidy syntax
+data_MPA |> 
+  filter(protected ==1)
+```
+
+. . .
+
+Is this better than using `[ ]`?
+
+## 1) Filtering Rows with `filter()`
+
+Multiple conditions require using logical operators
+
+. . .
+
+**Example:** All data from sites "a" and "b", after the MPA was established
+
+```{r}
+#| code-fold: false
+data_MPA |> 
+    filter((id == "a" | id == "b"), # Keep data where id is equal to a or b AND
+           after == 1) # where after is equals to 1
+```
+
+
+## 1) Filtering Rows with `filter()`
+
+You can leverage the "`%in%`" operator to avoid typing too much
+
+. . .
+
+**Example**: All data from sites "a", "b", "c", and "d", on the first year
+
+. . .
+
+```{r}
+#| code-fold: false
+data_MPA |> 
+    filter(id %in% c("a", "b", "c", "d"),
+           time == min(time))
+```
+
+
+## 2) Arranging Rows with `arrange()`
+
+**`arrange()`**: Reorder rows by column values
+
+. . .
+
+Example: Arrange data in order of biomass
+
+. . .
+
+```{r}
+#| code-fold: false
+data_MPA |> 
+  arrange(biomass) # Sort by biomass (ascending by default)
+```
+
+## 2) Arranging Rows with `arrange()`
+
+You can also arrange in descending order using `desc()` around a variable name
+
+. . .
+
+Example: Arrange data in order of decreasing biomass
+
+. . .
+
+```{r}
+#| code-fold: false
+data_MPA |> 
+  arrange(desc(biomass)) # Sort by biomass, descending order
+```
+
+
+## 3) Distinct Rows with `distinct()`
+
+**`distinct()`**: Keeps distinct rows
+
+. . .
+
+Works similar to `unique()` but across the entire table
+
+. . .
+
+Retains distinct combinations of values in the variables
+
+. . .
+
+```{r}
+#| code-fold: false
+# Get unique sites
+data_MPA |> 
+  distinct(id, protected)
+```
+
+# Column operations
+
+## Back to `data_lionfish`
+
+```{r}
+#| code-fold: false
+data_lionfish
+```
+
+
+## 1) Selecting Columns with `select()`
+
+**`select()`**: Allows us to state which columns we want to keep
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Select columns by name
+
+```{r}
+#| code-fold: false
+# Select specific columns
+data_lionfish |> 
+  select(id, total_length_mm, total_weight_gr)
+```
+:::
+
+::: {.column width='50%'}
+
+Select columns by position
+
+```{r}
+#| code-fold: false
+# Select columns by position
+data_lionfish |> 
+  select(c(1, 5:6))
+```
+:::
+
+::::
+
+
+
+## 1) Selecting Columns with `select()`
+
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+Select columns by partial name match
+
+```{r}
+#| code-fold: false
+# Select columns by pattern
+select(data_lionfish, contains("total"))
+```
+
+:::
+
+::: {.column width='50%'}
+
+Remove columns by position
+
+```{r}
+#| code-fold: false
+# Exclude columns
+select(data_lionfish, -c(6:9))
+```
+
+:::
+
+::::
+
+
+
+## Helper Functions for `select()`
+
+**Selection helpers**:
+
+- `contains()`: Contains substring
+- `starts_with()`: Starts with prefix
+- `ends_with()`: Ends with suffix
+- `everything()`: All other columns columns
+
+
+## 2) Renaming Columns with `rename()`
+
+**`rename()`**: Change column names
+
+. . .
+
+Example: Rename `id` to `fish_id`, `total_length_mm` to `length_mm`, and `total_weight_mm` to `weight_gr`
+
+. . .
+
+```{r}
+#| code-fold: false
+# Rename specific columns
+rename(data_lionfish,
+       fish_id = id,
+       length = total_length_mm,
+       weight = total_weight_gr)
+```
+
+. . .
+
+Note that the syntax is `new_name = old_name`
+
+## 3) Creating New Columns with `mutate()`
+
+**`mutate()`**: Add new columns or modify existing ones
+
+. . .
+
+```{r}
+#| code-fold: false
+# Create new columns
+data_lionfish |> 
+  mutate(length_weight_ratio = total_length_mm / total_weight_gr)
+```
+
+## 3) Recreating Columns with `mutate()`
+
+You can overwrite an existing column
+
+. . .
+
+You can use conditional logic
+
+. . .
+
+```{r}
+#| code-fold: false
+# Using case_when()
+data_lionfish |> 
+  mutate(size_class = ifelse(total_length_mm < 150, "small", "large"))
+```
+
+# Grouping and summarizing
+
+## First, let's modify the `data_MPA` object
+
+:::: {.columns}
+
+::: {.column width='40%'}
+Recall that it looked like this:
+
+```{r}
+#| code-fold: false
+data_MPA
+```
+:::
+
+::: {.column width='60%'}
+I'd rather have it like this:
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3"
+data_MPA <- data_MPA |> 
+  mutate(protected = ifelse(protected == 1, "yes", "no"),
+         after = ifelse(after == 1, "after", "before"))
+
+data_MPA
+```
+:::
+
+::::
+
+
+## 1) Grouping Data with `group_by()`
+
+**`group_by()`**: Group data by one or more variables
+
+. . .
+
+```{r}
+#| code-fold: false
+# Group by protection status and timing
+data_MPA |> 
+  group_by(protected, after)
+```
+
+. . .
+
+This might not seem like much, until you hear about `summarize()`
+
+## 2) Summarizing Data with `summarise()`
+
+**`summarize()`**: Collapse groups to single values (and create a new column)
+
+. . .
+
+Example: Calculate mean biomass by protection site and study period
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3"
+data_MPA |> 
+  group_by(protected, after) |> # Define the groups
+  summarize(biomass_m = mean(biomass)) # Collapse the biomass values of each group into a single value
+```
+
+## Common Summary Functions
+
+:::: {.columns}
+
+::: {.column width='50%'}
+**Count functions**:
+
+- `n()`: Number of observations
+- `n_distinct()`: Number of unique values
+
+:::
+
+::: {.column width='50%'}
+**Summary functions**:
+
+- stats: `mean()`, `median()`, `sd()`, `min()`, `max()`
+- positional: `first()`, `last()`, `nth()`
+:::
+
+::::
+
+## 2) Summarizing Data with `summarise()`
+
+You can calculate multiple summaries at once
+
+. . .
+
+Example: Let's calculate the mean biomass and sd of biomass for each treatment status
+
+. . .
+
+```{r}
+#| code-fold: false
+# Summary by group
+data_MPA |> 
+  group_by(protected, after) |> 
+  summarize(biomass_m = mean(biomass),
+            biomass_sd = sd(biomass))
+```
+
+
+## Common Pitfalls
+
+- **File paths**: Use projects and relative paths
+- **Overwriting data**: Use `<-` to save results to new objects
+- **Forgetting to ungroup**: After `group_by()`, remember to `ungroup()` or use `.groups = "drop"`
+- **Missing values**: Check for `NA` values with `is.na()`
+- **Data types**: Ensure columns have the correct data types
+
+## Learning Objectives - Revisited
+
+:::{.callout-note}
+## By the end of this week, you should be able to:
+- Know the difference between absolute and relative file paths
+- Read and write tabular data (`*.xlsx`, `*.csv` and `*.rds`)
+- Modify rows (`filter()`, `arrange()`)
+- Modify columns (`select()`, `rename()`)
+- Group and summarize data
+:::
+
+# Let's get coding
+
+Go to [jcvdav.github.io/EVR_628](jcvdav.github.io/EVR_628) and find the guide for [live coding](https://jcvdav.github.io/EVR_628/docs/06_live.html)
+
+# References

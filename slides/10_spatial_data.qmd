@@ -1,4 +1,0 @@
----
-title: "EVR 628 - Intro to Environmental Data Science"
-subtitle: "Spatial_data"
----

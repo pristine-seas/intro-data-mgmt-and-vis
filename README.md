@@ -23,6 +23,7 @@ By the end of the course, students will be comfortable working in R.
 - [Base R](https://rstudio.github.io/cheatsheets/base-r.pdf)
 - [`{ggplot2}`](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
 - [Git and GitHub](https://rstudio.github.io/cheatsheets/git-github.pdf)
+- [`{dplyr}`](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
 - [Some available in Spanish](https://rstudio.github.io/cheatsheets/translations.html#spanish)
 
 **My code snippets**
@@ -96,8 +97,8 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - [Link](https://jcvdav.github.io/EVR_628/docs/04_live.html) to document from live coding session
 
 
-## Week 5 (Sep 15-19) | [slides](slides/04_coding_principles.html)
-**data.frames**
+## Week 5 (Sep 15-19)
+**data.frames** | [slides](slides/04_coding_principles.html)
 - Indexing and subsetting data.frames
 - Useful functions in `{base}` and `{stats}`
 - Other links:
@@ -107,7 +108,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 
 ## Week 6 (Sep 22-26)
-**Data management and transformation** | slides
+**Data management and transformation** | [slides](slides/06_data_management.html)
 - Relative vs. absolute paths and the [`{here}` package](https://here.r-lib.org/)
 - Reading and writing tabular data (`*csv` and `*.rds`)
 - Modifying rows (filter, arrange, distinct) with `{dplyr}`

@@ -1,0 +1,53 @@
+---
+title: "Reading "
+lightbox: true
+format:
+  html:
+    toc: true
+  pdf:
+    documentclass: article
+---
+
+# Exercise 1: grouping and summarizing
+
+- Load the `data_MPA`
+- Create a new object called `MPA_summary` that has the mean biomass by period and treatment status
+- When and where is the biomass highest?
+
+Hint: use a combination of `group_by()` and `summarize()`
+
+```{r}
+# My code will be here
+```
+
+**Advanced** (optional): Use the mean values stored in `MPA_summary` to calculate the difference-in-differences like we did last week
+
+```{r}
+# My code will be here
+```
+
+
+# Exercise 2: Obtaining data from the wild
+
+How to find the data:
+1. Go to [iattc.org](https://www.iattc.org/)
+2. In the top menu, **hover** over `DATA`
+3. Click on "Public domain"
+4. You will be taken to a page titled "Public domain data for download"
+5. We will use 
+6. Click on `CatchByFlagGear.zip` to prompt a download
+7. Save the zip file to inside your EVR628 project at: `data/raw/`
+8. Using your finder / explorer, navigate to `EVR628/data/raw/` and unzip the `CatchByFlagGear.zip` file
+9. You will get a new folder called 
+
+# Exercise 3: Reading data
+
+```{r}
+# My code will be here
+```
+
+# Exercise 4: Manipulating data
+
+```{r}
+# My code will be here
+```
