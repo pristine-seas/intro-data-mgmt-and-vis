@@ -22,8 +22,8 @@ theme_set(
 ## By the end of this week, you should be able to:
 - Know the difference between absolute and relative file paths
 - Read and write tabular data (`*.xlsx`, `*.csv` and `*.rds`)
-- Modify rows (`filter()`, `arrange()`)
-- Modify columns (`select()`, `rename()`)
+- Modify rows
+- Modify columns
 - Group and summarize data
 :::
 
@@ -32,9 +32,9 @@ theme_set(
 - File paths and working directories
 - Reading and writing data
 - Data transformation with `{dplyr}`
-  - Row operations: filter, arrange, distinct
-  - Column operations: select, rename
-  - Grouping and summarizing
+  - Row operations: **`filter()`**, `arrange()`, `distinct()`
+  - Column operations: **`select()`**, `rename()`
+  - Table operations: **`group_by()`** and **`summarize()`**
 
 # File Paths and Working Directories
 
@@ -70,6 +70,8 @@ Think of a file path as an address.
 
 **Relative paths are best because they work across computers**
 
+. . .
+
 :::{.callout-important}
 **Best Practice**: Use RStudio projects instead of `setwd()`
 :::
@@ -90,22 +92,11 @@ If we are in my `EVR628` RProject:
 ```{r}
 #| code-fold: false
 #| eval: false
+#| code-line-numbers: "1-2|3"
 # Both work in my computer, only one will work in yours:
 my_dive <- read.csv("/Users/jcvd/GitHub/EVR628/data/raw/dive_profile.csv") # Absolute
 my_dive <- read.csv("data/raw/dive_profile.csv") # Relative
 ```
-
-## Crafting Filepaths
-
-- The "`/`" character denotes "going into" a folder
-
-- For example:
-  - With path: `data/raw/dive_profile.csv`,
-  - Read as: "from `data`, go into `raw`, go into `dive_profile.csv`"
-
-- Typing the full path can be tedious
-
-- Use RStudio's auto-complete function like we did when saving ggplots
 
 # Reading and Writing Data
 
@@ -187,6 +178,7 @@ Reading excel files is also straighforward, but requires additional packages
 ```{r}
 #| code-fold: false
 #| eval: false
+#| code-line-numbers: "1-2|4-5|8|9|10"
 # Install if needed
 # install.packages("readxl")
 
@@ -227,7 +219,7 @@ data <- read_rds(file = "data/raw/lionfish.rds")
 1. I receive data either in `xls` or `csv`
 2. Read the data as needed
 3. Modify / clean / filter / wrangle
-4. Export processed data as `rds`
+4. Export processed data as `.rds`
 
 ## Writing Data Files
 
@@ -253,7 +245,7 @@ write_csv(x = clean_tuna_data, file = "data/processed/tuna_clean.csv")
 
 ## Example: Working with Real Data
 
-- We will work with public domain data from the IATTC
+- On Thursday we will work with public domain data from the IATTC
 - Specifically, data on EPO total estimated catch by year, flag, gear, species (1918 - 2023)
 - But the data are a bit messy!
 - Today is when we start to learn about data wrangling with two key packages:
@@ -264,9 +256,11 @@ write_csv(x = clean_tuna_data, file = "data/processed/tuna_clean.csv")
 
 ## Common Data Transformations
 
+- Filter data
+- Rename variables
+- Arrange the order in which variables appear
 - Create new variables
 - Summarize information in a variable, often across groups
-- Rename variables to follow intuitive names with `snake_case`
 - Arrange the order in which observations appear
 
 ## On Tidy Data
@@ -295,11 +289,10 @@ The `dplyr` package, like `ggplot2` relies on data being in this format:
 **Core functions**:
 
 - `filter()`: Pick observations by their values
-- `arrange()`: Reorder rows
 - `select()`: Pick variables by their names
 - `mutate()`: Create new variables with functions of existing variables
 - `group_by()`: Change the scope of each function from operating on the entire dataset to operating on it group-by-group
-- `summarise()`: Collapse many values down to a single summary
+- `summarize()`: Collapse many values down to a single summary
 :::
 
 ::::
@@ -320,11 +313,11 @@ The `dplyr` package, like `ggplot2` relies on data being in this format:
 
 . . .
 
-`dplyr` verbs are organized into four groups based on what they operate on: rows, columns, groups, or tables
+`dplyr` verbs are organized into four groups based on what they operate on: rows, columns, or groups
 
 # Row operations
 
-`filter`, `arrange`, and `distinct`
+`filter()`
 
 ## Recall the `data_MPA` data
 
@@ -334,7 +327,7 @@ data_MPA
 ```
 
 
-## 1) Filtering Rows with `filter()`
+## Filtering Rows with `filter()`
 
 **`filter()`**: Keep rows that match your conditions
 
@@ -348,7 +341,7 @@ data_MPA
 #| code-fold: false
 # Shorthand syntax
 #     (data,  Condition)
-filter(data_MPA, protected ==1)
+filter(data_MPA, protected == 1)
 ```
 
 . . .
@@ -358,13 +351,13 @@ filter(data_MPA, protected ==1)
 #| code-line-numbers: "1-2|4-6"
 #| eval: false
 # Full syntax
-filter(.data = data_MPA, protected ==1)
+filter(.data = data_MPA, protected == 1)
 # Tidy syntax
 data_MPA |> 
-  filter(protected ==1)
+  filter(protected == 1)
 ```
 
-## 1) Filtering Rows with `filter()`
+## Filtering Rows with `filter()`
 
 Multiple conditions require using logical operators
 
@@ -380,7 +373,7 @@ data_MPA |>
 ```
 
 
-## 1) Filtering Rows with `filter()`
+## Filtering Rows with `filter()`
 
 You can leverage the "`%in%`" operator to avoid typing too much
 
@@ -398,61 +391,9 @@ data_MPA |>
 ```
 
 
-## 2) Arranging Rows with `arrange()`
-
-**`arrange()`**: Reorder rows by column values
-
-. . .
-
-Example: Arrange data in order of biomass
-
-. . .
-
-```{r}
-#| code-fold: false
-data_MPA |> 
-  arrange(biomass) # Sort by biomass (ascending by default)
-```
-
-## 2) Arranging Rows with `arrange()`
-
-You can also arrange in descending order using `desc()` around a variable name
-
-. . .
-
-Example: Arrange data in order of decreasing biomass
-
-. . .
-
-```{r}
-#| code-fold: false
-data_MPA |> 
-  arrange(desc(biomass)) # Sort by biomass, descending order
-```
-
-
-## 3) Distinct Rows with `distinct()`
-
-**`distinct()`**: Keeps distinct rows
-
-. . .
-
-Works similar to `unique()` but across the entire table
-
-. . .
-
-Retains distinct combinations of values in the variables
-
-. . .
-
-```{r}
-#| code-fold: false
-# Get unique sites
-data_MPA |> 
-  distinct(id, protected)
-```
-
 # Column operations
+
+`select()`, `rename()`, and `mutate()`
 
 ## Back to `data_lionfish`
 
@@ -497,7 +438,6 @@ data_lionfish |>
 ::::
 
 
-
 ## 1) Selecting Columns with `select()`
 
 
@@ -528,7 +468,6 @@ select(data_lionfish, -c(6:9))
 :::
 
 ::::
-
 
 
 ## Helper Functions for `select()`
@@ -643,7 +582,7 @@ data_MPA |>
 
 This might not seem like much, until you hear about `summarize()`
 
-## 2) Summarizing Data with `summarise()`
+## 2) Summarizing Data with `summarize()`
 
 **`summarize()`**: Collapse groups to single values (and create a new column)
 
@@ -680,7 +619,7 @@ data_MPA |>
 
 ::::
 
-## 2) Summarizing Data with `summarise()`
+## 2) Summarizing Data with `summarize()`
 
 You can calculate multiple summaries at once
 
@@ -699,14 +638,15 @@ data_MPA |>
             biomass_sd = sd(biomass))
 ```
 
+## On Thursday
 
-## Common Pitfalls
+- Revisit the `data_MPA` analysis, this time with `dplyr` verbs
+- Walk you through downloading publicly available data
+- We will work with public domain data from the IATTC
+- Specifically, data on EPO total estimated catch by year, flag, gear, species (1918 - 2023)
+- Build a data cleaning pipeline
+- Export clean data
 
-- **File paths**: Use projects and relative paths
-- **Overwriting data**: Use `<-` to save results to new objects
-- **Forgetting to ungroup**: After `group_by()`, remember to `ungroup()` or use `.groups = "drop"`
-- **Missing values**: Check for `NA` values with `is.na()`
-- **Data types**: Ensure columns have the correct data types
 
 ## Learning Objectives - Revisited
 
