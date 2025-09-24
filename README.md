@@ -119,6 +119,7 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Assigned readings:
   - R4DS [CH7: Data import](https://r4ds.hadley.nz/data-import.html)
   - R4DS [CH3: Data transformation](https://r4ds.hadley.nz/data-transform.html)
+- [Link](https://jcvdav.github.io/EVR_628/docs/06_live.html) to document from live coding session
 
 ## Week 7 Sept 29-Oct 3
 **Data tidying and wrangling** | slides

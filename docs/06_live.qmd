@@ -1,5 +1,5 @@
 ---
-title: "Reading "
+title: "Data Management and Transformation"
 lightbox: true
 format:
   html:
@@ -8,46 +8,223 @@ format:
     documentclass: article
 ---
 
-# Exercise 1: grouping and summarizing
+# Exercise 1: Reading and transforming data
 
-- Load the `data_MPA`
-- Create a new object called `MPA_summary` that has the mean biomass by period and treatment status
-- When and where is the biomass highest?
+Your boss asked you what sounds like a simple query:
 
-Hint: use a combination of `group_by()` and `summarize()`
+> How much money have tuna purse seiners made since 2000 when fishing for bigeye tuna (_Thunnus obesus_) in the Eastern Pacific Ocean?
 
-```{r}
-# My code will be here
-```
+Let's make some assumptions that will help us answer this question:
 
-**Advanced** (optional): Use the mean values stored in `MPA_summary` to calculate the difference-in-differences like we did last week
+1. We will interpret "making money" as revenue, not profits
+2. The market price of tuna since 2000 has remained relatively stable, at around US\$2/Kg (See @Sibert2012-hu)
+3. We will focus on tuna production in the Eastern Pacific Ocean as reported by the IATTC
 
-```{r}
-# My code will be here
-```
-
-
-# Exercise 2: Obtaining data from the wild
+## ~~Part A) Obtaining data from the wild~~ (done on Tuesday)
 
 How to find the data:
+
 1. Go to [iattc.org](https://www.iattc.org/)
 2. In the top menu, **hover** over `DATA`
 3. Click on "Public domain"
 4. You will be taken to a page titled "Public domain data for download"
-5. We will use 
-6. Click on `CatchByFlagGear.zip` to prompt a download
-7. Save the zip file to inside your EVR628 project at: `data/raw/`
-8. Using your finder / explorer, navigate to `EVR628/data/raw/` and unzip the `CatchByFlagGear.zip` file
-9. You will get a new folder called 
+5. We will use "EPO total estimated catch by year, flag, gear, species"
+6. Click on `CatchByFlagGear.zip` to the right of the table to prompt a download
+7. Save the zip file to inside your EVR628 project at: `data/raw/`^[If your web browser didn't allow you to specify the download folder, your file is likely in the "Downloads" folder. Navigate there and copy it to the `data/raw/` folder.]
+8. Using your finder / explorer, navigate to `EVR628/data/raw/` and unzip the `CatchByFlagGear.zip` file^[Windows users: You might have to click a button called "Extract" in the top of your explorer window.]
+9. You will get a new folder called `CatchByFlagGear`
+10. Read the PDF file enclosed, which contains the documentation
 
-# Exercise 3: Reading data
+## Part B) Reading data
+
+0. **Put your post-it up**
+1. Start a new script called `tuna_analysis` and save it to your `scripts/03_analysis` folder
+2. Add a comment header and outline, and load the `tidyverse` and `EVR628tools` packages at the top of your script
+3. Use the `read_csv()` function to load the new data and assign it to an object called `tuna_data`
+4. What are the existing column names?^[Hint: use the `colnames()` function]
+5. **Remove your post-it when you are done**
+
+
+```{r}
+#| echo: false
+#| include: false
+
+library(tidyverse)
+library(EVR628tools)
+library(janitor)
+
+tuna_data <- read_csv("data/raw/CatchByFlagGear/CatchByFlagGear1918-2023.csv") |> 
+  clean_names()
+
+colnames(tuna_data)
+
+```
 
 ```{r}
 # My code will be here
 ```
 
-# Exercise 4: Manipulating data
+## Part C) Renaming columns with `clean_names()` and `rename()`
+
+0. **Put your post-it up**
+1. In your console, install the `janitor` package using `install.packages("janitor")`
+2. Load `janitor` at the top of your script, and then read the documentation for the `clean_names()` function
+3. Modify your code for the `tuna_data` object so that you pipe into `clean_names()` after reading the data
+4. What are the new column names?
+5. Extend the pipeline above so that we can use the `rename()` function. Rename the columns so that we only retain the English portion of the name. Let's also rename `t` as `catch`
+6. **Remove your post-it when you are done**
+
+Congratulations, you now have a tidy data set with which we can work! The next steps are to keep the data we care about, calculate revenues, and then calculate summaries. Let's do that.
+
+```{r}
+#| echo: false
+#| include: false
+
+tuna_data <- read_csv("data/raw/CatchByFlagGear/CatchByFlagGear1918-2023.csv") |> 
+  clean_names() |> 
+  rename(year = ano_year,
+         flag = bandera_flag,
+         gear = arte_gear,
+         species = especies_species,
+         catch = t)
+
+colnames(tuna_data)
+```
+
+## Part D) Filtering rows with `filter()`
+
+0. **Put your post-it up**
+1. What are the unique species represented in the data?
+2. What are the fishing gears represented in the data?
+3. Does the documentation say what these codes are?^[Hint: There is a cryptic link to the [reference codes](https://www.iattc.org/en-US/Data/Reference-codes)]
+4. What is the species code for bigeye tuna?
+5. What is the gear code for purse seine?
+6. Create a new object called `ps_tuna_data` that takes the `tuna_data` and filters it to retain data for:
+    a. bigeye tuna
+    b. caught by tuna purse seiners
+    c. since 2000
+7. **Remove your post-it when you are done**
+
+```{r}
+#| echo: false
+#| include: false
+
+tuna_data$species |> unique()
+
+tuna_data$gear |> unique()
+
+ps_tuna_data <- tuna_data |> 
+  filter(species == "BET",
+         gear == "PS",
+         year >= 2000)
+```
+
+## Part E) Creating new columns with `mutate()`
+
+0. **Put your post-it up**
+1. Modify the `ps_tuna_data` pipeline to create a new column called `revenue` that calculates the revenue generated by selling the catch^[Hint: If I catch 10 kilos and the price per kilo is US\$2, then I make US\$20 because $10 * 2 = 20$]
+2. Make sure you calculate revenues in Millions of USD
+3. **Remove your post-it when you are done**
+
+
+```{r}
+#| echo: false
+#| include: false
+
+ps_tuna_data <- tuna_data |> 
+  filter(species == "BET",
+         gear == "PS",
+         year >= 2000) |> 
+  mutate(revenue = catch * 1000 * 2)
+```
+
 
 ```{r}
 # My code will be here
 ```
+
+## Part F) Calculating group summaries with `group_by()` and `summarize()`
+
+0. **Put your post-it up**
+1. The data right now report catch at the year-by-flag level. Modify the `ps_tuna_data` pipeline so that we have total catch and revenue by year.^[Hint: You will need to use the `group_by`, `summarize()`, and `sum()` functions.]
+2. **Remove your post-it when you are done**
+
+```{r}
+#| echo: false
+#| include: false
+
+ps_tuna_data <- tuna_data |> 
+  filter(species == "BET",
+         gear == "PS",
+         year >= 2000) |> 
+  mutate(revenue = catch * 1000 * 2 / 1e6) |> 
+  group_by(year) |> 
+  summarize(catch = sum(catch),
+            revenue = sum(revenue))
+```
+
+```{r}
+# My code will be here
+```
+
+## Part G) Visualize the data and answer the question
+
+Remember, the question was:
+
+> How much money have tuna purse seiners made since 2000 when fishing for bigeye tuna (_Thunnus obesus_)?
+
+The question is ambiguous because one could answer "They have made X M USD since 2000" or "Every year since 2000, they have made Y M USD per year." So let's get both:
+
+0. **Put your post-it up**
+1. What is the total revenue?^[Hint: Use `$` and `sum()`]
+2. What is the average annual revenue?^[Hint: Use `$` and `mean()`]
+3. Build a time-series showing revenues by year. Make sure to correctly label the axis and include a title and caption describing the figure and the data source, respectively.
+4. **Remove your post-it when you are done.**
+
+```{r}
+#| echo: false
+#| include: false
+
+ggplot(ps_tuna_data, aes(x = year, y = revenue)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Year",
+  y = "Revenue (M USD)",
+  title = "Annual revenue from fishing bigeye tuna by purse seine vessels",
+  caption = "Data come from the IATTC") +
+  theme_minimal()
+
+sum(ps_tuna_data$revenue)
+
+mean(ps_tuna_data$revenue)
+
+```
+
+```{r}
+# My code will be here
+```
+
+# Extra exercises for you to practice
+
+1. Make a figure showing total catch by species during 2023
+2. Which country caught the most tuna during 2020?
+3. For each species, identify the year in which catch was at it's maximum
+4. How many species have been caught by Mexican-flagged vessels since 2000?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

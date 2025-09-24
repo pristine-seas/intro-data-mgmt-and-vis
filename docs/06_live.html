@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
+
+<title>Data Management and Transformation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="06_live_files/libs/clipboard/clipboard.min.js"></script>
+<script src="06_live_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="06_live_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="06_live_files/libs/quarto-html/popper.min.js"></script>
+<script src="06_live_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="06_live_files/libs/quarto-html/anchor.min.js"></script>
+<link href="06_live_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="06_live_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="06_live_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="06_live_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="06_live_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#exercise-1-reading-and-transforming-data" id="toc-exercise-1-reading-and-transforming-data" class="nav-link active" data-scroll-target="#exercise-1-reading-and-transforming-data">Exercise 1: Reading and transforming data</a>
+  <ul class="collapse">
+  <li><a href="#part-a-obtaining-data-from-the-wild-done-on-tuesday" id="toc-part-a-obtaining-data-from-the-wild-done-on-tuesday" class="nav-link" data-scroll-target="#part-a-obtaining-data-from-the-wild-done-on-tuesday"><del>Part A) Obtaining data from the wild</del> (done on Tuesday)</a></li>
+  <li><a href="#part-b-reading-data" id="toc-part-b-reading-data" class="nav-link" data-scroll-target="#part-b-reading-data">Part B) Reading data</a></li>
+  <li><a href="#part-c-renaming-columns-with-clean_names-and-rename" id="toc-part-c-renaming-columns-with-clean_names-and-rename" class="nav-link" data-scroll-target="#part-c-renaming-columns-with-clean_names-and-rename">Part C) Renaming columns with <code>clean_names()</code> and <code>rename()</code></a></li>
+  <li><a href="#part-d-filtering-rows-with-filter" id="toc-part-d-filtering-rows-with-filter" class="nav-link" data-scroll-target="#part-d-filtering-rows-with-filter">Part D) Filtering rows with <code>filter()</code></a></li>
+  <li><a href="#part-e-creating-new-columns-with-mutate" id="toc-part-e-creating-new-columns-with-mutate" class="nav-link" data-scroll-target="#part-e-creating-new-columns-with-mutate">Part E) Creating new columns with <code>mutate()</code></a></li>
+  <li><a href="#part-f-calculating-group-summaries-with-group_by-and-summarize" id="toc-part-f-calculating-group-summaries-with-group_by-and-summarize" class="nav-link" data-scroll-target="#part-f-calculating-group-summaries-with-group_by-and-summarize">Part F) Calculating group summaries with <code>group_by()</code> and <code>summarize()</code></a></li>
+  <li><a href="#part-g-visualize-the-data-and-answer-the-question" id="toc-part-g-visualize-the-data-and-answer-the-question" class="nav-link" data-scroll-target="#part-g-visualize-the-data-and-answer-the-question">Part G) Visualize the data and answer the question</a></li>
+  </ul></li>
+  <li><a href="#extra-exercises-for-you-to-practice" id="toc-extra-exercises-for-you-to-practice" class="nav-link" data-scroll-target="#extra-exercises-for-you-to-practice">Extra exercises for you to practice</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06_live.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Management and Transformation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Juan Carlos Villaseñor-Derbez (JC) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="exercise-1-reading-and-transforming-data" class="level1">
+<h1>Exercise 1: Reading and transforming data</h1>
+<p>Your boss asked you what sounds like a simple query:</p>
+<blockquote class="blockquote">
+<p>How much money have tuna purse seiners made since 2000 when fishing for bigeye tuna (<em>Thunnus obesus</em>) in the Eastern Pacific Ocean?</p>
+</blockquote>
+<p>Let’s make some assumptions that will help us answer this question:</p>
+<ol type="1">
+<li>We will interpret “making money” as revenue, not profits</li>
+<li>The market price of tuna since 2000 has remained relatively stable, at around US$2/Kg (See <span class="citation" data-cites="Sibert2012-hu">Sibert et al. (<a href="#ref-Sibert2012-hu" role="doc-biblioref">2012</a>)</span>)</li>
+<li>We will focus on tuna production in the Eastern Pacific Ocean as reported by the IATTC</li>
+</ol>
+<section id="part-a-obtaining-data-from-the-wild-done-on-tuesday" class="level2">
+<h2 class="anchored" data-anchor-id="part-a-obtaining-data-from-the-wild-done-on-tuesday"><del>Part A) Obtaining data from the wild</del> (done on Tuesday)</h2>
+<p>How to find the data:</p>
+<ol type="1">
+<li>Go to <a href="https://www.iattc.org/">iattc.org</a></li>
+<li>In the top menu, <strong>hover</strong> over <code>DATA</code></li>
+<li>Click on “Public domain”</li>
+<li>You will be taken to a page titled “Public domain data for download”</li>
+<li>We will use “EPO total estimated catch by year, flag, gear, species”</li>
+<li>Click on <code>CatchByFlagGear.zip</code> to the right of the table to prompt a download</li>
+<li>Save the zip file to inside your EVR628 project at: <code>data/raw/</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Using your finder / explorer, navigate to <code>EVR628/data/raw/</code> and unzip the <code>CatchByFlagGear.zip</code> file<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>You will get a new folder called <code>CatchByFlagGear</code></li>
+<li>Read the PDF file enclosed, which contains the documentation</li>
+</ol>
+</section>
+<section id="part-b-reading-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-b-reading-data">Part B) Reading data</h2>
+<ol start="0" type="1">
+<li><strong>Put your post-it up</strong></li>
+<li>Start a new script called <code>tuna_analysis</code> and save it to your <code>scripts/03_analysis</code> folder</li>
+<li>Add a comment header and outline, and load the <code>tidyverse</code> and <code>EVR628tools</code> packages at the top of your script</li>
+<li>Use the <code>read_csv()</code> function to load the new data and assign it to an object called <code>tuna_data</code></li>
+<li>What are the existing column names?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li><strong>Remove your post-it when you are done</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-c-renaming-columns-with-clean_names-and-rename" class="level2">
+<h2 class="anchored" data-anchor-id="part-c-renaming-columns-with-clean_names-and-rename">Part C) Renaming columns with <code>clean_names()</code> and <code>rename()</code></h2>
+<ol start="0" type="1">
+<li><strong>Put your post-it up</strong></li>
+<li>In your console, install the <code>janitor</code> package using <code>install.packages("janitor")</code></li>
+<li>Load <code>janitor</code> at the top of your script, and then read the documentation for the <code>clean_names()</code> function</li>
+<li>Modify your code for the <code>tuna_data</code> object so that you pipe into <code>clean_names()</code> after reading the data</li>
+<li>What are the new column names?</li>
+<li>Extend the pipeline above so that we can use the <code>rename()</code> function. Rename the columns so that we only retain the English portion of the name. Let’s also rename <code>t</code> as <code>catch</code></li>
+<li><strong>Remove your post-it when you are done</strong></li>
+</ol>
+<p>Congratulations, you now have a tidy data set with which we can work! The next steps are to keep the data we care about, calculate revenues, and then calculate summaries. Let’s do that.</p>
+</section>
+<section id="part-d-filtering-rows-with-filter" class="level2">
+<h2 class="anchored" data-anchor-id="part-d-filtering-rows-with-filter">Part D) Filtering rows with <code>filter()</code></h2>
+<ol start="0" type="1">
+<li><strong>Put your post-it up</strong></li>
+<li>What are the unique species represented in the data?</li>
+<li>What are the fishing gears represented in the data?</li>
+<li>Does the documentation say what these codes are?<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li>What is the species code for bigeye tuna?</li>
+<li>What is the gear code for purse seine?</li>
+<li>Create a new object called <code>ps_tuna_data</code> that takes the <code>tuna_data</code> and filters it to retain data for:
+<ol type="a">
+<li>bigeye tuna</li>
+<li>caught by tuna purse seiners</li>
+<li>since 2000</li>
+</ol></li>
+<li><strong>Remove your post-it when you are done</strong></li>
+</ol>
+</section>
+<section id="part-e-creating-new-columns-with-mutate" class="level2">
+<h2 class="anchored" data-anchor-id="part-e-creating-new-columns-with-mutate">Part E) Creating new columns with <code>mutate()</code></h2>
+<ol start="0" type="1">
+<li><strong>Put your post-it up</strong></li>
+<li>Modify the <code>ps_tuna_data</code> pipeline to create a new column called <code>revenue</code> that calculates the revenue generated by selling the catch<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li>Make sure you calculate revenues in Millions of USD</li>
+<li><strong>Remove your post-it when you are done</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-f-calculating-group-summaries-with-group_by-and-summarize" class="level2">
+<h2 class="anchored" data-anchor-id="part-f-calculating-group-summaries-with-group_by-and-summarize">Part F) Calculating group summaries with <code>group_by()</code> and <code>summarize()</code></h2>
+<ol start="0" type="1">
+<li><strong>Put your post-it up</strong></li>
+<li>The data right now report catch at the year-by-flag level. Modify the <code>ps_tuna_data</code> pipeline so that we have total catch and revenue by year.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li><strong>Remove your post-it when you are done</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="part-g-visualize-the-data-and-answer-the-question" class="level2">
+<h2 class="anchored" data-anchor-id="part-g-visualize-the-data-and-answer-the-question">Part G) Visualize the data and answer the question</h2>
+<p>Remember, the question was:</p>
+<blockquote class="blockquote">
+<p>How much money have tuna purse seiners made since 2000 when fishing for bigeye tuna (<em>Thunnus obesus</em>)?</p>
+</blockquote>
+<p>The question is ambiguous because one could answer “They have made X M USD since 2000” or “Every year since 2000, they have made Y M USD per year.” So let’s get both:</p>
+<ol start="0" type="1">
+<li><strong>Put your post-it up</strong></li>
+<li>What is the total revenue?<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li>What is the average annual revenue?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+<li>Build a time-series showing revenues by year. Make sure to correctly label the axis and include a title and caption describing the figure and the data source, respectively.</li>
+<li><strong>Remove your post-it when you are done.</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># My code will be here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="extra-exercises-for-you-to-practice" class="level1">
+<h1>Extra exercises for you to practice</h1>
+<ol type="1">
+<li>Make a figure showing total catch by species during 2023</li>
+<li>Which country caught the most tuna during 2020?</li>
+<li>For each species, identify the year in which catch was at it’s maximum</li>
+<li>How many species have been caught by Mexican-flagged vessels since 2000?</li>
+</ol>
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Sibert2012-hu" class="csl-entry" role="listitem">
+Sibert, John, Inna Senina, Patrick Lehodey, and John Hampton. 2012. <span>“Shifting from Marine Reserves to Maritime Zoning for Conservation of Pacific Bigeye Tuna (Thunnus Obesus).”</span> <em>Proc. Natl. Acad. Sci. U. S. A.</em> 109 (October): 18221–25.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>If your web browser didn’t allow you to specify the download folder, your file is likely in the “Downloads” folder. Navigate there and copy it to the <code>data/raw/</code> folder.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Windows users: You might have to click a button called “Extract” in the top of your explorer window.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Hint: use the <code>colnames()</code> function<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Hint: There is a cryptic link to the <a href="https://www.iattc.org/en-US/Data/Reference-codes">reference codes</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Hint: If I catch 10 kilos and the price per kilo is US$2, then I make US$20 because <span class="math inline">\(10 * 2 = 20\)</span><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Hint: You will need to use the <code>group_by</code>, <code>summarize()</code>, and <code>sum()</code> functions.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Hint: Use <code>$</code> and <code>sum()</code><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Hint: Use <code>$</code> and <code>mean()</code><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
