@@ -127,6 +127,11 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - Widening data with `tidyr`
 - Combining multiple sources of data (`*_joins`)
 
+**Relevant links for the week:**
+- Assigned readings:
+  - R4DS [CH5: Data tidying](https://r4ds.hadley.nz/data-tidy.html)
+  - R4DS [CH19: Joins (sections 19.1 - 19.4 only)](https://r4ds.hadley.nz/joins.html)
+
 ---
 
 **Second assignment:** _Data wrangling_
