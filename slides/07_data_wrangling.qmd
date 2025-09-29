@@ -55,7 +55,7 @@ Two main reasons for lack of tidy data:
 **Core functions**:
 
 - **Change the shape of your data with** `pivot_longer()` and `pivot_wider`
-- Dealing with missing values with `complete()`, `drop_na()`, `replace_na()`, and `fill()`
+- Dealing with missing values with `complete()`, `drop_na()`, `replace_na()`, and `fill()` (to be covered later)
 :::
 
 ::::
