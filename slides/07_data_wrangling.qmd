@@ -55,16 +55,16 @@ Two main reasons for lack of tidy data:
 **Core functions**:
 
 - **Change the shape of your data with** `pivot_longer()` and `pivot_wider`
-- Dealing with missing values with `complete()`, `drop_na()`, `replace_na()`, and `fill()` (to be covered later)
+- Dealing with missing values with `complete()`, `drop_na()`, `replace_na()`, and `fill()` (not today)
 :::
 
 ::::
 
 # Changing shape of data
 
-`pivot_longer()` and `pivot_wider`
+Lengthening and widening with `pivot_longer()` and `pivot_wider()`
 
-## Lengthening data
+## 1) Lengthening data
 
 **Type of problem**: Column names are values, not variables
 
@@ -137,12 +137,11 @@ data_kelp |> # data_kelp goes into...
 
 ```{r}
 #| echo: false
-data_kelp |>
+data_kelp |> # data_kelp goes into...
   pivot_longer(
-    cols = starts_with("TL_"),
-    names_to = "TL",
-    values_to = "N",
-  )
+    cols = starts_with("TL_"), #specify columns to pivot
+    names_to = "total_length", # Where should column names be placed?
+    values_to = "abundance")   # Where should values be placed?
 ```
 
 . . .
@@ -208,11 +207,14 @@ tidy_kelp
 ## Other arguments to `pivot_longer()`
 
 ```{r}
+#| code-fold: false
 ?pivot_longer()
 ```
 
+[Documentation](https://tidyr.tidyverse.org/reference/pivot_longer.html)
 
-## Widening data
+
+## 2) Widening data
 
 **Type of problem:** Variables as stored as values, instead of column names
 
@@ -316,7 +318,7 @@ We want to:
 ```{r}
 #| echo: true
 #| code-fold: false
-#| code-line-numbers: "1-2|3|4|5|"
+#| code-line-numbers: "1-2|3|4|5|6|"
 # Make it tidy
 tidy_fish_info <- fish_info |> # Fish info goes into...
   pivot_wider(
@@ -366,8 +368,14 @@ That's it, pretty straightforward this time
 
 **For example:** You want to calculate biomass for each of your transects
 
-- `data_kelp` has size and abundance, but no information on allometric growth
-- `fish_data` has allometric growth parameters, but no information on size and abundance
+- `tidy_kelp` has size and abundance, but no information on allometric growth
+- `tidy_fish_info` has allometric growth parameters, but no information on size and abundance
+
+. . .
+
+We want to add data from `tidy_fish_info` to `tidy_kelp`:
+
+- For every `genus_species` in `tidy_kelp`, we want to get the `a` and `b` values in `tidy_fish_info` as specified by `sciname`.
 
 
 ## Types of joins
