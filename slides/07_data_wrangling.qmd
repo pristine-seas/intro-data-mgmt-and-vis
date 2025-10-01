@@ -554,6 +554,16 @@ tidy_kelp |> # Tidy kelp goes into... (Yes, you can pipe)
             by = join_by(genus_species == sciname)) # I failed to link site to north_south
 ```
 
+## Correctly specify the two keys
+
+```{r}
+#| code-fold: false
+tidy_kelp |> # Tidy kelp goes into... (Yes, you can pipe)
+  left_join(tidy_fish_info2 |> select(-trophic_level),
+            by = join_by(genus_species == sciname,
+                         site == north_south))
+```
+
 ## Full pipeline to get biomass
 
 :::: {.columns}
@@ -623,50 +633,3 @@ biomass
 - Check for duplicate keys before joining
 - Use `left_join()` as default unless you have a specific reason
 - Validate results after joining
-
-## Common Pitfalls
-
-**Tidying:**
-
-- Assuming data are uniquely identified
-- Not handling missing values appropriately
-- Not selecting all columns that need to be pivoted
-
-. . .
-
-**Merging:**
-
-- Assuming column names match between datasets
-- Not checking for duplicate keys
-- Using wrong join type for your analysis needs
-
-## Summary
-
-**Data Tidying:**
-
-- `pivot_longer()`: Make wide data long
-- `pivot_wider()`: Make long data wide
-- Follow the three rules of tidy data
-
-. . .
-
-**Data Merging:**
-
-- `left_join()`: Keep all left rows (most common)
-- `right_join()`: Keep all right rows
-- `inner_join()`: Keep only matches
-- `full_join()`: Keep everything
-
-. . .
-
-**Next Steps:**
-
-- Practice with your own messy datasets
-- Combine tidying and merging in analysis pipelines
-- Use `dplyr` verbs with tidy data for powerful analysis
-
-## References
-
-- [R for Data Science: Data Tidying](https://r4ds.hadley.nz/data-tidy.html)
-- [R for Data Science: Joins](https://r4ds.hadley.nz/joins.html)
-- [tidyr package documentation](https://tidyr.tidyverse.org/)

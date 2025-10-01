@@ -85,15 +85,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exersice-1-tidying-price-data" id="toc-exersice-1-tidying-price-data" class="nav-link active" data-scroll-target="#exersice-1-tidying-price-data">Exersice 1: Tidying price data</a>
+  <li><a href="#exercise-1-tidying-price-data" id="toc-exercise-1-tidying-price-data" class="nav-link active" data-scroll-target="#exercise-1-tidying-price-data">Exercise 1: Tidying price data</a>
   <ul class="collapse">
   <li><a href="#part-a-downloading-the-data" id="toc-part-a-downloading-the-data" class="nav-link" data-scroll-target="#part-a-downloading-the-data">Part A: Downloading the data</a></li>
   <li><a href="#part-b-reading-excel-data" id="toc-part-b-reading-excel-data" class="nav-link" data-scroll-target="#part-b-reading-excel-data">Part B: Reading excel data</a></li>
   <li><a href="#part-c-inspecting-price-data" id="toc-part-c-inspecting-price-data" class="nav-link" data-scroll-target="#part-c-inspecting-price-data">Part C: Inspecting price data</a></li>
   <li><a href="#part-d-tidy-your-price-data" id="toc-part-d-tidy-your-price-data" class="nav-link" data-scroll-target="#part-d-tidy-your-price-data">Part D: Tidy your price data</a></li>
   <li><a href="#part-e-calculate-mean-annual-price" id="toc-part-e-calculate-mean-annual-price" class="nav-link" data-scroll-target="#part-e-calculate-mean-annual-price">Part E: Calculate mean annual price</a></li>
-  <li><a href="#part-f-read-the-tuna-catch-data" id="toc-part-f-read-the-tuna-catch-data" class="nav-link" data-scroll-target="#part-f-read-the-tuna-catch-data">Part F: Read the tuna catch data</a></li>
-  <li><a href="#part-g-combine-your-catch-and-price-data" id="toc-part-g-combine-your-catch-and-price-data" class="nav-link" data-scroll-target="#part-g-combine-your-catch-and-price-data">Part G: Combine your catch and price data</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-tidying-tuna-catch-data-again" id="toc-exercise-2-tidying-tuna-catch-data-again" class="nav-link" data-scroll-target="#exercise-2-tidying-tuna-catch-data-again">Exercise 2: Tidying tuna catch data (again)</a>
+  <ul class="collapse">
+  <li><a href="#part-a-read-the-tuna-catch-data" id="toc-part-a-read-the-tuna-catch-data" class="nav-link" data-scroll-target="#part-a-read-the-tuna-catch-data">Part A: Read the tuna catch data</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-combine-your-catch-and-price-data" id="toc-exercise-3-combine-your-catch-and-price-data" class="nav-link" data-scroll-target="#exercise-3-combine-your-catch-and-price-data">Exercise 3: Combine your catch and price data</a>
+  <ul class="collapse">
+  <li><a href="#part-a-plan-the-join" id="toc-part-a-plan-the-join" class="nav-link" data-scroll-target="#part-a-plan-the-join">Part A: Plan the join</a></li>
+  <li><a href="#part-b-perform-the-join" id="toc-part-b-perform-the-join" class="nav-link" data-scroll-target="#part-b-perform-the-join">Part B: Perform the join</a></li>
+  <li><a href="#part-c-answer-the-questions-again" id="toc-part-c-answer-the-questions-again" class="nav-link" data-scroll-target="#part-c-answer-the-questions-again">Part C: Answer the questions again</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07_live.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -129,21 +137,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>How much money have tuna purse seiners made since 2000 when fishing for bigeye tuna (<em>Thunnus obesus</em>) in the Eastern Pacific Ocean?</p>
 </blockquote>
-<p>We made some simplifying assumptions and got some values (a total of 3,070 M USD since 2000, or about 127 per year). You are now tasked with coming up with more refined estimates. For example, we will account for the fact that the price of fish varies every year.</p>
+<p>We made some simplifying assumptions and got some values (a total of 3,070 M USD since 2000, or about 127 M USD per year). You are now tasked with coming up with more refined estimates. For example, we will account for the fact that the price of fish varies every year.</p>
 <p>How we will approach this:</p>
 <ul>
 <li>Find data that shows prices per year and species</li>
-<li>Read them, clean them, tidy them up</li>
-<li>Combine our catch data from last week with this new price data</li>
+<li>Read them, clean them, tidy them up (The “data tidying” part)</li>
+<li>Combine our catch data from last week with this new price data (The “merging” part)</li>
 <li>Re-calculate our total revenues since 2000</li>
 </ul>
-<section id="exersice-1-tidying-price-data" class="level1">
-<h1>Exersice 1: Tidying price data</h1>
+<p>This will require three pipelines: - Tidy price data (Exercise 1) - Wrangle catch data (Exercise 2) - Combine tidy prices and catch data (Exercise 3)</p>
+<p>Pipelines 1 and 3 contain tools covered this week. You should already be familiar with pipeline 2.</p>
+<section id="exercise-1-tidying-price-data" class="level1">
+<h1>Exercise 1: Tidying price data</h1>
 <section id="part-a-downloading-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-a-downloading-the-data">Part A: Downloading the data</h2>
-<p><strong>Post it up</strong></p>
+<p><strong>Post-it up</strong></p>
 <ol type="1">
-<li>In a web browser, go to <a href="www.ffa.int">ffa.int</a>. This is the website for the Pacific Islands Forum Fisheries Agency</li>
+<li>In a web browser, go to <a href="https://www.ffa.int/">ffa.int</a>. This is the website for the Pacific Islands Forum Fisheries Agency</li>
 <li>Hover over “Publication and Statistics” on the top menu</li>
 <li>Select “Statistics”</li>
 <li>You will be taken to a site with five items. Download the zip folder called <code>Economic and Development Indicators and Statistics: Tuna Fishery of the Western and Central Pacific Ocean 2024</code></li>
@@ -155,59 +165,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Which sheet</li>
 <li>What range?</li>
 </ul>
-<p><strong>Post it down</strong></p>
+<p><strong>Post-it down</strong></p>
 </section>
 <section id="part-b-reading-excel-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-b-reading-excel-data">Part B: Reading excel data</h2>
-<p><strong>Post it up</strong></p>
+<p><strong>Post-it up</strong></p>
 <ol type="1">
 <li>Open your RStudio project for EVR628</li>
 <li>In your console, install the <code>readxl</code> package: <code>install.packages("readxl")</code></li>
 <li>Start a <strong>new</strong> script called <code>tuna_analysis_prices.R</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 <li>Add the usual code commenting outline</li>
-<li>We will need two packages: <code>readxl</code>, <code>janitor</code>, and <code>tidyverse</code>, load them at the top of your script using <code>library()</code></li>
-<li>Look at the documentation for <code>read_excel()</code></li>
-<li>Use <code>read_excel()</code> to create a new object called <code>tuna_prices</code> and read the price data we need. Immediately pipe it into <code>clean_names</code></li>
+<li>We will need three packages: <code>readxl</code>, <code>janitor</code>, and <code>tidyverse</code>, load them at the top of your script using <code>library()</code></li>
+<li>Use <code>?read_excel()</code> to look at the documentation for the function</li>
+<li>Use <code>read_excel()</code> to create a new object called <code>tuna_prices</code> and read the price data we need<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Immediately pipe it into <code>clean_names</code>.</li>
 </ol>
-<p><strong>Post it down</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>tuna_prices <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">"data/raw/Economic-and-Development-Indicators-and-Statistics-Tuna-Fishery-of-the-Western-and-Central-Pacific-Ocean-2024-32765/Compendium of Economic and Development Statistics 2024.xlsx"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">sheet =</span> <span class="st">"B. Prices"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">range =</span> <span class="st">"A35:E63"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">na =</span> <span class="st">"na"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><strong>Post-it down</strong></p>
 </section>
 <section id="part-c-inspecting-price-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-c-inspecting-price-data">Part C: Inspecting price data</h2>
-<p><strong>Post it up</strong></p>
-<ul>
-<li>What are our column names?</li>
-<li>How many columns do we have?</li>
+<p>Be prepared to discuss the following points:</p>
+<p><strong>Post-it up</strong></p>
+<ol type="1">
+<li>Inspect the column names of <code>tuna_prices</code> using <code>colnames()</code> in your console.</li>
+<li>How many columns and rows do we have?</li>
 <li>Any missing values?</li>
 <li>Do we need to make the data wider or longer?</li>
 <li>Using comments, write out what the target data should be (expand my code chunk see what I wrote)</li>
-</ul>
-<p><strong>Post it down</strong></p>
+</ol>
+<p><strong>Post-it down</strong></p>
+<p>See an example of my description below</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year"          "japan_fresha"  "japan_frozenb" "us_freshc"    
+[5] "us_frozend"   </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28  5</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+   year japan_fresha japan_frozenb us_freshc us_frozend
+  &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1  1997        8204.         8169.        NA         NA
+2  1998        7703.         6320.        NA         NA
+3  1999        8809.         9093.        NA         NA
+4  2000        9198.         8557.        NA         NA</code></pre>
+</div>
+</div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The final data set should have two columns: year and price. Since we have four prices (two markets, two presentations), I will use the average price per year. The tidy data set should therefore have four columns: year, market, presentation, and price.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The final data set should have two columns: year and price. Since we have four</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># prices (two markets, two presentations), I will use the average price per year.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The tidy data set should therefore have four columns: year, market,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># presentation, and price.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="part-d-tidy-your-price-data" class="level2">
 <h2 class="anchored" data-anchor-id="part-d-tidy-your-price-data">Part D: Tidy your price data</h2>
-<p><strong>Post it up</strong></p>
+<p><strong>Post-it up</strong></p>
 <ol type="1">
 <li>Look at the documentation for your <code>pivot_*</code> function. What does it say about cases where <code>names_to</code> is of length &gt; 1?</li>
 <li>What about the <code>names_sep</code> argument?</li>
-<li>Use the appropriate <code>pivot_*</code> function to reshape your data and save them to a new object called <code>tidy_tuna_prices</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
-<li>Your resulting data.frame should have 104 rows and 4 columns and look like this:<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>Use the appropriate <code>pivot_*</code> function to reshape your data and save them to a new object called <code>tidy_tuna_prices</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>Your resulting tibble should have 104 rows and 4 columns and look like this:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
 </ol>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -227,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 94 more rows</code></pre>
 </div>
 </div>
-<p><strong>Post it down</strong></p>
+<p><strong>Post-it down</strong></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -244,9 +266,9 @@ Values in <code>presentation</code>
 </section>
 <section id="part-e-calculate-mean-annual-price" class="level2">
 <h2 class="anchored" data-anchor-id="part-e-calculate-mean-annual-price">Part E: Calculate mean annual price</h2>
-<p><strong>Post it up</strong></p>
+<p><strong>Post-it up</strong></p>
 <ol type="1">
-<li>Modify the pipeline that creates <code>tidy_tuna_prices</code> to get the mean price per year^[Hint: You will use <code>group_by()</code> and <code>summarize()</code>, as well as <code>|&gt;</code></li>
+<li>Modify the pipeline that creates <code>tidy_tuna_prices</code> to get the mean price per year<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
 </ol>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -266,41 +288,24 @@ Values in <code>presentation</code>
 # ℹ 18 more rows</code></pre>
 </div>
 </div>
-<p><strong>Post it down</strong></p>
+<p><strong>Post-it down</strong></p>
 </section>
-<section id="part-f-read-the-tuna-catch-data" class="level2">
-<h2 class="anchored" data-anchor-id="part-f-read-the-tuna-catch-data">Part F: Read the tuna catch data</h2>
-<p><strong>Post it up</strong></p>
+</section>
+<section id="exercise-2-tidying-tuna-catch-data-again" class="level1">
+<h1>Exercise 2: Tidying tuna catch data (again)</h1>
+<section id="part-a-read-the-tuna-catch-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-a-read-the-tuna-catch-data">Part A: Read the tuna catch data</h2>
+<blockquote class="blockquote">
+<p>Note: You can copy-paste and modify your code from last week, but make sure your code is organized.</p>
+</blockquote>
+<p><strong>Post-it up</strong></p>
 <ol type="1">
 <li>Read in the tuna catch data from last week</li>
-<li>Filter it to retain bigeye tuna caught by the purse seine fleet since 2000</li>
-<li>Calculate total catch by year</li>
+<li>Filter it to retain bigeye tuna (<code>BET</code>) caught by the purse seine fleet (<code>PS</code>) since 2000</li>
+<li>Calculate <strong>total</strong> catch by year. Your final data should have 24 rows and 2 columns, as below</li>
 </ol>
-<p><strong>Post it down</strong></p>
-<blockquote class="blockquote">
-<p>Note: You can copy and paste your code from last week of from below, but make sure your code is organized. Your final data should have 24 rows and 2 columns, as below.</p>
-</blockquote>
+<p><strong>Post-it down</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tuna_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/CatchByFlagGear/CatchByFlagGear1918-2023.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Clean column names</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rename some columns</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">year =</span> ano_year,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">flag =</span> bandera_flag,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">gear =</span> arte_gear,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">species =</span> especies_species,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">catch =</span> t)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ps_tuna_data <span class="ot">&lt;-</span> tuna_data <span class="sc">|&gt;</span> </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"BET"</span>, <span class="co"># Retain BET values only</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>         gear <span class="sc">==</span> <span class="st">"PS"</span>,     <span class="co"># Retain PS values only</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>         year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span>  <span class="co"># Retain data from 2000</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span>        <span class="co"># Specify that I am grouping by year</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Tell summarize that I want to collapse the catch column by summing all its values</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">catch =</span> <span class="fu">sum</span>(catch))</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>ps_tuna_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 24 × 2
     year catch
@@ -319,19 +324,26 @@ Values in <code>presentation</code>
 </div>
 </div>
 </section>
-<section id="part-g-combine-your-catch-and-price-data" class="level2">
-<h2 class="anchored" data-anchor-id="part-g-combine-your-catch-and-price-data">Part G: Combine your catch and price data</h2>
+</section>
+<section id="exercise-3-combine-your-catch-and-price-data" class="level1">
+<h1>Exercise 3: Combine your catch and price data</h1>
+<section id="part-a-plan-the-join" class="level2">
+<h2 class="anchored" data-anchor-id="part-a-plan-the-join">Part A: Plan the join</h2>
 <ol type="1">
 <li>Think about what type of join you want</li>
 <li>What will be on the left and what will be on the right?</li>
 <li>What is the key?</li>
+<li>Write down, using human language, what you want to do.</li>
 </ol>
-<p><strong>Post it up</strong></p>
-<ol start="4" type="1">
+<p><strong>Post-it up</strong></p>
+</section>
+<section id="part-b-perform-the-join" class="level2">
+<h2 class="anchored" data-anchor-id="part-b-perform-the-join">Part B: Perform the join</h2>
+<ol type="1">
 <li>Perform the join and save the output to an object called <code>tuna_revenues</code></li>
-<li>Create a new column that contains the revenue in M USD. Be careful with the units.</li>
+<li>Create a new column that contains the annual revenue in M USD. Pay attention to the units.</li>
 </ol>
-<p><strong>Post it down</strong></p>
+<p><strong>Post-it down</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 24 × 4
@@ -350,36 +362,30 @@ Values in <code>presentation</code>
 # ℹ 14 more rows</code></pre>
 </div>
 </div>
+</section>
+<section id="part-c-answer-the-questions-again" class="level2">
+<h2 class="anchored" data-anchor-id="part-c-answer-the-questions-again">Part C: Answer the questions again</h2>
+<ol type="1">
+<li>How much TOTAL revenue since 2000?</li>
+<li>How much mean ANNUAL revenue since 2000?</li>
+<li>Make a figure</li>
+<li>How do these plot and numbers compare to what we found <a href="https://jcvdav.github.io/EVR_628/docs/06_live.html#part-g-visualize-the-data-and-answer-the-question">last week</a>?</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(tuna_revenues<span class="sc">$</span>revenue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11752.32</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tuna_revenues<span class="sc">$</span>revenue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 489.68</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build  plot</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tuna_revenues,                   <span class="co"># Specify my data</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> revenue)) <span class="sc">+</span> <span class="co"># And my aesthetics</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span>             <span class="co"># Add a dashed line</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>                               <span class="co"># With points on top</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,                             <span class="co"># Add some labels</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Revenue (M USD)"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Annual revenue from fishing bigeye tuna by purse seine vessels"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data come from the IATTC"</span>) <span class="sc">+</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Modify the theme</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>,               <span class="co"># Font size 14</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">base_family =</span> <span class="st">"Times"</span>)        <span class="co"># Font family Times</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="07_live_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="07_live_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="07_live_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="07_live_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
 </div>
-<p>How do this plot and numbers compare to what we found <a href="https://jcvdav.github.io/EVR_628/docs/06_live.html#part-g-visualize-the-data-and-answer-the-question">last week</a>?</p>
 </section>
 </section>
 
@@ -388,8 +394,10 @@ Values in <code>presentation</code>
 
 <ol>
 <li id="fn1"><p>I would typically suggest to overwrite whatever we had last week in <code>tuna_analysis.R</code> because GitHub would keep a version, but I understand you might want to keep the script as is<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Hint: Your <code>names_to</code> argument should be a character vector of with two items. <code>names_ _sep</code> should be inspired by our clever use of <code>snake_case</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Hint: If you have 112 rows, remember you can use <code>values_drop_na = T</code><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Hint: You will need to specify a file path, a sheet, and a range of cells.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Hint: Your <code>names_to</code> argument should be a character vector of with two items. <code>names_ _sep</code> should be inspired by our clever use of <code>snake_case</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Hint: If you have 112 rows, remember you can use <code>values_drop_na = T</code><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Hint: You will use <code>group_by()</code> and <code>summarize()</code>, as well as <code>|&gt;</code><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

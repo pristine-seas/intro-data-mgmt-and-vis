@@ -6,8 +6,8 @@
 <script src="07_data_wrangling_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="07_data_wrangling_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="07_data_wrangling_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="07_data_wrangling_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="07_data_wrangling_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
   <title>EVR 628- Intro to Environmental Data Science</title>
@@ -29,8 +29,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -114,7 +115,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="07_data_wrangling_files/libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
+  <link rel="stylesheet" href="07_data_wrangling_files/libs/revealjs/dist/theme/quarto-2c1b5f745a11cfad616ebade4a4a7d24.css">
   <link href="07_data_wrangling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="07_data_wrangling_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="07_data_wrangling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -251,10 +252,10 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/tidy-1.png"></p>
-<figcaption>Image Credit: <span class="citation" data-cites="Wickham2023-aa">Wickham, Mine Cetinkaya-Rundel, and Grolemund (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></figcaption>
+<figcaption>Image Credit: <span class="citation" data-cites="Wickham2023-aa">Wickham, Mine Cetinkaya-Rundel, and Grolemund (<a href="#/best-practices" role="doc-biblioref" onclick="">2023</a>)</span></figcaption>
 </figure>
 </div>
-<p>See <span class="citation" data-cites="tidy-data">Wickham (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span> for a full description of tidy data principles an the <code>reshape2</code> package (old)</p>
+<p>See <span class="citation" data-cites="tidy-data">Wickham (<a href="#/best-practices" role="doc-biblioref" onclick="">2014</a>)</span> for a full description of tidy data principles an the <code>reshape2</code> package (old)</p>
 </section>
 <section id="messy-data" class="slide level2">
 <h2>Messy Data?</h2>
@@ -704,7 +705,7 @@ Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/venn_joins.png"></p>
-<figcaption>Image Credit: <span class="citation" data-cites="Wickham2023-aa">Wickham, Mine Cetinkaya-Rundel, and Grolemund (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></figcaption>
+<figcaption>Image Credit: <span class="citation" data-cites="Wickham2023-aa">Wickham, Mine Cetinkaya-Rundel, and Grolemund (<a href="#/best-practices" role="doc-biblioref" onclick="">2023</a>)</span></figcaption>
 </figure>
 </div>
 <ul>
@@ -788,7 +789,7 @@ Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="img/join_setup.png"></p>
-<figcaption>Image Credit: <span class="citation" data-cites="Wickham2023-aa">Wickham, Mine Cetinkaya-Rundel, and Grolemund (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></figcaption>
+<figcaption>Image Credit: <span class="citation" data-cites="Wickham2023-aa">Wickham, Mine Cetinkaya-Rundel, and Grolemund (<a href="#/best-practices" role="doc-biblioref" onclick="">2023</a>)</span></figcaption>
 </figure>
 </div>
 <ul>
@@ -989,37 +990,62 @@ Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
+<section id="correctly-specify-the-two-keys" class="slide level2">
+<h2>Correctly specify the two keys</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>tidy_kelp <span class="sc">|&gt;</span> <span class="co"># Tidy kelp goes into... (Yes, you can pipe)</span></span>
+<span id="cb36-2"><a href=""></a>  <span class="fu">left_join</span>(tidy_fish_info2 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>trophic_level),</span>
+<span id="cb36-3"><a href=""></a>            <span class="at">by =</span> <span class="fu">join_by</span>(genus_species <span class="sc">==</span> sciname,</span>
+<span id="cb36-4"><a href=""></a>                         site <span class="sc">==</span> north_south))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,116 × 8
+   location site  transect genus_species   total_length abundance        a     b
+   &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+ 1 ASA      North        1 Alloclinus hol…          7.5         1  0.00583  3.39
+ 2 ASA      North        1 Caulolatilus p…         17.5         3  0.00779  3.38
+ 3 ASA      North        1 Chromis puncti…          7.5        14  0.0138   3.33
+ 4 ASA      North        1 Embiotoca jack…         17.5         6  0.0325   3.29
+ 5 ASA      North        1 Embiotoca late…         17.5         1 NA       NA   
+ 6 ASA      North        1 Girella nigric…         22.5         1 NA       NA   
+ 7 ASA      North        1 Hypsypops rubi…         17.5         4 NA       NA   
+ 8 ASA      North        1 Oxyjulis calif…          2.5         2 NA       NA   
+ 9 ASA      North        1 Oxyjulis calif…          7.5        61 NA       NA   
+10 ASA      North        1 Oxyjulis calif…         12.5        46 NA       NA   
+# ℹ 1,106 more rows</code></pre>
+</div>
+</div>
+</section>
 <section id="full-pipeline-to-get-biomass" class="slide level2">
 <h2>Full pipeline to get biomass</h2>
 <div class="columns">
 <div class="column" style="width:65%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a><span class="co"># Tidy the transect data</span></span>
-<span id="cb36-2"><a href=""></a>tidy_kelp <span class="ot">&lt;-</span> data_kelp <span class="sc">|&gt;</span> <span class="co"># data_kelp goes into...</span></span>
-<span id="cb36-3"><a href=""></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb36-4"><a href=""></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"TL_"</span>), <span class="co">#specify columns to pivot</span></span>
-<span id="cb36-5"><a href=""></a>    <span class="at">names_to =</span> <span class="st">"total_length"</span>, <span class="co"># Where should column names be placed?</span></span>
-<span id="cb36-6"><a href=""></a>    <span class="at">values_to =</span> <span class="st">"abundance"</span>,   <span class="co"># Where should values be placed?</span></span>
-<span id="cb36-7"><a href=""></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>,     <span class="co"># Specify that NA values should be removed)</span></span>
-<span id="cb36-8"><a href=""></a>    <span class="at">names_prefix =</span> <span class="st">"TL_"</span>) <span class="sc">|&gt;</span>   <span class="co"># Remove "TL_" from the total length</span></span>
-<span id="cb36-9"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">total_length =</span> <span class="fu">as.numeric</span>(total_length) <span class="sc">-</span><span class="fl">2.5</span>) <span class="co"># Use mutate to rewrite column</span></span>
-<span id="cb36-10"><a href=""></a></span>
-<span id="cb36-11"><a href=""></a><span class="co"># Tidy the allometric data data</span></span>
-<span id="cb36-12"><a href=""></a>tidy_fish_info <span class="ot">&lt;-</span> fish_info <span class="sc">|&gt;</span> <span class="co"># Fish info goes into...</span></span>
-<span id="cb36-13"><a href=""></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb36-14"><a href=""></a>    <span class="at">id_cols =</span> sciname,       <span class="co"># The column(s) that specifies my observation</span></span>
-<span id="cb36-15"><a href=""></a>    <span class="at">names_from =</span> parameter,  <span class="co"># My new names will come from...</span></span>
-<span id="cb36-16"><a href=""></a>    <span class="at">values_from =</span> value) <span class="sc">|&gt;</span>  <span class="co"># And my values from...</span></span>
-<span id="cb36-17"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>trophic_level)</span>
-<span id="cb36-18"><a href=""></a></span>
-<span id="cb36-19"><a href=""></a><span class="co"># And now combine them</span></span>
-<span id="cb36-20"><a href=""></a>biomass <span class="ot">&lt;-</span>tidy_kelp <span class="sc">|&gt;</span> </span>
-<span id="cb36-21"><a href=""></a>  <span class="fu">left_join</span>(tidy_fish_info,</span>
-<span id="cb36-22"><a href=""></a>            <span class="at">by =</span> <span class="fu">join_by</span>(genus_species <span class="sc">==</span> sciname)) <span class="sc">|&gt;</span></span>
-<span id="cb36-23"><a href=""></a> <span class="co"># And use last week's knowledge to calculate the rest</span></span>
-<span id="cb36-24"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">biomass =</span> (a <span class="sc">*</span> total_length <span class="sc">^</span> b) <span class="sc">*</span> abundance <span class="sc">/</span> <span class="dv">1000</span> ) <span class="sc">|&gt;</span> </span>
-<span id="cb36-25"><a href=""></a>  <span class="fu">group_by</span>(location, site, transect) <span class="sc">|&gt;</span> </span>
-<span id="cb36-26"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">biomass =</span> <span class="fu">sum</span>(biomass, <span class="at">na.rm =</span> T) <span class="sc">/</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="co"># Tidy the transect data</span></span>
+<span id="cb38-2"><a href=""></a>tidy_kelp <span class="ot">&lt;-</span> data_kelp <span class="sc">|&gt;</span> <span class="co"># data_kelp goes into...</span></span>
+<span id="cb38-3"><a href=""></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb38-4"><a href=""></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"TL_"</span>), <span class="co">#specify columns to pivot</span></span>
+<span id="cb38-5"><a href=""></a>    <span class="at">names_to =</span> <span class="st">"total_length"</span>, <span class="co"># Where should column names be placed?</span></span>
+<span id="cb38-6"><a href=""></a>    <span class="at">values_to =</span> <span class="st">"abundance"</span>,   <span class="co"># Where should values be placed?</span></span>
+<span id="cb38-7"><a href=""></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>,     <span class="co"># Specify that NA values should be removed)</span></span>
+<span id="cb38-8"><a href=""></a>    <span class="at">names_prefix =</span> <span class="st">"TL_"</span>) <span class="sc">|&gt;</span>   <span class="co"># Remove "TL_" from the total length</span></span>
+<span id="cb38-9"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">total_length =</span> <span class="fu">as.numeric</span>(total_length) <span class="sc">-</span><span class="fl">2.5</span>) <span class="co"># Use mutate to rewrite column</span></span>
+<span id="cb38-10"><a href=""></a></span>
+<span id="cb38-11"><a href=""></a><span class="co"># Tidy the allometric data data</span></span>
+<span id="cb38-12"><a href=""></a>tidy_fish_info <span class="ot">&lt;-</span> fish_info <span class="sc">|&gt;</span> <span class="co"># Fish info goes into...</span></span>
+<span id="cb38-13"><a href=""></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb38-14"><a href=""></a>    <span class="at">id_cols =</span> sciname,       <span class="co"># The column(s) that specifies my observation</span></span>
+<span id="cb38-15"><a href=""></a>    <span class="at">names_from =</span> parameter,  <span class="co"># My new names will come from...</span></span>
+<span id="cb38-16"><a href=""></a>    <span class="at">values_from =</span> value) <span class="sc">|&gt;</span>  <span class="co"># And my values from...</span></span>
+<span id="cb38-17"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>trophic_level)</span>
+<span id="cb38-18"><a href=""></a></span>
+<span id="cb38-19"><a href=""></a><span class="co"># And now combine them</span></span>
+<span id="cb38-20"><a href=""></a>biomass <span class="ot">&lt;-</span>tidy_kelp <span class="sc">|&gt;</span> </span>
+<span id="cb38-21"><a href=""></a>  <span class="fu">left_join</span>(tidy_fish_info,</span>
+<span id="cb38-22"><a href=""></a>            <span class="at">by =</span> <span class="fu">join_by</span>(genus_species <span class="sc">==</span> sciname)) <span class="sc">|&gt;</span></span>
+<span id="cb38-23"><a href=""></a> <span class="co"># And use last week's knowledge to calculate the rest</span></span>
+<span id="cb38-24"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">biomass =</span> (a <span class="sc">*</span> total_length <span class="sc">^</span> b) <span class="sc">*</span> abundance <span class="sc">/</span> <span class="dv">1000</span> ) <span class="sc">|&gt;</span> </span>
+<span id="cb38-25"><a href=""></a>  <span class="fu">group_by</span>(location, site, transect) <span class="sc">|&gt;</span> </span>
+<span id="cb38-26"><a href=""></a>  <span class="fu">summarize</span>(<span class="at">biomass =</span> <span class="fu">sum</span>(biomass, <span class="at">na.rm =</span> T) <span class="sc">/</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:35%;">
 <div class="cell">
@@ -1043,7 +1069,7 @@ Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div></div>
 </section>
-<section id="best-practices" class="slide level2">
+<section id="best-practices" class="slide level2 smaller scrollable">
 <h2>Best Practices</h2>
 <p><strong>Data Tidying:</strong></p>
 <ul>
@@ -1060,58 +1086,6 @@ Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li class="fragment">Use <code>left_join()</code> as default unless you have a specific reason</li>
 <li class="fragment">Validate results after joining</li>
 </ul>
-</div>
-</section>
-<section id="common-pitfalls" class="slide level2">
-<h2>Common Pitfalls</h2>
-<p><strong>Tidying:</strong></p>
-<ul>
-<li class="fragment">Assuming data are uniquely identified</li>
-<li class="fragment">Not handling missing values appropriately</li>
-<li class="fragment">Not selecting all columns that need to be pivoted</li>
-</ul>
-<div class="fragment">
-<p><strong>Merging:</strong></p>
-<ul>
-<li class="fragment">Assuming column names match between datasets</li>
-<li class="fragment">Not checking for duplicate keys</li>
-<li class="fragment">Using wrong join type for your analysis needs</li>
-</ul>
-</div>
-</section>
-<section id="summary" class="slide level2">
-<h2>Summary</h2>
-<p><strong>Data Tidying:</strong></p>
-<ul>
-<li class="fragment"><code>pivot_longer()</code>: Make wide data long</li>
-<li class="fragment"><code>pivot_wider()</code>: Make long data wide</li>
-<li class="fragment">Follow the three rules of tidy data</li>
-</ul>
-<div class="fragment">
-<p><strong>Data Merging:</strong></p>
-<ul>
-<li class="fragment"><code>left_join()</code>: Keep all left rows (most common)</li>
-<li class="fragment"><code>right_join()</code>: Keep all right rows</li>
-<li class="fragment"><code>inner_join()</code>: Keep only matches</li>
-<li class="fragment"><code>full_join()</code>: Keep everything</li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Next Steps:</strong></p>
-<ul>
-<li class="fragment">Practice with your own messy datasets</li>
-<li class="fragment">Combine tidying and merging in analysis pipelines</li>
-<li class="fragment">Use <code>dplyr</code> verbs with tidy data for powerful analysis</li>
-</ul>
-</div>
-</section>
-<section id="references" class="slide level2 smaller scrollable">
-<h2>References</h2>
-<ul>
-<li class="fragment"><a href="https://r4ds.hadley.nz/data-tidy.html">R for Data Science: Data Tidying</a></li>
-<li class="fragment"><a href="https://r4ds.hadley.nz/joins.html">R for Data Science: Joins</a></li>
-<li class="fragment"><a href="https://tidyr.tidyverse.org/">tidyr package documentation</a></li>
-</ul>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-tidy-data" class="csl-entry" role="listitem">
@@ -1119,6 +1093,7 @@ Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>The Journal of Statisti
 </div>
 <div id="ref-Wickham2023-aa" class="csl-entry" role="listitem">
 Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em><span>R</span> for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. Sebastopol, CA: O’Reilly Media.
+</div>
 </div>
 </div>
 </section></section>
@@ -1377,190 +1352,172 @@ Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em><span>R
     </script>
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
