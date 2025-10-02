@@ -1,5 +1,5 @@
 ---
-title: "Data tidying and Merging"
+title: "Data Tidying and Merging"
 lightbox: true
 format:
   html:
@@ -25,6 +25,7 @@ How we will approach this:
 - Re-calculate our total revenues since 2000
 
 This will require three pipelines:
+
 - Tidy price data (Exercise 1)
 - Wrangle catch data (Exercise 2)
 - Combine tidy prices and catch data (Exercise 3)
@@ -265,7 +266,188 @@ ggplot(data = tuna_revenues,                   # Specify my data
                 base_family = "Times")        # Font family Times
 ```
 
+# Extra exercises for you to practice
 
+The following four exercises use data that are built directly in R. You will need to copy and paste the provided code
+in your console (or R script) to make sure the objects appear in your environment.
 
+## Exercise 1: Pivot Longer Practice
+
+**Scenario**: You are a TA and have been given grade data where each row represents a student and columns represent their scores on assignments 1-4. You need to calculate the mean grade for each student.^[Hint: Use `pivot_longer()` to transform this data so that each row represents one student-assignment-score combination, then use `group_by()` and `summarize()` to calculate the mean grade for each student.]
+
+```{r}
+#| echo: true
+#| code-fold: false
+# Create the dataset
+student_scores <- tribble(
+  ~student_id, ~assignment_1, ~assignment_2, ~assignment_3, ~assignment_4,
+  "S001", 85, 92, 78, 88,
+  "S002", 91, 89, 95, 82,
+  "S003", 76, 84, 91, 79,
+  "S004", 88, 93, 87, 94
+)
+
+student_scores
+```
+
+**How I did it:**
+
+```{r}
+#| echo: true
+#| code-fold: true
+student_scores_long <- student_scores |> 
+  pivot_longer(cols = starts_with("assignment"),  # All columns from assignment_1 to assignment_4
+               names_to = "assignment",          # Create new column called "assignment" with column names
+               values_to = "score")              # Create new column called "score" with the values
+
+student_means <- student_scores_long |> 
+  group_by(student_id) |>                        # Group rows by student_id
+  summarize(mean_grade = mean(score))           # Calculate mean score for each student
+
+student_means                                   # View the result
+```
+
+## Exercise 2: Pivot Wider Practice
+
+**Scenario**: You have hurricane exposure data from different Florida counties. You are asked to build a figure showing the relationship between pressure and wind speed. Modify the data as needed and build a figure.^[Hint: Use `pivot_wider()` to transform this data so that each row represents a county and each metric becomes its own column.]
+
+```{r}
+#| echo: true
+#| code-fold: false
+# Create the dataset
+hurricane_data <- tribble(
+  ~county, ~metric, ~measurement,
+  "Miami-Dade", "pressure", 950,
+  "Miami-Dade", "precipitation", 12.5,
+  "Miami-Dade", "wind_speed", 85,
+  "Broward", "pressure", 955,
+  "Broward", "precipitation", 8.3,
+  "Broward", "wind_speed", 72,
+  "Palm Beach", "pressure", 960,
+  "Palm Beach", "precipitation", 6.1,
+  "Palm Beach", "wind_speed", 68,
+  "Monroe", "pressure", 945,
+  "Monroe", "precipitation", 15.2,
+  "Monroe", "wind_speed", 95
+)
+
+hurricane_data
+```
+
+**How I did it:**
+
+```{r}
+#| echo: true
+#| code-fold: true
+hurricane_wide <- hurricane_data |> 
+  pivot_wider(names_from = metric,     # Use values in "metric" column as new column names
+              values_from = measurement) # Use values in "measurement" column to fill new columns
+
+hurricane_wide                        # Now each county is a row with separate columns for pressure, precipitation, wind_speed
+
+ggplot(hurricane_wide,
+       aes(x = pressure, y = wind_speed)) +
+  geom_point() +
+  labs(x = "Pressure",
+       y = "Wind speed")
+```
+
+## Exercise 3: Joining Data Practice
+
+**Scenario**: You have two datasets - one with student information and another with their enrollment details. You need to be able to identify the names of students taking stats courses.
+
+```{r}
+#| echo: true
+#| code-fold: false
+# Create the datasets
+students <- tribble(
+  ~student_id, ~name, ~age,
+  "S001", "Alice Johnson", 20,
+  "S002", "Bob Smith", 22,
+  "S003", "Carol Davis", 19,
+  "S004", "David Wilson", 21,
+  "S005", "Eva Brown", 23
+)
+
+enrollments <- tribble(
+  ~stdt_identifier, ~course, ~credits,
+  "S001", "Statistics", 3,
+  "S001", "Biology", 4,
+  "S002", "Statistics", 3,
+  "S003", "Chemistry", 4,
+  "S004", "Statistics", 3,
+  "S004", "Physics", 4,
+  "S006", "Math", 3
+)
+
+students
+enrollments
+```
+
+**How I did it:**
+
+```{r}
+#| echo: true
+#| code-fold: true
+combined_data <- students |> 
+  left_join(enrollments, by = join_by(student_id == stdt_identifier)) # Keep all students, match different column names
+
+combined_data                        # View the combined data
+
+statistics_students <- combined_data |> 
+  filter(course == "Statistics") |> # Keep only rows where course equals "Statistics"
+  select(name, course)              # Keep only the name and course columns
+
+statistics_students                 # View the result
+```
+
+## Exercise 4: Sharks!
+
+**Scenario**: You have swimming data from beachgoers and bull shark detection data from acoustic telemetry during fourth of July. The swimming data tell you when someone entered and left the water. The shark detection data tells you which sharks were detected within the acoustic array in front of the beach, and the time of detection. Who was in the water while a shark was nearby?^[Hint: Look at the documentation for `join_by()`. What does it say about "Overlap helpers"? You'll want to use the `between()` function.]
+
+```{r}
+#| echo: true
+#| code-fold: false
+# Create the datasets
+swimming_data <- tribble(
+  ~name, ~swim_start, ~swim_end,
+  "Alice", "2024-07-04 10:30:00", "2024-07-04 11:15:00",
+  "Bob", "2024-07-04 10:45:00", "2024-07-04 11:30:00",
+  "Carol", "2024-07-04 11:00:00", "2024-07-04 11:45:00",
+  "David", "2024-07-04 11:20:00", "2024-07-04 12:00:00",
+  "Eva", "2024-07-04 12:10:00", "2024-07-04 12:45:00"
+) |> 
+  mutate(swim_start = as_datetime(swim_start),
+         swim_end = as_datetime(swim_end))
+
+shark_detections <- tribble(
+  ~shark_id, ~detection_time,
+  "SH001", "2024-07-04 09:40:00",
+  "SH002", "2024-07-04 11:25:00",
+  "SH003", "2024-07-04 11:35:00"
+) |> 
+  mutate(detection_time = as_datetime(detection_time))
+
+swimming_data
+shark_detections
+```
+
+**How I did it:**
+
+```{r}
+#| echo: true
+#| code-fold: true
+swimmer_shark_overlap <- shark_detections |> 
+  inner_join(swimming_data,            # Note that I am using an inner join. Play with inner, left, and right to see what happens
+             by = join_by(between(detection_time, swim_start, swim_end))) # Find swimmers in water during shark detections
+
+swimmer_shark_overlap               # View all the overlap data
+
+at_risk_swimmers <- swimmer_shark_overlap |> 
+  group_by(name) |>  # Keep only the columns we want to see
+  summarize(n_sharks_near = n_distinct(shark_id))
+
+at_risk_swimmers                   # These swimmers were in the water when sharks were detected
+```  
 
 

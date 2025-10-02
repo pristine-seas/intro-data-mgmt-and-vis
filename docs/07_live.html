@@ -8,7 +8,7 @@
 
 <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
 
-<title>Data tidying and Merging</title>
+<title>Data Tidying and Merging</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#part-b-perform-the-join" id="toc-part-b-perform-the-join" class="nav-link" data-scroll-target="#part-b-perform-the-join">Part B: Perform the join</a></li>
   <li><a href="#part-c-answer-the-questions-again" id="toc-part-c-answer-the-questions-again" class="nav-link" data-scroll-target="#part-c-answer-the-questions-again">Part C: Answer the questions again</a></li>
   </ul></li>
+  <li><a href="#extra-exercises-for-you-to-practice" id="toc-extra-exercises-for-you-to-practice" class="nav-link" data-scroll-target="#extra-exercises-for-you-to-practice">Extra exercises for you to practice</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-pivot-longer-practice" id="toc-exercise-1-pivot-longer-practice" class="nav-link" data-scroll-target="#exercise-1-pivot-longer-practice">Exercise 1: Pivot Longer Practice</a></li>
+  <li><a href="#exercise-2-pivot-wider-practice" id="toc-exercise-2-pivot-wider-practice" class="nav-link" data-scroll-target="#exercise-2-pivot-wider-practice">Exercise 2: Pivot Wider Practice</a></li>
+  <li><a href="#exercise-3-joining-data-practice" id="toc-exercise-3-joining-data-practice" class="nav-link" data-scroll-target="#exercise-3-joining-data-practice">Exercise 3: Joining Data Practice</a></li>
+  <li><a href="#exercise-4-sharks" id="toc-exercise-4-sharks" class="nav-link" data-scroll-target="#exercise-4-sharks">Exercise 4: Sharks!</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07_live.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -110,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data tidying and Merging</h1>
+<h1 class="title">Data Tidying and Merging</h1>
 </div>
 
 
@@ -145,7 +152,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Combine our catch data from last week with this new price data (The “merging” part)</li>
 <li>Re-calculate our total revenues since 2000</li>
 </ul>
-<p>This will require three pipelines: - Tidy price data (Exercise 1) - Wrangle catch data (Exercise 2) - Combine tidy prices and catch data (Exercise 3)</p>
+<p>This will require three pipelines:</p>
+<ul>
+<li>Tidy price data (Exercise 1)</li>
+<li>Wrangle catch data (Exercise 2)</li>
+<li>Combine tidy prices and catch data (Exercise 3)</li>
+</ul>
 <p>Pipelines 1 and 3 contain tools covered this week. You should already be familiar with pipeline 2.</p>
 <section id="exercise-1-tidying-price-data" class="level1">
 <h1>Exercise 1: Tidying price data</h1>
@@ -388,6 +400,308 @@ Values in <code>presentation</code>
 </div>
 </section>
 </section>
+<section id="extra-exercises-for-you-to-practice" class="level1">
+<h1>Extra exercises for you to practice</h1>
+<p>The following four exercises use data that are built directly in R. You will need to copy and paste the provided code in your console (or R script) to make sure the objects appear in your environment.</p>
+<section id="exercise-1-pivot-longer-practice" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-pivot-longer-practice">Exercise 1: Pivot Longer Practice</h2>
+<p><strong>Scenario</strong>: You are a TA and have been given grade data where each row represents a student and columns represent their scores on assignments 1-4. You need to calculate the mean grade for each student.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dataset</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>student_scores <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student_id, <span class="sc">~</span>assignment_1, <span class="sc">~</span>assignment_2, <span class="sc">~</span>assignment_3, <span class="sc">~</span>assignment_4,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S001"</span>, <span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">88</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S002"</span>, <span class="dv">91</span>, <span class="dv">89</span>, <span class="dv">95</span>, <span class="dv">82</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S003"</span>, <span class="dv">76</span>, <span class="dv">84</span>, <span class="dv">91</span>, <span class="dv">79</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S004"</span>, <span class="dv">88</span>, <span class="dv">93</span>, <span class="dv">87</span>, <span class="dv">94</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>student_scores</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  student_id assignment_1 assignment_2 assignment_3 assignment_4
+  &lt;chr&gt;             &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1 S001                 85           92           78           88
+2 S002                 91           89           95           82
+3 S003                 76           84           91           79
+4 S004                 88           93           87           94</code></pre>
+</div>
+</div>
+<p><strong>How I did it:</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>student_scores_long <span class="ot">&lt;-</span> student_scores <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"assignment"</span>),  <span class="co"># All columns from assignment_1 to assignment_4</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"assignment"</span>,          <span class="co"># Create new column called "assignment" with column names</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"score"</span>)              <span class="co"># Create new column called "score" with the values</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>student_means <span class="ot">&lt;-</span> student_scores_long <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(student_id) <span class="sc">|&gt;</span>                        <span class="co"># Group rows by student_id</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_grade =</span> <span class="fu">mean</span>(score))           <span class="co"># Calculate mean score for each student</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>student_means                                   <span class="co"># View the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  student_id mean_grade
+  &lt;chr&gt;           &lt;dbl&gt;
+1 S001             85.8
+2 S002             89.2
+3 S003             82.5
+4 S004             90.5</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-2-pivot-wider-practice" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-pivot-wider-practice">Exercise 2: Pivot Wider Practice</h2>
+<p><strong>Scenario</strong>: You have hurricane exposure data from different Florida counties. You are asked to build a figure showing the relationship between pressure and wind speed. Modify the data as needed and build a figure.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dataset</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>hurricane_data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>county, <span class="sc">~</span>metric, <span class="sc">~</span>measurement,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Miami-Dade"</span>, <span class="st">"pressure"</span>, <span class="dv">950</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Miami-Dade"</span>, <span class="st">"precipitation"</span>, <span class="fl">12.5</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Miami-Dade"</span>, <span class="st">"wind_speed"</span>, <span class="dv">85</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Broward"</span>, <span class="st">"pressure"</span>, <span class="dv">955</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Broward"</span>, <span class="st">"precipitation"</span>, <span class="fl">8.3</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Broward"</span>, <span class="st">"wind_speed"</span>, <span class="dv">72</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Palm Beach"</span>, <span class="st">"pressure"</span>, <span class="dv">960</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Palm Beach"</span>, <span class="st">"precipitation"</span>, <span class="fl">6.1</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Palm Beach"</span>, <span class="st">"wind_speed"</span>, <span class="dv">68</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Monroe"</span>, <span class="st">"pressure"</span>, <span class="dv">945</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Monroe"</span>, <span class="st">"precipitation"</span>, <span class="fl">15.2</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Monroe"</span>, <span class="st">"wind_speed"</span>, <span class="dv">95</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>hurricane_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   county     metric        measurement
+   &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;
+ 1 Miami-Dade pressure            950  
+ 2 Miami-Dade precipitation        12.5
+ 3 Miami-Dade wind_speed           85  
+ 4 Broward    pressure            955  
+ 5 Broward    precipitation         8.3
+ 6 Broward    wind_speed           72  
+ 7 Palm Beach pressure            960  
+ 8 Palm Beach precipitation         6.1
+ 9 Palm Beach wind_speed           68  
+10 Monroe     pressure            945  
+11 Monroe     precipitation        15.2
+12 Monroe     wind_speed           95  </code></pre>
+</div>
+</div>
+<p><strong>How I did it:</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hurricane_wide <span class="ot">&lt;-</span> hurricane_data <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> metric,     <span class="co"># Use values in "metric" column as new column names</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> measurement) <span class="co"># Use values in "measurement" column to fill new columns</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>hurricane_wide                        <span class="co"># Now each county is a row with separate columns for pressure, precipitation, wind_speed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  county     pressure precipitation wind_speed
+  &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+1 Miami-Dade      950          12.5         85
+2 Broward         955           8.3         72
+3 Palm Beach      960           6.1         68
+4 Monroe          945          15.2         95</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hurricane_wide,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pressure, <span class="at">y =</span> wind_speed)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Pressure"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Wind speed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="07_live_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="07_live_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-3-joining-data-practice" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-joining-data-practice">Exercise 3: Joining Data Practice</h2>
+<p><strong>Scenario</strong>: You have two datasets - one with student information and another with their enrollment details. You need to be able to identify the names of students taking stats courses.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the datasets</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student_id, <span class="sc">~</span>name, <span class="sc">~</span>age,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S001"</span>, <span class="st">"Alice Johnson"</span>, <span class="dv">20</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S002"</span>, <span class="st">"Bob Smith"</span>, <span class="dv">22</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S003"</span>, <span class="st">"Carol Davis"</span>, <span class="dv">19</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S004"</span>, <span class="st">"David Wilson"</span>, <span class="dv">21</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S005"</span>, <span class="st">"Eva Brown"</span>, <span class="dv">23</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>enrollments <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>stdt_identifier, <span class="sc">~</span>course, <span class="sc">~</span>credits,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S001"</span>, <span class="st">"Statistics"</span>, <span class="dv">3</span>,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S001"</span>, <span class="st">"Biology"</span>, <span class="dv">4</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S002"</span>, <span class="st">"Statistics"</span>, <span class="dv">3</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S003"</span>, <span class="st">"Chemistry"</span>, <span class="dv">4</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S004"</span>, <span class="st">"Statistics"</span>, <span class="dv">3</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S004"</span>, <span class="st">"Physics"</span>, <span class="dv">4</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S006"</span>, <span class="st">"Math"</span>, <span class="dv">3</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  student_id name            age
+  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;
+1 S001       Alice Johnson    20
+2 S002       Bob Smith        22
+3 S003       Carol Davis      19
+4 S004       David Wilson     21
+5 S005       Eva Brown        23</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>enrollments</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+  stdt_identifier course     credits
+  &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
+1 S001            Statistics       3
+2 S001            Biology          4
+3 S002            Statistics       3
+4 S003            Chemistry        4
+5 S004            Statistics       3
+6 S004            Physics          4
+7 S006            Math             3</code></pre>
+</div>
+</div>
+<p><strong>How I did it:</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>combined_data <span class="ot">&lt;-</span> students <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(enrollments, <span class="at">by =</span> <span class="fu">join_by</span>(student_id <span class="sc">==</span> stdt_identifier)) <span class="co"># Keep all students, match different column names</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>combined_data                        <span class="co"># View the combined data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 5
+  student_id name            age course     credits
+  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+1 S001       Alice Johnson    20 Statistics       3
+2 S001       Alice Johnson    20 Biology          4
+3 S002       Bob Smith        22 Statistics       3
+4 S003       Carol Davis      19 Chemistry        4
+5 S004       David Wilson     21 Statistics       3
+6 S004       David Wilson     21 Physics          4
+7 S005       Eva Brown        23 &lt;NA&gt;            NA</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>statistics_students <span class="ot">&lt;-</span> combined_data <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(course <span class="sc">==</span> <span class="st">"Statistics"</span>) <span class="sc">|&gt;</span> <span class="co"># Keep only rows where course equals "Statistics"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, course)              <span class="co"># Keep only the name and course columns</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>statistics_students                 <span class="co"># View the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name          course    
+  &lt;chr&gt;         &lt;chr&gt;     
+1 Alice Johnson Statistics
+2 Bob Smith     Statistics
+3 David Wilson  Statistics</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-4-sharks" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-sharks">Exercise 4: Sharks!</h2>
+<p><strong>Scenario</strong>: You have swimming data from beachgoers and bull shark detection data from acoustic telemetry during fourth of July. The swimming data tell you when someone entered and left the water. The shark detection data tells you which sharks were detected within the acoustic array in front of the beach, and the time of detection. Who was in the water while a shark was nearby?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the datasets</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>swimming_data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name, <span class="sc">~</span>swim_start, <span class="sc">~</span>swim_end,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Alice"</span>, <span class="st">"2024-07-04 10:30:00"</span>, <span class="st">"2024-07-04 11:15:00"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bob"</span>, <span class="st">"2024-07-04 10:45:00"</span>, <span class="st">"2024-07-04 11:30:00"</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Carol"</span>, <span class="st">"2024-07-04 11:00:00"</span>, <span class="st">"2024-07-04 11:45:00"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"David"</span>, <span class="st">"2024-07-04 11:20:00"</span>, <span class="st">"2024-07-04 12:00:00"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Eva"</span>, <span class="st">"2024-07-04 12:10:00"</span>, <span class="st">"2024-07-04 12:45:00"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">swim_start =</span> <span class="fu">as_datetime</span>(swim_start),</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">swim_end =</span> <span class="fu">as_datetime</span>(swim_end))</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>shark_detections <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>shark_id, <span class="sc">~</span>detection_time,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SH001"</span>, <span class="st">"2024-07-04 09:40:00"</span>,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SH002"</span>, <span class="st">"2024-07-04 11:25:00"</span>,</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SH003"</span>, <span class="st">"2024-07-04 11:35:00"</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">detection_time =</span> <span class="fu">as_datetime</span>(detection_time))</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>swimming_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  name  swim_start          swim_end           
+  &lt;chr&gt; &lt;dttm&gt;              &lt;dttm&gt;             
+1 Alice 2024-07-04 10:30:00 2024-07-04 11:15:00
+2 Bob   2024-07-04 10:45:00 2024-07-04 11:30:00
+3 Carol 2024-07-04 11:00:00 2024-07-04 11:45:00
+4 David 2024-07-04 11:20:00 2024-07-04 12:00:00
+5 Eva   2024-07-04 12:10:00 2024-07-04 12:45:00</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>shark_detections</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  shark_id detection_time     
+  &lt;chr&gt;    &lt;dttm&gt;             
+1 SH001    2024-07-04 09:40:00
+2 SH002    2024-07-04 11:25:00
+3 SH003    2024-07-04 11:35:00</code></pre>
+</div>
+</div>
+<p><strong>How I did it:</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>swimmer_shark_overlap <span class="ot">&lt;-</span> shark_detections <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(swimming_data,            <span class="co"># Note that I am using an inner join. Play with inner, left, and right to see what happens</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="fu">join_by</span>(<span class="fu">between</span>(detection_time, swim_start, swim_end))) <span class="co"># Find swimmers in water during shark detections</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>swimmer_shark_overlap               <span class="co"># View all the overlap data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  shark_id detection_time      name  swim_start          swim_end           
+  &lt;chr&gt;    &lt;dttm&gt;              &lt;chr&gt; &lt;dttm&gt;              &lt;dttm&gt;             
+1 SH002    2024-07-04 11:25:00 Bob   2024-07-04 10:45:00 2024-07-04 11:30:00
+2 SH002    2024-07-04 11:25:00 Carol 2024-07-04 11:00:00 2024-07-04 11:45:00
+3 SH002    2024-07-04 11:25:00 David 2024-07-04 11:20:00 2024-07-04 12:00:00
+4 SH003    2024-07-04 11:35:00 Carol 2024-07-04 11:00:00 2024-07-04 11:45:00
+5 SH003    2024-07-04 11:35:00 David 2024-07-04 11:20:00 2024-07-04 12:00:00</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>at_risk_swimmers <span class="ot">&lt;-</span> swimmer_shark_overlap <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span>  <span class="co"># Keep only the columns we want to see</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_sharks_near =</span> <span class="fu">n_distinct</span>(shark_id))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>at_risk_swimmers                   <span class="co"># These swimmers were in the water when sharks were detected</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  name  n_sharks_near
+  &lt;chr&gt;         &lt;int&gt;
+1 Bob               1
+2 Carol             2
+3 David             2</code></pre>
+</div>
+</div>
+</section>
+</section>
 
 
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -398,6 +712,9 @@ Values in <code>presentation</code>
 <li id="fn3"><p>Hint: Your <code>names_to</code> argument should be a character vector of with two items. <code>names_ _sep</code> should be inspired by our clever use of <code>snake_case</code>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Hint: If you have 112 rows, remember you can use <code>values_drop_na = T</code><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Hint: You will use <code>group_by()</code> and <code>summarize()</code>, as well as <code>|&gt;</code><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Hint: Use <code>pivot_longer()</code> to transform this data so that each row represents one student-assignment-score combination, then use <code>group_by()</code> and <code>summarize()</code> to calculate the mean grade for each student.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Hint: Use <code>pivot_wider()</code> to transform this data so that each row represents a county and each metric becomes its own column.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Hint: Look at the documentation for <code>join_by()</code>. What does it say about “Overlap helpers”? You’ll want to use the <code>between()</code> function.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->
