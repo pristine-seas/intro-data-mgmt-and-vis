@@ -1,6 +1,6 @@
 # EVR 528 / 628
 
-## Course description
+**Course description**
 
 “_Introduction to Data Management and Visualization for Environmental Scientists_"
 is designed for students looking to gain basic data management and visualization
@@ -13,22 +13,20 @@ questions. In-class exercises and homework assignments will mimic the types of
 tasks and questions that students will encounter in the workforce. 
 By the end of the course, students will be comfortable working in R.
 
-## Resources
+**Resources**
 
 - [Syllabus](docs/syllabus.pdf)
 
-**Cheat sheets**
-
-- [RStudio IDE](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html)
-- [Base R](https://rstudio.github.io/cheatsheets/base-r.pdf)
-- [`{ggplot2}`](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
-- [Git and GitHub](https://rstudio.github.io/cheatsheets/git-github.pdf)
-- [`{dplyr}`](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
--[`{tidyr}`](https://rstudio.github.io/cheatsheets/tidyr.pdf)
-- [Some available in Spanish](https://rstudio.github.io/cheatsheets/translations.html#spanish)
-
-**My code snippets**
-- [Code documentation](https://gist.github.com/jcvdav/1093d757bf1773751e951d009de4d857)
+- **Cheat sheets**
+  - [RStudio IDE](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html)
+  - [Base R](https://rstudio.github.io/cheatsheets/base-r.pdf)
+  - [`{ggplot2}`](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
+  - [Git and GitHub](https://rstudio.github.io/cheatsheets/git-github.pdf)
+  - [`{dplyr}`](https://rstudio.github.io/cheatsheets/data-transformation.pdf)
+  -[`{tidyr}`](https://rstudio.github.io/cheatsheets/tidyr.pdf)
+  - [Some available in Spanish](https://rstudio.github.io/cheatsheets/translations.html#spanish)
+- **My code snippets**
+  - [Code documentation](https://gist.github.com/jcvdav/1093d757bf1773751e951d009de4d857)
 
 # Course schedule
 
