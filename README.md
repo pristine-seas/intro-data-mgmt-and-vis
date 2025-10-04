@@ -16,7 +16,6 @@ By the end of the course, students will be comfortable working in R.
 **Resources**
 
 - [Syllabus](docs/syllabus.pdf)
-
 - **Cheat sheets**
   - [RStudio IDE](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html)
   - [Base R](https://rstudio.github.io/cheatsheets/base-r.pdf)
