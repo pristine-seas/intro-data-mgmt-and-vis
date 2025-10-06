@@ -134,12 +134,18 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 - [Link](https://jcvdav.github.io/EVR_628/docs/07_live.html) to document from live coding session
 
 ## Week 8 (Oct 6-10)
-**Scaling up your code and visualizations** | slides
+**Scaling up your code and visualizations** | [slides](slides/08_scale_up_viz.html)
 - Refresh on layers: aesthetics and geometries
 - Themes with ggplot2
 - Position adjustments (`jitter` and `dodge`)
 - Summarizing data on the fly (`stat_summary`, `geom_smooth`)
-- Plot extensions (`{cowplot}`, `{ggrepel}`)
+- Plot extensions (`{ggridges}` and `{cowplot}`)
+- quarto markdown
+
+**Relevant links for the week:**
+- Assigned readings:
+  - R4DS [CH9: Layers](https://r4ds.hadley.nz/layers.html)
+  - R4DS [CH11: Communication](https://r4ds.hadley.nz/communication.html)
 
 ---
 
@@ -147,10 +153,6 @@ The latest official academic calendar is [here](https://registrar.miami.edu/_ass
 
 ---
 
-**Relevant links for the week:**
-- Assigned readings:
-  - R4DS [CH9: Layers](https://r4ds.hadley.nz/layers.html)
-  - R4DS [CH11: Communication](https://r4ds.hadley.nz/communication.html)
 
 ## *Week 9 (Oct 13-17)
 **Dealing with text, dates, and factors** | slides

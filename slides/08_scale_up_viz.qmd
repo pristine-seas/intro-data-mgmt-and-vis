@@ -1,0 +1,303 @@
+---
+subtitle: "Scaling up your data visualizations (Part 1)"
+---
+
+```{r}
+#| include: false
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(EVR628tools)
+  library(knitr)
+})
+
+theme_set(
+  theme_bw(base_size = 20)
+)
+```
+
+## Today's class
+
+Some of:
+
+- Review of `ggplot()`
+- Layering `geom`s
+- Subplots with facets
+- `ggplot` extensions
+  - `ggridges`
+  - `cowplot`
+- Position adjustments 
+- Labels
+
+. . .
+
+And Thursday:
+
+- Topics above not covered AND
+- Quarto markdown
+
+# Review of `ggplot()`
+
+## Review of `ggplot()`
+
+**Build a plot with three steps**
+
+1. Specify your data in `ggplot()`
+2. Specify your x (and y) axis `aes`thetic mappings in `aes()`
+3. Specify your `geom`etric representation with `geom_*`
+
+. . .
+
+And maybe:
+
+4. Modify `geom`s as needed
+5. Modify your labels as needed
+
+## 1. Specify the Data
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+ggplot(data = data_lionfish)
+```
+
+## 2. Specify the `aes`thetics
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "2"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm))
+```
+
+## 3. Specify the `geom`etric Representation
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "3"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm)) +
+  geom_point()
+```
+
+## 4-5. Modify geoms and labels
+
+```{r}
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 4
+#| code-line-numbers: "3-5"
+ggplot(data = data_lionfish,
+       mapping = aes(x = depth_m, y = total_length_mm)) +
+  geom_point(shape = 21, fill = "steelblue", size = 2) +
+  labs(x = "Depth (m)",
+       y = "Total length (mm)")
+```
+
+
+# Layering geoms
+
+## Layering geoms
+
+- The `group` aesthetic
+- non-data geoms
+- smooth geom
+- geom-level vs global-level aesthetics
+
+## `geom`s on top of `geom`s 1
+
+```{r}
+ggplot(data = data_lionfish,
+       mapping = aes(x = total_length_mm, y = total_weight_gr)) +
+  geom_smooth(color = "black", linetype = "dashed") +
+  geom_vline(xintercept = c(100, 200), linetype = "dashed") +
+  geom_point(aes(color = size_class), size = 2) +
+  scale_color_manual(values = palette_UM(3)) +
+  labs(x = "Total length (mm)",
+       y = "Total weight (gr)",
+       color = "Size class") +
+  theme(legend.position = "inside",
+        legend.justification = c(0, 1),
+        legend.position.inside = c(0, 1),
+        legend.background = element_blank())
+```
+
+## `geom`s on top of `geom`s 2
+
+```{r}
+ggplot(data = data_lionfish,
+       mapping = aes(x = total_length_mm, y = total_weight_gr)) +
+  geom_point()  + 
+  geom_point(data = data_lionfish |> filter(site == "Tzimin-Ha"),
+             shape = 21,
+             size = 4,
+             color = "red") +
+  labs(x = "Total length (mm)",
+       y = "Total weight (gr)",
+       color = "Size class")
+```
+
+## `geom`s on top of `geom`s 3
+
+```{r}
+mhw <- read_rds("https://github.com/jcvdav/ssf_shocks/raw/refs/heads/main/data/processed/mhw_by_turf.rds") |> 
+  filter(eu_rnpa == "0203000278")
+
+mhw$ts[[1]] |> 
+  filter(between(t, ymd("2012-01-01"), ymd("2015-12-01"))) |> 
+  ggplot(aes(x = t, y = temp)) + 
+  geom_line() +
+  geom_line(aes(y = seas), color = "blue") +
+  geom_line(aes(y = thresh), color = "red") +
+  labs(x = "Date", y = "Temperature (°C)")
+```
+
+## `geom`s on top of `geom`s 4
+
+```{r}
+ggplot(data = mhw$mhw[[1]]$event,
+       mapping = aes(x = date_peak, y = intensity_max,
+                     color = intensity_max)) +
+  geom_linerange(mapping = aes(ymin = 0,
+                               ymax = intensity_max),
+                 linewidth = 1) +
+  geom_point(size = 2) +
+  scale_color_gradient(low = "gray90", high = "red") +
+  labs(x = "Date peak",
+       y = "MHW Intensity (°C)",
+       color = "MHW Intensity (°C days)") +
+  theme(legend.position = "bottom",
+        legend.title.position = "top",
+        legend.key.width = unit(1, "cm"))
+```
+
+# Facetting
+
+## Facetting with wrap
+
+When specifying groups and colors is not enough
+
+```{r}
+
+total_catch_data <- data_fishing |> 
+  group_by(year, fishery) |> 
+  summarize(total_catch = sum(catch))
+
+ggplot(total_catch_data, aes(x = year, y = total_catch)) +
+  geom_line() +
+  geom_point() +
+  facet_wrap(~fishery, ncol = 1, scales = "free_y") +
+  labs(x = "Year", y = "Total catch (Tons)")
+```
+
+## Facetting with grid
+
+```{r}
+tidy_kelp <- data_kelp |> 
+  filter(genus_species %in% c("Embiotoca jacksoni",
+                              "Embiotoca lateralis"),
+         location %in% c("ASA", "ERE", "ERO")) |> 
+  pivot_longer(cols = starts_with("TL_"),
+               names_to = "total_length",
+               values_to = "N",
+               values_drop_na = T) |> 
+  group_by(location, site, transect, genus_species) |> 
+  summarize(total_N = sum(N)) |> 
+  group_by(location, site, genus_species) |> 
+  summarize(mean_N = mean(total_N))
+
+ggplot(data = tidy_kelp,
+       mapping = aes(x = site, y = mean_N)) +
+  geom_col() +
+  facet_grid(location ~ genus_species) +
+  labs(x = "Site", y = "Mean (org / tranect)")
+```
+
+# `ggplot` extensions
+
+## ggplot extension 1: `cowplot`
+
+```{r}
+library(cowplot)
+
+p1 <- mhw$ts[[1]] |> 
+  filter(between(t, ymd("2012-01-01"), ymd("2015-12-01"))) |> 
+  ggplot(aes(x = t, y = temp)) + 
+  geom_line() +
+  geom_line(aes(y = seas), color = "blue") +
+  geom_line(aes(y = thresh), color = "red") +
+  labs(x = "Date", y = "Temperature (°C)")
+
+p2 <- ggplot(data = mhw$mhw[[1]]$event,
+       mapping = aes(x = date_peak, y = intensity_max,
+                     color = intensity_max)) +
+  geom_linerange(mapping = aes(ymin = 0,
+                               ymax = intensity_max),
+                 linewidth = 1) +
+  geom_point(size = 2) +
+  scale_color_gradient(low = "gray90", high = "red") +
+  labs(x = "Date peak",
+       y = "MHW Intensity (°C)",
+       color = "MHW Intensity (°C days)") +
+  theme(legend.position = "bottom",
+        legend.title.position = "top",
+        legend.key.width = unit(1, "cm"))
+
+plot_grid(p1, p2, ncol = 1, rel_heights = c(0.5, 1))
+```
+
+
+## `ggplot` extension 2: `ggridges`
+
+ Visualizing distributions across groups is difficult
+
+```{r}
+library(ggridges)
+
+ggplot(data_lionfish, aes(x = total_length_mm, y = site, fill = site)) +
+  geom_density_ridges(alpha = 0.5, show.legend = FALSE) +
+  labs(x = "Total Length (mm)",
+       y = "Site")
+```
+
+## Position adjustments
+
+- Each `geom` has a default `position` argument
+- This argument controls how elements are placed on the graph
+- There are four options:
+  - identity (allows for overlaps)
+  - dodge (no overlaps, move elements horizontally)
+  - stack (no overlaps, move elements vertically)
+  - fill (no overlaps, move elements vertically and fill all the space)
+  
+## Position adjustments {.scrollable}
+
+```{r}
+ggplot(mpg, aes(x = drv, fill = class)) + 
+  geom_bar(position = "identity")
+ggplot(mpg, aes(x = drv, fill = class)) + 
+  geom_bar(position = "dodge")
+ggplot(mpg, aes(x = drv, fill = class)) + 
+  geom_bar(position = "stack")
+ggplot(mpg, aes(x = drv, fill = class)) + 
+  geom_bar(position = "fill")
+```
+
+## Position adjustments
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point(position = "jitter")
+```
+
+
+
+
+
+
+
+

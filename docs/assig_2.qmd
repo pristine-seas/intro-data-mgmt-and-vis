@@ -10,50 +10,72 @@ format:
 
 # The big picture
 
-Remember that the final goal is to have a `portfolio` github repository where you can showcase your work. Assignment 1 was to create the repository, which should be mostly empty. Assignment two is to start adding R code to clean some data. The third assignment will be to visualize the data you have cleaned up here, so keep that in mind. Your final project will then culminate in an analyses that leverages the data and visualizations you'll produce.
+Remember that the final goal is to have a GitHub repository where you can showcase your work. Assignment 1 was to create the repository, which should be mostly empty. Assignment two is to start developed one R script to clean some data. Your choice of data will lock you in a path: The third assignment will be to visualize the data you have cleaned up here. Your final project will leverage the data and visualizations you'll produce to wrap it all together.
 
 # This assignment
 
-**Task:** Develop one data wrangling script that reads raw data (*e.g.* in `.xlsx` or `.csv`), performs data cleaning, transformation, or wrangling, and exports a processed version of the data (as an `.rds` file) to be used in later assignments.
+**Task:** Develop one data wrangling script that reads raw data (*e.g.* in `.xlsx` or `.csv`), performs data cleaning, transformation, or wrangling, and exports a processed version of the data (`.rds`) to be used in later assignments.
 
-This assignment will require quite a bit of work on three fronts: 1) coming up with an idea for a final project, 2) thinking about how you will get the wild data into a format that gets you closer to your final project, and 3) using lecture materials, live coding sessions, and function documentation to help you build your pipeline.
+This assignment will require quite a bit of work on three fronts:
+
+1. Coming up with an idea for a final project
+2. Thinking about how you will get the raw data into a format that gets you closer to your final project, and 
+3. Using lecture and live coding session materials --and function documentation-- to help you build your pipeline.
+
+I have included a list of potential data sources and ideas for final projects. Feel free to come up with your own ideas, I recommend choosing something you may be genuinely interested in.
 
 ## Grading Rubric
 
-- 50%: Your repository contains and R script called `data_processing_script.R` that:
-  - 5%: Clearly indicates packages loaded
-  - 5%: Uses relative paths to read / write data files
-  - 20%: Uses [`dplyr()`](https://dplyr.tidyverse.org/reference/index.html) verbs and [`tidyr()`](https://tidyr.tidyverse.org/reference/index.html) functions. Note that simply renaming columns or changing the order of columns is not enough. You must use at least 3 of the following^[or any of their advance cousins like `filter_at()`]:
-    1. `filter()`
-    2. `mutate()`
-    3. `group_by()` and `summarize()`
-    4. `pivot_longer()` or `pivot_wider()`
-    5. A type of `*_join()`
-  - 10%: The exported data conform to `tidy` data standards^[If you are using this assignment as part of your own research and you have a legitimate reason to not use a `tidy` data format, that is ok. Just make sure you include a justification in your code documentation and README files].
-  - 10%: Contains code documentation using comments `#`.
-- 25%: I can run your code and reproduce your clean data.
-- 25%: README file:
+- 25%: `README.md` file:
   - 10% Explains the main objective of your project. 2-3 sentences is enough.
-  - 15% Lists the column names of the clean data, and includes information on data type and a description of the column.
+  - 5% Lists the contents of the project repository.
+  - 10% Lists the column names of the clean data, and includes information on data type and a description of the column.
+- 50%: Your repository contains and R script called `data_processing.R`, saved to your `scripts/01_processing` folder that:
+  - 10%: Contains code documentation using comments `#`
+  - 5%: Clearly indicates packages loaded at the top of the script
+  - 5%: Uses **relative** paths to read / write data files
+  - **20%: Uses `dplyr` [verbs](https://dplyr.tidyverse.org/reference/index.html) and / or `tidyr` [functions](https://tidyr.tidyverse.org/reference/index.html) to achieve the data cleaning task.** Note that simply renaming columns or changing their order is not enough. If your raw data happen to be in the perfect format, consider starting your analysis instead. If you decide to do this, your script should be named `analysis.R` and saved in the corresponding folder.
+  - 10%: The exported data conform to `tidy` data standards^[If you are using this assignment as part of your own research and you have a legitimate reason not to use a `tidy` data format, that is ok. Just make sure you include a justification in your code documentation and `README.md` file].
+- 25%: I clone your repo and run your reproduce your data without having to modify your code
 
 Some examples of repositories that would get a 100%:
 
 - [Analyzing mid-term survey data](https://github.com/jcvdav/portfolio)
 - [Building a geospatial dataset of Mexican ports](https://github.com/mex-fisheries/mex_ports), by McGill undergraduate student Emma Zgonena
 
+## Turning in your assignment
+
+- Please share the link to your github repo via Canvas
+- The deadline for this assignment is October 19, 2025 by 11:59
+
 # Project ideas with different data sets
 
 Below are examples of data sources and final project ideas. For the purpose of this assignment you are not expected to provide an answer. You will simply prepare the data necessary to eventually provide the answer.
 
-## Tuna Data from the  [WCPFC](https://www.wcpfc.int/data-catalogue) or [IATTC](https://www.iattc.org/en-US/Data/Public-domain)
+
+::: {.panel-tabset}
+
+## Tuna Data
+
+Access tuna data from the  [WCPFC](https://www.wcpfc.int/data-catalogue) or [IATTC](https://www.iattc.org/en-US/Data/Public-domain) and then:
 
 - Build a time series of catch-per-unit-effort for a species of your liking
 - Find the year in which total tuna catch peaked
 - Find the month where tuna catch is, on average, maximum
+- For every year, find the coordinates where tuna catch was the highest. Do we see any changes in it's location?
 
-## Data from the National Center for Environmental Information [NCEI](https://www.ncei.noaa.gov/)
+## Oceanic Indices
 
-## STRAVA data^[The data may not exported as `.csv` but I can help work around that]
+Go to [NOAA's Physical Sciences Laboratory](https://psl.noaa.gov/data/climateindices/list/) and find an interesting data set
+
+- Use [monthly NINO3](https://psl.noaa.gov/data/correlation/nina3.anom.data) to produce a figure of NINO / NINA years
+- Compare indices among them
+- Relate indices here to tuna catch data above
+
+
+## STRAVA data
+
+[Export your data from strava](https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export)^[Data will not exported as `.csv` but I can help work around that], and then:
 
 - Find your longest activity
 - Find your total traveled distance since you started logging activities
@@ -61,7 +83,9 @@ Below are examples of data sources and final project ideas. For the purpose of t
 - Analyze your trends in heart rate vs speed
 - Analyze the pace of runs performed with the Rosenstiel Running Club
 
-## Dive watch data^[The data may not exported as `.csv` but I can help work around that]
+## Dive watch data
+
+Your dive watch should allow you to export your data^[The data may not exported as `.csv` but I can help work around that], although you might need a special cable / sofware.
 
 - Calculate how much time you've spent underwater per week, month, or year
 - If you have air pressure info associated (or you keep a dive log with it), calculate your Surface Air Consumption Rate
@@ -74,26 +98,30 @@ Below are examples of data sources and final project ideas. For the purpose of t
 
 The following papers have data available. You could download their data and recreate or augment their figures.
 
-- Jouffray et al., 2025. [Identifying and closing gaps in corporate reporting of ocean impacts](https://www.nature.com/articles/s41893-025-01631-8)
-- Clark et al., 2023 [Global assessment of marine plastic exposure risk for oceanic birds](https://www.nature.com/articles/s41467-023-38900-z) | [GitHub repo](https://github.com/BirdLifeInternational/petrels-plastics)
 - Burguess et al, 2018. [Protecting marine mammals, turtles, and birds by rebuilding global fisheries](https://www.science.org/doi/10.1126/science.aao4248) | [GitHub repo](https://github.com/grantmcdermott/bycatch)
-- [A database of mapped global fishing activity 1950–2017](https://www.nature.com/articles/s41597-023-02824-6)
 - Kuczenski et al. 2021[Plastic gear loss estimates from remote observation of industrial fishing activity](https://onlinelibrary.wiley.com/doi/full/10.1111/faf.12596) | [GitHub repo](https://github.com/bkuczenski/scoping-gear-losses)
-- Oyanedel et al., 2025. [Improving detectability of illegal fishing activities across supply chains](https://www.nature.com/articles/s44183-025-00134-5) | [GitHub repo](https://github.com/rodgpt/Detectability-of-illegal-activities)
+- Clark et al., 2023 [Global assessment of marine plastic exposure risk for oceanic birds](https://www.nature.com/articles/s41467-023-38900-z) | [GitHub repo](https://github.com/BirdLifeInternational/petrels-plastics)
+- [A database of mapped global fishing activity 1950–2017](https://www.nature.com/articles/s41597-023-02824-6)
 - O'Connor et al., 2024 [Effects of anthropogenic noise on marine mammal abundances informed by mixed methods](https://www.nature.com/articles/s44183-025-00113-w)
-- Any other paper of your liking
+- Jouffray et al., 2025. [Identifying and closing gaps in corporate reporting of ocean impacts](https://www.nature.com/articles/s41893-025-01631-8)
+- Oyanedel et al., 2025. [Improving detectability of illegal fishing activities across supply chains](https://www.nature.com/articles/s44183-025-00134-5) | [GitHub repo](https://github.com/rodgpt/Detectability-of-illegal-activities)
 
+## Other sources of data
+
+- The National Center for Environmental Information [NCEI](https://www.ncei.noaa.gov/) contains loads of interesting data sets.
+- Animal tracking data from [MoveBank](https://datarepository.movebank.org/home)
+- Vessel tracking data from [Global Fishing Watch](https://globalfishingwatch.org/data-download/)
 
 ## Synthetic data
 
 - Maybe you are in the midst of collecting data for your project. You don't yet
-have the raw data, but you have a sense of what they will look like (number of columns, number of observations...). I can help you simulate the data^[or ask chat GPT for it] and you can build a script that helps you get your data into an analysis-ready format.
-
-## Other data sources:
-
-- Animal tracking data from [MoveBank](https://datarepository.movebank.org/home)
-- Vessel tracking data from [Global Fishing Watch](https://globalfishingwatch.org/data-download/)
+have the raw data, but you have a sense of what they will look like (number of columns, number of observations...). I can help you simulate the data and you can build a script that helps you get your data into an analysis-ready format.
 
 ## None of these are working for you?
 
 Come to office hours and we can discuss ideas.
+
+
+:::
+
+
