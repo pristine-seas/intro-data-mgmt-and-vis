@@ -36,7 +36,7 @@ I have included a list of potential data sources and ideas for final projects. F
   - 5%: Uses **relative** paths to read / write data files
   - **20%: Uses `dplyr` [verbs](https://dplyr.tidyverse.org/reference/index.html) and / or `tidyr` [functions](https://tidyr.tidyverse.org/reference/index.html) to achieve the data cleaning task.** Note that simply renaming columns or changing their order is not enough. If your raw data happen to be in the perfect format, consider starting your analysis instead. If you decide to do this, your script should be named `analysis.R` and saved in the corresponding folder.
   - 10%: The exported data conform to `tidy` data standards^[If you are using this assignment as part of your own research and you have a legitimate reason not to use a `tidy` data format, that is ok. Just make sure you include a justification in your code documentation and `README.md` file].
-- 25%: I clone your repo and run your reproduce your data without having to modify your code
+- 25%: I can lone your repo and reproduce your data without having to modify your code
 
 Some examples of repositories that would get a 100%:
 

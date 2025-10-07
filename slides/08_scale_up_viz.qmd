@@ -15,6 +15,14 @@ theme_set(
 )
 ```
 
+# Learning Objectives
+
+:::{.callout-note}
+## By the end of this week, you should be able to:
+- Create complex figures
+- Develop simple documents
+:::
+
 ## Today's class
 
 Some of:
@@ -131,7 +139,7 @@ ggplot(data = data_lionfish,
 ```{r}
 ggplot(data = data_lionfish,
        mapping = aes(x = total_length_mm, y = total_weight_gr)) +
-  geom_point()  + 
+  geom_point(size = 1)  + 
   geom_point(data = data_lionfish |> filter(site == "Tzimin-Ha"),
              shape = 21,
              size = 4,
@@ -144,22 +152,40 @@ ggplot(data = data_lionfish,
 ## `geom`s on top of `geom`s 3
 
 ```{r}
-mhw <- read_rds("https://github.com/jcvdav/ssf_shocks/raw/refs/heads/main/data/processed/mhw_by_turf.rds") |> 
-  filter(eu_rnpa == "0203000278")
+data(data_mhw_ts)
 
-mhw$ts[[1]] |> 
-  filter(between(t, ymd("2012-01-01"), ymd("2015-12-01"))) |> 
-  ggplot(aes(x = t, y = temp)) + 
+ggplot(data = data_mhw_ts,
+       aes(x = date, y = temp)) + 
   geom_line() +
+  labs(x = "Date", y = "Temperature (°C)")
+```
+
+## `geom`s on top of `geom`s 3
+
+```{r}
+ggplot(data = data_mhw_ts, aes(x = date, y = temp)) + 
+  geom_line(aes(y = seas), color = "blue") +
+  geom_line() +
+  labs(x = "Date", y = "Temperature (°C)")
+```
+
+## `geom`s on top of `geom`s 3
+
+```{r}
+ggplot(data = data_mhw_ts, aes(x = date, y = temp)) + 
   geom_line(aes(y = seas), color = "blue") +
   geom_line(aes(y = thresh), color = "red") +
+  geom_line() +
   labs(x = "Date", y = "Temperature (°C)")
 ```
 
 ## `geom`s on top of `geom`s 4
 
 ```{r}
-ggplot(data = mhw$mhw[[1]]$event,
+
+data(data_mhw_events)
+
+ggplot(data = data_mhw_events,
        mapping = aes(x = date_peak, y = intensity_max,
                      color = intensity_max)) +
   geom_linerange(mapping = aes(ymin = 0,
@@ -224,15 +250,13 @@ ggplot(data = tidy_kelp,
 ```{r}
 library(cowplot)
 
-p1 <- mhw$ts[[1]] |> 
-  filter(between(t, ymd("2012-01-01"), ymd("2015-12-01"))) |> 
-  ggplot(aes(x = t, y = temp)) + 
+p1 <- ggplot(data = data_mhw_ts, aes(x = date, y = temp)) + 
   geom_line() +
   geom_line(aes(y = seas), color = "blue") +
   geom_line(aes(y = thresh), color = "red") +
   labs(x = "Date", y = "Temperature (°C)")
 
-p2 <- ggplot(data = mhw$mhw[[1]]$event,
+p2 <- ggplot(data = data_mhw_events,
        mapping = aes(x = date_peak, y = intensity_max,
                      color = intensity_max)) +
   geom_linerange(mapping = aes(ymin = 0,
@@ -290,9 +314,19 @@ ggplot(mpg, aes(x = drv, fill = class)) +
 ## Position adjustments
 
 ```{r}
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point(position = "jitter")
+ggplot(data_lionfish, aes(x = site, y = total_length_mm)) + 
+  geom_point(size = 1) +
+  coord_flip()
 ```
+
+## Position adjustments
+
+```{r}
+ggplot(data_lionfish, aes(x = site, y = total_length_mm)) + 
+  geom_point(size = 1, position = position_jitter(width = 0.1, height = 0)) +
+  coord_flip()
+```
+
 
 
 
