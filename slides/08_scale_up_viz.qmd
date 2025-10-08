@@ -23,25 +23,30 @@ theme_set(
 - Develop simple documents
 :::
 
-## Today's class
+## This week
+:::: {.columns}
 
-Some of:
-
+::: {.column width='40%'}
+- Review of `dplyr` and `tidyr`
 - Review of `ggplot()`
 - Layering `geom`s
 - Subplots with facets
 - `ggplot` extensions
   - `ggridges`
   - `cowplot`
+:::
+
+::: {.column width='60%'}
 - Position adjustments 
 - Labels
-
-. . .
-
-And Thursday:
-
+- Summarizing data on the fly
 - Topics above not covered AND
 - Quarto markdown
+:::
+
+::::
+
+
 
 # Review of `ggplot()`
 
@@ -137,21 +142,6 @@ ggplot(data = data_lionfish,
 ## `geom`s on top of `geom`s 2
 
 ```{r}
-ggplot(data = data_lionfish,
-       mapping = aes(x = total_length_mm, y = total_weight_gr)) +
-  geom_point(size = 1)  + 
-  geom_point(data = data_lionfish |> filter(site == "Tzimin-Ha"),
-             shape = 21,
-             size = 4,
-             color = "red") +
-  labs(x = "Total length (mm)",
-       y = "Total weight (gr)",
-       color = "Size class")
-```
-
-## `geom`s on top of `geom`s 3
-
-```{r}
 data(data_mhw_ts)
 
 ggplot(data = data_mhw_ts,
@@ -160,7 +150,7 @@ ggplot(data = data_mhw_ts,
   labs(x = "Date", y = "Temperature (°C)")
 ```
 
-## `geom`s on top of `geom`s 3
+## `geom`s on top of `geom`s 2
 
 ```{r}
 ggplot(data = data_mhw_ts, aes(x = date, y = temp)) + 
@@ -169,7 +159,7 @@ ggplot(data = data_mhw_ts, aes(x = date, y = temp)) +
   labs(x = "Date", y = "Temperature (°C)")
 ```
 
-## `geom`s on top of `geom`s 3
+## `geom`s on top of `geom`s 2
 
 ```{r}
 ggplot(data = data_mhw_ts, aes(x = date, y = temp)) + 
@@ -179,10 +169,9 @@ ggplot(data = data_mhw_ts, aes(x = date, y = temp)) +
   labs(x = "Date", y = "Temperature (°C)")
 ```
 
-## `geom`s on top of `geom`s 4
+## `geom`s on top of `geom`s 3
 
 ```{r}
-
 data(data_mhw_events)
 
 ggplot(data = data_mhw_events,
@@ -208,7 +197,6 @@ ggplot(data = data_mhw_events,
 When specifying groups and colors is not enough
 
 ```{r}
-
 total_catch_data <- data_fishing |> 
   group_by(year, fishery) |> 
   summarize(total_catch = sum(catch))
@@ -288,6 +276,9 @@ ggplot(data_lionfish, aes(x = total_length_mm, y = site, fill = site)) +
        y = "Site")
 ```
 
+
+# Position adjustments
+
 ## Position adjustments
 
 - Each `geom` has a default `position` argument
@@ -298,40 +289,146 @@ ggplot(data_lionfish, aes(x = total_length_mm, y = site, fill = site)) +
   - stack (no overlaps, move elements vertically)
   - fill (no overlaps, move elements vertically and fill all the space)
   
-## Position adjustments {.scrollable}
+
+## Position adjustments with points
+
+```{r}
+ggplot(data_lionfish, aes(x = site, y = total_length_mm)) + 
+  geom_point() +
+  coord_flip()
+```
+
+## Position adjustments with points
+
+```{r}
+ggplot(data_lionfish, aes(x = site, y = total_length_mm)) + 
+  geom_point(position = position_jitter(width = 0.1, height = 0)) +
+  coord_flip()
+```  
+
+## Position adjustments with bars
+
+Stack (default)
+
+```{r}
+ggplot(mpg, aes(x = drv, fill = class)) + 
+  geom_bar()
+```
+  
+## Position adjustments with bars
+
+Identity
 
 ```{r}
 ggplot(mpg, aes(x = drv, fill = class)) + 
   geom_bar(position = "identity")
+```
+
+## Position adjustments with bars
+
+Dodge
+
+```{r}
 ggplot(mpg, aes(x = drv, fill = class)) + 
   geom_bar(position = "dodge")
-ggplot(mpg, aes(x = drv, fill = class)) + 
-  geom_bar(position = "stack")
+```
+
+## Position adjustments with bars
+
+Fill
+
+```{r}
 ggplot(mpg, aes(x = drv, fill = class)) + 
   geom_bar(position = "fill")
 ```
 
-## Position adjustments
+
+# Labels
+
+## Special characters in your plots
+
+- subindices go inside "`[]`"
+- superscripts go after "`^`"
+- greek letters are directly typed
+- Use "`~`" for spaces
+- See `?plotmath` for a full list
+
+. . .
 
 ```{r}
-ggplot(data_lionfish, aes(x = site, y = total_length_mm)) + 
-  geom_point(size = 1) +
-  coord_flip()
+#| fig-height: 3
+#| fig-width: 5
+data <- read_csv("https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_daily_mlo.csv",
+                 skip = 32, 
+                 col_names = c("year", "month", "day", "decimal", "co2_ppm"))
+
+ggplot(data,
+       aes(x = decimal, y = co2_ppm)) + 
+  geom_line() +
+  theme_minimal(base_size = 10) +
+  labs(x = "Date",
+       y = quote(CO[2]~concentration~(ppm)),
+       caption = "Data from the Global Monitoring Laboratory")
 ```
 
-## Position adjustments
+
+
+
+# Summarizing data on the fly
+
+## Summarizing data on the fly
+
+Sometimes you might not want to `group_by` and `summarize`, but you can go straight into a figure
 
 ```{r}
-ggplot(data_lionfish, aes(x = site, y = total_length_mm)) + 
-  geom_point(size = 1, position = position_jitter(width = 0.1, height = 0)) +
-  coord_flip()
+#| fig-height: 5
+#| fig-width: 8
+ggplot(data_heatwaves,
+       aes(x = year,
+           y = temp_mean)) +
+  stat_summary(geom = "pointrange", fun.data = "mean_se") +
+  stat_summary(geom = "line", fun = "mean") +
+  scale_x_continuous(breaks = seq(1985, 2020, by = 10)) +
+  facet_wrap(~str_to_sentence(str_replace(fishery, "_", " ")),
+             ncol = 2,
+             scales = "free_y") +
+  labs(x = "Year",
+       y = "Mean Temperature (°C)")
 ```
 
+# Quarto markdown
 
+## Quarto markdown
 
+- Allows you to build documents
+  - slides
+  - html files
+  - pdfs
+  - word documents
+  - books...
 
+- Particularly useful if your document heavily depends on R-generated content
 
+. . .
 
+![Source: quarto.org](img/rstudio-qmd-how-it-works.png)
+
+## Quarto markdown
+
+- Some people use them throughout their analysis
+  - Pros:
+    - You can write tons and tons of explanations as to why you are doing something
+    - You can include equations
+  - Cons:
+    - You have to run the entire document, from top to bottom, every time you want to update it
+    - Sometimes more is not better
+
+## Quarto markdown
+
+- Install Quarto markdown [here](https://quarto.org/docs/get-started/)
+- We'll building a document from scratch
+- Then a slide
+- Finally a website
 
 
 
