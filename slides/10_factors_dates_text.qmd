@@ -1,0 +1,973 @@
+---
+subtitle: "Factors, Dates, and Strings of Text"
+echo: true
+code-fold: false
+---
+
+```{r}
+#| include: false
+#| echo: false
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(EVR628tools)
+  library(knitr)
+})
+
+theme_set(
+  theme_bw(base_size = 20)
+)
+```
+
+# Today's Agenda
+
+## What We'll Cover
+
+- **Factors** - Working with ordinal categorical data
+- **Dates & Times** - Temporal data analysis  
+- **Strings** - Text manipulation and cleaning
+- **Regular Expressions** - Pattern matching in text
+
+## Key Takeaways
+
+- **Factors**: Use `forcats` for categorical data manipulation
+- **Dates**: Use `lubridate` for temporal data analysis
+- **Strings**: Use `stringr` for text manipulation
+- **Regex**: Learn patterns for powerful text processing
+
+. . .
+
+:::{.callout-tip collapse=false appearance='default' icon=true}
+## My two cents
+- It would take me months to cover all functions in these three packages
+- You should be paying attention to the general approach
+- Don't attempt to build a list of _if problem is X then I need to use Y function_
+:::
+
+
+# Part 1: Factors
+Working with Ordinal Categorical Data
+
+
+## What Are Factors?
+
+- Categorical variables with fixed and known set of possible values
+- Allow us to control the order in which character vectors appear (other than alphabetical)
+- Useful for modelling because establish an identity or sequence between possible values
+
+## Why Do We Need Factors?
+
+Imagine you record the month in which some observation took place
+
+```{r}
+# String data has problems
+months <- c("Dec", "Apr", "Jan", "Mar")
+```
+
+Using a character string to record this has two problems:
+
+1. It doesn't sort in a useful or intuitive way
+
+. . .
+
+```{r}
+sort(months)  # Results are sorted alphabetically, not chronological!
+```
+
+
+2. _We_ know there are only twelve possible months, but character strings are susceptible to typos that R will ignore
+
+. . .
+
+```{r}
+months2 <- c("Dec", "Apr", "Jan", "Mar", "Jam")
+months2
+```
+
+
+## Why Do We Need Factors?
+
+- Factors allow us to avoid these two downsides
+
+. . .
+
+```{r}
+#| code-line-numbers: "1-3|4|5|"
+# Specify the levels (all possible values, and their order)
+month_levels <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+months_factor <- factor(x = months, levels = month_levels) # Build my factor
+months_factor
+sort(months_factor)  # Now in proper order!
+```
+
+
+- What about typos?
+
+. . .
+
+```{r}
+months_factor2 <- factor(x = months2, levels = month_levels)
+sort(months_factor2)
+length(months_factor2)
+```
+
+- What happened to `Jam`? `factor()` will _silently_ convert unspecified `levels` to NA
+
+## Creating Factors in the Tidyverse
+
+- Instead of `factor()` we use `forcats::fct()`
+
+. . .
+
+```{r}
+library(tidyverse) # Load the tidyverse
+# Use forcats::fct() - safer, orders by first appearance
+months_factor <- fct(x = months, levels = month_levels)
+months_factor
+```
+
+- `fct()` is more user friendly, and will warn you
+
+. . .
+
+```{r}
+#| error: true
+months_factor2 <- fct(x = months2, levels = month_levels) # This will fail
+```
+
+- What does the "`forcats::`" in `forcats::fct()` mean?
+
+
+## The `{forcats}` Package
+
+:::: {.columns}
+
+::: {.column width='40%'}
+
+![](img/forcats_logo.png)
+
+**`{forcats}`**: A suite of tools that solve common problems with factors
+
+:::
+
+::: {.column width='60%'}
+**Key `forcats` functions:**
+
+- `fct_reorder()` - Reorder factor levels _based on data_
+- `fct_relevel()` - Reorder factor levels _by hand_
+- `fct_lump_*()` - Group small categories
+- There are many others
+:::
+
+::::
+
+## Today's data #1
+
+```{r}
+#You will need to reinstall the package: remotes::install_github("jcvdav/EVR628tools")
+library(EVR628tools)
+# Load the geartypes data
+data("data_geartypes")
+data_geartypes
+```
+
+
+## **Task:** Number of vessels by geartype?
+
+1. Check the [documentation](https://jcvdav.github.io/EVR628tools/reference/data_geartypes.html)
+2. Use my data tidying skills
+
+. . .
+
+```{r}
+# Example: Total activity by gear type
+gear_summary <- data_geartypes |>
+  group_by(geartype) |>
+  summarize(n_vessels = n_distinct(vessel_id)) |> 
+  arrange(desc(n_vessels))
+
+gear_summary
+```
+
+
+
+## Reordering Factor Levels
+
+- When our data are already assembled, we can modify the order in which factor levels appear
+
+- This doesn't modify the _values_, just the order in which they are interpreted
+
+. . .
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+# Default order (alphabetical)
+ggplot(gear_summary, aes(x = n_vessels, y = geartype)) +
+  geom_col()
+```
+
+
+## Reordering Factor Levels
+
+- Use `fct_reorder()`
+
+- Look at the [documentation](https://forcats.tidyverse.org/reference/fct_reorder.html) for two crucial arguments:
+  - `.f` What is your soon-to-be factor?
+  - `.x` What is the variable by which you want to order your factor?
+
+. . .
+
+```{r}
+#| code-line-numbers: "1-4|5|"
+gear_summary <- data_geartypes |>
+  group_by(geartype) |>
+  summarize(n_vessels = n_distinct(vessel_id)) |> 
+  arrange(desc(n_vessels)) |> 
+  mutate(geartype = fct_reorder(.f = geartype, .x = n_vessels))
+gear_summary
+```
+
+## Reordering Factor Levels
+
+My ggplot code now produces the expected figure
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+ggplot(gear_summary, aes(x = n_vessels, y = geartype)) +
+  geom_col()
+```
+
+## Lumping Small Categories
+
+- It is clear that three gears dominate the data
+- Let's `lump` all other gears into a new category of "others"
+- I will use the `fct_lump_n()` function.It **does** modify values
+- Check documentation [here](https://forcats.tidyverse.org/reference/fct_lump.html) for other versions
+
+. . .
+
+```{r}
+#| code-line-numbers: "2|"
+gear_summary <- data_geartypes |>
+  mutate(geartype = fct_lump_n(f = geartype, n = 3)) |>     # Keep top 3, lump the rest)
+  group_by(geartype) |>
+  summarize(n_vessels = n_distinct(vessel_id)) |> 
+  arrange(desc(n_vessels)) |>  
+  mutate(geartype = fct_reorder(.f = geartype, .x = n_vessels)) # Then reorder based on new n by groups
+gear_summary
+```
+## Lumping Small Categories
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+ggplot(gear_summary, aes(x = n_vessels, y = geartype)) +
+  geom_col()
+```
+
+## Reordering Factor Levels _by hand_
+
+- You can manually change the order of factor levels with `fct_relevel`
+
+. . .
+
+```{r}
+#| code-line-numbers: "7"
+gear_summary <- data_geartypes |>
+  mutate(geartype = fct_lump_n(f = geartype, n = 3)) |>     # Keep top 3, lump the rest)
+  group_by(geartype) |>
+  summarize(n_vessels = n_distinct(vessel_id)) |> 
+  arrange(desc(n_vessels)) |>  
+  mutate(geartype = fct_reorder(.f = geartype, .x = n_vessels), # Then reorder based on new n by groups
+         geartype = fct_relevel(.f = geartype, c("FISHING", "POLE_AND_LINE", "TRAWLERS", "Other")))
+gear_summary
+```
+
+Did anything change?
+
+## Reordering Factor Levels _by hand_
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+ggplot(gear_summary, aes(x = n_vessels, y = geartype)) +
+  geom_col()
+```
+
+
+
+## Recoding Factor Levels
+
+- What if we want to create multiple groups, rather than just "Others"?
+- We can use `fct_collapse` to manually specify which values should be collapsed into new levels.
+- For example, we might want to collapse our raw gear types into bottom gear and surface gear
+
+. . .
+
+```{r}
+#| code-line-numbers: "2-7"
+gear_summary <- data_geartypes |> 
+  mutate(geartype = fct_collapse(geartype,
+                                 "BOTTOM" = c("DREDGE_FISHING", "SET_GILLNETS",
+                                              "SET_LONGLINES", "TRAWLERS"),
+                                 "SURFACE" = c("DRIFTING_LONGLINES", "OTHER_PURSE_SEINES",
+                                               "POLE_AND_LINE", "PURSE_SEINES",
+                                               "TROLLERS", "TUNA_PURSE_SEINES"))) |>
+  group_by(geartype) |>
+  summarize(n_vessels = n_distinct(vessel_id))
+
+gear_summary # Unspecified factor levels are left unmodified
+```
+
+## Recoding Factor Levels
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+ggplot(gear_summary, aes(x = n_vessels, y = geartype)) +
+  geom_col()
+```
+
+## Other `fct_*` functions
+
+- There are 30+ functions to help you
+- Look at the package documentation [here](https://forcats.tidyverse.org/reference/index.html)
+
+
+# Part 2: Dates and Times
+Working with Temporal Data
+
+## Parts of a Date/Time Object
+
+In R, there are three types of date/time data that point at an instant in time:
+
+- A **date** - In a tibble, you will see it as `<date>`
+- A **time** - A tibble will print it as `<time>`
+- A **date-time** - The combination of a date and a time. Tibbles will print it as `<dttm>`
+- Strive to work with the simplest version of the data type
+
+. . .
+
+:::{.callout-note}
+- Here and there you might hear about `POSIXct` and `POSIXlt`
+  - `POSIX` stands for "Portable Operating System Interface", a Unix standard
+  - The `ct` stands for "calendar time" (seconds ellapsed since Jan 1, 1970)
+  - `lt` stands for "local time" (stores the human readable components)
+:::
+
+
+## Why Dates Are Tricky
+
+```{r}
+#| echo: true
+#| code-fold: false
+# Dates seem simple but are complex!
+x1 <- "2010-10-01"
+x2 <- "2010/10/01" 
+x3 <- "01/10/2010"  # Which is day, which is month?
+x4 <- "October 1, 2010"
+x5 <- "1 Oct 2010"
+```
+
+. . .
+
+Problems:
+
+- Multiple formats
+- Time zones
+- Leap years, daylight saving time
+
+## The lubridate Package
+
+:::: {.columns}
+
+::: {.column width='40%'}
+![](img/lubridate_logo.png)
+
+`{lubridate}`: An R package that makes it easier to work with dates and times
+
+:::
+
+::: {.column width='60%'}
+
+**Key `lubridate` functions:**
+
+- Create dates and times
+- Get components form dates and times
+- Deal with time spans
+
+:::
+
+::::
+
+## Creating Dates and Times
+
+There are four approaches:
+
+- When importing your data (if you are lucky)
+- From character strings
+- From individual components
+- From other time-like classes (simply use `as_date()` or `as_datetime()`)
+
+## Creating Dates and Times when Importing Data
+
+- Does your CSV file contain an [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) date or date-time>
+- Lucky you... you don’t need to do anything; `readr` will automatically recognize it
+- Note that US approach to dates is not standard, ISO8601 mandates that:
+  - Components are organized from biggest to smallest
+  - Date components are separated by `-`
+  - Time components are separated by `:` (24 hr format, no am / pm)
+  - Date is separated from time using ` ` or `T`
+
+## Creating Dates and Times when Importing Data
+
+If your csv file looks like this:
+
+```{txt}
+class_date, time_of_day, combined, event
+2025-10-21, 09:00, 2025-10-21 09:00, class_starts
+2025-10-21, 10:15, 2025-10-21 10:15, class_ends
+```
+
+. . .
+
+Then you can simply read it in:
+
+```{r}
+#| eval: false
+read_csv("data/raw/my_file.csv")
+```
+
+```{r}
+#| echo: false
+
+a_csv_file <- "
+  class_date, time_of_day, combined,  event
+  2025-10-21, 09:00,      2025-10-21  09:00,      class_starts
+  2025-10-21, 10:15,      2025-10-21  10:15,      class_ends
+"
+
+read_csv(a_csv_file)
+```
+
+- If your date/time columns are not adhering to ISO standards
+- You will need to use the `col_types` arguments in `read_`, as well as `col_date()` or `col_datetime()`
+- And specify the [format](https://r4ds.hadley.nz/datetimes.html#tbl-date-formats) in which the data were entered
+
+
+## Creating Date-Time Objects from Strings
+
+- Lubridate provides multiple helpers
+- If you know the order of your date/time components, you can infer which helper to use
+- For example:
+
+. . .
+
+```{r}
+my_date <- "10-21-2025"
+```
+  - What is the class of this object?
+  - What is the order of my components here?
+  - Likely `m`, `d`, `y`, so I can use the `mdy()` function
+
+. . .
+
+```{r}
+my_date <- mdy("10-21-2025")
+class(my_date)
+my_date
+```
+
+Once it is stored as a `Date` object, it will always be printed in the ISO standard order
+
+
+## Creating Date-Time Objects from Strings
+
+Let's say your data looks like this:
+
+```{txt}
+#| code-fold: true
+date,whales_observed
+Jan-15-2024,12
+Jan-22-2024,8
+Feb-5-2024,7
+Feb-18-2024,8
+Mar-3-2024,7
+Mar-20-2024,12
+Apr-2-2024,14
+Apr-25-2024,8
+May-8-2024,6
+May-30-2024,6
+```
+
+. . .
+
+So when you read them in, they look like this:
+
+```{r}
+#| eval: false
+whale_counts <- read_csv(file = "data/raw/daily_whale_counts.csv")
+
+whale_counts
+```
+
+```{r}
+#| echo: false
+whale_counts <- read_csv("date,whales_observed
+Jan-15-2024,12
+Jan-22-2024,8
+Feb-5-2024,7
+Feb-18-2024,8
+Mar-3-2024,7
+Mar-20-2024,12
+Apr-2-2024,14
+Apr-25-2024,8
+May-8-2024,6
+May-30-2024,6")
+
+whale_counts
+```
+
+. . .
+
+Notice that `date` is of class `<chr>`
+
+## Creating Date-Time Objects from Strings
+
+Can I directly build a figure with date on the x-axis and # whales on the y-axis?
+
+. . .
+
+```{r}
+#| fig-width: 6
+#| fig-height: 3
+ggplot(whale_counts, aes(x = date, y = whales_observed)) + 
+  geom_line(linetype = "dashed") +
+  geom_point(size = 2)
+```
+
+. . .
+
+Nope...
+
+
+## Creating Date-Time Objects from Strings
+
+Steps:
+
+1. Identify the format of the date
+2. Use the appropriate `lubridate` function to convert the string to a date
+3. Plot my data
+
+## Creating Date-Time Objects from Strings
+
+Steps:
+
+::: {.nonincremental}
+1. **Identify the format of the date**
+2. Use the appropriate `lubridate` function to convert the string to a date
+3. Plot my data
+:::
+
+```{r}
+whale_counts
+```
+
+
+## Creating Date-Time Objects from Strings
+
+Steps:
+
+::: {.nonincremental}
+1. Identify the format of the date
+2. **Use the appropriate `lubridate` function to convert the string to a date**
+3. Plot my data
+:::
+
+```{r}
+#| code-line-numbers: "2"
+whale_counts_dates <- whale_counts |> 
+  mutate(date = mdy(date))  # Step 2: convert my date column into an actual date object, overwrite
+```
+. . .
+```{r}
+whale_counts_dates
+```
+
+
+## Creating Date-Time Objects from Strings
+
+Steps:
+
+::: {.nonincremental}
+1. Identify the format of the date
+2. Use the appropriate `lubridate` function to convert the string to a date
+3. **Plot my data**
+:::
+
+```{r}
+#| fig-width: 6
+#| fig-height: 3
+ggplot(whale_counts_dates, aes(x = date, y = whales_observed)) + 
+  geom_line(linetype = "dashed") +
+  geom_point(size = 2)
+```
+
+## Creating Date-Time Objects from Strings
+
+Many other helper functions
+
+```{r}
+#| echo: true
+#| code-fold: false
+ymd("2025-10-21")
+mdy("October 21, 2025")
+dmy("21 Oct 2025")
+ymd_hms("2025-10-21 10:00:00")
+ymd_hm("2025-10-21 12:00")
+```
+
+- You just have to get your data into an acceptable format
+- This will require you use your data tidying skills
+
+## Creating Date-Time Objects from Components
+
+Sometimes you will not have a `date` column, and your data might look like this:
+
+```{txt}
+#| code-fold: true
+year,month,day,whales_observed
+2025,1,15,12
+2025,1,22,8
+2025,2,5,7
+2025,2,18,8
+2025,3,3,7
+2025,3,20,12
+2025,4,2,14
+2025,4,25,8
+2025,5,8,6
+2025,5,30,6
+```
+
+. . .
+
+Reading them yields:
+
+```{r}
+#| eval: false
+whale_counts <- read_csv(file = "data/raw/ymd_whale_counts.csv")
+```
+```{r}
+#| echo: false
+whale_counts <- read_csv("year,month,day,whales_observed
+2025,1,15,12
+2025,1,22,8
+2025,2,5,7
+2025,2,18,8
+2025,3,3,7
+2025,3,20,12
+2025,4,2,14
+2025,4,25,8
+2025,5,8,6
+2025,5,30,6")
+
+whale_counts
+```
+
+## Creating Date-Time Objects from Components
+
+- Then you can use the `make_date()` or `make_datetime()` functions
+- Note that these require `numeric` values (i.e. "`Oct`" won't work, but `10` will)
+
+. . .
+
+```{r}
+#| code-line-numbers: "3"
+whale_counts_dates <- whale_counts |>
+  mutate(date = make_date(year, month, day)) |> 
+  select(date, whales_observed)
+
+whale_counts_dates
+```
+
+
+## Getting Components
+
+- Sometimes we want to make calculations based on part of a date
+- For example, how many whales did I observe per **month**?
+
+. . .
+
+```{r}
+head(whale_counts_dates, 2)
+```
+
+- I can use `month()` to extract the month of a date
+
+. . .
+
+```{r}
+whale_counts_dates |> 
+  mutate(month = month(date)) |> 
+  group_by(month) |> 
+  summarize(total_whales = sum(whales_observed))
+```
+
+## Getting Components
+
+Other useful functions
+
+```{r}
+#| echo: true
+#| code-fold: false
+# Day of week/year
+now <- ymd("2025-10-21")
+year(now)
+day(now)
+
+wday(now)
+week(now)
+yday(now)
+```
+
+## Time Spans
+
+- **Durations** represent exact number of seconds
+- **Periods** represent human units, like weeks and months
+- **Intervals** represent a starting and end point
+
+. . .
+
+> If you only care about physical time, use a duration; if you need to add human times, use a period; if you need to figure out how long a span is in human units, use an interval.
+
+Subtracting two dates will give you a `difftime` object:
+
+```{r}
+school_foundation <- mdy("February 1, 1943")
+school_age <- today() - school_foundation
+school_age
+```
+
+## Duration vs Periods
+
+```{r}
+a_date <- mdy_hms("Nov 1, 2025 02:01:01", tz = "America/New_York")
+a_date
+```
+
+- Let's add one day to this date
+
+. . . 
+
+```{r}
+a_date + ddays(1)
+a_date + days(1) 
+```
+
+- What happened here? Daylight Saving Time ends on Nov 2, 2025 at 01:00
+- These functions return different objects
+
+. . .
+
+```{r}
+ddays(1)
+days(1)
+```
+
+## Lubridate Is a Game Changer
+
+- There are many functions that will help you with managing dates
+- Whenever you have to work with dates, look at the package [documentation](https://lubridate.tidyverse.org/reference/index.html)
+
+
+# Part 3: Strings and Regular Expressions
+
+Working with Characters
+
+
+## The stringr Package
+
+:::: {.columns}
+
+::: {.column width='40%'}
+![](img/stringr_logo.png)
+
+`{stringr}`: a cohesive set of functions designed to make working with strings as easy as possible
+
+:::
+
+::: {.column width='60%'}
+
+**Key functions allow you to:**
+
+- Extract data contained in strings
+- Modify strings
+- Create strings from data
+
+:::
+
+::::
+
+
+## Extract Data Contained in Strings
+
+- A whale-watching company shared with you data on their trips
+- The data look like this:
+
+. . .
+
+```{txt}
+#| code-fold: true
+trip_id, passengers, notes
+1, 25, Dolphins; whales
+2, 32, Whales; Sea lions
+3, 30, Sea lions; sea turtles
+4, 30, Sea lion; dolphin
+```
+
+. . .
+
+```{r}
+#| eval: false
+sightings <- read_csv("data/raw/sightings.csv")
+```
+
+
+```{r}
+#| echo: false
+sightings <- read_csv(
+"trip_id, passengers, notes
+1, 25, Dolphins; whales
+2, 32, Whales; Sea lions
+3, 30, Sea lions; sea turtles
+4, 30, Sea lion; sea turtles"
+)
+
+sightings
+```
+
+- Your project requires presence / absence data, so the lack of abundances is not a problem
+- Your whale-watching partners ask: How many people have seen each type of animal?
+
+
+## Extract Data Contained in Strings
+
+`tidyr` offers four useful functions:
+
+- `separate_longer_delim()` and `separate_wider_delim()`
+- `separate_longer_position()` and `separate_wider_position()`
+
+. . .
+
+`separate_longer_delim()` allows me to `separate` a column and make the data `longer` based on a `delim`iter:
+
+```{r}
+sightings_tidy <- sightings |> 
+  separate_longer_delim(cols = notes, delim = "; ")
+sightings_tidy
+```
+
+. . .
+
+Anything weird?
+
+## Modify Strings
+
+The `stringr` package provides functions to modify, detect, and extract parts of strings
+
+```{r}
+#| code-line-numbers: "4"
+sightings_tidy <- sightings |> 
+  separate_longer_delim(cols = notes, delim = "; ") |> 
+  rename(species = notes) |> 
+  mutate(species = str_to_lower(string = species))
+sightings_tidy
+```
+
+. . .
+
+Anything weird?
+
+## Regular Expressions
+
+Can I just remove the "`s`" to make everything singular?
+
+. . .
+
+The `str_remove` function might help
+
+. . .
+
+```{r}
+#| code-line-numbers: "5"
+sightings_tidy <- sightings |> 
+  separate_longer_delim(cols = notes, delim = "; ") |> 
+  rename(species = notes) |> 
+  mutate(species = str_to_lower(string = species),
+         species = str_remove(string = species, pattern = "s"))
+sightings_tidy
+```
+
+. . .
+
+Oh no!
+
+## Regular Expressions
+
+- `str_remove()` will remove the first instance of the matched pattern
+- I need to remove the "`s`" **at the end of a word** to make everything singular
+- To specify this complex pattern I need to use `reg`ular `ex`pressions
+- [`?regex`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html)
+
+. . .
+
+```{r}
+#| code-line-numbers: "5"
+sightings_tidy <- sightings |> 
+  separate_longer_delim(cols = notes, delim = "; ") |> 
+  rename(species = notes) |> 
+  mutate(species = str_to_lower(string = species),
+         species = str_remove(string = species, pattern = "s$")) # Match the "s" at the end of a line only
+sightings_tidy
+```
+
+## We Can Now Answer the Question
+
+```{r}
+sightings_tidy |> 
+  group_by(species) |> 
+  summarize(n = sum(passengers)) |> 
+  mutate(species = fct_reorder(species, n)) |> 
+  ggplot(mapping = aes(x = n, y = species)) +
+  geom_col()
+```
+
+## `stringr` is incredibly useful
+
+Some functions:
+
+- In combination with mutate:
+  - `str_replace()`
+  - `str_extract()`
+  - `str_split()`
+  - `str_sub()`
+- With `filter()`:
+  - `str_detect()`
+  - `str_length()`
+- With `summarie()`:
+  - `str_flatten()`
+
+## Key Takeaways
+
+- **Factors**: Use `forcats` for categorical data manipulation
+- **Dates**: Use `lubridate` for temporal data analysis
+- **Strings**: Use `stringr` for text manipulation
+- **Regex**: Learn patterns for powerful text processing
+
+## Next Steps
+
+- Practice with real datasets
+- Combine these tools in data cleaning pipelines
+- Explore advanced features as needed
