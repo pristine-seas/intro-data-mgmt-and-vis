@@ -186,7 +186,7 @@ Students must complete any assigned readings and software tests before class. No
 ---
 
 ## Week 11 (Oct 27-31)
-**Working with spatial data in R** | slides
+**Working with spatial data in R** | [slides](slides/11_spat_data_1.html)
 - Vector data and `sf`
 - Exploratory visualizations with `plot` and `mapview`
 
@@ -194,6 +194,7 @@ Students must complete any assigned readings and software tests before class. No
 - Assigned readings:
   - Geocomputation with R [CH1 - Introduction](https://r.geocompx.org/intro)
   - Geocomputation with R [CH2 - Geographic data in R (stop at 2.2)](https://r.geocompx.org/spatial-class)
+- [Link]() to document for live coding session
 
 
 ## Week 12 (Nov 3-7)
