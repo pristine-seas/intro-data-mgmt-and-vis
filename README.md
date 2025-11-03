@@ -201,7 +201,7 @@ Students must complete any assigned readings and software tests before class. No
 
 
 ## Week 12 (Nov 3-7)
-**Visualizing spatial data** | [slides](slides/11_spat_data_2.html)
+**Visualizing spatial data** | [slides](slides/12_spat_data_2.html)
 - Raster data and `terra`
 - Attribute operations
 - Building maps with `ggplot2` and `tidyterra`
