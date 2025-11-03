@@ -118,7 +118,7 @@ In today's class:
 
 :::: {.panel-tabset}
 
-### Point (1D)
+### Point
 
 ```{r point-example}
 #| code-fold: true

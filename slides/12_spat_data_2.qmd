@@ -1,0 +1,590 @@
+---
+subtitle: "Working with spatial data in R"
+echo: true
+code-fold: true
+---
+
+```{r set-up, echo=FALSE}
+pacman::p_load(
+  here,
+  tidyverse,
+  EVR628tools,
+  sf,
+  terra,
+  mapview
+)
+
+theme_set(
+  theme_bw(base_size = 20)
+)
+```
+
+## Last wek
+
+- Spatial data can be represented in a `vector` model, or a `raster` model
+- We focused on `vector` data, which is represented by points, lines, polygons (and combination of these)
+- `vector` data are often saved as shapefiles, geoJSON files, or geopackage files
+- In `R`, we use the `simple features` standard to work with vector data via `{sf}`
+- Regardless of the file extension (`.shp`, `.gpkg`...), we read them with `sf::read_sf()`
+- `sf` objects have three main components:
+    - CRS: Where is the origin
+    - geometry: The spatial portion of the data
+    - attributes: The characteristics associated to each point, line, or polygon
+
+## Learning objectives
+
+:::{.callout-note}
+## By the end of this week, you should be able to
+- Identify whether a map was built with `raster` or `vector` data
+- Load and work with `raster` objects with `{sf}`
+- Visualize and manipulate `raster` data with `tidyterra`
+:::
+
+# Raster Data Model
+
+## Raster Data Model
+
+- The world is represented with a continuous grid
+- Grid is made up of grid cells or pixels
+- All pixels are the same size^[The definition of "size" will depend on the coordinate reference system]
+- For most applications, grid cells will be "square"
+
+## Raster Data Model
+
+:::: {.panel-tabset}
+
+### Polygon
+
+```{r polygon-example}
+#| echo: false
+#| message: false
+#| warning: false
+FL_counties <- read_sf(here("data/raw/Florida_County_Boundaries_with_FDOT_Districts_-801746881308969010.gpkg")) |> 
+  select(name = NAME)
+```
+
+```{r}
+#| echo: false
+plot(FL_counties, max.plot = 1)
+```
+
+### Raster (low res: 0.1°)
+
+```{r raster-example}
+#| echo: false
+ref_rast_l <- rast(xmin = -88, xmax = -80,
+                 ymin = 24.4, ymax = 31.5,
+                 res = 0.1, crs = "EPSG:4326")
+
+FL_counties_rast_low <- FL_counties |> 
+  vect() |> 
+  rasterize(ref_rast_l, field = "name")
+```
+
+```{r}
+#| echo: false
+plot(FL_counties_rast_low)
+```
+
+
+### Raster (high res: 0.01°)
+
+```{r}
+#| echo: false
+ref_rast_h <- rast(xmin = -88, xmax = -80,
+                 ymin = 24.4, ymax = 31.5,
+                 res = 0.01, crs = "EPSG:4326")
+
+FL_counties_rast_high <- FL_counties |> 
+  vect() |> 
+  rasterize(ref_rast_h, field = "name")
+```
+
+```{r}
+plot(FL_counties_rast_high)
+```
+
+::::
+
+## Raster Data Model
+
+Common Applications:
+
+- Usually used to represent continuous information:
+  - Elevation / Depth
+  - Temperature
+  - Population density
+  - Spectral data (in remote sensing applications)
+- Discrete data can also be used
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='50%'}
+```{r}
+#| echo: false
+depth <- rast(here("data/raw/depth_raster.tif"))
+plot(depth)
+```
+:::
+
+::: {.column width='50%'}
+```{r}
+#| echo: false
+plot(FL_counties_rast_low)
+```
+:::
+
+::::
+
+## Raster Data Model
+
+Common extensions include:
+
+- **.tiff / .tif**:
+  - "Tagged Image File Format"
+- .asc
+- .nc: Common in remote sensing and climate model output
+
+. . .
+
+TIFF or "GeoTiff" is simply an image made of pixels
+
+## Components of a Raster Object
+
+- Two main components:
+    - Header: Contains metadata with CRS, extent, and origin)
+    - Matrix: the data we want to represent
+
+:::: {.columns}
+
+::: {.column width='40%'}
+- x-coordinates = columns
+- y-coordinates = rows
+- In `terra` the "origin" of the matrix is the top-left corner
+:::
+
+::: {.column width='60%'}
+::: {.fragment}
+![Source: @Wickham2023-aa](img/raster-intro-plot-1.png){width=75%}
+:::
+:::
+
+::::
+
+
+## Raster is Faster. . . but why?
+
+- There is a fundamental relationship between resolution, extent, and origin:
+
+. . .
+
+$$
+\mathrm{resolution_x} = \frac{x_{max} - x_{min}}{n_{col}}
+$$
+
+- Raster data are typically "lighter" (and faster to work with) because we don't need to store the coordinates for every cell
+
+. . .
+
+> Q: How many coordinates does R need to store if you specify the origin, extent, and resolution?
+
+. . .
+
+> A: One coordinate pair, lattitude and longitude for the origin
+
+- In contrast to vector data, the cell of one raster layer can only hold a single value
+
+## Raster is Faster. . . but why?
+
+![Source: @Wickham2023-aa](img/raster-intro-plot-1.png){width=75%}
+
+- I just need to know the coordinates for the **center** of cell #1
+- Coordinates for cell number 2 are $(X_1, Y_1 + resolution)$
+
+
+# Raster Data in R
+
+## The `terra` package
+
+:::: {.columns}
+
+::: {.column width='40%'}
+![](img/terra_logo.png)
+
+[`{terra}`](https://rspatial.github.io/terra/): An R package to work with raster datasets
+:::
+
+::: {.column width='60%'}
+
+The `{terra}` package:
+
+- [Replaces](https://cran.r-project.org/web/packages/raster/index.html) the older `{raster}` package
+- Provides functions to create, read, transform, manipulate, and export raster data
+- Has it's own approach to vector data (not friendly with the tidyverse)
+- Still plays well with `sf`
+
+:::
+::::
+
+
+## The `terra` package: Example
+
+:::: {.columns}
+
+::: {.column width='60%'}
+
+I can read a raster file into using the function `rast()`
+
+```{r}
+#| code-fold: false
+#| eval: false
+#| code-line-numbers: "1|2-3|4-%"
+library(terra) # Load terra
+# Load in my raster
+depth <- rast("data/raw/depth_raster.tif")
+class(depth) # Check what class of Object I have
+depth # Printing a raster reveals the header, not the data
+```
+
+```{r}
+#| echo: false
+depth <- rast(here("data/raw/depth_raster.tif"))
+depth
+```
+
+- *Q:* What is the resolution of this raster?
+- *A:* 0.05°
+- *Q:* What is the extent?
+- *A:* The world
+
+:::
+
+::: {.column width='40%'}
+:::{.fragment}
+
+Find info contained in the header with specific functions:
+
+```{r}
+#| echo: true
+#| code-fold: false
+ext(depth)   # Gets the extent
+res(depth)   # Gets the resolution
+dim(depth)   # Returns nrow, ncol, nlayers
+ncell(depth) # Number of pixels (values)
+names(depth) # Gets the names for each layer
+```
+:::
+:::
+
+::::
+
+## Visualizing rasters in R
+
+The fastest way is to use the base `plot()` function
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 3
+plot(depth) # Single line of code gets me a decent map
+```
+
+
+## Visualizing rasters in R
+
+As with vector data, I can layer different pieces of my plot
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| fig-width: 6
+#| fig-height: 3
+#| code-line-numbers: "1-2"
+plot(depth) # Build plot
+plot(FL_counties, add = T) # Add FL counties on top
+```
+
+- Q: How are missing values represented?
+- A: As transparent (white) pixels
+
+## Manipulating raster objects
+
+**Task:** Produce a map of water depth around FL
+
+- **Q:** In human language, what do I have to do?
+- **A:** "Zoom-in" on my global raster: `crop()`^[Note that in `terra::crop()` does the same as `sf::st_crop()`, but for rasters]
+
+. . .
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3"
+#| fig-width: 4
+#| fig-height: 3.5
+FL_depth <- crop(depth, FL_counties) # Crop the global depth raster to the extent of FL_counties
+plot(FL_depth)
+plot(FL_counties, add = T)
+```
+
+## Manipulating raster objects:
+
+**Task:** Build the same map, but only show shallow (depth > -100 m) waters
+
+- Rasters are just matrices, so we can use our trusty `binary` operators
+
+. . .
+
+```{r}
+#| code-fold: false
+#| fig-width: 4
+#| fig-height: 3.5
+plot(FL_depth <= -100)
+```
+
+## Manipulating raster objects:
+
+**Task:** Build the same map, but only show shallow (depth > -100 m) waters
+
+- In a data.frame (or sf) object, you can remove rows (observations) based on values
+- But a raster is not a tidy table. It's a matrix, so removing rows woudln't be wise
+- Instead of filtering data, we turn them into `NA`
+
+. . .
+
+:::: {.columns}
+
+::: {.column width='50%'}
+
+```{r}
+#| code-fold: false
+#| eval: false
+#| code-line-numbers: "1-2|3-4|5-7"
+# Crop FL
+FL_depth <- crop(depth, FL_counties)
+# Find pixels deeper than 100 and replace them with NA
+FL_depth[FL_depth <= -100] <- NA
+# Plot it
+plot(FL_depth)
+plot(FL_counties, add = T)
+```
+:::
+
+::: {.column width='50%'}
+
+:::.{fragment}
+
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 3.5
+# Crop FL
+FL_depth <- crop(depth, FL_counties)
+# Find pixels deeper than 100 and replace them with NA
+FL_depth[FL_depth <= -100] <- NA
+# Plot it
+plot(FL_depth)
+plot(FL_counties, add = T)
+```
+:::
+:::
+
+::::
+
+. . .
+
+This code is not very readable
+
+# Tidy rasters in R: `{tidyterra}`
+
+## Tidy rasters in R: `{tidyterra}`
+
+:::: {.columns}
+
+::: {.column width='40%'}
+![](img/tidyterra_logo.png){width=50%}
+
+[`{tidyterra}`](https://dieghernan.github.io/tidyterra/index.html): Common methods of the tidyverse for objects created with `{terra}`
+:::
+
+::: {.column width='60%'}
+
+The `{tidyterra}` package:
+
+- Developed by Diego Hernangómez (@Hernangómez2023)
+- Extends, but doesn not replace, the `terra` package
+- Provides functions to manipulate and visualize the attribute portion of the raster
+- Brings ggplot capabilities (`geom_spatraster()`)
+
+:::
+::::
+
+## Visualizing rasters in R: `{tidyterra}`
+
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3|4|5|"
+library(tidyterra) # Load terra
+ggplot() +         # Begin a ggplot
+  geom_spatraster(data = depth, # specify object to plot
+                  aes(fill = depth_m)) + # specify layer to plot
+  geom_sf(data = FL_counties) # Add FL counties on top
+```
+
+- Q: How are missing values represented?
+- A: As gray pixels
+
+
+## Manipulating rasters with `tidyterra`
+
+:::: {.columns}
+
+::: {.column width='45%'}
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3|4|6-7"
+#| fig-width: 4
+#| fig-height: 3.5
+library(tidyterra)
+FL_depth <- depth |> 
+  terra::crop(FL_counties) |> 
+  tidyterra::filter(depth_m >= -100)
+
+plot(FL_depth)
+plot(FL_counties, add = T)
+```
+:::
+
+::: {.column width='50%'}
+Remember: 
+
+- `terra` for the _spatial_ part (e.g. `crop()`)
+- `tidyterra` for the _attribute_ part (e.g. `filter()`)
+:::
+
+::::
+
+# Rasters with more than one attribute (layer)
+
+## Combining rasters in `terra`
+
+![](img/single_multi_raster.png){width=50%}
+
+. . .
+
+All layers **must** have the same extent and resolution
+
+## Combining rasters in `terra`
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1-5|6-7|8"
+#| fig-width: 4
+#| fig-height: 3.5
+# Let's read habitat suitability models for four sea turtle species
+log <- rast("data/raw/AquaMaps/Caretta_caretta.tiff")
+green <- rast("data/raw/AquaMaps/Chelonia_mydas.tiff")
+leather <- rast("data/raw/AquaMaps/Dermochelys_coriacea.tiff")
+hawk <- rast("data/raw/AquaMaps/Eretmochelys_imbricata.tiff")
+# We can combine them together using the `c()` function
+turtles <- c(log, green, leather, hawk)
+turtles
+```
+
+## Multi-layer rasters
+
+Calling `plot()` on a multi-layer raster shows us one sub-plot per layer
+
+```{r}
+#| code-fold: false
+plot(turtles)
+```
+
+## Multi-layer rasters
+
+**Task**: Calculate the _mean_ habitat suitability around FL waters
+
+:::: {.columns}
+
+::: {.column width='65%'}
+```{r}
+#| code-fold: false
+#| eval: false
+#| code-line-numbers: "1|2-6|7-8|9-10"
+turtle_habitat <- turtles |> # Start from turtles
+  # And pipe into filter()
+  filter(Caretta_caretta > 0.5,
+         Chelonia_mydas > 0.5,
+         Dermochelys_coriacea > 0.5,
+         Eretmochelys_imbricata > 0.5)
+# Inspect the metadata
+turtle_habitat
+# And plot it
+plot(turtle_habitat)
+```
+
+```{r}
+#| echo: false
+turtle_habitat <- turtles |> 
+  filter(Caretta_caretta > 0.5,
+         Chelonia_mydas > 0.5,
+         Dermochelys_coriacea > 0.5,
+         Eretmochelys_imbricata > 0.5)
+# Inspect the metadata
+turtle_habitat
+```
+:::
+
+::: {.column width='35%'}
+:::{.fragment}
+```{r}
+#| echo: false
+# And plot it
+plot(turtle_habitat)
+```
+:::
+:::
+
+::::
+
+## Multi-layer rasters
+
+**Task**: Calculate the _mean_ habitat suitability around FL waters
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2-6|7-8|9|"
+turtle_habitat <- turtles |> # Start from turtles
+  # And pipe into filter()
+  filter(Caretta_caretta > 0.5,
+         Chelonia_mydas > 0.5,
+         Dermochelys_coriacea > 0.5,
+         Eretmochelys_imbricata > 0.5) |> 
+  # Then crop it to FL counties
+  crop(st_buffer(FL_counties, dist = 100000)) |>  # Any guesses on what st_buffer is doing?
+  mean()
+```
+
+```{r}
+#| echo: false
+ggplot() +
+  geom_spatraster(data = turtle_habitat) +
+  geom_sf(data = FL_counties) +
+  labs(fill = "probability")
+```
+
+## Wrap up
+
+## Before next class:
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-fold: true
+install.packages("terra")
+install.packages("tidyterra")
+```
+

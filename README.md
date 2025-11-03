@@ -201,7 +201,7 @@ Students must complete any assigned readings and software tests before class. No
 
 
 ## Week 12 (Nov 3-7)
-**Visualizing spatial data** | slides
+**Visualizing spatial data** | [slides](slides/11_spat_data_2.html)
 - Raster data and `terra`
 - Attribute operations
 - Building maps with `ggplot2` and `tidyterra`
@@ -209,6 +209,7 @@ Students must complete any assigned readings and software tests before class. No
 **Relevant links for the week:**
 - Assigned readings:
   - Geocomputation with R [CH2 - Geographic data in R (2.3-2.5)](https://r.geocompx.org/spatial-class)
+- [Link](docs/12_live.html) to document for live coding session
 
 ---
 
