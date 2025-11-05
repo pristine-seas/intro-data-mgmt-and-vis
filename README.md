@@ -204,7 +204,7 @@ Students must complete any assigned readings and software tests before class. No
 **Visualizing spatial data** | [slides](slides/12_spat_data_2.html)
 - Raster data and `terra`
 - Attribute operations
-- Building maps with `ggplot2` and `tidyterra`
+- Building maps with `ggspatial` and `tidyterra`
 
 **Relevant links for the week:**
 - Assigned readings:

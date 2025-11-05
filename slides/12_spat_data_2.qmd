@@ -42,8 +42,8 @@ theme_set(
 :::{.callout-note}
 ## By the end of this week, you should be able to
 - Identify whether a map was built with `raster` or `vector` data (or both)
-- Load and work with `raster` objects with `{sf}`
-- Visualize and manipulate `raster` data with `tidyterra`
+- Load and work with `raster` objects with `{terra}`
+- Visualize and manipulate `raster` data with `{tidyterra}`
 :::
 
 # Raster Data Model
@@ -207,7 +207,7 @@ $$
 ![Source: @Wickham2023-aa](img/raster-intro-plot-1.png){width=75%}
 
 - I just need to store the coordinates for the **center** of cell #1
-- Coordinates for cell number 2 are $(X_1, Y_1 + resolution)$
+- Coordinates for cell number 2 are $(X_1 + resolution, Y_1)$
 
 
 # Raster Data in R

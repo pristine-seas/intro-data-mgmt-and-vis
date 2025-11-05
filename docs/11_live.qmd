@@ -6,7 +6,6 @@ format:
     toc: true
   # pdf:
   #   documentclass: article
-prefer-html: true
 echo: true
 include: true
 code-fold: true
