@@ -1,0 +1,289 @@
+---
+subtitle: "Assignment 4: Visualizing spatial data"
+lightbox: true
+format:
+  html:
+    toc: true
+  pdf:
+    documentclass: article
+---
+
+# The big picture
+
+Remember that the final goal is to have a GitHub repository where you can showcase your work. Assignment 1 was to create the repository. Assignment two required you to develop one R script to clean some data in that same repository. For your third assignment, you visualized the data cleaned in assignment two. **For your fourth assignment, you will work with spatial data to produce a map of your "study site", broadly defined.** Your final project will leverage the data and visualizations you'll produce to wrap it all together.
+
+# This assignment
+
+**Task:** Produce a map that shows a spatial aspect of your data^[Maybe its the study area, or your data themselves.], and export it as a `.png` figure.
+
+Your map should meet the following criteria (50% of your grade):
+
+- [ ] (25%) You use `geom_sf()` and / or `geom_spatraster()` at a minimum (but feel free to add more layers if necessary, like we did for [Rices whale](12_live.html#part-3-visualize)).
+- [ ] (10%) You must use a base layer that is not part of your data to add context to your map^[In the rice's whale example, the base layers were the coastline and the depth. Our target data were the effort raster and the core habitat polygon.].
+- [ ] (10%) It includes a north arrow and a scale bar.
+- [ ] (5%) You must modify labels as appropriate, and make sure to include units when relevant. Use the `caption` argument to attribute the source of your data.
+
+Additionally, your script should have the following (50%  of your grade):
+
+- [ ] (10%) Be called `spatial_data_visualization.R` and be saved inside the `scripts/03_content/` folder
+- [ ] (10%) Contain code documentation using comments `#`
+- [ ] (10%) Clearly indicate all packages and data loaded at the top of the script^[I recommend you use [my snippets](https://gist.github.com/jcvdav/1093d757bf1773751e951d009de4d857)]
+- [ ] (10%) Uses **relative** paths to read data and write figures. Figure(s) are exported to the `results/img` folder.
+- [ ] (10%) I can reproduce your map without needing to modify any code (**but see warning message below**).
+
+:::{.callout-important}
+# No Big Data on GitHub!
+Spatial data can get quite large. If at any point a data file exceeds 100 MB, **DO NOT PUT IT ON GITHUB**.
+Your options are two add it to the `.gitignore` file (come to office hours if needed) or to make a conscious decision not to commit and push that file.
+:::
+
+
+## Turning in your assignment
+
+- Please share the link to your github repo via Canvas
+- The deadline for this assignment is Nov 16 by 23:59
+
+## Important notes
+
+:::: {.panel-tabset}
+
+### I know I have spatial data
+
+Some of you were already working with data that has latitude and longitude. That is great, you can use those coordinates to build points, lines or polygons as you see fit. You may also elect to simply build a map that shows where you data came from, rather than your data themselves.
+
+### I don't think I have spatial data
+
+Some of you are working with data that don't have coordinates. That is also fine, and that is often the case for most data out there. However, the data were likely collected from somewhere in the field or generated in a laboratory. You can elect to build a map of said location in a few different ways:
+
+- Get coordinates from Google Maps and [build your own sf object from scratch](https://jcvdav.github.io/EVR_628/slides/11_spat_data_1.html#/example-rosenstiel).
+- Find the relevant data online (see next tab) and highlight the relevant spatial feature.
+
+### Where might I find data?
+
+**R packages**
+
+- [`{rnaturalearth}`](https://ropensci.github.io/rnaturalearth/)
+- [`{rnaturalearthhires}`](https://docs.ropensci.org/rnaturalearthhires/)
+- [`{spData}`](https://jakubnowosad.com/spData/)
+- [`{spDataLarge}`](https://github.com/Nowosad/spData?tab=readme-ov-file#spdatalarge)
+
+**Websites**
+
+- [UM's Geospatial Digital Special Collections](https://gdsc.idsc.miami.edu/)
+- [Marineregions.org](https://www.marineregions.org/downloads.php) for vectors
+- [GMED](http://gmed.auckland.ac.nz/ ) for rasters
+- [NOAA Fisheries Science & Data Maps](https://www.fisheries.noaa.gov/resources/maps)
+
+Or ask me, **with plenty of time in advance**
+
+
+### Other Resources
+
+**Class material**
+
+- [Vector data slides](https://jcvdav.github.io/EVR_628/slides/11_spat_data_1.html)
+- [Vector data live coding session](https://jcvdav.github.io/EVR_628/docs/11_live.html)
+- [Raster data slides](https://jcvdav.github.io/EVR_628/slides/12_spat_data_2.html)
+- [Raster data live coding session](https://jcvdav.github.io/EVR_628/docs/12_live.html)
+
+
+**R4DS**
+
+- Geocomputation with R [CH1 - Introduction](https://r.geocompx.org/intro)
+- Geocomputation with R [CH2 - Geographic data in R](https://r.geocompx.org/spatial-class)
+
+:::
+
+# Example of a script and map that would get 100%
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+#| code-fold: true
+################################################################################
+# A map of my study area
+################################################################################
+#
+# Juan Carlos Villaseñor-Derbez
+# jc_villasenor@miami.edu
+# Nov , 2025
+#
+# This script loads geospatial data, wrangles it, and produces a map.
+#
+################################################################################
+  
+# SET UP #######################################################################
+
+# Load packages ----------------------------------------------------------------
+library(EVR628tools)   # For fishing effort data and color palettes
+library(ggspatial)     # To add map elements to a ggplot
+library(rnaturalearth) # To add country outlines
+library(tidyverse)     # General data wrangling
+library(sf)            # Working with vector data
+library(terra)         # Working with raster data
+library(tidyterra)     # Working with raster data in tidy approach
+library(mapview)       # To quickly inspect data
+
+# Load data --------------------------------------------------------------------
+# Load whale core habitat
+whale <- read_sf("data/raw/shapefile_Rices_whale_core_distribution_area_Jun19_SERO/shapefile_Rices_whale_core_distribution_area_Jun19_SERO.shp")
+# Load depth raster
+depth <- rast("data/raw/depth_raster.tif")
+# Load world's coastline
+coast <- ne_countries(country = c("United States of America", "Mexico", "Belize", "Guatemala"))
+# Load fishing effort data.frame
+data("data_fishing_effort")
+
+# PROCESSING ###################################################################
+
+# Create a new object to contain a raster of fishing effort
+effort_raster <- data_fishing_effort |>    # Start with my data.frame
+  group_by(lon, lat) |>                    # group by lon and lat
+  summarize(hours = sum(effort_hours)) |>  # Calculate total effort by pixel
+  rast(crs = "EPSG:4326")                  # Build a raster
+
+## Crop layers
+gulf_depth <- crop(depth, extend(effort_raster, 10))
+gulf_coast <- st_crop(coast, extend(effort_raster, 10))
+
+# VISUALIZE ####################################################################
+
+## Build the map ---------------------------------------------------------------
+p <- ggplot() +
+  # Add the depth contours as the first laeyer
+  geom_spatraster_contour(data = gulf_depth,
+                          aes(colour = after_stat(level)),
+                          linewidth = 0.5) +
+  # Add fishing effort raster on top
+  geom_spatraster(data = log(effort_raster)) +
+  # Add gulf coast coastline
+  geom_sf(data = gulf_coast,
+          fill = "gray",
+          color = "black") +
+  # Add whale's core habitat
+  geom_sf(data = whale, fill = "transparent",
+          color = "black",
+          linewidth = 2) +
+  # Modify the colors for the depth contours
+  scale_color_viridis_c(option = "mako") +
+  # Modify the fill of the effort raster
+  scale_fill_viridis_c(option = "magma",
+                       na.value = "transparent") +
+  # Modify the theme
+  theme_bw() +
+  # Add a north arrow from ggspatial
+  annotation_north_arrow(location = "tl") +
+  # Add a scalebar from ggspatial
+  annotation_scale(location = "bl") +
+  # Trim whitespace
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  # Update labels
+  labs(color = "Depth (m)",
+       fill = "Effort [log(hours)]",
+       x = "Longitude",
+       y = "Latitude",
+       title = "Fishing effort in and around Rice's whale core habitat",
+       caption = "Data sources: NOAA Fisheries, GMED, GFW")
+
+# EXPORT #######################################################################
+
+## Export as png ---------------------------------------------------------------
+ggsave(plot = p,
+       filename = "results/img/my_map.png")
+```
+
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+################################################################################
+# title
+################################################################################
+#
+# Juan Carlos Villaseñor-Derbez
+# jc_villasenor@miami.edu
+# date
+#
+# Description
+#
+################################################################################
+  
+# SET UP #######################################################################
+
+# Load packages ----------------------------------------------------------------
+library(EVR628tools)   # For fishing effort data and color palettes
+library(ggspatial)     # To add map elements to a ggplot
+library(rnaturalearth) # To add country outlines
+library(tidyverse)     # General data wrangling
+library(sf)            # Working with vector data
+library(terra)         # Working with raster data
+library(tidyterra)     # Working with raster data in tidy approach
+library(mapview)       # To quickly inspect data
+
+# Load data --------------------------------------------------------------------
+# Load whale core habitat
+whale <- read_sf("data/raw/shapefile_Rices_whale_core_distribution_area_Jun19_SERO/shapefile_Rices_whale_core_distribution_area_Jun19_SERO.shp")
+# Load depth raster
+depth <- rast("data/raw/depth_raster.tif")
+# Load world's coastline
+coast <- ne_countries(country = c("United States of America", "Mexico", "Belize", "Guatemala"))
+# Load fishing effort data.frame
+data("data_fishing_effort")
+
+# PROCESSING ###################################################################
+
+# Create a new object to contain a raster of fishing effort
+effort_raster <- data_fishing_effort |>    # Start with my data.frame
+  group_by(lon, lat) |>                    # group by lon and lat
+  summarize(hours = sum(effort_hours)) |>  # Calculate total effort by pixel
+  rast(crs = "EPSG:4326")                  # Build a raster
+
+## Crop layers
+gulf_depth <- crop(depth, extend(effort_raster, 10))
+gulf_coast <- st_crop(coast, extend(effort_raster, 10))
+
+# VISUALIZE ####################################################################
+
+## Build the map ---------------------------------------------------------------
+ggplot() +
+  # Add the depth contours as the first laeyer
+  geom_spatraster_contour(data = gulf_depth,
+                          aes(colour = after_stat(level)),
+                          linewidth = 0.5) +
+  # Add fishing effort raster on top
+  geom_spatraster(data = log(effort_raster)) +
+  # Add gulf coast coastline
+  geom_sf(data = gulf_coast,
+          fill = "gray",
+          color = "black") +
+  # Add whale's core habitat
+  geom_sf(data = whale, fill = "transparent",
+          color = "black",
+          linewidth = 2) +
+  # Modify the colors for the depth contours
+  scale_color_viridis_c(option = "mako") +
+  # Modify the fill of the effort raster
+  scale_fill_viridis_c(option = "magma",
+                       na.value = "transparent") +
+  # Modify the theme
+  theme_bw() +
+  # Add a north arrow from ggspatial
+  annotation_north_arrow(location = "tl") +
+  # Add a scalebar from ggspatial
+  annotation_scale(location = "bl") +
+  # Trim whitespace
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  # Update labels
+  labs(color = "Depth (m)",
+       fill = "Effort [log(hours)]",
+       x = "Longitude",
+       y = "Latitude",
+       title = "Fishing effort in and around Rice's whale core habitat",
+       caption = "Data sources: NOAA Fisheries, GMED, GFW")
+```
+
+

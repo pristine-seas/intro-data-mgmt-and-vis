@@ -213,7 +213,7 @@ Students must complete any assigned readings and software tests before class. No
 
 ---
 
-**Fourth assignment:** _Visualizing spatial data_
+**Fourth assignment:** [_Visualizing spatial data_](docs/assig_4.thml)
 
 ---
 

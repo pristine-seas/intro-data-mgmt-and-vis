@@ -134,7 +134,7 @@ m <- mapview(rsmaes_pt)
 m@map |> leaflet::setView(lng = -80.16328, lat = 25.73281, zoom = 17)
 ```
 
-### Line (2D)
+### Line
 
 ```{r line-example}
 #| code-fold: true
@@ -160,7 +160,7 @@ m <- mapview(rsmaes_line)
 m@map |> leaflet::setView(lng = -80.16328, lat = 25.73281, zoom = 17)
 ```
 
-### Polygon (3D)
+### Polygon
 
 ```{r polygon-example}
 #| code-fold: true
