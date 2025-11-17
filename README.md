@@ -234,7 +234,7 @@ Students must complete any assigned readings and software tests before class. No
 - [Link](docs/sample_doc.html) to sample doc we'll build
 
 ## Week 14, (Nov 17-21)
-**Programming** | [slides](slides/13_programming)
+**Programming** | [slides](slides/14_programming)
 - Background jobs
 - User-defined functions
 - Iteration with loops

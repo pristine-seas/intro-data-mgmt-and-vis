@@ -18,7 +18,7 @@ code-fold: true
 3.  Click on green link (should say 3.33 MB) to download the data to your `data/raw` folder in your EVR 628 project
 4. You will have downloaded a ziped folder called `WCPFC_S_PUBLIC_BY_1x1_MM_5.zip`. Unzip it.
 5. Navigate to `data/raw/WCPFC_S_PUBLIC_BY_1x1_MM_5` and open the pdf called `purse_seine_by_mon_1x1.pdf`.
-6. What does the metadata say about `LAT_short` abd `LON_short`?
+6. What does the metadata say about `LAT_short` and `LON_short`?
 
 # Part 1: Functions
 
