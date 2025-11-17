@@ -32,6 +32,8 @@ By the end of the course, students will be comfortable working in R.
   - [Some available in Spanish](https://rstudio.github.io/cheatsheets/translations.html#spanish)
 - **My code snippets**
   - [Code documentation](https://gist.github.com/jcvdav/1093d757bf1773751e951d009de4d857)
+- **Others**
+  - [I accidentally committed a file > 100 MB to git](docs/git_large_file.html)
 
 # Course schedule
 

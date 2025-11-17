@@ -1,0 +1,73 @@
+---
+subtitle: "Undoing a Commit with Large Files"
+lightbox: true
+format:
+  html:
+    toc: true
+  pdf:
+    documentclass: article
+---
+
+:::{.callout-important}
+# Important
+All commands below must be run in the **RStudio Terminal** (not the R Console). The Terminal tab is located next to the Console tab in RStudio.
+:::
+
+If you are reading this, you probably did something like this:
+
+- Did some work in your `local` RStudio project affiliated to a git repo
+- You added, staged, and committed a file larger than 100 MB
+- You tried to push, and got an error message: 
+
+```txt
+.
+remote: error: File <some_file/here> is <xxx.xx> MB; this exceeds GitHub's file size limit of 100.00 MB
+.
+.
+To git@github.com:your_username/your_repo.git
+! [remote rejected] main -> mainr (pre-receive hook declined)
+error: failed to push some refs to 'git@github.com:your_username/your_repo.git'
+```
+
+Let's fix this. The first step is to "go back in time" and undo the commit where you accidentally added the file that is more than 100 MB in size. Then, you will create the commit again, but this time without adding the file.
+
+
+# Step 1: Undo the commit (Three options)
+
+:::{.panel-tabset}
+
+## Option 1) Undo the Last Commit  and Unstage Changes (Recommended)
+
+If you want to undo the commit and un-stage the changes (but keep them in your working directory):
+
+```bash
+git reset HEAD~1
+```
+
+We are using `~1` to go back in time 1 commit. If your offending commit is more than 2 behind, then do `~2`. You can always use `git log` to see the history of your local commits.
+
+## Option 2) Undo the Last Commit  and Keep Changes
+
+If you want to undo the last commit but keep your changes:
+
+```bash
+git reset --soft HEAD~1
+```
+
+This removes the commit but keeps all changes staged.
+
+## Option 3) Completely Remove the Last Commit
+
+**Warning:** This permanently deletes the commit and all changes:
+
+```bash
+git reset --hard HEAD~1
+```
+
+:::
+
+## Step 2: After Undoing
+
+- Optional: Add the large file to `.gitignore` to prevent future commits
+- Make a new commit with your other changes (if any), BUT DON'T ADD ANY LARGE FILES to your commit
+
