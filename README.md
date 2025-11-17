@@ -226,6 +226,10 @@ Students must complete any assigned readings and software tests before class. No
 - Documents (html and pdf)
 - Build your website
 
+**Relevant links for the week:**
+- Assigned readings
+  - R4DS [CH28: Quarto](https://r4ds.hadley.nz/quarto.html)
+  - R4DS [CH29: Quarto formats](https://r4ds.hadley.nz/quarto-formats.html)
 - [Link](slides/sample_slides.html) to sample slide deck we'll build
 - [Link](docs/sample_doc.html) to sample doc we'll build
 
@@ -234,6 +238,11 @@ Students must complete any assigned readings and software tests before class. No
 - Background jobs
 - User-defined functions
 - Iteration with loops
+
+**Relevant links for the week:**
+- Assigned readings
+  - R4DS [CH25: Functions](https://r4ds.hadley.nz/functions.html)
+  - R4DS [CH27: `for` loops](https://r4ds.hadley.nz/base-R.html#for-loops) (Section 27.5 only)
 
 **Extensions** | slides
 - Standardizing the environment with `.Rprofile`
