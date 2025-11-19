@@ -1,5 +1,5 @@
 ---
-subtitle: "Assignment 2: Data wrangling"
+title: "Assignment 2: Data wrangling"
 lightbox: true
 format:
   html:

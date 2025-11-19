@@ -1,5 +1,5 @@
 ---
-subtitle: "Assignment 3: Visualizing your data"
+title: "Assignment 3: Visualizing your data"
 lightbox: true
 format:
   html:

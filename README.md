@@ -255,7 +255,7 @@ Students must complete any assigned readings and software tests before class. No
 
 ---
 
-**FINAL PROJECT:** _From cleaning to communicating_
+**FINAL PROJECT:** [_Communicating your work_](docs/final_project.html)
 
 ---
 

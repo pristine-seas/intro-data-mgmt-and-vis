@@ -1,0 +1,36 @@
+---
+title: "Final project"
+lightbox: true
+format:
+  html:
+    toc: true
+  pdf:
+    documentclass: article
+---
+
+# The big picture
+
+Remember that the final goal is to have a GitHub repository where you can showcase your work. In assignment 1 you created the repository. Assignment two required you to develop one R script to clean some data in that same repository. For your third assignment, you visualized the data cleaned in assignment two. Your fourth and final assignment had you produce a map of your "study site", broadly defined. **This is now your final project, where you will combine everything you have produced into a communication product (presentation or a report). This final product is worth 10% of your final grade.**
+
+# Your final project
+
+**Task:** Use quarto markdown to produce a document (presentation or report) highlighting your results. Then, make sure your GitHub repository is organized, clean, and ready to be shared.
+
+You should produce a quarto markdown document that meets the following:
+
+- [ ] (10%) Is called `final_report.qmd` or `final_presentation.qmd` and is saved to your `docs/` folder^[You might need to create this folder] ^[Remember that you will have to use the `here()` function from the `here` package.]. Presentations must use the revealjs output. Documents may be html or pdf.
+- [ ] (10%) The `YAML` header includes:
+    - [ ] A clear and concise title
+    - [ ] A subtitle
+    - [ ] Your full name
+- [ ] (50%) Have the following section headers / slides: Introduction^[Your introduction should give your reader background information.], Objective(s)^[Your objective should state the question you seek to answer. You wrote something related to it in your README during Assignment 1.], Data sources^[Where do your data come from? How many data sets do you have? What are the types of variables included in your data?], Data processing^[How did you go from raw data to meeting your objectives? What filters or data modifications did your perform?], Main findings^[The answer to your questions], and References^[If you cite work, I suggest that you leverage quarto's [automatic referencing](https://quarto.org/docs/authoring/citations.html)]. Each section should have a brief description. One paragraph may be enough, but feel free to write as much as you need to.
+- [ ] (10%) You include at least two figures^[Read more about figure sizing [here](https://quarto.org/docs/authoring/figures.html#figure-sizing).]:
+    - [ ] One of those **must** be the map from Assignment 4. The other one may be one from Assignment 3, or a figure that you generate directly in the document.
+    - [ ] All figures should include a figure caption.^[If you are producing a PDF, you may want to read about [figure position](https://quarto.org/docs/authoring/figures.html#figure-position) in quarto markdown's documentation.]
+- [ ] (5%) You must use [inline code](https://quarto.org/docs/computations/inline-code.html) at least once to present information from your data.
+- [ ] (5%) No code or code-related warnings or messages appear in your final product.
+- [ ] (5%) I can render your document without needing to modify your code.
+
+
+
+**Finally**, for 5%, your README file includes a link to your final rendered document (that is, the html or the pdf file generated).
