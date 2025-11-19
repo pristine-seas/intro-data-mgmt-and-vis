@@ -10,6 +10,35 @@ Go to [ce.miami.edu](https://ce.miami.edu) and complete your student evaluations
 
 ## Intro to _Environmental_ Data Science
 
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+#| fig-align: center
+#| fig-cap: "Conceptual model of data science"
+library(tidyverse)
+library(ggrepel)
+
+tibble(skill = c("Coding", "Stats", "Domain"),
+       x = c(-1, 1, 0),
+       y = c(1, 1, -1)) |> 
+  ggplot(aes(x = x, y = y, label = skill, color = skill)) +
+  geom_point(size = 100, alpha = 0.5) +
+  geom_text(mapping = aes(label = skill),
+            color = "black",
+            nudge_x = c(-2, 2, 0),
+            nudge_y = c(0.5, 0.5, -2)) +
+  geom_text(x = 0, y = 0, label = "Data Science",
+            color = "black") +
+  coord_equal() +
+  lims(x = c(-4, 4),
+       y = c(-4, 4)) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+
+## Intro to _Environmental_ Data Science
+
 ![Modified from @Wickham2023-aa](https://r4ds.hadley.nz/diagrams/data-science/base.png){.nostretch fig-align="center" width="95%"}
 
 ## Your Data Science Toolkit
