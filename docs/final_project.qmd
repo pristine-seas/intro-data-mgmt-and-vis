@@ -10,7 +10,7 @@ format:
 
 # The big picture
 
-Remember that the final goal is to have a GitHub repository where you can showcase your work. In assignment 1 you created the repository. Assignment two required you to develop one R script to clean some data in that same repository. For your third assignment, you visualized the data cleaned in assignment two. Your fourth and final assignment had you produce a map of your "study site", broadly defined. **This is now your final project, where you will combine everything you have produced into a communication product (presentation or a report). This final product is worth 10% of your final grade.**
+Remember that the final goal is to have a GitHub repository where you can showcase your work. In assignment 1 you created the repository. Assignment two required you to develop one R script to clean some data in that same repository. For your third assignment, you visualized the data cleaned in assignment two. Your fourth and final assignment had you produce a map of your "study site", broadly defined. **This is now your final project, where you will combine everything you have produced into a communication product (presentation or a report).** This final product is worth **10%** of your final grade and is **due on Dec 3 at 11:59 pm.**
 
 # Your final project
 
