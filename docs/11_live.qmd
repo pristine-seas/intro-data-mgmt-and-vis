@@ -4,8 +4,6 @@ lightbox: true
 format:
   html:
     toc: true
-  # pdf:
-  #   documentclass: article
 echo: true
 include: true
 code-fold: true

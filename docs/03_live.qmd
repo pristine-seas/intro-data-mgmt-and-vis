@@ -5,7 +5,7 @@ format:
   html:
     toc: true
   pdf:
-    documentclass: article
+    toc: true
 ---
 
 # Hands-on: Building Your First Repository

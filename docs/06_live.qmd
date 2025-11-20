@@ -5,7 +5,7 @@ format:
   html:
     toc: true
   pdf:
-    documentclass: article
+    toc: true
 ---
 
 # Exercise 1: Reading and transforming data

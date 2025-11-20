@@ -4,9 +4,8 @@ lightbox: true
 format:
   html:
     toc: true
-    code-fold: true
   pdf:
-    documentclass: article
+    toc: true
 ---
 
 # Part 1: Build a basic plot
