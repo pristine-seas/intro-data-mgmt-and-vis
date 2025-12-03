@@ -267,7 +267,7 @@ Students must complete any assigned readings and software tests before class. No
 ## Week 16: (Dec 1-5)
 [**Final Exams week Dec 4 - Dec 10**](https://registrar.miami.edu/_assets/pdf/academic-calendar-fall-2025.pdf)
 
-- No class, final projects due online
+- No lecture. No student presentations. Meet to review final projects.
 
 ## Reading resources
 - Books and manuals:
