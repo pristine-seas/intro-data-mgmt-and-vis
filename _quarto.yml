@@ -1,7 +1,3 @@
-subtitle: "[EVR 628](https://jcvdav.github.io/EVR_628/)- Intro to Environmental Data Science"
-author: "Juan Carlos Villaseñor-Derbez (JC)"
-institute: "Rosenstiel School of Marine, Atmospheric, and Earth Science and Institute for Data Science and Computing"
-
 project:
   output-dir: .
   execute-dir: project
@@ -11,8 +7,8 @@ format:
   revealjs:
     theme: simple
     incremental: true
-    logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
-    footer: "[EVR 628](https://jcvdav.github.io/EVR_628/)"
+    #logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
+    footer: ""
     code-fold: true
     preview-links: true
     echo: true

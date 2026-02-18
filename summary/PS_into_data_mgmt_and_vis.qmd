@@ -1,0 +1,388 @@
+---
+title: "Reproduceable Research"
+subtitle: "Pristine Seas | Research Retreat 2026"
+author: "Kat Millage & Juan Mayorga"
+format:
+  revealjs:
+    theme: simple
+    incremental: true
+    echo: true
+    code-fold: true
+---
+
+## Learning Objectives
+
+:::{.callout-note}
+## By the end of this session, you should be able to:
+- Understand the importance of reproducibility
+- Create the basic structure for an organized project
+- Explain the difference between Git and GitHub
+- Create and "clone" a "repo"
+- "commit" and "push"
+- Know where to find resources to learn more
+:::
+
+. . .
+
+:::{.callout-warning}
+## Learning Git and GitHub may (will) be painful
+
+- Usually taught later in courses
+- Crucially important when conducting collaborative research
+:::
+
+# Version control and reproducibility
+
+## Why Should We Care?
+
+- Collaboration: Work with others without breaking their code
+- Reproducibility: Essential for scientific integrity / managing the real world
+- Maintain versions through time
+- Backup & recovery: Never lose your work again
+
+
+## The Problem: Research can be chaotic
+
+- File naming: `analysis_final_v2_really_final_USE_THIS_ONE.R`
+  - (And the filenames loaded therein might look even worse)
+- Lost work: "Where did I put that working version?"
+- Collaboration conflicts: "Who changed what and when?"
+- Reproducibility failures: "Why do we get different results?"
+- Publication delays: "I can't reproduce my own results"
+
+
+## Reproducible Research
+
+Research that can be repeated by others using the same data and methods
+
+. . .
+
+**Key Components:**
+
+- **Data:** Raw, processed, and metadata
+- **Code:** Scripts, functions, and workflows  
+- **Documentation:** Methods, assumptions, and decisions
+- **Environment:** Software versions and dependencies
+- **Results:** Outputs, tables, figures
+
+
+# Organizing Projects
+
+## General Project Structure
+
+```
+cool_project/
+├── data/
+│   ├── raw/              # Original, unmodified data
+│   ├── processed/        # Cleaned, transformed data
+|   └── output/           # Output from your analyses
+├── scripts/
+│   ├── 01_processing/
+│   ├── 02_analysis/
+│   └── 03_contents/
+├── results/
+│   ├── figures/
+│   └── tables/
+├── docs/                 # Documents (optional)
+├── slides/               # Slides (optional)
+├── coool_project.Rproj   # Rstudio project (MANDATORY)
+├── README.md             # Project overview (MANDATORY)
+└── .gitignore            # Files to exclude from version control
+```
+
+## PS Expeditions - Drive + GitHub
+
+:::: {.columns}
+::: {.column width='50%'}
+### Google Drive
+```
+PNG-2024/
+├── data/
+│   ├── primary/
+│         ├── raw/              
+│         ├── processed/        
+|         └── output/           
+│   ├── secondary/        
+|         ├── raw/              
+│         ├── processed/        
+|         └── output/           
+├── documents/
+├── figures/
+├── GIS/
+├── media/                 
+├── presentations/               
+├── references/                 
+└── reports/     
+```
+:::
+::: {.column width='50%'}
+### GitHub
+```
+exp-PNG-2024/
+├── docs/
+├── scripts/
+├── exp-PNG-2024.Rproj
+├── README.md       
+└── .gitignore    
+```
+:::
+::::
+
+## File Naming Best Practices
+
+:::: {.columns}
+
+::: {.column width='50%'}
+**DO**:
+
+- Use descriptive names: `sea_surface_temp_analysis.R`
+  - I prefer `snake_case`, but `CamelCase` is appropriate too
+- Use consistent separators: underscores or hyphens
+:::
+
+::: {.column width='50%'}
+**DON'T**:
+
+- Use spaces: `my file.R`
+- Use special characters: `analysis@final.R`
+- Use vague names: `stuff.R`
+- Use different naming conventions within the same project
+- Use versions for code `analysis_v1.2.R` = `analysis_final_v2_really_final_USE_THIS_ONE.R`
+:::
+
+::::
+
+. . .
+
+Sometimes: include dates (e.g. `data_2024_01_15.csv`)
+
+## Naming conventions
+
+```{r}
+#| eval: false
+#| code-fold: false
+#| code-line-numbers: "1|3|5|7|9"
+i_use_snake_case                   # This is my preference
+
+otherPeopleUseCamelCase            # This sometimes works
+
+some.people.use.periods            # This is dangerous, especially in python
+
+And_aFew.People_RENOUNCEconvention # You need help
+
+ALL_CAPS                           # Reserved for super important stuff
+```
+
+# Version control 101
+
+## What is Version Control?
+
+A system that tracks changes to files over time
+
+**Think of it as**:
+
+- A time machine for your code
+- A detailed history book of your project
+- A safety net for your work
+- A collaboration tool for teams
+
+## Git vs GitHub
+
+:::: {.columns}
+::: {.column width='50%'}
+### Git
+
+- Software
+- Something you install in your computer
+- A command line tool (but we can bypass that)
+:::
+
+::: {.column width='50%'}
+### Git**Hub**
+
+- A service (offered by Microsoft)
+- Lives "on the cloud"
+- Provides a graphical interface
+- How you connect your computer to your colleague's computer
+- Back up of your code
+:::
+::::
+
+## GitHub
+
+**Key Features**:
+
+- Free hosting for public repositories
+- Collaboration tools: Issues, pull requests, discussions, [contact](https://github.com/chaisemartinPackages/did_multiplegt_dyn/issues/99) authors
+- Project management: Wikis, project boards, releases
+- Integration: Connects with other tools and services
+
+:::{.callout-tip}
+# Try It
+
+- If you already have a [GitHub](https://github.com/) account, figure out how to log in to it.
+- If you don't already have a GitHub account, register for one.
+- Send Kat and Juan your username so we can add you to the Pristine Seas organization.
+:::
+
+## Git
+
+**Git** was created by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) (creator of Linux) in 2005
+
+**Key Features**:
+
+- Free and open source: No licensing costs
+- Ample documentation
+- The most popular version control system
+
+:::{.callout-tip}
+# Try It
+
+- If you haven't already, install git on your computer. Start [here](https://git-scm.com/install/). 
+- Configure RStudio to find git. Instructions [here](https://happygitwithr.com/rstudio-see-git).
+:::
+
+# Four Git concepts
+
+Repository
+
+Clone
+
+Commit
+
+Push / Pull
+
+## Git Concepts: _Repository_
+
+**Repository (repo)**: A directory containing your project and its complete history
+
+. . .
+
+
+:::: {.columns}
+
+::: {.column width='50%'}
+**Think of it as**:
+
+- A project folder with superpowers
+- A database of all your changes
+- A collaboration space for your team
+:::
+
+::: {.column width='50%'}
+**Types**:
+
+- Local repository: On your computer
+- Remote repository: On a server (like GitHub)
+:::
+
+::::
+
+. . .
+
+:::{.callout-tip}
+# Example
+
+- I have a folder on my computer called `exp-Dominica-2022`. This is the local repo. 
+- What you see [online](https://github.com/pristine-seas/exp-Dominica-2022) is the remote repo.
+- 1 folder = 1 RStudio project = 1 repo
+- Let's create a new sample repository on GitHub! 
+:::
+
+
+## Git Concepts: _Cloning_
+
+**Cloning**: The process of bringing a repo from the remote to local for _the first time_
+
+. . .
+
+**When you clone a repo**:
+
+- You get all files available in the remote, at that point in time
+- You only do this once per project (unless you have more than one computer)
+- RStudio has a nice way of doing it without having to use the command line
+- Cloning is just GitHub's way of referring to "download and connect remote to local"
+- Nice link with R Projects! 
+
+:::{.callout-tip}
+# Try It
+
+- Create a new project in RStudio using the version control option and clone the sample repository we created ("research-retreat") from the Pristine Seas Github. 
+:::
+
+## Git Concepts: _Commit_
+
+**Commit**: A snapshot of your project at a specific point in time
+
+. . .
+
+**Each commit contains**:
+
+- Changes: What files were modified
+- Message: Description of what was changed and why
+- Author: Who made the changes
+- Timestamp: When the changes were made
+- Unique ID: A hash that identifies this commit
+
+. . .
+
+**Think of commits as**:
+
+- Checkpoints in your project's history
+- Save points in a video game
+- Pages in a project's storybook
+
+. . .
+
+## Git Concepts: _Push / Pull_
+
+Refers to uploading and downloading changes to and from the remote
+
+- With a push, you decide when you send a bundle of commits
+- With a pull, you decide when you bring down your colleague's version of code
+
+## Git Workflow: The Basic Cycle
+
+:::: {.columns}
+
+::: {.column width='60%'}
+1. **Modify** files in your working directory
+2. **Stage** changes you want to commit
+3. **Commit** staged changes with a message
+4. **Repeat** as you work on your project
+:::
+
+::::
+
+. . .
+
+**Push** the changes up to GitHub
+
+**This cycle creates a timeline of your project's development**
+
+## When / What to commit
+
+- No specific rule
+- Whatever a "change" might look like
+- Sometimes `Added color to points in figure 2` is enough (one line in one file)
+- Sometimes `Refactored code to work with new package` is appropriate (many lines in many files)
+- Small commits and frequent commits are best
+
+
+## Terminal Git Commands
+
+We can do most things in RStudio, but it's also possible to do everything through terminal/command line... 
+
+. . .
+
+- Getting started
+  - `git init`: Create a new repository
+  - `git clone`: Copy a repository from remote to local
+- Daily workflow
+  - `git status`: See what's changed
+  - `git add`: Stage changes for commit
+  - `git commit`: Save changes with a message
+- Connecting with GitHub
+  - `git push`: Upload changes to remote repository
+  - `git pull`: Download changes from remote repository
+
