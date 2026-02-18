@@ -210,12 +210,14 @@ A system that tracks changes to files over time
 
 ## GitHub
 
-**Key Features**:
+**Key Features**
 
 - Free hosting for public repositories
 - Collaboration tools: Issues, pull requests, discussions, [contact](https://github.com/chaisemartinPackages/did_multiplegt_dyn/issues/99) authors
 - Project management: Wikis, project boards, releases
 - Integration: Connects with other tools and services
+
+. . . 
 
 :::{.callout-tip}
 # Try It
@@ -227,13 +229,13 @@ A system that tracks changes to files over time
 
 ## Git
 
-**Git** was created by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) (creator of Linux) in 2005
-
-**Key Features**:
+**Key Features**
 
 - Free and open source: No licensing costs
 - Ample documentation
 - The most popular version control system
+
+. . . 
 
 :::{.callout-tip}
 # Try It
@@ -253,6 +255,8 @@ Commit
 Push / Pull
 
 ## Git Concepts: _Repository_
+
+. . . 
 
 **Repository (repo)**: A directory containing your project and its complete history
 
@@ -292,6 +296,8 @@ Push / Pull
 
 ## Git Concepts: _Cloning_
 
+. . . 
+
 **Cloning**: The process of bringing a repo from the remote to local for _the first time_
 
 . . .
@@ -304,13 +310,17 @@ Push / Pull
 - Cloning is just GitHub's way of referring to "download and connect remote to local"
 - Nice link with R Projects! 
 
+. . . 
+
 :::{.callout-tip}
 # Try It
 
-- Create a new project in RStudio using the version control option and clone the sample repository we created ("research-retreat") from the Pristine Seas Github. 
+- Create a new project in RStudio using the version control option and clone the sample repository we created ("prj-reef-health-index") from the Pristine Seas Github. 
 :::
 
 ## Git Concepts: _Commit_
+
+. . . 
 
 **Commit**: A snapshot of your project at a specific point in time
 
@@ -335,6 +345,8 @@ Push / Pull
 . . .
 
 ## Git Concepts: _Push / Pull_
+
+. . . 
 
 Refers to uploading and downloading changes to and from the remote
 
@@ -371,7 +383,7 @@ Refers to uploading and downloading changes to and from the remote
 
 ## Terminal Git Commands
 
-We can do most things in RStudio, but it's also possible to do everything through terminal/command line... 
+We can do most things in RStudio, but it's also possible to do everything through terminal/command line... There are a lot of resources to help with this online. 
 
 . . .
 
